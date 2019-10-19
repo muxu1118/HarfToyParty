@@ -1,15 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPreview : MonoBehaviour {
     
-    void Start () {
-
-    }
-
-    
-    void Update () {
-        
+    // シーン遷移
+    public void NextScene() {
+        SceneManager.LoadScene("TutorialScene");
     }
 }

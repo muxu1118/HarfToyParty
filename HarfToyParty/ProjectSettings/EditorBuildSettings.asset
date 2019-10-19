@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerPrewiewScene.unity
     guid: cb55767463bc6a546b3b203f84fd6d6e
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: b331bc7104a815148b281135894d1644
+  - enabled: 1
+    path: Assets/Scenes/MapSelectScene.unity
+    guid: 041377ec5b433f3448f0bdb80c14eab9
   m_configObjects: {}
