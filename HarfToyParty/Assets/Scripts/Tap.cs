@@ -9,6 +9,8 @@ public class Tap : MonoBehaviour
 {
     
     private static Vector3 TouchPosition = Vector3.zero;
+    // タップしたオブジェクト
+    protected GameObject tapObject;
 
     public virtual void GetTap()
     {
@@ -29,9 +31,9 @@ public class Tap : MonoBehaviour
             // Rayを飛ばす
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit)){
-                // Rayを飛ばしてあたったオブジェクトが自分自身だったら
-                if (hit.collider.gameObject == this.gameObject){
-                    return;
+                // Rayを飛ばしてあたったオブジェクトが自分自身じゃない時
+                if (hit.collider.gameObject != this.gameObject){
+                    tapObject = hit.collider.gameObject; 
                 }
             }
         }
