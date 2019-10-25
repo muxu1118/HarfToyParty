@@ -6,29 +6,35 @@ public class BomTest : MonoBehaviour
 {
     private GameObject Bomb;
     [SerializeField]
-    private float explosionTime;
-    private float rimeTrigger;
-
-    void Start()
-    {
-        
-    }
+    private float timeExplosion; //爆発までの時間
+    private float timeEpTrigger = 0;
 
     void Update()
     {
-        
+        Explosion();
     }
 
-    //private void explosion()
-    //{
-    //   ExplosionCoroutin();
-    //}
+    #region Coroutin
+    private void Explosion()
+    {
+        timeExplosion -= Time.deltaTime;
+        if(timeExplosion >= timeEpTrigger)
+        {
+            timeExplosion = 5;
+            
+        }
 
-    //IEnumerator ExplosionCoroutin()
-    //{
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(explosionTime);
-    //    }
-    //}
+        //ExplosionCoroutin();
+    }
+
+    IEnumerator ExplosionCoroutin()
+    {
+        timeExplosion -= Time.deltaTime;
+        while (timeExplosion >= timeEpTrigger)
+        {
+            Destroy(this.gameObject);
+        }
+        yield return null;
+    }
+    #endregion
 }
