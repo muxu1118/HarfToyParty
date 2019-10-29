@@ -93,7 +93,7 @@ public class Map : SingletonMonoBehaviour<Map>
             }
         }
         isMove = true;
-        StartCoroutine(MoveAnim(3, map, vec2));
+        StartCoroutine(MoveAnim(2, map, vec2));
     }
     IEnumerator MoveAnim(float wait,MapKind map,Vector2 vec2)
     {
@@ -114,7 +114,8 @@ public class Map : SingletonMonoBehaviour<Map>
         while (wait >= 0)
         {
             wait -= Time.deltaTime;
-            MapObject[(int)map].transform.position += new Vector3((MapObject[(int)map].transform.position.x-spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time , (spritePos[y - (int)vec2.y][x + (int)vec2.x].y - MapObject[(int)map].transform.position.y  ) / time);
+            MapObject[(int)map].transform.position += new Vector3((spritePos[y][x].x - spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time, (spritePos[y - (int)vec2.y][x + (int)vec2.x].y-spritePos[y][x].y) / time);
+            //MapObject[(int)map].transform.position += new Vector3((MapObject[(int)map].transform.position.x-spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time , (spritePos[y - (int)vec2.y][x + (int)vec2.x].y - MapObject[(int)map].transform.position.y  ) / time);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         MapObject[(int)map].transform.position = new Vector3(spritePos[y - (int)vec2.y][x + (int)vec2.x].x, spritePos[y - (int)vec2.y][x + (int)vec2.x].y);
