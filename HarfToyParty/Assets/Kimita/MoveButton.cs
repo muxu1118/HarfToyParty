@@ -13,6 +13,9 @@ public class MoveButton : Tap
     [SerializeField]
     private float touchRangeY;
 
+    [SerializeField]
+    private Player MyPlayer;
+
     private Vector2 movePosition;
     private bool swiChe;
 
@@ -46,19 +49,25 @@ public class MoveButton : Tap
         if (!swiChe) return;
         Touch touch = Input.GetTouch(0);
         TouchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-        Debug.Log("Touch"+TouchPosition);
-        Debug.Log("Start" + StartPosition);
         if (TouchPosition.x > StartPosition.x + 0.1f)
         {
             Debug.Log("右に移動");
+            MyPlayer.Move(2);
         }
         else if (TouchPosition.x < StartPosition.x - 0.1f)
         {
             Debug.Log("左に移動");
+            MyPlayer.Move(3);
         }
-        else if (TouchPosition.x < StartPosition.x - 0.1f)
+        else if (TouchPosition.y > StartPosition.y + 0.1f)
         {
-            Debug.Log("左に移動");
+            Debug.Log("上に移動");
+            MyPlayer.Move(0);
+        }
+        else if (TouchPosition.y < StartPosition.y - 0.1f)
+        {
+            MyPlayer.Move(1);
+            Debug.Log("下に移動");
         }
 
     }
