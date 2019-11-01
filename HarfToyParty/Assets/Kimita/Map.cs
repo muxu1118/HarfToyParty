@@ -14,6 +14,7 @@ public enum MapKind
 public class Map : SingletonMonoBehaviour<Map>
 {
     List<List<Vector3>> spritePos = new List<List<Vector3>>();
+    List<List<GameObject>> mapObj = new List<List<GameObject>>();
     public int[,] mapInt = new int[7,7];
 
     public List<MapKind> maps = new List<MapKind>();
@@ -27,12 +28,14 @@ public class Map : SingletonMonoBehaviour<Map>
         {
             Debug.Log(Y.name);
             spritePos.Add(new List<Vector3>());
+            mapObj.Add(new List<GameObject>());
             for (int i = 0; i <= 6; i++)
             {
                 if (Y.name == "Y" + i)
                 {
                     foreach (Transform X in Y.transform)
                     {
+                        mapObj[i].Add(X.transform.gameObject);
                         spritePos[i].Add(X.transform.position);
                         mapInt[i, i] = 0;
 
@@ -54,7 +57,7 @@ public class Map : SingletonMonoBehaviour<Map>
             {
                 for (int j = 0; j <= 6; j++)
                 {
-                    Debug.Log("X:" + i + "Y:" + j + "     " + spritePos[i][j]);
+                    Debug.Log("Y:" + i + "X:" + j + "     " + spritePos[i][j]);
                     Debug.Log("X:" + i + "Y:" + j + "     " + mapInt[i, j]);
                 }
             }
@@ -81,46 +84,88 @@ public class Map : SingletonMonoBehaviour<Map>
     public void Move(MapKind map, Vector2 vec2)
     {
         if (isMove) return;
+
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
             {
-                
-                if (mapInt[i, j] == (int)map && (j+(int)vec2.x >= 6|| j - (int)vec2.x < 0 || i-(int)vec2.y >= 6|| i + (int)vec2.y <0)) 
+                if (mapInt[j, i] == (int)map)
                 {
+                    Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
+                }
+                if (mapInt[j, i] == (int)map && !((i + (int)vec2.x <= 6 && i + (int)vec2.x >= 0) && (j - (int)vec2.y <= 6 && j - (int)vec2.y >= 0)))
+                {
+                    Debug.Log("位置が悪いよ");
                     return;
                 }
             }
         }
         isMove = true;
-        StartCoroutine(MoveAnim(2, map, vec2));
+        StartCoroutine(MoveAnim(1, map, vec2));
     }
-    IEnumerator MoveAnim(float wait,MapKind map,Vector2 vec2)
+    public void BombAria(int r,MapKind player)
     {
-        float time = wait / Time.deltaTime;
-        int x=0, y=0;
+        int y= 0, x =0;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
             {
-                if (mapInt[i, j] == (int)map && (i + (int)vec2.x >= 6 || i - (int)vec2.x < 0 || j - (int)vec2.y >= 6 || j + (int)vec2.y < 0))
+                if((int)player == mapInt[j, i])
+                {
+                    y = j;x = i;
+                }
+                
+            }
+        }
+        Debug.Log("向き:" + r + "X:" + x + "Y:" + y);
+        switch (r)
+        {
+            case 0:// 上
+                if (y - 1 < 0) break;
+                mapObj[y - 1][x].GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case 1:// 下
+                if (y + 1 > 6) break;
+                mapObj[y + 1][x].GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case 2:// 右
+                if (x + 1 > 6) break;
+                mapObj[y][x + 1].GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case 3:// 左
+                if (x - 1 < 0) break;
+                mapObj[y][x-1].GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            default:
+                break;
+        }
+
+    }
+    IEnumerator MoveAnim(float wait,MapKind map,Vector2 vec2)
+    {
+        float time = wait / Time.deltaTime;
+        int x=-1, y=-1;
+        for (int i = 0; i <= 6; i++)
+        {
+            for (int j = 0; j <= 6; j++)
+            {
+                if (mapInt[j, i] == (int)map)
                 {
                     x = i;
                     y = j;
                 }
             }
         }
-        Debug.Log(spritePos[y - (int)vec2.y][x + (int)vec2.x]);
         while (wait >= 0)
         {
             wait -= Time.deltaTime;
-            MapObject[(int)map].transform.position += new Vector3((spritePos[y][x].x - spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time, (spritePos[y - (int)vec2.y][x + (int)vec2.x].y-spritePos[y][x].y) / time);
+            MapObject[(int)map].transform.position += new Vector3((spritePos[y - (int)vec2.y][x + (int)vec2.x].x - spritePos[y][x].x) / time, (spritePos[y - (int)vec2.y][x + (int)vec2.x].y-spritePos[y][x].y) / time);
             //MapObject[(int)map].transform.position += new Vector3((MapObject[(int)map].transform.position.x-spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time , (spritePos[y - (int)vec2.y][x + (int)vec2.x].y - MapObject[(int)map].transform.position.y  ) / time);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         MapObject[(int)map].transform.position = new Vector3(spritePos[y - (int)vec2.y][x + (int)vec2.x].x, spritePos[y - (int)vec2.y][x + (int)vec2.x].y);
-        mapInt[x, y] = 0;
-        mapInt[x + (int)vec2.x, y - (int)vec2.y] = (int)map;
+        mapInt[y, x] = 0;
+        mapInt[y - (int)vec2.y,x + (int)vec2.x] = (int)map;
         isMove = false;
     }
 

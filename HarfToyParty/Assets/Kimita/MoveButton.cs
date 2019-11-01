@@ -30,7 +30,7 @@ public class MoveButton : Tap
     {
         base.GetTap();
         if (Input.touchCount <= 0) return;
-        Touch touch = Input.GetTouch(0);
+        Touch touch = Input.GetTouch(nowTouching[0]);
         if (touch.phase == TouchPhase.Ended)
         {
             StartPosition = Vector2.zero;
@@ -47,27 +47,23 @@ public class MoveButton : Tap
     private void Swipe()
     {
         if (!swiChe) return;
-        Touch touch = Input.GetTouch(0);
+        Touch touch = Input.GetTouch(nowTouching[0]);
         TouchPosition = Camera.main.ScreenToWorldPoint(touch.position);
         if (TouchPosition.x > StartPosition.x + 0.1f&& Mathf.Abs(TouchPosition.y) - StartPosition.y <= Mathf.Abs(TouchPosition.x) - StartPosition.x)
         {
-            Debug.Log("右に移動");
             MyPlayer.Move(2);
         }
         else if (TouchPosition.x < StartPosition.x - 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y <= Mathf.Abs(TouchPosition.x) - StartPosition.x)
         {
-            Debug.Log("左に移動");
             MyPlayer.Move(3);
         }
         else if (TouchPosition.y > StartPosition.y + 0.1f&& Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x)
         {
-            Debug.Log("上に移動");
             MyPlayer.Move(0);
         }
         else if (TouchPosition.y < StartPosition.y - 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x)
         {
             MyPlayer.Move(1);
-            Debug.Log("下に移動");
         }
 
     }
