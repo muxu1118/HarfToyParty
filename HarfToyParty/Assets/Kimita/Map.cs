@@ -117,24 +117,24 @@ public class Map : SingletonMonoBehaviour<Map>
                 
             }
         }
-        Debug.Log("向き:" + r + "X:" + x + "Y:" + y);
         switch (r)
         {
             case 0:// 上
                 if (y - 1 < 0) break;
-                mapObj[y - 1][x].GetComponent<SpriteRenderer>().color = Color.red;
+                
+                //mapObj[y - 1][x].GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case 1:// 下
                 if (y + 1 > 6) break;
-                mapObj[y + 1][x].GetComponent<SpriteRenderer>().color = Color.red;
+                //mapObj[y + 1][x].GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case 2:// 右
                 if (x + 1 > 6) break;
-                mapObj[y][x + 1].GetComponent<SpriteRenderer>().color = Color.red;
+                //mapObj[y][x + 1].GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case 3:// 左
                 if (x - 1 < 0) break;
-                mapObj[y][x-1].GetComponent<SpriteRenderer>().color = Color.red;
+                //mapObj[y][x-1].GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             default:
                 break;
