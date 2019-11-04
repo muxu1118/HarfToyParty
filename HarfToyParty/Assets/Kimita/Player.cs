@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private int myNumber;
     Map map;
     public int rot = 2;
-    public GameObject bomb;
+    private GameObject bomb;
     private Vector2 bombPos = new Vector2(1,1);
     private void Start()
     {
@@ -17,28 +17,44 @@ public class Player : MonoBehaviour
         int x, y;
         x = (gameObject.name == "Player1") ? 1 : 5;
         y = (gameObject.name == "Player1") ? 0 : 5;
-        map.mapInt[y, x] = myNumber; ;
+        map.mapInt[y, x] = myNumber;
+        bomb = transform.GetChild(0).gameObject;
     }
 
     private void Update()
     {
-        if (bomb.activeSelf)
+        //if (bomb.activeSelf)
+        //{
+        //    switch (rot)
+        //    {
+        //        case 0:// 上
+        //            bomb.transform.position = new Vector2(0, bombPos.y);
+        //            break;
+        //        case 1:// 下
+        //            bomb.transform.position = new Vector2(0, -bombPos.y);
+        //            break;
+        //        case 2:// 右
+        //            bomb.transform.position = new Vector2(bombPos.x,0);
+        //            break;
+        //        case 3:// 左
+        //            bomb.transform.position = new Vector2(-bombPos.x, 0);
+        //            break;
+        //    }
+        //}
+        switch (rot)
         {
-            switch (rot)
-            {
-                case 0:// 上
-                    bomb.transform.position = new Vector2(0, bombPos.y);
-                    break;
-                case 1:// 下
-                    bomb.transform.position = new Vector2(0, -bombPos.y);
-                    break;
-                case 2:// 右
-                    bomb.transform.position = new Vector2(bombPos.x,0);
-                    break;
-                case 3:// 左
-                    bomb.transform.position = new Vector2(-bombPos.x, 0);
-                    break;
-            }
+            case 0:// 上
+                transform.eulerAngles = new Vector3(0, 0, 90);
+                break;
+            case 1:// 下
+                transform.eulerAngles = new Vector3(0, 0, 270);
+                break;
+            case 2:// 右
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                break;
+            case 3:// 左
+                transform.eulerAngles = new Vector3(0, 0, 180);
+                break;
         }
     }
 
@@ -66,7 +82,20 @@ public class Player : MonoBehaviour
 
         }
     }
-
+    
+    /// <summary>
+    /// ボム範囲によって爆弾置いたり表示させたり
+    /// </summary>
+    public void BombAria()
+    {
+        //ボム範囲が表示されているか
+        if (!bomb.activeSelf)
+        {
+            // ボム範囲を表示
+            bomb.SetActive(true);
+            // bomb.GetComponent<Bomb>().BombRange();
+        }
+    }
 
 
 }

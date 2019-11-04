@@ -84,7 +84,7 @@ public class Map : SingletonMonoBehaviour<Map>
     public void Move(MapKind map, Vector2 vec2)
     {
         if (isMove) return;
-
+        int max = 6, min = 0;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
@@ -93,7 +93,7 @@ public class Map : SingletonMonoBehaviour<Map>
                 {
                     Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
                 }
-                if (mapInt[j, i] == (int)map && !((i + (int)vec2.x <= 6 && i + (int)vec2.x >= 0) && (j - (int)vec2.y <= 6 && j - (int)vec2.y >= 0)))
+                if (mapInt[j, i] == (int)map && !((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
                 {
                     Debug.Log("位置が悪いよ");
                     return;

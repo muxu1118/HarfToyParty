@@ -15,7 +15,9 @@ public class Tap : MonoBehaviour
     protected GameObject tapObject;
     private Canvas canvas;
     //　触ったボタン 0：移動 1：ギミック 
-    protected int[] nowTouching = new int[5];
+    protected static int[] nowTouching = new int[5];
+    protected static Touch[] tc = new Touch[5];
+    private bool isBomb = false;
 
     private void Start()
     {
@@ -46,13 +48,27 @@ public class Tap : MonoBehaviour
                 {
                     Debug.Log("今のタップは" + i + "本目で" + "移動キーを押しています");
                     nowTouching[0] = i;
+                    tc[i] = t;
                 }
                 v3 = GameObject.Find("BombButton").transform.position;
                 if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f))
                 {
                     Debug.Log("今のタップは" + i + "本目で" + "ギミックボタンを押しています");
-                    GameObject.Find("Player1").transform.GetChild(0).GetComponent<Bomb>().BombRange();
+                    GameObject.Find("Player1").GetComponent<Player>().BombAria();
+                    isBomb = GameObject.Find("Player1").GetComponent<Player>().transform.GetChild(0).gameObject.activeSelf;
                     nowTouching[1] = i;
+                    tc[i] = t;
+                }
+            }
+            if (t.phase == TouchPhase.Ended)
+            {
+                Vector3 v3 = new Vector3();
+                v3 = GameObject.Find("BombButton").transform.position;
+                Vector2 vec2 = Camera.main.ScreenToWorldPoint(t.position);
+                if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f)&&isBomb)
+                {
+                    Debug.Log("爆弾置く");
+                    GameObject.Find("Player1").transform.GetChild(0).GetComponent<Bomb>().BombPut();
                 }
             }
         }

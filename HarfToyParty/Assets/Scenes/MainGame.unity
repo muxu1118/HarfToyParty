@@ -2514,7 +2514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rot: 2
-  bomb: {fileID: 1379294741}
 --- !u!212 &1027737230
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2688,7 +2687,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rot: 2
-  bomb: {fileID: 382231179}
 --- !u!212 &1086751891
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3675,13 +3673,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1379294742}
   - component: {fileID: 1379294743}
+  - component: {fileID: 1379294744}
   m_Layer: 0
   m_Name: bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1379294742
 Transform:
   m_ObjectHideFlags: 0
@@ -3744,6 +3743,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1379294744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379294741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc63c4440a92604998fcdfb33a960b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1459591379
 GameObject:
   m_ObjectHideFlags: 0
@@ -5240,9 +5251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2117612880}
-  - component: {fileID: 2117612879}
   - component: {fileID: 2117612881}
-  - component: {fileID: 2117612882}
   m_Layer: 0
   m_Name: BombButton
   m_TagString: Untagged
@@ -5250,26 +5259,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2117612879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117612878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc63c4440a92604998fcdfb33a960b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TouchPosition: {x: 0, y: 0}
-  StartPosition: {x: 0, y: 0}
-  tapObject: {fileID: 0}
-  canvas: {fileID: 0}
-  nowTouching: 0000000000000000000000000000000000000000
-  Player: {fileID: 1027737228}
 --- !u!4 &2117612880
 Transform:
   m_ObjectHideFlags: 0
@@ -5332,18 +5321,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2117612882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117612878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e129c1fd452be479dd747c4b72e38c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchRangeX: 0.6
-  touchRangeY: 0.6
-  MyPlayer: {fileID: 1027737229}
