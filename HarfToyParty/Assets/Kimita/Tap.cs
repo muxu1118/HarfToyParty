@@ -51,7 +51,7 @@ public class Tap : MonoBehaviour
                 if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f))
                 {
                     Debug.Log("今のタップは" + i + "本目で" + "ギミックボタンを押しています");
-                    GameObject.Find("Player1").transform.GetChild(0).GetComponent<Bomb>().BombRange();
+                    GameObject.Find("Player1").GetComponent<Player>().BombAria();
                     nowTouching[1] = i;
                 }
             }
