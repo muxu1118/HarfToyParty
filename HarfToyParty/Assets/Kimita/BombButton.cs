@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Bomb : Tap
 {
-    private GameObject Player;
+    public GameObject Player;
     
     private void Start()
     {
-        Player = gameObject.transform.root.gameObject;
-        gameObject.SetActive(false);
+        
     }
     private void Update()
     {
