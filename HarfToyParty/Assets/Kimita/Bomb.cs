@@ -9,7 +9,6 @@ public class Bomb : Tap
     private void Start()
     {
         Player = transform.root.gameObject;
-        gameObject.SetActive(false);
     }
     private void Update()
     {

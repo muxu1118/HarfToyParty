@@ -17,11 +17,19 @@ public class Tap : MonoBehaviour
     //　触ったボタン 0：移動 1：ギミック 
     protected static int[] nowTouching = new int[5];
     protected static Touch[] tc = new Touch[5];
-    private bool isBomb = false;
+    private static bool isBomb = false;
+    private GameObject BombAria;
 
+    public static bool IsBomb { get => isBomb; set => isBomb = value; }
+
+    private void Awake()
+    {
+        BombAria = GameObject.Find("BombAria");
+    }
     private void Start()
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        BombAria.SetActive(false);
     }
 
     public virtual void GetTap()
@@ -54,23 +62,38 @@ public class Tap : MonoBehaviour
                 if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f))
                 {
                     Debug.Log("今のタップは" + i + "本目で" + "ギミックボタンを押しています");
-                    GameObject.Find("Player1").GetComponent<Player>().BombAria();
-                    isBomb = GameObject.Find("Player1").GetComponent<Player>().transform.GetChild(0).gameObject.activeSelf;
+                    if (isBomb)
+                    {
+                        isBomb = false;
+                        Debug.Log("爆弾置く");
+                        BombAria.SetActive(false);
+                        // 爆弾を置く
+                        Map.instance.BombAria(GameObject.Find("Player1").GetComponent<Player>().rot, MapKind.Player1);
+                    }
+                    else
+                    {
+                        isBomb = true;
+                        Debug.Log(BombAria);
+                        BombAria.SetActive(true);
+                        // 爆弾範囲をだす
+                        StartCoroutine(Map.instance.AriaSet(MapKind.Player1,MapKind.BombAria));
+                    }
                     nowTouching[1] = i;
                     tc[i] = t;
                 }
             }
-            if (t.phase == TouchPhase.Ended)
-            {
-                Vector3 v3 = new Vector3();
-                v3 = GameObject.Find("BombButton").transform.position;
-                Vector2 vec2 = Camera.main.ScreenToWorldPoint(t.position);
-                if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f)&&isBomb)
-                {
-                    Debug.Log("爆弾置く");
-                    GameObject.Find("Player1").transform.GetChild(0).GetComponent<Bomb>().BombPut();
-                }
-            }
+            //if (t.phase == TouchPhase.Ended)
+            //{
+                
+            //    Vector3 v3 = new Vector3();
+            //    v3 = GameObject.Find("BombButton").transform.position;
+            //    Vector2 vec2 = Camera.main.ScreenToWorldPoint(t.position);
+            //    if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f)&&isBomb)
+            //    {
+            //        Debug.Log("爆弾置く");
+            //        GameObject.Find("Player1").transform.GetChild(0).GetComponent<Bomb>().BombPut();
+            //    }
+            //}
         }
 
         //// タップしたオブジェクトを取得

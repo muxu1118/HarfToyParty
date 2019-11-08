@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
         x = (gameObject.name == "Player1") ? 1 : 5;
         y = (gameObject.name == "Player1") ? 0 : 5;
         map.mapInt[y, x] = myNumber;
-        bomb = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -83,19 +82,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// ボム範囲によって爆弾置いたり表示させたり
-    /// </summary>
-    public void BombAria()
-    {
-        //ボム範囲が表示されているか
-        if (!bomb.activeSelf)
-        {
-            // ボム範囲を表示
-            bomb.SetActive(true);
-            // bomb.GetComponent<Bomb>().BombRange();
-        }
-    }
+    
 
 
 }
