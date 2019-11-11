@@ -194,7 +194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &35301977
 Transform:
   m_ObjectHideFlags: 0
@@ -2270,11 +2270,11 @@ MonoBehaviour:
   MapObject:
   - {fileID: 1027737228}
   - {fileID: 3643795612194513928, guid: a2a40585f710d7d4fb617f8cf5b1280f, type: 3}
-  - {fileID: 1027737228}
+  - {fileID: 870798515}
   - {fileID: 1027737228}
   - {fileID: 1086751889}
   - {fileID: 1379294741}
-  - {fileID: 1379294741}
+  - {fileID: 768203213}
 --- !u!1 &593250966
 GameObject:
   m_ObjectHideFlags: 0
