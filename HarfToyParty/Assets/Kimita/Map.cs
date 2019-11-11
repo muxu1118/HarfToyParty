@@ -57,16 +57,6 @@ public class Map : SingletonMonoBehaviour<Map>
         {
             maps.Add((MapKind)i);
         }
-        string str = "";
-        for(int i = 0; i <= 10; i++)
-        {
-            for (int j = 0; j <= 10; j++)
-            {
-                if((i*j)%2 == 0) continue;
-                str += i * j + " ";
-            }
-        }
-        Debug.Log(str);
 
     }
     private void Start()
@@ -83,10 +73,9 @@ public class Map : SingletonMonoBehaviour<Map>
             string str = "";
             for (int i = 0; i <= 6; i++)
             {
-                str += i;
                 for (int j = 0; j <= 6; j++)
                 {
-                    str +=mapInt[j,i].ToString();
+                    str += mapInt[i,j].ToString();
                 }
                 str += "\n";
             }
@@ -140,7 +129,7 @@ public class Map : SingletonMonoBehaviour<Map>
                     if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Movewall)
                     {
                         // 壁を押す
-                        if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2)) return;
+                        if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2,spritePos)) return;
 
                     }
                 }
