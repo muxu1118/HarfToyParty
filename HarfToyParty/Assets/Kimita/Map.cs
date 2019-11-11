@@ -10,15 +10,23 @@ public enum MapKind
     Player1,
     Player2,
     BombAria,
-    Wall
+    Wall,
 }
+
 
 public class Map : SingletonMonoBehaviour<Map>
 {
     List<List<Vector3>> spritePos = new List<List<Vector3>>();
     List<List<GameObject>> mapObj = new List<List<GameObject>>();
     public int[,] mapInt = new int[7,7];
-
+    int[,] exple = {
+        {0,3,0,0,0,0 },
+        {0,1,0,6,0,0 },
+        {0,0,6,6,6,0 },
+        {0,0,0,6,0,0 },
+        {0,0,0,0,4,0 },
+        {0,0,0,0,0,0 }
+    };
     public List<MapKind> maps = new List<MapKind>();
     [SerializeField]
     private GameObject[] MapObject = new GameObject[System.Enum.GetNames(typeof(MapKind)).Length];
@@ -49,6 +57,16 @@ public class Map : SingletonMonoBehaviour<Map>
         {
             maps.Add((MapKind)i);
         }
+        string str = "";
+        for(int i = 0; i <= 10; i++)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+                if((i*j)%2 == 0) continue;
+                str += i * j + " ";
+            }
+        }
+        Debug.Log(str);
 
     }
     private void Start()
@@ -60,7 +78,7 @@ public class Map : SingletonMonoBehaviour<Map>
     private void Update()
     {
         // Debug
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             string str = "";
             for (int i = 0; i <= 6; i++)
@@ -93,6 +111,8 @@ public class Map : SingletonMonoBehaviour<Map>
             }
         }
     }
+   
+
     public void Move(MapKind map, Vector2 vec2)
     {
         if (isMove) return;
@@ -101,22 +121,27 @@ public class Map : SingletonMonoBehaviour<Map>
         {
             for (int j = 0; j <= 6; j++)
             {
-                // Debug
                 if (mapInt[j, i] == (int)map)
                 {
+                    // Debug
                     Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
-                }
-                if (mapInt[j, i] == (int)map && !((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
-                {
-                    Debug.Log("位置が悪いよ");
-                    return;
-                }
-                if (mapInt[j, i] == (int)map)
-                {
-                    if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == 6)
+                    
+                    if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
+                    {
+                        Debug.Log("位置が悪いよ");
+                        // WarpWallで移動
+                        return;
+                    }
+                    if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
                     {
                         Debug.Log("壁があるよ");
                         return;
+                    }
+                    if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Movewall)
+                    {
+                        // 壁を押す
+                        if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2)) return;
+
                     }
                 }
             }
@@ -138,8 +163,9 @@ public class Map : SingletonMonoBehaviour<Map>
                 
             }
         }
-        Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)MapKind.BombAria].transform.position, Quaternion.identity);
-        
+        mapInt[y, x] = (int)MapKind.Bomb;
+        GameObject obj =  Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)MapKind.BombAria].transform.position, Quaternion.identity);
+        // obj.GetComponent<BomTest>().MyPosi = new Vector2(x,y);
         //switch (r)
         //{
         //    case 0:// 上
