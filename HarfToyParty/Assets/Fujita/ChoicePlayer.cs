@@ -17,22 +17,18 @@ public class ChoicePlayer : MonoBehaviour{
 
     public void choice()
     {
-
         if (Application.isEditor)
         {
-            //デバック用
-            if (Input.GetMouseButtonDown(0))
+        //デバック用
+            if (Player1)
             {
-                if (Player1)
-                {
-                    Debug.Log("1を選択した");
-                    //背景をキャラ1に変える＋Pl_1scoreを持たせる
+                Debug.Log("1を選択した");
+                //背景をキャラ1に変える＋Pl_1scoreを持たせる
 
-                }
-                else if (Player2)
-                {
-                    Debug.Log("2を選択した");
-                }
+            }
+            else if (Player2)
+            {
+                Debug.Log("2を選択した");
             }
             //タブレット用
             else if (Input.touchCount > 0)
