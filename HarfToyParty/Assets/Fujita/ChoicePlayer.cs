@@ -30,12 +30,21 @@ public class ChoicePlayer : MonoBehaviour{
             {
                 Debug.Log("2を選択した");
             }
-            //タブレット用
-            else if (Input.touchCount > 0)
+
+
+         //タブレット用
+            else if (Player1 && Input.touchCount > 0)
             {
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    Debug.Log("タップした");
+                    Debug.Log("1をタップした");
+                }
+            }
+            else if (Player2 && Input.touchCount > 0)
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    Debug.Log("2をタップした");
                 }
             }
         }
