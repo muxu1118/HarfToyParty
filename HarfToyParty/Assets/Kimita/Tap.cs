@@ -19,6 +19,8 @@ public class Tap : MonoBehaviour
     protected static Touch[] tc = new Touch[5];
     private static bool isBomb = false;
     private GameObject BombAria;
+    private string playerName;
+    private MapKind playerKind;
 
     public static bool IsBomb { get => isBomb; set => isBomb = value; }
 
@@ -30,6 +32,8 @@ public class Tap : MonoBehaviour
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         BombAria.SetActive(false);
+        playerName = "Player2";
+        playerKind = MapKind.Player2;
     }
 
     public virtual void GetTap()
@@ -68,6 +72,37 @@ public class Tap : MonoBehaviour
                         Debug.Log("爆弾置く");
                         BombAria.SetActive(false);
                         // 爆弾を置く
+                        Map.instance.BombAria(GameObject.Find(playerName).GetComponent<Player>().rot, playerKind);
+                    }
+                    else
+                    {
+                        isBomb = true;
+                        Debug.Log(BombAria);
+                        BombAria.SetActive(true);
+                        // 爆弾範囲をだす
+                        StartCoroutine(Map.instance.AriaSet(playerKind, MapKind.BombAria));
+                    }
+                    nowTouching[1] = i;
+                    tc[i] = t;
+                }
+
+                v3 = GameObject.Find("MoveButton (1)").transform.position;
+                if ((vec2.x >= v3.x - 0.5f) && (vec2.x <= v3.x + 0.5f) && (vec2.y >= v3.y - 0.5f) && (vec2.y <= v3.y + 0.5f))
+                {
+                    Debug.Log("今のタップは" + i + "本目で" + "移動キーを押しています");
+                    nowTouching[0] = i;
+                    tc[i] = t;
+                }
+                v3 = GameObject.Find("BombButton (1)").transform.position;
+                if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f))
+                {
+                    Debug.Log("今のタップは" + i + "本目で" + "ギミックボタンを押しています");
+                    if (isBomb)
+                    {
+                        isBomb = false;
+                        Debug.Log("爆弾置く");
+                        BombAria.SetActive(false);
+                        // 爆弾を置く
                         Map.instance.BombAria(GameObject.Find("Player1").GetComponent<Player>().rot, MapKind.Player1);
                     }
                     else
@@ -76,7 +111,7 @@ public class Tap : MonoBehaviour
                         Debug.Log(BombAria);
                         BombAria.SetActive(true);
                         // 爆弾範囲をだす
-                        StartCoroutine(Map.instance.AriaSet(MapKind.Player1,MapKind.BombAria));
+                        StartCoroutine(Map.instance.AriaSet(playerKind, MapKind.BombAria));
                     }
                     nowTouching[1] = i;
                     tc[i] = t;
