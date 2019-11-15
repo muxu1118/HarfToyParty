@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player1: {fileID: 1686105781}
-  Player2: {fileID: 2001700928}
+  Player2: {fileID: 0}
   button: {fileID: 1686105783}
   button2: {fileID: 2001700930}
   playerID: 3
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9295c93a1b02e9e4ab916a72dba576b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 1686105781}
+  Player1: {fileID: 0}
   Player2: {fileID: 2001700928}
   button: {fileID: 1686105783}
   button2: {fileID: 2001700930}
