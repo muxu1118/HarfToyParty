@@ -9,7 +9,8 @@ public enum MapKind
     Movewall,
     Player1,
     Player2,
-    BombAria,
+    BombAria1,
+    BombAria2,
     Wall,
 }
 
@@ -31,6 +32,11 @@ public class Map : SingletonMonoBehaviour<Map>
     [SerializeField]
     private GameObject[] MapObject = new GameObject[System.Enum.GetNames(typeof(MapKind)).Length];
     bool isMove;
+    private Vector2 BombPos = new Vector2();
+
+    public List<List<Vector3>> SpritePos { get => spritePos; set => spritePos = value; }
+    public Vector2 BombPos1 { get => BombPos; set => BombPos = value; }
+
     private void OnEnable()
     {
         // マップを探す
@@ -102,42 +108,47 @@ public class Map : SingletonMonoBehaviour<Map>
     }
    
 
-    public void Move(MapKind map, Vector2 vec2)
-    {
-        if (isMove) return;
-        int max = 6, min = 0;
-        for (int i = 0; i <= 6; i++)
-        {
-            for (int j = 0; j <= 6; j++)
-            {
-                if (mapInt[j, i] == (int)map)
-                {
-                    // Debug
-                    Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
+    //public void Move(MapKind map, Vector2 vec2)
+    //{
+    //    if (isMove) return;
+    //    int max = 6, min = 0;
+    //    for (int i = 0; i <= 6; i++)
+    //    {
+    //        for (int j = 0; j <= 6; j++)
+    //        {
+    //            if (mapInt[j, i] == (int)map)
+    //            {
+    //                // Debug
+    //                Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
                     
-                    if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
-                    {
-                        Debug.Log("位置が悪いよ");
-                        // WarpWallで移動
-                        return;
-                    }
-                    if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
-                    {
-                        Debug.Log("壁があるよ");
-                        return;
-                    }
-                    if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Movewall)
-                    {
-                        // 壁を押す
-                        if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2,spritePos)) return;
+    //                if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
+    //                {
+    //                    Debug.Log("位置が悪いよ");
+    //                    // WarpWallで移動
+    //                    return;
+    //                }
+    //                if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
+    //                {
+    //                    Debug.Log("壁があるよ");
+    //                    return;
+    //                }
+    //                if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Movewall)
+    //                {
+    //                    // 壁を押す
+    //                    if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2,spritePos)) return;
 
-                    }
-                }
-            }
-        }
-        isMove = true;
-        StartCoroutine(MoveAnim(1, map, vec2));
-    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //    isMove = true;
+    //    StartCoroutine(MoveAnim(1, map, vec2));
+    //}
+    /// <summary>
+    /// ボム範囲を設定
+    /// </summary>
+    /// <param name="r"></param>
+    /// <param name="player"></param>
     public void BombAria(int r,MapKind player)
     {
         int y= 0, x =0;
@@ -152,95 +163,46 @@ public class Map : SingletonMonoBehaviour<Map>
                 
             }
         }
-        mapInt[y, x] = (int)MapKind.Bomb;
-        GameObject obj =  Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)MapKind.BombAria].transform.position, Quaternion.identity);
-        // obj.GetComponent<BomTest>().MyPosi = new Vector2(x,y);
-        //switch (r)
-        //{
-        //    case 0:// 上
-        //        if (y - 1 < 0) break;
-        //        Instantiate(MapObject[(int)MapKind.Bomb], new Vector3(spritePos[y - 1][x].x, spritePos[y - 1][x].y, 1), Quaternion.identity);
-        //        break;
-        //    case 1:// 下
-        //        if (y + 1 > 6) break;
-        //        Instantiate(MapObject[(int)MapKind.Bomb], new Vector3(spritePos[y + 1][x].x, spritePos[y + 1][x].y, 1), Quaternion.identity);
-        //        break;
-        //    case 2:// 右
-        //        if (x + 1 > 6) break;
-        //        Instantiate(MapObject[(int)MapKind.Bomb], new Vector3(spritePos[y][x + 1].x, spritePos[y][x + 1].y, 1), Quaternion.identity);
-        //        break;
-        //    case 3:// 左
-        //        if (x - 1 < 0) break;
-        //        Instantiate(MapObject[(int)MapKind.Bomb], new Vector3(spritePos[y][x - 1].x, spritePos[y][x - 1].y, 1), Quaternion.identity);
-        //        break;
-        //    default:
-        //        break;
-        //}
+        MapKind booAria = (player == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
+        GameObject obj =  Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)booAria].transform.position, Quaternion.identity);
+        obj.GetComponent<BomTest>().MyPosi = BombPos1;
 
     }
-    IEnumerator MoveAnim(float wait,MapKind map,Vector2 vec2)
+    //IEnumerator MoveAnim(float wait,MapKind map,Vector2 vec2)
+    //{
+    //    float time = wait / Time.deltaTime;
+    //    int x=-1, y=-1;
+    //    for (int i = 0; i <= 6; i++)
+    //    {
+    //        for (int j = 0; j <= 6; j++)
+    //        {
+    //            if (mapInt[j, i] == (int)map)
+    //            {
+    //                x = i;
+    //                y = j;
+    //            }
+    //        }
+    //    }
+    //    while (wait >= 0)
+    //    {
+    //        wait -= Time.deltaTime;
+    //        MapObject[(int)map].transform.position += new Vector3((spritePos[y - (int)vec2.y][x + (int)vec2.x].x - spritePos[y][x].x) / time, (spritePos[y - (int)vec2.y][x + (int)vec2.x].y-spritePos[y][x].y) / time);
+    //        //MapObject[(int)map].transform.position += new Vector3((MapObject[(int)map].transform.position.x-spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time , (spritePos[y - (int)vec2.y][x + (int)vec2.x].y - MapObject[(int)map].transform.position.y  ) / time);
+    //        yield return new WaitForSeconds(Time.deltaTime);
+    //    }
+    //    MapObject[(int)map].transform.position = new Vector3(spritePos[y - (int)vec2.y][x + (int)vec2.x].x, spritePos[y - (int)vec2.y][x + (int)vec2.x].y);
+    //    mapInt[y, x] = 0;
+    //    mapInt[y - (int)vec2.y,x + (int)vec2.x] = (int)map;
+    //    isMove = false;
+    //}
+
+    public void AriaSet(MapKind player,MapKind Aria)
     {
-        float time = wait / Time.deltaTime;
-        int x=-1, y=-1;
-        for (int i = 0; i <= 6; i++)
-        {
-            for (int j = 0; j <= 6; j++)
-            {
-                if (mapInt[j, i] == (int)map)
-                {
-                    x = i;
-                    y = j;
-                }
-            }
-        }
-        while (wait >= 0)
-        {
-            wait -= Time.deltaTime;
-            MapObject[(int)map].transform.position += new Vector3((spritePos[y - (int)vec2.y][x + (int)vec2.x].x - spritePos[y][x].x) / time, (spritePos[y - (int)vec2.y][x + (int)vec2.x].y-spritePos[y][x].y) / time);
-            //MapObject[(int)map].transform.position += new Vector3((MapObject[(int)map].transform.position.x-spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time , (spritePos[y - (int)vec2.y][x + (int)vec2.x].y - MapObject[(int)map].transform.position.y  ) / time);
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-        MapObject[(int)map].transform.position = new Vector3(spritePos[y - (int)vec2.y][x + (int)vec2.x].x, spritePos[y - (int)vec2.y][x + (int)vec2.x].y);
-        mapInt[y, x] = 0;
-        mapInt[y - (int)vec2.y,x + (int)vec2.x] = (int)map;
-        isMove = false;
+        StartCoroutine(MapObject[(int)Aria].GetComponent<Bomb>().AriaSet(player,Aria,BombPos1));
     }
-    public IEnumerator AriaSet(MapKind player,MapKind Aria)
+    public void PushMoveWall(Vector2 vec2)
     {
-        while (Tap.IsBomb)
-        {
-            int x = 0, y = 0;
-            Debug.Log(MapObject[(int)player].GetComponent<Player>().rot);
-            switch (MapObject[(int)player].GetComponent<Player>().rot)
-            {
-                case 0://上
-                    y = -1;
-                    break;
-                case 1://下
-                    y = 1;
-                    break;
-                case 2://右
-                    x = 1;
-                    break;
-                case 3://左
-                    x = -1;
-                    break;
-            }
-            for (int i = 0; i <= 6; i++)
-            {
-                for (int j = 0; j <= 6; j++)
-                {
-                    if (mapInt[j, i] == (int)player)
-                    {
-                        if (i + x > 6 || i + x < 0) { x = 0; }
-                        if(j + y > 6 || j + y < 0){ y = 0; }
-                        MapObject[(int)Aria].transform.position = new Vector3(spritePos[j + y][i + x].x, spritePos[j + y][i + x].y, 1);
-                    }
-                }
-            }
-            yield return  new WaitForSeconds(Time.deltaTime);
-        }
-        yield return null;
+        if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
 
     }
 }

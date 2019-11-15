@@ -20,4 +20,17 @@ public class LogDisplay : MonoBehaviour
     {
         log.text = logText;
     }
+    public void PushButton()
+    {
+        string str = "";
+        for (int i = 0; i <= 6; i++)
+        {
+            for (int j = 0; j <= 6; j++)
+            {
+                str += Map.instance.mapInt[i, j].ToString();
+            }
+            str += "\n";
+        }
+        Debug.Log(str);
+    }
 }
