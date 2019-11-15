@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 public class ChoicePlayer : MonoBehaviour{
 
     public GameObject Player1, Player2;
+    public static int Pl_1score = 0;
+    public static int Pl_2score = 0;
+
+    public MapKind playerID;//Player1か2
+
+    public int[] player = new int[2];
+    
 
     void Start()
     {
@@ -17,34 +24,36 @@ public class ChoicePlayer : MonoBehaviour{
     {
         if (Application.isEditor)
         {
-            //デバック用
-            if (Input.GetMouseButtonDown(0))
+        //デバック用
+            if (Player1)
             {
-                Debug.Log("プレイヤーを選択した");
-                if (Player1)
-                {
-                    Debug.Log("1を選択した");
-                    //背景を1に変える
-                }
-                if (Player2)
-                {
-                    Debug.Log("2を選択した");
-                    //背景を2に変える
-                }
+                
+                Debug.Log("1を選択した");
+                playerID = MapKind.Player1;
+                //Pl_1scoreを持たせる
             }
-            //タブレット用
-            else if (Input.touchCount > 0)
+            else if (Player2)
+            {
+                Debug.Log("2を選択した");
+                playerID = MapKind.Player2;
+            }
+
+
+         //タブレット用
+            else if (Player1 && Input.touchCount > 0)
             {
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    Debug.Log("タップした");
+                    Debug.Log("1をタップした");
                 }
-
+            }
+            else if (Player2 && Input.touchCount > 0)
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    Debug.Log("2をタップした");
+                }
             }
         }
-    }
-    void Update()
-    {
-        
     }
 }
