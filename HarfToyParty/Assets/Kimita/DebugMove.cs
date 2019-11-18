@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DebugMove : MonoBehaviour
+public class DebugMove : NetworkBehaviour
 {
     [SerializeField]
     private float touchRangeX;
@@ -23,35 +24,57 @@ public class DebugMove : MonoBehaviour
     private Canvas canvas;
     protected int nowTouching;
 
+    private Vector3 ButtonPos = new Vector3();
+
+    private void Start()
+    {
+        ButtonPos = GameObject.Find("MoveButton").transform.position;
+        //StartCoroutine("FindPly");
+    }
+
+    //IEnumerator FindPly()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    MyPlayer = transform.root.GetChild(0).gameObject.GetComponent<Player>();
+
+    //}
     private void Update()
     {
-        GetClick();
+        
+            GetClick();
+        
         Swipe();
     }
 
     // Swipe 
     private void GetClick()
     {
-        // スマホタップの取得 touchCountが0以上でタップ判定
-        if (Input.GetMouseButtonDown(0))
+        if (isLocalPlayer)
         {
-            TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            StartPosition = TouchPosition;
-            
-        }else if (Input.GetMouseButtonUp(0))
-        {
-            StartPosition = Vector2.zero;
-            swiChe = false;
-        }else if (Input.GetMouseButton(0))
-        {
-            TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                StartPosition = TouchPosition;
+                Debug.Log(ButtonPos.x);
+                Debug.Log(ButtonPos.x + touchRangeX);
+                Debug.Log(StartPosition.x);
 
-        if (StartPosition.x <= transform.position.x + touchRangeX && StartPosition.x >= transform.position.x - touchRangeX && StartPosition.y <= transform.position.y + touchRangeY && StartPosition.y >= transform.position.y - touchRangeY)
-        {
-            swiChe = true;
-        }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                StartPosition = Vector2.zero;
+                swiChe = false;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
 
+            if (StartPosition.x <= ButtonPos.x + touchRangeX && StartPosition.x >= ButtonPos.x - touchRangeX && StartPosition.y <= ButtonPos.y + touchRangeY && StartPosition.y >= ButtonPos.y - touchRangeY)
+            {
+                swiChe = true;
+            }
+        }
     }
     private void Swipe()
     {
