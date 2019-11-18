@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Networking;
 public enum MapKind
 {
     YUKA = 0,
@@ -15,8 +15,30 @@ public enum MapKind
 }
 
 
-public class Map : SingletonMonoBehaviour<Map>
+public class Map : NetworkBehaviour
 {
+    //singleton 始まり
+    public static Map instance;
+    protected void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this as Map;
+        }
+    }
+    protected void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
+    //singleton 終わり
+
     List<List<Vector3>> spritePos = new List<List<Vector3>>();
     List<List<GameObject>> mapObj = new List<List<GameObject>>();
     public int[,] mapInt = new int[7,7];
