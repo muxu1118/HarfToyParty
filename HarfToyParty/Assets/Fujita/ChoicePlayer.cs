@@ -33,7 +33,8 @@ public class ChoicePlayer : MonoBehaviour{
             playerID = MapKind.Player1;
             if(button.interactable == false && button2.interactable == false)
             {
-                Debug.Log("Sceneを呼んでるよ");
+                SceneManager.LoadScene("MainGame");
+                Debug.Log("GameSceneを呼んでるよ");
             }
         }
         else if (Player2)
@@ -43,7 +44,8 @@ public class ChoicePlayer : MonoBehaviour{
             playerID = MapKind.Player2;
             if (button.interactable == false && button2.interactable == false)
             {
-                Debug.Log("Sceneを呼んでるよ");
+                SceneManager.LoadScene("MainGame");
+                Debug.Log("GameSceneを呼んでるよ");
             }
         }
         
@@ -59,6 +61,7 @@ public class ChoicePlayer : MonoBehaviour{
                     playerID = MapKind.Player1;
                     if (button.interactable == false && button2.interactable == false)
                     {
+                        SceneManager.LoadScene("MainGame");
                         Debug.Log("Sceneを呼んでるよ");
                     }
                 }
@@ -68,6 +71,13 @@ public class ChoicePlayer : MonoBehaviour{
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     Debug.Log("2をタップした");
+                    button.interactable = false;
+                    playerID = MapKind.Player1;
+                    if (button.interactable == false && button2.interactable == false)
+                    {
+                        SceneManager.LoadScene("MainGame");
+                        Debug.Log("Sceneを呼んでるよ");
+                    }
                 }
             }
         }
