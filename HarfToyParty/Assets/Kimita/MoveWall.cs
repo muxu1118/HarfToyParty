@@ -11,6 +11,7 @@ public class MoveWall : NetworkBehaviour
         square = 0,
         Rectangle,
         cross,
+        VerticalRect,
     }
     [SerializeField]
     private form myForm;
@@ -39,6 +40,10 @@ public class MoveWall : NetworkBehaviour
                 Map.instance.mapInt[y - 1, x] = (int)MyWall;
                 Map.instance.mapInt[y, x + 1] = (int)MyWall;
                 Map.instance.mapInt[y, x - 1] = (int)MyWall;
+                break;
+            case 3:
+                Map.instance.mapInt[y, x] = (int)MyWall;
+                Map.instance.mapInt[y - 1, x] = (int)MyWall;
                 break;
 
         }
