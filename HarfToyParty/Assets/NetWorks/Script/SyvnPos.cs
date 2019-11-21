@@ -15,12 +15,11 @@ public class SyvnPos : NetworkBehaviour
     Transform myTransform;
     [SerializeField]
     float lerpRate = 15;
+    [SerializeField]
     private GameObject WallObj;
 
     void Start()
     {
-        WallObj = GameObject.Find("MoveWall");
-
     }
 
     private void FixedUpdate()
@@ -71,6 +70,7 @@ public class SyvnPos : NetworkBehaviour
         if (!isLocalPlayer)
         {
             WallObj.transform.position = Vector3.Lerp(WallObj.transform.position, syncWallPos, Time.deltaTime * lerpRate);
+            
         }
     }
 

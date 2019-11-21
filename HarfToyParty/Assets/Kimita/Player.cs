@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
         map = Map.instance;
         myNumber = (gameObject.name == "Player1") ? (int)MapKind.Player1: (int)MapKind.Player2;
         int x, y;
-        x = (gameObject.name == "Player1") ? 1 : 5;
-        y = (gameObject.name == "Player1") ? 0 : 5;
+        x = (gameObject.name == "Player1") ? 0 : 6;
+        y = (gameObject.name == "Player1") ? 6 : 0;
         map.mapInt[y, x] = myNumber;
         transform.position = Map.instance.SpritePos[y][x];
     }

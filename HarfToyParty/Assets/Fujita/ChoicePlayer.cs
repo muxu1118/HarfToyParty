@@ -61,7 +61,7 @@ public class ChoicePlayer : MonoBehaviour{
                     playerID = MapKind.Player1;
                     if (button.interactable == false && button2.interactable == false)
                     {
-                        SceneManager.LoadScene("MainGame");
+                        GameObject.Find("NetWorkNetWorkManager").GetComponent<CustomLocalNet>().StartHost();
                         Debug.Log("Sceneを呼んでるよ");
                     }
                 }
@@ -75,7 +75,7 @@ public class ChoicePlayer : MonoBehaviour{
                     playerID = MapKind.Player1;
                     if (button.interactable == false && button2.interactable == false)
                     {
-                        SceneManager.LoadScene("MainGame");
+                        GameObject.Find("NetWorkNetWorkManager").GetComponent<CustomLocalNet>().JoinGame();
                         Debug.Log("Sceneを呼んでるよ");
                     }
                 }
