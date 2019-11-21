@@ -97,6 +97,7 @@ public class Map : NetworkBehaviour
         {
             MoveWalls.Add(movewall.gameObject);
         }
+        Debug.Log(MoveWalls.Count);
         for (int i = 0; i < System.Enum.GetNames(typeof(MapKind)).Length; i++)
         {
             maps.Add((MapKind)i);
@@ -240,7 +241,7 @@ public class Map : NetworkBehaviour
     }
     public void PushMoveWall(Vector2 vec2,MapKind kind)
     {
-        if (!MapObject[kind].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
+        if (!MoveWalls[(int)kind-(int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
 
     }
 }

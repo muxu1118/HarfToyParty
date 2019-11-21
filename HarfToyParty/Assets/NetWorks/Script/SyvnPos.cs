@@ -8,15 +8,36 @@ public class SyvnPos : NetworkBehaviour
     [SyncVar]
     private Vector3 syncPos;
 
+    [SyncVar]
+    private Vector3 syncWallPos;
+
     [SerializeField]
     Transform myTransform;
     [SerializeField]
     float lerpRate = 15;
+    private GameObject WallObj;
+
+    void Start()
+    {
+        WallObj = GameObject.Find("MoveWall");
+
+    }
 
     private void FixedUpdate()
     {
         TransmitPosition();
         LerpPos();
+
+        /**/
+        TransmitWallPosition();
+        LerpWallPos();
+
+        //if (!isServer&&WallObj.GetComponent<MoveWall>().UpdatePossition)
+        //{
+        //        WallObj.GetComponent<MoveWall>().UpdatePossition = false;
+        //        Updateposition(WallObj.GetComponent<MoveWall>().finalPos);
+        //}
+
     }
 
     void LerpPos()
@@ -24,7 +45,6 @@ public class SyvnPos : NetworkBehaviour
         if (!isLocalPlayer)
         {
             myTransform.position = Vector3.Lerp(myTransform.position, syncPos, Time.deltaTime * lerpRate);
-
         }
     }
 
@@ -43,4 +63,48 @@ public class SyvnPos : NetworkBehaviour
         }
     }
 
+
+    /*test*/
+
+    void LerpWallPos()
+    {
+        if (!isLocalPlayer)
+        {
+            WallObj.transform.position = Vector3.Lerp(WallObj.transform.position, syncWallPos, Time.deltaTime * lerpRate);
+        }
+    }
+
+    [Command]
+    void CmdIpdateWallPosition(Vector3 wallpos)
+    {
+        syncWallPos = wallpos;
+    }
+
+    [ClientCallback]
+    void TransmitWallPosition()
+    {
+        if (isLocalPlayer)
+        {
+            CmdIpdateWallPosition(WallObj.transform.position);
+        }
+    }
+
+
+    /**********************/
+    //public void Updateposition(Vector3 newpos)
+    //{
+    //    CmdUpdatePosition(newpos);
+    //}
+
+    //[Command]
+    //void CmdUpdatePosition(Vector3 newPosition)
+    //{
+    //    RpcUpdateWallPosition(newPosition);
+    //}
+
+    //[ClientRpc]
+    //void RpcUpdateWallPosition(Vector3 newPosition)
+    //{
+    //    WallObj.transform.position = newPosition;
+    //}
 }
