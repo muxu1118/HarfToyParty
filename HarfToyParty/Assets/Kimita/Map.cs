@@ -6,12 +6,22 @@ public enum MapKind
 {
     YUKA = 0,
     Bomb,
-    Movewall,
     Player1,
     Player2,
     BombAria1,
     BombAria2,
     Wall,
+    Movewall0,
+    Movewall1,
+    Movewall2,
+    Movewall3,
+    Movewall4,
+    Movewall5,
+    Movewall6,
+    Movewall7,
+    Movewall8,
+    Movewall9,
+    Movewall10,
 }
 
 
@@ -58,9 +68,11 @@ public class Map : NetworkBehaviour
 
     public List<List<Vector3>> SpritePos { get => spritePos; set => spritePos = value; }
     public Vector2 BombPos1 { get => BombPos; set => BombPos = value; }
+    public List<GameObject> MoveWalls { get; set; } = new List<GameObject>();
 
     private void OnEnable()
     {
+        
         // マップを探す
         foreach (Transform Y in gameObject.transform)
         {
@@ -80,6 +92,10 @@ public class Map : NetworkBehaviour
                 }
             }
 
+        }
+        foreach(Transform movewall in GameObject.Find("MoveWalls").transform)
+        {
+            MoveWalls.Add(movewall.gameObject);
         }
         for (int i = 0; i < System.Enum.GetNames(typeof(MapKind)).Length; i++)
         {
@@ -222,9 +238,9 @@ public class Map : NetworkBehaviour
     {
         StartCoroutine(MapObject[(int)Aria].GetComponent<Bomb>().AriaSet(player,Aria,BombPos1));
     }
-    public void PushMoveWall(Vector2 vec2)
+    public void PushMoveWall(Vector2 vec2,MapKind kind)
     {
-        if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
+        if (!MapObject[kind].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
 
     }
 }

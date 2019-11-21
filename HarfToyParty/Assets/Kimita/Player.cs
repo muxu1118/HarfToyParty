@@ -108,10 +108,10 @@ public class Player : MonoBehaviour
                         Debug.Log("壁があるよ");
                         return;
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Movewall)
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
                     {
                         // 壁を押す
-                        map.PushMoveWall(vec2);
+                        map.PushMoveWall(vec2,(MapKind)map.mapInt[j - (int)vec2.y, i + (int)vec2.x]);
 
                     }
                 }

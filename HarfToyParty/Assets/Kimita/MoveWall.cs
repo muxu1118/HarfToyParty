@@ -11,10 +11,12 @@ public class MoveWall : NetworkBehaviour
         square = 0,
         Rectangle,
         cross,
-
     }
     [SerializeField]
     private form myForm;
+
+    [SerializeField]
+    private MapKind MyWall;
 
     [SerializeField]
     Vector2 XY;
@@ -25,18 +27,18 @@ public class MoveWall : NetworkBehaviour
         switch ((int)myForm)
         {
             case 0:
-                Map.instance.mapInt[y, x] = (int)MapKind.Movewall;
+                Map.instance.mapInt[y, x] = (int)MyWall;
                 break;
             case 1:
-                Map.instance.mapInt[y, x] = (int)MapKind.Movewall;
-                Map.instance.mapInt[y, x + 1] = (int)MapKind.Movewall;
+                Map.instance.mapInt[y, x] = (int)MyWall;
+                Map.instance.mapInt[y, x + 1] = (int)MyWall;
                 break;
             case 2:
-                Map.instance.mapInt[y, x] = (int)MapKind.Movewall;
-                Map.instance.mapInt[y + 1, x] = (int)MapKind.Movewall;
-                Map.instance.mapInt[y - 1, x] = (int)MapKind.Movewall;
-                Map.instance.mapInt[y, x + 1] = (int)MapKind.Movewall;
-                Map.instance.mapInt[y, x - 1] = (int)MapKind.Movewall;
+                Map.instance.mapInt[y, x] = (int)MyWall;
+                Map.instance.mapInt[y + 1, x] = (int)MyWall;
+                Map.instance.mapInt[y - 1, x] = (int)MyWall;
+                Map.instance.mapInt[y, x + 1] = (int)MyWall;
+                Map.instance.mapInt[y, x - 1] = (int)MyWall;
                 break;
 
         }
@@ -70,11 +72,11 @@ public class MoveWall : NetworkBehaviour
                 Debug.Log("抜けたぜ");
                 break;
             case 2:
-                //Map.instance.mapInt[y, x] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y + 1, x] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y - 1, x] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y, x + 1] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y, x - 1] = (int)MapKind.Movewall;
+                //Map.instance.mapInt[y, x] = (int)MyWall;
+                //Map.instance.mapInt[y + 1, x] = (int)MyWall;
+                //Map.instance.mapInt[y - 1, x] = (int)MyWall;
+                //Map.instance.mapInt[y, x + 1] = (int)MyWall;
+                //Map.instance.mapInt[y, x - 1] = (int)MyWall;
                 break;
                 
         }
@@ -94,20 +96,20 @@ public class MoveWall : NetworkBehaviour
         {
             case 0:
                 Map.instance.mapInt[y, x] = 0;
-                Map.instance.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)MapKind.Movewall;
+                Map.instance.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)MyWall;
                 break;
             case 1:
                 Map.instance.mapInt[y, x] = 0;
                 Map.instance.mapInt[y, x+1] = 0;
-                Map.instance.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)MapKind.Movewall;
-                Map.instance.mapInt[y - (int)vec2.y, x + 1 +(int)vec2.x] = (int)MapKind.Movewall;
+                Map.instance.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)MyWall;
+                Map.instance.mapInt[y - (int)vec2.y, x + 1 +(int)vec2.x] = (int)MyWall;
                 break;
             case 2:
-                //Map.instance.mapInt[y, x] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y + 1, x] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y - 1, x] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y, x + 1] = (int)MapKind.Movewall;
-                //Map.instance.mapInt[y, x - 1] = (int)MapKind.Movewall;
+                //Map.instance.mapInt[y, x] = (int)MyWall;
+                //Map.instance.mapInt[y + 1, x] = (int)MyWall;
+                //Map.instance.mapInt[y - 1, x] = (int)MyWall;
+                //Map.instance.mapInt[y, x + 1] = (int)MyWall;
+                //Map.instance.mapInt[y, x - 1] = (int)MyWall;
                 break;
         }
         while (wait >= 0)
