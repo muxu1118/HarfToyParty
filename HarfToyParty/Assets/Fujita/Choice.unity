@@ -726,8 +726,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.45, y: 0.000024438}
-  m_SizeDelta: {x: 358.07, y: 638.1}
+  m_AnchoredPosition: {x: -1.8, y: 0.000024438}
+  m_SizeDelta: {x: 824.6, y: 1469.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &276118231
 MonoBehaviour:
@@ -848,14 +848,15 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 0}
+  m_PlayerPrefab: {fileID: 6137019741446565374, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+    type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: Choice
   m_OnlineScene: MainGame
   m_SpawnPrefabs:
-  - {fileID: 499161294866917059, guid: 4f2bd3e25d099794f9e3df05e954f4ee, type: 3}
-  - {fileID: 9050817608144552129, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
+  - {fileID: 6137019741446565374, guid: 4f2bd3e25d099794f9e3df05e954f4ee, type: 3}
+  - {fileID: 2385714785293738865, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -912,8 +913,8 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   CharacterPerfab:
-  - {fileID: 499161294866917059, guid: 4f2bd3e25d099794f9e3df05e954f4ee, type: 3}
-  - {fileID: 9050817608144552129, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
+  - {fileID: 6137019741446565374, guid: 4f2bd3e25d099794f9e3df05e954f4ee, type: 3}
+  - {fileID: 2385714785293738865, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
   iptext: {fileID: 575662977}
   playingPlayer: 0
 --- !u!4 &476574770
@@ -1265,8 +1266,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: -137}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -25, y: -336}
+  m_SizeDelta: {x: 377.5, y: 377.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &606736283
 MonoBehaviour:
@@ -1310,6 +1311,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1510210493}
         m_MethodName: choice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 476574769}
+        m_MethodName: Startuphost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1699,7 +1711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -66}
+  m_AnchoredPosition: {x: 108, y: -246}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888485557
@@ -1926,7 +1938,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2083,7 +2095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8}
+  m_AnchoredPosition: {x: -69, y: -120}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452395523
@@ -2215,8 +2227,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 24}
-  m_SizeDelta: {x: 205.8, y: 205.8}
+  m_AnchoredPosition: {x: 181.4, y: 55.3}
+  m_SizeDelta: {x: 473.9, y: 473.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481910039
 MonoBehaviour:
@@ -2308,8 +2320,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68, y: 24}
-  m_SizeDelta: {x: 205.8, y: 205.8}
+  m_AnchoredPosition: {x: -159.4, y: 55.3}
+  m_SizeDelta: {x: 473.9, y: 473.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510210491
 MonoBehaviour:
@@ -2400,8 +2412,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: -137}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -0.000013351, y: -339}
+  m_SizeDelta: {x: 388.4, y: 388.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1752672556
 MonoBehaviour:
@@ -2445,6 +2457,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1481910041}
         m_MethodName: choice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 476574769}
+        m_MethodName: JoinGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

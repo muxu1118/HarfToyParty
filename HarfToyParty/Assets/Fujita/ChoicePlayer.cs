@@ -20,7 +20,6 @@ public class ChoicePlayer : MonoBehaviour{
     
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
     }
 
     public void choice()
@@ -61,7 +60,6 @@ public class ChoicePlayer : MonoBehaviour{
                     playerID = MapKind.Player1;
                     if (button.interactable == false && button2.interactable == false)
                     {
-                        GameObject.Find("NetWorkNetWorkManager").GetComponent<CustomLocalNet>().StartHost();
                         Debug.Log("Sceneを呼んでるよ");
                     }
                 }
@@ -75,7 +73,6 @@ public class ChoicePlayer : MonoBehaviour{
                     playerID = MapKind.Player1;
                     if (button.interactable == false && button2.interactable == false)
                     {
-                        GameObject.Find("NetWorkNetWorkManager").GetComponent<CustomLocalNet>().JoinGame();
                         Debug.Log("Sceneを呼んでるよ");
                     }
                 }

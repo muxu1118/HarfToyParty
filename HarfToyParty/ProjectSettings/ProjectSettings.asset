@@ -153,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: HarfToyParty
+    Android: HarfToyParty.com
     Standalone: com.Company.ProductName
   buildNumber: {}
   AndroidBundleVersionCode: 1
@@ -244,8 +244,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: "C:/Users/kamaa/OneDrive/\u30C9\u30AD\u30E5\u30E1\u30F3\u30C8/HarfToyParty/HarfToyParty/KeyStore/user.keystore"
-  AndroidKeyaliasName: harftoy
+  AndroidKeystoreName: C:/Users/student/Documents/HarfToyParty/HarfToyParty/KeyStore/user.keystore
+  AndroidKeyaliasName: 
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

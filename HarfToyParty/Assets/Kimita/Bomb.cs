@@ -29,10 +29,14 @@ public class Bomb : Tap
             gameObject.SetActive(false);
             Map.instance.BombAria(Player.GetComponent<Player>().rot, MapKind.Player1);
         }
+        else
+        {
+            gameObject.SetActive(false);
+            Map.instance.BombAria(Player.GetComponent<Player>().rot, MapKind.Player2);
+        }
     }
     public IEnumerator AriaSet(MapKind player, MapKind Aria,Vector2 BombPos)
     {
-        Debug.Log(player.ToString());
         Player = GameObject.Find(player.ToString());
             while (gameObject.activeSelf)
             {

@@ -7,7 +7,7 @@ public class CustomDiscovery : NetworkDiscovery
 {
     public override void OnReceivedBroadcast(string fromAddress, string data)
     {
-        Debug.Log(fromAddress);
+        //Debug.Log(fromAddress);
 
         NetworkManager.singleton.networkAddress = fromAddress;
         NetworkManager.singleton.StartClient();

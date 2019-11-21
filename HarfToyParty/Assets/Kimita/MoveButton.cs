@@ -12,13 +12,16 @@ public class MoveButton : Tap
     private float touchRangeX;
     [SerializeField]
     private float touchRangeY;
-
-    [SerializeField]
-    private Player MyPlayer;
+    
 
     private Vector2 movePosition;
     private bool swiChe;
-
+    public Player MyPlayer { get; set; }
+    Tap tap;
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         GetTap();
@@ -30,6 +33,7 @@ public class MoveButton : Tap
     {
         base.GetTap();
         if (Input.touchCount <= 0) return;
+        
         Touch touch = tc[nowTouching[0]];
         if (touch.phase == TouchPhase.Ended)
         {

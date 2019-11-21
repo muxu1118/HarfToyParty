@@ -39,10 +39,10 @@ public class Wall : MonoBehaviour
                 Map.instance.mapInt[y, x + 1] = (int)MapKind.Wall;
                 Map.instance.mapInt[y, x - 1] = (int)MapKind.Wall;
 
-                Debug.Log(Map.instance.mapInt[y + 1, x]);
-                Debug.Log(Map.instance.mapInt[y - 1, x]);
-                Debug.Log(Map.instance.mapInt[y, x + 1]);
-                Debug.Log(Map.instance.mapInt[y, x - 1]);
+                //Debug.Log(Map.instance.mapInt[y + 1, x]);
+                //Debug.Log(Map.instance.mapInt[y - 1, x]);
+                //Debug.Log(Map.instance.mapInt[y, x + 1]);
+                //Debug.Log(Map.instance.mapInt[y, x - 1]);
                 break;
                 
         }

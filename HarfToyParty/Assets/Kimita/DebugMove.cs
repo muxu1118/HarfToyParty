@@ -55,9 +55,6 @@ public class DebugMove : NetworkBehaviour
             {
                 TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 StartPosition = TouchPosition;
-                Debug.Log(ButtonPos.x);
-                Debug.Log(ButtonPos.x + touchRangeX);
-                Debug.Log(StartPosition.x);
 
             }
             else if (Input.GetMouseButtonUp(0))

@@ -31,6 +31,7 @@ public class LogDisplay : MonoBehaviour
             }
             str += "\n";
         }
-        Debug.Log(str);
+        
+        Debug.Log("ボム牡丹の位置"+"X"+GameObject.Find("BombButton").transform.position.x+ "Y" + GameObject.Find("BombButton").transform.position.y);
     }
 }

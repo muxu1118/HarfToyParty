@@ -20,8 +20,14 @@ public class Player : MonoBehaviour
         y = (gameObject.name == "Player1") ? 6 : 0;
         map.mapInt[y, x] = myNumber;
         transform.position = Map.instance.SpritePos[y][x];
+        StartCoroutine(SetMoveButton());
     }
+    IEnumerator SetMoveButton()
+    {
+        yield return new WaitForSeconds(0.3f);
+        GameObject.Find("MoveButton").GetComponent<MoveButton>().MyPlayer = gameObject.GetComponent<Player>(); 
 
+    }
     private void Update()
     {
         //if (bomb.activeSelf)
@@ -45,16 +51,16 @@ public class Player : MonoBehaviour
         switch (rot)
         {
             case 0:// 上
-                transform.eulerAngles = new Vector3(0, 0, 90);
+                //transform.eulerAngles = new Vector3(0, 0, 90);
                 break;
             case 1:// 下
-                transform.eulerAngles = new Vector3(0, 0, 270);
+                //transform.eulerAngles = new Vector3(0, 0, 270);
                 break;
             case 2:// 右
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                //transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             case 3:// 左
-                transform.eulerAngles = new Vector3(0, 0, 180);
+                //transform.eulerAngles = new Vector3(0, 0, 180);
                 break;
         }
     }

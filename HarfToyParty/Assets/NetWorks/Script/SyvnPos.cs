@@ -15,8 +15,7 @@ public class SyvnPos : NetworkBehaviour
     Transform myTransform;
     [SerializeField]
     float lerpRate = 15;
-    [SerializeField]
-    private GameObject WallObj;
+    
 
     void Start()
     {
@@ -28,8 +27,8 @@ public class SyvnPos : NetworkBehaviour
         LerpPos();
 
         /**/
-        TransmitWallPosition();
-        LerpWallPos();
+        //TransmitWallPosition();
+        //LerpWallPos();
 
         //if (!isServer&&WallObj.GetComponent<MoveWall>().UpdatePossition)
         //{
@@ -65,29 +64,29 @@ public class SyvnPos : NetworkBehaviour
 
     /*test*/
 
-    void LerpWallPos()
-    {
-        if (!isLocalPlayer)
-        {
-            WallObj.transform.position = Vector3.Lerp(WallObj.transform.position, syncWallPos, Time.deltaTime * lerpRate);
-            
-        }
-    }
+    //void LerpWallPos()
+    //{
+    //    if (!isLocalPlayer)
+    //    {
+    //        WallObj.transform.position = Vector3.Lerp(WallObj.transform.position, syncWallPos, Time.deltaTime * lerpRate);
 
-    [Command]
-    void CmdIpdateWallPosition(Vector3 wallpos)
-    {
-        syncWallPos = wallpos;
-    }
+    //    }
+    //}
 
-    [ClientCallback]
-    void TransmitWallPosition()
-    {
-        if (isLocalPlayer)
-        {
-            CmdIpdateWallPosition(WallObj.transform.position);
-        }
-    }
+    //[Command]
+    //void CmdIpdateWallPosition(Vector3 wallpos)
+    //{
+    //    syncWallPos = wallpos;
+    //}
+
+    //[ClientCallback]
+    //void TransmitWallPosition()
+    //{
+    //    if (isLocalPlayer)
+    //    {
+    //        CmdIpdateWallPosition(WallObj.transform.position);
+    //    }
+    //}
 
 
     /**********************/
