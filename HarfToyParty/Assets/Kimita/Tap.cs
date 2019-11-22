@@ -27,10 +27,11 @@ public class Tap : NetworkBehaviour
 
     public static bool IsBomb { get => isBomb; set => isBomb = value; }
     public static bool IsBomb2 { get => isBomb2; set => isBomb2 = value; }
-    
+    public static bool IsSerVer { get; set; }
+
     private void Awake()
     {
-
+        IsSerVer = isServer;
     }
 
     private void Start()

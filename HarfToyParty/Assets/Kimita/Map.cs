@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 public enum MapKind
 {
+    
     YUKA = 0,
     Bomb,
     Player1,
@@ -48,11 +49,11 @@ public class Map : NetworkBehaviour
         }
     }
     //singleton 終わり
-    
+
     List<List<Vector3>> spritePos = new List<List<Vector3>>();// マップの位置
     List<List<GameObject>> mapObj = new List<List<GameObject>>();
-    public int[,] mapInt = new int[7,7];
-    
+    public int[,] mapInt = new int[7, 7];
+
     public List<MapKind> maps = new List<MapKind>();
     [SerializeField]
     private GameObject[] MapObject = new GameObject[System.Enum.GetNames(typeof(MapKind)).Length];
@@ -65,7 +66,7 @@ public class Map : NetworkBehaviour
 
     private void OnEnable()
     {
-        
+
         // マップを探す
         foreach (Transform Y in gameObject.transform)
         {
@@ -103,9 +104,9 @@ public class Map : NetworkBehaviour
     }
     private void Start()
     {
-        
-        
-        
+
+
+
     }
     private void Update()
     {
@@ -118,7 +119,7 @@ public class Map : NetworkBehaviour
                 for (int j = 0; j <= 6; j++)
                 {
                     if (mapInt[i, j] < 10) { str += " "; }
-                    str += mapInt[i,j].ToString();
+                    str += mapInt[i, j].ToString();
                 }
                 str += "\n";
             }
@@ -134,7 +135,7 @@ public class Map : NetworkBehaviour
             {
                 for (int l = 0; l < System.Enum.GetNames(typeof(MapKind)).Length; l++)
                 {
-                    if(mapInt[j,i] == (int)maps[l])
+                    if (mapInt[j, i] == (int)maps[l])
                     {
                         MapObject[(int)maps[l]].transform.position = spritePos[i][j];
                     }
@@ -143,7 +144,7 @@ public class Map : NetworkBehaviour
             }
         }
     }
-   
+
 
     //public void Move(MapKind map, Vector2 vec2)
     //{
@@ -157,7 +158,7 @@ public class Map : NetworkBehaviour
     //            {
     //                // Debug
     //                Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
-                    
+
     //                if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
     //                {
     //                    Debug.Log("位置が悪いよ");
@@ -186,22 +187,22 @@ public class Map : NetworkBehaviour
     /// </summary>
     /// <param name="r"></param>
     /// <param name="player"></param>
-    public void BombAria(int r,MapKind player)
+    public void BombAria(int r, MapKind player)
     {
-        int y= 0, x =0;
+        int y = 0, x = 0;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
             {
-                if((int)player == mapInt[j, i])
+                if ((int)player == mapInt[j, i])
                 {
-                    y = j;x = i;
+                    y = j; x = i;
                 }
-                
+
             }
         }
         MapKind booAria = (player == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
-        GameObject obj =  Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)booAria].transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)booAria].transform.position, Quaternion.identity);
         obj.GetComponent<BomTest>().MyPosi = BombPos1;
 
     }
@@ -231,6 +232,26 @@ public class Map : NetworkBehaviour
     //    mapInt[y, x] = 0;
     //    mapInt[y - (int)vec2.y,x + (int)vec2.x] = (int)map;
     //    isMove = false;
+    //}
+
+    //public bool GetPartCheck(MapKind player,Vector2 xy)
+    //{
+    //    for (int i = 0; i <= 6; i++)
+    //    {
+    //        for (int j = 0; j <= 6; j++)
+    //        {
+    //            if (mapInt[j, i] == (int)MapKind.RedPart&&player == MapKind.Player1)
+    //            {
+
+    //                return true;
+    //            }
+    //            if (mapInt[j, i] == (int)MapKind.BluePart && player == MapKind.Player2)
+    //            {
+    //                return true;
+    //            }
+    //        }
+    //    }
+    //    return false;
     //}
 
     public void AriaSet(MapKind player,MapKind Aria)

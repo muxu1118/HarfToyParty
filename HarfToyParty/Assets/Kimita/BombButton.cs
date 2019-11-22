@@ -39,7 +39,11 @@ public class BombButton : Tap
             MyPlayer = GameObject.Find("Player2").GetComponent<Player>();
         }
         yield return new WaitForSeconds(0.5f);
-        
+        if (MyPlayer == null)
+        {
+            yield return new WaitForSeconds(1.5f);
+            MyPlayer = GameObject.Find("Player2").GetComponent<Player>();
+        }
         BombAria = (MyPlayer.name == "Player1")? GameObject.Find("BombAria1"): GameObject.Find("BombAria2");
         
 

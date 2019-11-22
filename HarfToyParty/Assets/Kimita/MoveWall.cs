@@ -8,6 +8,7 @@ public class MoveWall : NetworkBehaviour
 
     [SyncVar]
     private Vector3 syncWallPos;
+
     [SerializeField]
     float lerpRate = 15;
 
