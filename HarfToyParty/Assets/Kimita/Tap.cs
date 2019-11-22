@@ -27,20 +27,21 @@ public class Tap : NetworkBehaviour
 
     public static bool IsBomb { get => isBomb; set => isBomb = value; }
     public static bool IsBomb2 { get => isBomb2; set => isBomb2 = value; }
-
+    
     private void Awake()
     {
+
     }
+
     private void Start()
     {
         playerName = transform.GetChild(0).name;
         playerKind = (MapKind.Player1.ToString() == playerName) ? MapKind.Player1 : MapKind.Player2;
         BombAria = (playerKind == MapKind.Player1) ? GameObject.Find("BombAria1") : GameObject.Find("BombAria2");
-        Debug.Log(BombAria);
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        BombAria.SetActive(false);
+        Debug.Log("名:" + playerName + "種:" + playerKind + "範囲:" + BombAria);
+         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        
     }
-
     public virtual void GetTap()
     {
         // スマホタップの取得 touchCountが0以上でタップ判定
@@ -67,29 +68,12 @@ public class Tap : NetworkBehaviour
                     nowTouching[0] = i;
                     tc[i] = t;
                 }
-                Debug.Log("Tap位置"+"X"+ vec2.x+"Y"+vec2.y);
                 v3 = GameObject.Find("BombButton").transform.position;
                 if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f))
                 {
-                    Debug.Log("今のタップは" + i + "本目で" + "ギミックボタンを押しています");
-                    if (isBomb)
-                    {
-                        isBomb = false;
-                        BombAria.SetActive(false);
-                        // 爆弾を置く
-                        Map.instance.BombAria(gameObject.transform.GetChild(0).GetComponent<Player>().rot, playerKind);
-                    }
-                    else
-                    {
-                        Debug.Log("ここ以下が悪い");
-                        isBomb = true;
-                        BombAria.SetActive(true);
-                        // 爆弾範囲をだす
-                        MapKind AriaKind = (playerName == "Player1") ? MapKind.BombAria1 : MapKind.BombAria2;
-                        Map.instance.AriaSet(playerKind, AriaKind);
-                    }
                     nowTouching[1] = i;
                     tc[i] = t;
+                    
                 }
                 //v3 = GameObject.Find("BOOB").transform.position;
                 //if ((vec2.x >= v3.x - 0.7f) && (vec2.x <= v3.x + 0.7f) && (vec2.y >= v3.y - 0.7f) && (vec2.y <= v3.y + 0.7f))

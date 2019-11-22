@@ -58,13 +58,11 @@ public class CustomLocalNet : NetworkManager
         if (playingPlayer == 0)
         {
             player = (GameObject)GameObject.Instantiate(CharacterPerfab[0], Player1Pos, Quaternion.identity);
-            player.name = "Player1";
             playingPlayer++;
         }
         else 
         {
             player = (GameObject)GameObject.Instantiate(CharacterPerfab[1], Player2Pos, Quaternion.identity);
-            player.name = "Player2";
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 

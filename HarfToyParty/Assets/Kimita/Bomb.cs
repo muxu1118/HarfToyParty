@@ -5,14 +5,19 @@ using UnityEngine;
 public class Bomb : Tap
 {
     private GameObject Player;
-    
+    private Vector3 v3 = new Vector3();
+
     private void Start()
     {
-        
+        v3 = transform.position;
     }
     private void Update()
     {
-        
+        GetTap();
+        if (!IsBomb)
+        {
+            transform.position = v3;
+        }
     }
     /// <summary>
     /// ボムの範囲チェック
@@ -20,6 +25,20 @@ public class Bomb : Tap
     public void BombRange()
     {
         
+    }
+
+    public override void GetTap()
+    {
+        base.GetTap();
+
+        Touch touch = tc[nowTouching[1]];
+
+        if (touch.phase == TouchPhase.Began)
+        {
+           
+         
+        }
+
     }
 
     public void BombPut()
@@ -38,7 +57,8 @@ public class Bomb : Tap
     public IEnumerator AriaSet(MapKind player, MapKind Aria,Vector2 BombPos)
     {
         Player = GameObject.Find(player.ToString());
-            while (gameObject.activeSelf)
+        Debug.Log(player + ":" + Player);
+            while (gameObject.activeSelf&&IsBomb)
             {
                 int x = 0, y = 0;
                 switch (Player.GetComponent<Player>().rot)

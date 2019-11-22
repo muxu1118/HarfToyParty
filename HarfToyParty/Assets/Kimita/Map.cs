@@ -86,15 +86,20 @@ public class Map : NetworkBehaviour
             }
 
         }
-        foreach(Transform movewall in GameObject.Find("MoveWalls").transform)
-        {
-            MoveWalls.Add(movewall.gameObject);
-        }
+        StartCoroutine(moveWallAdd());
         for (int i = 0; i < System.Enum.GetNames(typeof(MapKind)).Length; i++)
         {
             maps.Add((MapKind)i);
         }
 
+    }
+    IEnumerator moveWallAdd()
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach (Transform movewall in GameObject.Find("MoveWalls").transform)
+        {
+            MoveWalls.Add(movewall.gameObject);
+        }
     }
     private void Start()
     {
@@ -112,6 +117,7 @@ public class Map : NetworkBehaviour
             {
                 for (int j = 0; j <= 6; j++)
                 {
+                    if (mapInt[i, j] < 10) { str += " "; }
                     str += mapInt[i,j].ToString();
                 }
                 str += "\n";
@@ -235,6 +241,7 @@ public class Map : NetworkBehaviour
     {
         Debug.Log("押す壁"+((int)kind - (int)MapKind.Movewall0));
         if (!MoveWalls[(int)kind-(int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
+        return;
 
     }
 }

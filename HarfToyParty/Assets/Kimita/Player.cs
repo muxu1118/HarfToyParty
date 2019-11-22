@@ -20,11 +20,14 @@ public class Player : MonoBehaviour
         y = (gameObject.name == "Player1") ? 6 : 0;
         map.mapInt[y, x] = myNumber;
         transform.position = Map.instance.SpritePos[y][x];
+        
+
         StartCoroutine(SetMoveButton());
     }
     IEnumerator SetMoveButton()
     {
         yield return new WaitForSeconds(0.3f);
+        
         GameObject.Find("MoveButton").GetComponent<MoveButton>().MyPlayer = gameObject.GetComponent<Player>(); 
 
     }
@@ -116,9 +119,11 @@ public class Player : MonoBehaviour
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
                     {
+                        if(!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
+                        {
+                            return;
+                        }
                         // 壁を押す
-                        map.PushMoveWall(vec2,(MapKind)map.mapInt[j - (int)vec2.y, i + (int)vec2.x]);
-
                     }
                 }
             }
