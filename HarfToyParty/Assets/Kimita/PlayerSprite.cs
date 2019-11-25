@@ -14,7 +14,7 @@ public class PlayerSprite : NetworkBehaviour
     {
         sprites[0] = Resources.Load<Sprite>("Sprites/Ani");
         sprites[1] = Resources.Load<Sprite>("Sprites/Otouto");
-        gameObject.GetComponent<SpriteRenderer>().sprite = (isServe) ? sprites[0] : sprites[1];
+        gameObject.GetComponent<SpriteRenderer>().sprite = (isServer) ? sprites[0] : sprites[1];
 
     }
 

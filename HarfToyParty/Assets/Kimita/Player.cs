@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private GameObject bomb;
     private Vector2 bombPos = new Vector2(1,1);
     bool isMove = false;
+
+
+
     private void Start()
     {
 
