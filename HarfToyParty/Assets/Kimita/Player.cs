@@ -70,24 +70,29 @@ public class Player : MonoBehaviour
 
     public void Move(int x)
     {
+
+        if (isMove) return;
         switch (x)
         {
             case 0:// 上
                 rot = 0;
                 Move((MapKind)myNumber, new Vector2(0, 1));
-                
+                isMove = true;
                 break;
             case 1:// 下
                 rot = 1;
                 Move((MapKind)myNumber, new Vector2(0, -1));
+                isMove = true;
                 break;
             case 2:// 右
                 rot = 2;
                 Move((MapKind)myNumber, new Vector2(1, 0));
+                isMove = true;
                 break;
             case 3:// 左
                 rot = 3;
                 Move((MapKind)myNumber, new Vector2(-1, 0));
+                isMove = true;
                 break;
 
         }
@@ -95,7 +100,6 @@ public class Player : MonoBehaviour
 
     public void Move(MapKind player, Vector2 vec2)
     {
-        if (isMove) return;
         int max = 6, min = 0;
         for (int i = 0; i <= 6; i++)
         {
@@ -109,18 +113,21 @@ public class Player : MonoBehaviour
                     if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
                     {
                         Debug.Log("位置が悪いよ");
+                        isMove = false;
                         // WarpWallで移動
                         return;
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
                     {
                         Debug.Log("壁があるよ");
+                        isMove = false;
                         return;
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
                     {
                         if(!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
                         {
+                            isMove = false;
                             return;
                         }
                         // 壁を押す
