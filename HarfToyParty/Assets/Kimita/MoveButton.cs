@@ -20,11 +20,7 @@ public class MoveButton : Tap
     Tap tap;
     private void Start()
     {
-<<<<<<< HEAD
         
-=======
-      
->>>>>>> origin/Lai
     }
     private void Update()
     {

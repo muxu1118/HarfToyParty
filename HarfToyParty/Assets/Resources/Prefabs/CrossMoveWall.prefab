@@ -12,20 +12,12 @@ GameObject:
   - component: {fileID: 749266230042127639}
   - component: {fileID: 749266230042127636}
   - component: {fileID: 749266230042127641}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 1113283163087324964}
->>>>>>> origin/Lai
   m_Layer: 0
   m_Name: CrossMoveWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-<<<<<<< HEAD
   m_StaticEditorFlags: 4294967295
-=======
-  m_StaticEditorFlags: 0
->>>>>>> origin/Lai
   m_IsActive: 1
 --- !u!4 &749266230042127637
 Transform:
@@ -34,15 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749266230042127634}
-<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.691, y: 0.45, z: 0}
   m_LocalScale: {x: 0.27866998, y: 0.27866998, z: 0.27309}
-=======
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.691, y: 0.45, z: 0}
-  m_LocalScale: {x: 0.27978465, y: 0.27978465, z: 0.27418235}
->>>>>>> origin/Lai
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,11 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: a2435e3421eff4d4590a4e3dd2a317cd, type: 3}
-=======
-  m_Sprite: {fileID: 21300000, guid: 99815e765177cb54c97d895a635bef9b, type: 3}
->>>>>>> origin/Lai
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,16 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b00456152c612443a0cbe7045a46556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   myForm: 2
   MyWall: 8
   XY: {x: 4, y: 3}
-=======
-  lerpRate: 15
-  myForm: 2
-  MyWall: 9
-  XY: {x: 2, y: 2}
->>>>>>> origin/Lai
 --- !u!114 &749266230042127641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,30 +128,4 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-<<<<<<< HEAD
   m_LocalPlayerAuthority: 1
-=======
-  m_LocalPlayerAuthority: 0
---- !u!114 &1113283163087324964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749266230042127634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
->>>>>>> origin/Lai

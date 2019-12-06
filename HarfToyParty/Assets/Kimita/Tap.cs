@@ -31,11 +31,7 @@ public class Tap : NetworkBehaviour
 
     private void Awake()
     {
-<<<<<<< HEAD
         IsSerVer = isServer;
-=======
-        
->>>>>>> origin/Lai
     }
 
     private void Start()

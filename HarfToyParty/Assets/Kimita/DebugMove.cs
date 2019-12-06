@@ -92,12 +92,6 @@ public class DebugMove : NetworkBehaviour
         {
             MyPlayer.Move(3);
         }
-<<<<<<< HEAD
 
     }
-=======
-    }
-
-
->>>>>>> origin/Lai
 }

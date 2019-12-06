@@ -19,11 +19,7 @@ public class Bgm : MonoBehaviour
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)
     {
         DontDestroyBgm = false;
-<<<<<<< HEAD
         Destroy(this.gameObject);
-=======
-        //Destroy(this.gameObject);
->>>>>>> origin/Lai
     }
 
     // Update is called once per frame
