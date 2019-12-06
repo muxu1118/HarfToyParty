@@ -87,6 +87,7 @@ public class Bomb : Tap
                             gameObject.transform.position = new Vector3(Map.instance.SpritePos[j + y][i + x].x, Map.instance.SpritePos[j + y][i + x].y, 1);
                             Map.instance.BombPos1 = new Vector2(i + x, j + y);
                         }
+                        
                     }
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
