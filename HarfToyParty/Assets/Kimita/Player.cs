@@ -168,6 +168,9 @@ public class Player : MonoBehaviour
         map.mapInt[y, x] = 0;
         map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         isMove = false;
+        map.updateMap = true;
+        yield return new WaitForSeconds(0.1f);
+        map.updateMap = false;
     }
 
 

@@ -9,33 +9,48 @@ public class SyvnPos : NetworkBehaviour
     private Vector3 syncPos;
 
     [SyncVar]
-    private Vector3 syncWallPos;
-    
-    [SyncVar]
     private string syncmapdata;
+
+    [SyncVar]
+    private Vector2 syncwallPos;
 
     [SyncVar]
     private bool syncupdate = false;
 
     [SerializeField]
     Transform myTransform;
+   
     [SerializeField]
     float lerpRate = 15;
 
+    private GameObject Wall;
+
     void Start()
     {
+        Wall = GameObject.Find("CrossMoveWall");
+        if (!isServer) 
+            {
+            CmdUpdateWall();
+        }
     }
+
 
     private void FixedUpdate()
     {
-        TransmitPosition();
-        LerpPos();
+       // TransmitPosition();
+       // LerpPos();
         if (syncupdate && !isLocalPlayer)
         {
             syncupdate = false;
             Map.instance.updateMap = false;
             Map.instance.mapInt = stringtoarray(syncmapdata);
         }
+    }
+
+    [Command]
+    void CmdUpdateWall()
+    {
+        Wall.transform.position = new Vector3(0, 0, 0);
     }
 
     void LerpPos()

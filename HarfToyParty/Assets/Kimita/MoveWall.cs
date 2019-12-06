@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MoveWall : NetworkBehaviour
+public class MoveWall :NetworkBehaviour
 {
-
-    [SyncVar]
-    private Vector3 syncWallPos;
-
-    [SerializeField]
-    float lerpRate = 15;
 
     private enum form
     {
@@ -53,14 +47,16 @@ public class MoveWall : NetworkBehaviour
                 break;
 
         }
-        syncWallPos = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        TransmitWallPosition();
-        LerpWallPos();
+       
+            //TransmitWallPosition();
+            //LerpWallPos();
     }
+
+
     /// <summary>
     /// 移動できるか
     /// </summary>
@@ -165,36 +161,14 @@ public class MoveWall : NetworkBehaviour
         {
             wait -= Time.deltaTime;
             gameObject.transform.position += new Vector3((vec3[y - (int)vec2.y][x + (int)vec2.x].x - vec3[y][x].x) / time, (vec3[y - (int)vec2.y][x + (int)vec2.x].y - vec3[y][x].y) / time);
-            syncWallPos = gameObject.transform.position;
+            
             yield return new WaitForSeconds(Time.deltaTime);
         }
         XY.x += vec2.x;
         XY.y -= vec2.y;
         Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
-    }
-    void LerpWallPos()
-    {
-        if (!isLocalPlayer)
-        {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, syncWallPos, Time.deltaTime * lerpRate);
-
-        }
-    }
-
-    [Command]
-    void CmdIpdateWallPosition(Vector3 wallpos)
-    {
-        syncWallPos = wallpos;
-    }
-
-    [ClientCallback]
-    void TransmitWallPosition()
-    {
-        if (isLocalPlayer)
-        {
-            CmdIpdateWallPosition(gameObject.transform.position);
-        }
+        //GetComponent<WallPosSync>().UpdatePos = true;
     }
 
 }
