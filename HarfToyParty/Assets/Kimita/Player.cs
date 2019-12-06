@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 
 public class Player : MonoBehaviour
+=======
+using UnityEngine.Networking;
+
+public class Player : NetworkBehaviour
+>>>>>>> origin/Lai
 {
     private int myNumber;
     Map map;
@@ -11,11 +17,17 @@ public class Player : MonoBehaviour
     private Vector2 bombPos = new Vector2(1,1);
     bool isMove = false;
 
+<<<<<<< HEAD
 
 
     private void Start()
     {
 
+=======
+    private void Start()
+    {
+        
+>>>>>>> origin/Lai
         map = Map.instance;
         myNumber = (gameObject.name == "Player1") ? (int)MapKind.Player1: (int)MapKind.Player2;
         int x, y;
@@ -27,6 +39,10 @@ public class Player : MonoBehaviour
 
         StartCoroutine(SetMoveButton());
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Lai
     IEnumerator SetMoveButton()
     {
         yield return new WaitForSeconds(0.3f);
@@ -36,6 +52,10 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/Lai
         //if (bomb.activeSelf)
         //{
         //    switch (rot)
@@ -73,29 +93,45 @@ public class Player : MonoBehaviour
 
     public void Move(int x)
     {
+<<<<<<< HEAD
 
         if (isMove) return;
+=======
+>>>>>>> origin/Lai
         switch (x)
         {
             case 0:// 上
                 rot = 0;
                 Move((MapKind)myNumber, new Vector2(0, 1));
+<<<<<<< HEAD
                 isMove = true;
+=======
+                
+>>>>>>> origin/Lai
                 break;
             case 1:// 下
                 rot = 1;
                 Move((MapKind)myNumber, new Vector2(0, -1));
+<<<<<<< HEAD
                 isMove = true;
+=======
+>>>>>>> origin/Lai
                 break;
             case 2:// 右
                 rot = 2;
                 Move((MapKind)myNumber, new Vector2(1, 0));
+<<<<<<< HEAD
                 isMove = true;
+=======
+>>>>>>> origin/Lai
                 break;
             case 3:// 左
                 rot = 3;
                 Move((MapKind)myNumber, new Vector2(-1, 0));
+<<<<<<< HEAD
                 isMove = true;
+=======
+>>>>>>> origin/Lai
                 break;
 
         }
@@ -103,6 +139,10 @@ public class Player : MonoBehaviour
 
     public void Move(MapKind player, Vector2 vec2)
     {
+<<<<<<< HEAD
+=======
+        if (isMove) return;
+>>>>>>> origin/Lai
         int max = 6, min = 0;
         for (int i = 0; i <= 6; i++)
         {
@@ -116,21 +156,30 @@ public class Player : MonoBehaviour
                     if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
                     {
                         Debug.Log("位置が悪いよ");
+<<<<<<< HEAD
                         isMove = false;
+=======
+>>>>>>> origin/Lai
                         // WarpWallで移動
                         return;
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
                     {
                         Debug.Log("壁があるよ");
+<<<<<<< HEAD
                         isMove = false;
+=======
+>>>>>>> origin/Lai
                         return;
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
                     {
                         if(!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
                         {
+<<<<<<< HEAD
                             isMove = false;
+=======
+>>>>>>> origin/Lai
                             return;
                         }
                         // 壁を押す
@@ -167,8 +216,32 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(map.SpritePos[y - (int)vec2.y][x + (int)vec2.x].x, map.SpritePos[y - (int)vec2.y][x + (int)vec2.x].y);
         map.mapInt[y, x] = 0;
         map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
+<<<<<<< HEAD
         isMove = false;
     }
 
+=======
+        //Updateposition(this.gameObject.transform.position);
+        isMove = false;
+    }
+
+    /**********************/
+    //public void Updateposition(Vector3 newpos)
+    //{
+    //    CmdUpdatePosition(newpos);
+    //}
+
+    //[Command]
+    //void CmdUpdatePosition(Vector3 newPosition)
+    //{
+    //    RpcUpdateWallPosition(newPosition);
+    //}
+
+    //[ClientRpc]
+    //void RpcUpdateWallPosition(Vector3 newPosition)
+    //{
+    //    transform.position = newPosition;
+    //}
+>>>>>>> origin/Lai
 
 }

@@ -8,7 +8,10 @@ public class MoveWall : NetworkBehaviour
 
     [SyncVar]
     private Vector3 syncWallPos;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Lai
     [SerializeField]
     float lerpRate = 15;
 
@@ -25,6 +28,10 @@ public class MoveWall : NetworkBehaviour
     [SerializeField]
     private MapKind MyWall;
 
+<<<<<<< HEAD
+=======
+    [SyncVar]
+>>>>>>> origin/Lai
     [SerializeField]
     Vector2 XY;
 
@@ -55,12 +62,16 @@ public class MoveWall : NetworkBehaviour
         }
         syncWallPos = transform.position;
     }
+<<<<<<< HEAD
 
     private void Update()
     {
         TransmitWallPosition();
         LerpWallPos();
     }
+=======
+    
+>>>>>>> origin/Lai
     /// <summary>
     /// 移動できるか
     /// </summary>
@@ -173,6 +184,7 @@ public class MoveWall : NetworkBehaviour
         Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
     }
+<<<<<<< HEAD
     void LerpWallPos()
     {
         if (!isLocalPlayer)
@@ -196,5 +208,9 @@ public class MoveWall : NetworkBehaviour
             CmdIpdateWallPosition(gameObject.transform.position);
         }
     }
+=======
+
+
+>>>>>>> origin/Lai
 
 }

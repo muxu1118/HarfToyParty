@@ -11,7 +11,11 @@ GameObject:
   - component: {fileID: 4291431096961767240}
   - component: {fileID: 6158801893378652993}
   - component: {fileID: 3665047716961640126}
+<<<<<<< HEAD
   - component: {fileID: 7969781324888251933}
+=======
+  - component: {fileID: 3955039250825984695}
+>>>>>>> origin/Lai
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -28,7 +32,11 @@ Transform:
   m_GameObject: {fileID: 3201821087914385353}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
   m_LocalScale: {x: 0.43, y: 0.43, z: 1}
+=======
+  m_LocalScale: {x: 0.28, y: 0.28, z: 1}
+>>>>>>> origin/Lai
   m_Children: []
   m_Father: {fileID: 5457286695611216259}
   m_RootOrder: 0
@@ -93,8 +101,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3f834bc52a05c4fb5c574569b4f5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   rot: 2
 --- !u!114 &7969781324888251933
+=======
+  mapobj: {fileID: 2462509703952118709, guid: 821d10ed68bc50447b376adcb020b756, type: 3}
+  mapp: {fileID: 5900601936420116395, guid: c5a37d57ee9213547b98d0e570df888f, type: 3}
+  rot: 2
+--- !u!114 &3955039250825984695
+>>>>>>> origin/Lai
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +141,11 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
+<<<<<<< HEAD
   m_LocalPlayerAuthority: 1
+=======
+  m_LocalPlayerAuthority: 0
+>>>>>>> origin/Lai
 --- !u!1 &6137019741446565374
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,8 +157,14 @@ GameObject:
   - component: {fileID: 5457286695611216259}
   - component: {fileID: 9002134675000760116}
   - component: {fileID: 709827733198351105}
+<<<<<<< HEAD
   - component: {fileID: 967881093636005908}
   - component: {fileID: 5001156727306832901}
+=======
+  - component: {fileID: 3923902560088152104}
+  - component: {fileID: 3044289438769567303}
+  - component: {fileID: 3449849973081908491}
+>>>>>>> origin/Lai
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -154,8 +179,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6137019741446565374}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.4606557, y: -3.8688645, z: 0}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+>>>>>>> origin/Lai
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4291431096961767240}
@@ -210,7 +240,11 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+<<<<<<< HEAD
 --- !u!114 &967881093636005908
+=======
+--- !u!114 &3923902560088152104
+>>>>>>> origin/Lai
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,9 +256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a97197d224ef24a99fe1337862af58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   myTransform: {fileID: 4291431096961767240}
   lerpRate: 15
 --- !u!114 &5001156727306832901
+=======
+  myTransform: {fileID: 5457286695611216259}
+  lerpRate: 15
+--- !u!114 &3044289438769567303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,6 +272,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 6137019741446565374}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4291431096961767240}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
+--- !u!114 &3449849973081908491
+>>>>>>> origin/Lai
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137019741446565374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: f80878c29aec74846896bddc6871856a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+>>>>>>> origin/Lai

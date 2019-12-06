@@ -61,6 +61,7 @@ public class BomTest : MonoBehaviour
                     Debug.Log("プレイヤーの位置X:" + (x + i) + "Y:" + (y - j));
                     Debug.Log((MapKind)Map.instance.mapInt[y - j, x + i] + "にダメージ");
                 }
+<<<<<<< HEAD
                 if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.Movewall10 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.Movewall10)
                 {
                     BreakWall[] breakObjects = FindObjectsOfType<BreakWall>();
@@ -73,6 +74,8 @@ public class BomTest : MonoBehaviour
                         }
                     }
                 }
+=======
+>>>>>>> origin/Lai
             }
         }
     }
