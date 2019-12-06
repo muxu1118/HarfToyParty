@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Lai
 public enum MapKind
 {
     
@@ -53,7 +49,6 @@ public class Map : NetworkBehaviour
         }
     }
     //singleton 終わり
-<<<<<<< HEAD
 
     List<List<Vector3>> spritePos = new List<List<Vector3>>();// マップの位置
     List<List<GameObject>> mapObj = new List<List<GameObject>>();
@@ -63,32 +58,17 @@ public class Map : NetworkBehaviour
     [SerializeField]
     private GameObject[] MapObject = new GameObject[System.Enum.GetNames(typeof(MapKind)).Length];
     bool isMove;
-=======
-   
-    [SyncVar]
-    List<List<Vector3>> spritePos = new List<List<Vector3>>();// マップの位置
-    List<List<GameObject>> mapObj = new List<List<GameObject>>();
-    public int[,] mapInt = new int[7, 7];
-    
-    public List<MapKind> maps = new List<MapKind>();
-    [SerializeField]
-    private GameObject[] MapObject = new GameObject[System.Enum.GetNames(typeof(MapKind)).Length];
-    [SyncVar]
-    bool isMove;
-    [SyncVar]
->>>>>>> origin/Lai
     private Vector2 BombPos = new Vector2();
 
     public List<List<Vector3>> SpritePos { get => spritePos; set => spritePos = value; }
     public Vector2 BombPos1 { get => BombPos; set => BombPos = value; }
     public List<GameObject> MoveWalls { get; set; } = new List<GameObject>();
+    public bool updateMap=false;
+   
 
     private void OnEnable()
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Lai
         // マップを探す
         foreach (Transform Y in gameObject.transform)
         {
@@ -103,10 +83,7 @@ public class Map : NetworkBehaviour
                         mapObj[i].Add(X.transform.gameObject);
                         spritePos[i].Add(X.transform.position);
                         mapInt[i, i] = 0;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Lai
                     }
                 }
             }
@@ -127,7 +104,6 @@ public class Map : NetworkBehaviour
             MoveWalls.Add(movewall.gameObject);
         }
     }
-<<<<<<< HEAD
     private void Start()
     {
 
@@ -136,13 +112,6 @@ public class Map : NetworkBehaviour
     }
     private void Update()
     {
-=======
-
-
-    private void Update()
-    {
-      
->>>>>>> origin/Lai
         // Debug
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -158,51 +127,8 @@ public class Map : NetworkBehaviour
             }
             Debug.Log(str);
         }
-<<<<<<< HEAD
     }
 
-=======
-        if (!isLocalPlayer)
-        {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                RpcUpdateMap();
-            }
-        }
-        else { Debug.Log("FFFF"); }
-    }
-
-    [ClientCallback]
-    void RpcUpdateMap()
-    {
-        foreach (Transform Y in gameObject.transform)
-        {
-            spritePos.Add(new List<Vector3>());
-            mapObj.Add(new List<GameObject>());
-            for (int i = 0; i <= 6; i++)
-            {
-                if (Y.name == "Y" + i)
-                {
-                    foreach (Transform X in Y.transform)
-                    {
-                        mapObj[i].Add(X.transform.gameObject);
-                        spritePos[i].Add(X.transform.position);
-                        mapInt[i, i] = 0;
-                    }
-                }
-            }
-
-        }
-        StartCoroutine(moveWallAdd());
-        for (int i = 0; i < System.Enum.GetNames(typeof(MapKind)).Length; i++)
-        {
-            maps.Add((MapKind)i);
-        }
-
-    }
-
-
->>>>>>> origin/Lai
     private void CheckMap()
     {
         for (int i = 0; i <= 6; i++)
@@ -220,12 +146,8 @@ public class Map : NetworkBehaviour
             }
         }
     }
-<<<<<<< HEAD
 
 
-=======
-    
->>>>>>> origin/Lai
     //public void Move(MapKind map, Vector2 vec2)
     //{
     //    if (isMove) return;
@@ -340,10 +262,6 @@ public class Map : NetworkBehaviour
     }
     public void PushMoveWall(Vector2 vec2,MapKind kind)
     {
-<<<<<<< HEAD
-=======
-        Debug.Log("CHEckBlock");
->>>>>>> origin/Lai
         Debug.Log("押す壁"+((int)kind - (int)MapKind.Movewall0));
         if (!MoveWalls[(int)kind-(int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
         return;
