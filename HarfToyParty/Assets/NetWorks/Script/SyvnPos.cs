@@ -10,24 +10,17 @@ public class SyvnPos : NetworkBehaviour
 
     [SyncVar]
     private Vector3 syncWallPos;
-
-<<<<<<< HEAD
-=======
+    
     [SyncVar]
     private string syncmapdata;
 
     [SyncVar]
     private bool syncupdate = false;
 
->>>>>>> origin/Lai
     [SerializeField]
     Transform myTransform;
     [SerializeField]
     float lerpRate = 15;
-<<<<<<< HEAD
-    
-=======
->>>>>>> origin/Lai
 
     void Start()
     {
@@ -37,26 +30,12 @@ public class SyvnPos : NetworkBehaviour
     {
         TransmitPosition();
         LerpPos();
-<<<<<<< HEAD
-
-        /**/
-        //TransmitWallPosition();
-        //LerpWallPos();
-
-        //if (!isServer&&WallObj.GetComponent<MoveWall>().UpdatePossition)
-        //{
-        //        WallObj.GetComponent<MoveWall>().UpdatePossition = false;
-        //        Updateposition(WallObj.GetComponent<MoveWall>().finalPos);
-        //}
-
-=======
         if (syncupdate && !isLocalPlayer)
         {
             syncupdate = false;
             Map.instance.updateMap = false;
             Map.instance.mapInt = stringtoarray(syncmapdata);
         }
->>>>>>> origin/Lai
     }
 
     void LerpPos()
@@ -68,17 +47,11 @@ public class SyvnPos : NetworkBehaviour
     }
 
     [Command]
-<<<<<<< HEAD
-    void CmdProvidePostionToServer(Vector3 pos)
-    {
-        syncPos = pos;
-=======
     void CmdProvidePostionToServer(Vector3 pos,string inputstring,bool tmptrigger)
     {
         syncPos = pos;
         syncmapdata = inputstring;
-        syncupdate = tmptrigger;  
->>>>>>> origin/Lai
+        syncupdate = tmptrigger;
     }
 
     [ClientCallback]
@@ -86,57 +59,7 @@ public class SyvnPos : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-<<<<<<< HEAD
-            CmdProvidePostionToServer(myTransform.position);
-        }
-    }
 
-
-    /*test*/
-
-    //void LerpWallPos()
-    //{
-    //    if (!isLocalPlayer)
-    //    {
-    //        WallObj.transform.position = Vector3.Lerp(WallObj.transform.position, syncWallPos, Time.deltaTime * lerpRate);
-
-    //    }
-    //}
-
-    //[Command]
-    //void CmdIpdateWallPosition(Vector3 wallpos)
-    //{
-    //    syncWallPos = wallpos;
-    //}
-
-    //[ClientCallback]
-    //void TransmitWallPosition()
-    //{
-    //    if (isLocalPlayer)
-    //    {
-    //        CmdIpdateWallPosition(WallObj.transform.position);
-    //    }
-    //}
-
-
-    /**********************/
-    //public void Updateposition(Vector3 newpos)
-    //{
-    //    CmdUpdatePosition(newpos);
-    //}
-
-    //[Command]
-    //void CmdUpdatePosition(Vector3 newPosition)
-    //{
-    //    RpcUpdateWallPosition(newPosition);
-    //}
-
-    //[ClientRpc]
-    //void RpcUpdateWallPosition(Vector3 newPosition)
-    //{
-    //    WallObj.transform.position = newPosition;
-    //}
-=======
             CmdProvidePostionToServer(myTransform.position,Arraytostring(Map.instance.mapInt),Map.instance.updateMap);
         }
     }
@@ -214,5 +137,4 @@ public class SyvnPos : NetworkBehaviour
         Debug.Log("is client?" + isClient);
         Debug.Log(tmpdata);
     }
->>>>>>> origin/Lai
 }

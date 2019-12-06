@@ -29,10 +29,7 @@ public class CustomLocalNet : NetworkManager
     {
         SetPort();
         NetworkManager.singleton.StartHost();
-<<<<<<< HEAD
-=======
         OnStartServer();
->>>>>>> origin/Lai
     }
 
     public void JoinGame()
@@ -44,11 +41,7 @@ public class CustomLocalNet : NetworkManager
 
     void SetIPAddress()
     {
-<<<<<<< HEAD
-        string inputIp = GameObject.Find("InputField").transform.Find("Text").GetComponent<Text>().text;
-=======
         string inputIp = "localhost";
->>>>>>> origin/Lai
         NetworkManager.singleton.networkAddress = inputIp;
     }
 
@@ -81,10 +74,6 @@ public class CustomLocalNet : NetworkManager
         if (level == 0)
         {
             StartCoroutine(SetupMenuSceneButton());
-<<<<<<< HEAD
-            
-=======
->>>>>>> origin/Lai
         }
         else
         {
