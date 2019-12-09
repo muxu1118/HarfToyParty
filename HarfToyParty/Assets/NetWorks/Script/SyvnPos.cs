@@ -12,7 +12,7 @@ public class SyvnPos : NetworkBehaviour
     private string syncmapdata;
 
     [SyncVar]
-    private Vector2 syncwallPos;
+    private Vector2 synctargetPos;
 
     [SyncVar]
     private bool syncupdate = false;
@@ -23,22 +23,17 @@ public class SyvnPos : NetworkBehaviour
     [SerializeField]
     float lerpRate = 15;
 
-    private GameObject Wall;
 
     void Start()
     {
-        Wall = GameObject.Find("CrossMoveWall");
-        if (!isServer) 
-            {
-            CmdUpdateWall();
-        }
+
     }
 
 
     private void FixedUpdate()
     {
-       // TransmitPosition();
-       // LerpPos();
+        TransmitPosition();
+        LerpPos();
         if (syncupdate && !isLocalPlayer)
         {
             syncupdate = false;
@@ -47,10 +42,29 @@ public class SyvnPos : NetworkBehaviour
         }
     }
 
-    [Command]
-    void CmdUpdateWall()
+    /// <summary>
+    /// サーバーへ位置変換を要求します。
+    /// </summary>
+    public void UpdateMePosition(GameObject targetObj,Vector3 targetpos,Vector2 TargetXY)
     {
-        Wall.transform.position = new Vector3(0, 0, 0);
+        CmdUpdateWall(targetObj, targetpos, TargetXY);
+    }
+
+    [Command]
+    void CmdUpdateWall(GameObject obj,Vector3 pos,Vector2 _XY)
+    {
+        obj.transform.position = pos;
+        if (obj.GetComponent<MoveWall>() != null)
+        {
+            obj.GetComponent<MoveWall>().XY.x = _XY.x;
+            obj.GetComponent<MoveWall>().XY.y = _XY.y;
+        }
+    }
+
+    [ClientRpc]
+    void RpcUpdateWallPos(GameObject obj, Vector3 pos, Vector2 _XY)
+    {
+        
     }
 
     void LerpPos()
@@ -74,7 +88,6 @@ public class SyvnPos : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-
             CmdProvidePostionToServer(myTransform.position,Arraytostring(Map.instance.mapInt),Map.instance.updateMap);
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MoveWall :NetworkBehaviour
+public class MoveWall :MonoBehaviour
 {
 
     private enum form
@@ -20,10 +20,13 @@ public class MoveWall :NetworkBehaviour
     private MapKind MyWall;
 
     [SerializeField]
-    Vector2 XY;
+    public Vector2 XY;
+
+    GameObject player;
 
     private void Start()
     {
+        player= GameObject.FindObjectOfType<SyvnPos>().gameObject;
         int x = (int)XY.x, y = (int)XY.y;
         switch ((int)myForm)
         {
@@ -168,7 +171,8 @@ public class MoveWall :NetworkBehaviour
         XY.y -= vec2.y;
         Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
-        //GetComponent<WallPosSync>().UpdatePos = true;
+         player.GetComponent<SyvnPos>().UpdateMePosition(this.gameObject,this.transform.position,this.XY);
+       
     }
 
 }
