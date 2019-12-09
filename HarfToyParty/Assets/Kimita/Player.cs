@@ -110,10 +110,21 @@ public class Player : MonoBehaviour
             {
                 if (map.mapInt[j, i] == (int)player)
                 {
+                    bool isWarp=false;
                     // Debug
                     Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
+                    {
+                        if (!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
+                        {
+                            isMove = false;
 
-                    if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
+                            return;
+                        }
+                        isWarp = true;
+                        // 壁を押す
+                    }
+                    if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min))&&!isWarp)
                     {
                         Debug.Log("位置が悪いよ");
                         isMove = false;
@@ -126,15 +137,7 @@ public class Player : MonoBehaviour
                         isMove = false;
                         return;
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
-                    {
-                        if(!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
-                        {
-                            isMove = false;
-                            return;
-                        }
-                        // 壁を押す
-                    }
+                    
                 }
             }
         }

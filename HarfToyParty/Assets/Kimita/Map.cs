@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 public enum MapKind
 {
-    
     YUKA = 0,
     Bomb,
     Player1,
@@ -34,8 +33,6 @@ public enum MapKind
     Movewall8,
     Movewall9,
     Movewall10,
-    
-
 }
 
 
@@ -96,8 +93,8 @@ public class Map : NetworkBehaviour
                     {
                         mapObj[i].Add(X.transform.gameObject);
                         spritePos[i].Add(X.transform.position);
+                        // マップ初期化
                         mapInt[i, i] = 0;
-
                     }
                 }
             }
