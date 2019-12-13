@@ -9,7 +9,18 @@ public class Player : MonoBehaviour
     public int rot = 2;
     private GameObject bomb;
     private Vector2 bombPos = new Vector2(1,1);
-    bool isMove = false;
+    [SerializeField]
+    bool _isMove = false;
+    bool isMove {
+        get {
+            return _isMove;
+        }
+        set {
+            _isMove = value;
+            Debug.Log("value change");
+        }
+    }
+    System.Action _callback = null;
 
 
 
@@ -71,6 +82,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetActionCallback(System.Action callback)
+    {
+        _callback = callback;
+    }
+
     public void Move(int x)
     {
 
@@ -79,23 +95,23 @@ public class Player : MonoBehaviour
         {
             case 0:// 上
                 rot = 0;
-                Move((MapKind)myNumber, new Vector2(0, 1));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(0, 1));
                 break;
             case 1:// 下
                 rot = 1;
-                Move((MapKind)myNumber, new Vector2(0, -1));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(0, -1));
                 break;
             case 2:// 右
                 rot = 2;
-                Move((MapKind)myNumber, new Vector2(1, 0));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(1, 0));
                 break;
             case 3:// 左
                 rot = 3;
-                Move((MapKind)myNumber, new Vector2(-1, 0));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(-1, 0));
                 break;
 
         }
@@ -129,6 +145,7 @@ public class Player : MonoBehaviour
                     {
                         Debug.Log("位置が悪いよ");
                         isMove = false;
+                        PlayerDoNotMove();
                         // WarpWallで移動
                         return;
                     }
@@ -136,6 +153,7 @@ public class Player : MonoBehaviour
                     {
                         Debug.Log("壁があるよ");
                         isMove = false;
+                        PlayerDoNotMove();
                         return;
                     }
                     
@@ -172,7 +190,14 @@ public class Player : MonoBehaviour
         map.mapInt[y, x] = 0;
         map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         isMove = false;
+        map.updateMap = true;
+        yield return new WaitForSeconds(0.1f);
+        map.updateMap = false;
     }
 
-
+    private void PlayerDoNotMove()
+    {
+        if (_callback != null)
+            _callback();
+    }
 }

@@ -29,6 +29,7 @@ public class DebugMove : NetworkBehaviour
     private void Start()
     {
         ButtonPos = GameObject.Find("MoveButton").transform.position;
+        MyPlayer.SetActionCallback(PlayerDoNotMove);
         //StartCoroutine("FindPly");
     }
 
@@ -49,49 +50,54 @@ public class DebugMove : NetworkBehaviour
     // Swipe 
     private void GetClick()
     {
-        if (isLocalPlayer)
-        {
+        if (isLocalPlayer) {
             if (Input.GetMouseButtonDown(0))
             {
                 TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 StartPosition = TouchPosition;
-
             }
             else if (Input.GetMouseButtonUp(0))
             {
                 StartPosition = Vector2.zero;
                 swiChe = false;
             }
-            else if (Input.GetMouseButton(0))
-            {
+            else if (Input.GetMouseButton(0)) {
                 TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (StartPosition.x <= ButtonPos.x + touchRangeX && StartPosition.x >= ButtonPos.x - touchRangeX && StartPosition.y <= ButtonPos.y + touchRangeY && StartPosition.y >= ButtonPos.y - touchRangeY) {
+                    swiChe = true;
+                }
             }
 
-            if (StartPosition.x <= ButtonPos.x + touchRangeX && StartPosition.x >= ButtonPos.x - touchRangeX && StartPosition.y <= ButtonPos.y + touchRangeY && StartPosition.y >= ButtonPos.y - touchRangeY)
-            {
-                swiChe = true;
-            }
         }
     }
+
     private void Swipe()
     {
-        if (!swiChe) return;
-        if (TouchPosition.y > StartPosition.y + 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x)
-        {
-            MyPlayer.Move(0);
-        }
-        else if (TouchPosition.y < StartPosition.y - 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x)
-        {
-            MyPlayer.Move(1);
-        }
-        else if (TouchPosition.x > StartPosition.x + 0.1f)
-        {
-            MyPlayer.Move(2);
-        }
-        else if (TouchPosition.x < StartPosition.x - 0.1f)
-        {
-            MyPlayer.Move(3);
+        if (true) {
+            if (swiChe == false)
+                return;
+            if (TouchPosition.y > StartPosition.y + 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x) {
+                MyPlayer.Move(0);
+            }
+            else if (TouchPosition.y < StartPosition.y - 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x) {
+                MyPlayer.Move(1);
+            }
+            else if (TouchPosition.x > StartPosition.x + 0.1f) {
+                MyPlayer.Move(2);
+            }
+            else if (TouchPosition.x < StartPosition.x - 0.1f) {
+                MyPlayer.Move(3);
+            }
         }
 
+    }
+
+    /// <summary>
+    /// プレイヤーが移動できなくなったら呼び出される
+    /// </summary>
+    private void PlayerDoNotMove()
+    {
+        swiChe = false;
+        TouchPosition = StartPosition;
     }
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4291431096961767240}
   - component: {fileID: 6158801893378652993}
   - component: {fileID: 3665047716961640126}
-  - component: {fileID: 7969781324888251933}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -94,39 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rot: 2
---- !u!114 &7969781324888251933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3201821087914385353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 0
-    i1: 0
-    i2: 0
-    i3: 0
-    i4: 0
-    i5: 0
-    i6: 0
-    i7: 0
-    i8: 0
-    i9: 0
-    i10: 0
-    i11: 0
-    i12: 0
-    i13: 0
-    i14: 0
-    i15: 0
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!1 &6137019741446565374
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +106,7 @@ GameObject:
   - component: {fileID: 709827733198351105}
   - component: {fileID: 967881093636005908}
   - component: {fileID: 5001156727306832901}
+  - component: {fileID: 2649213060441875210}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -224,6 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTransform: {fileID: 4291431096961767240}
   lerpRate: 15
+  testwall: {fileID: 7856560659660188925, guid: 3203c4b8c5659fd4cb59efbd4bfacc9a,
+    type: 3}
+  testup: 0
 --- !u!114 &5001156727306832901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +206,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80878c29aec74846896bddc6871856a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2649213060441875210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137019741446565374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
