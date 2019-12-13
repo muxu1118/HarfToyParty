@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 public enum MapKind
 {
-    
     YUKA = 0,
     Bomb,
     Player1,
@@ -12,6 +11,17 @@ public enum MapKind
     BombAria1,
     BombAria2,
     Wall,
+    BreakWall1,
+    BreakWall2,
+    BreakWall3,
+    BreakWall4,
+    BreakWall5,
+    PartRHand,
+    PartRLeg,
+    PartRFace,
+    PartBHand,
+    PartBLeg,
+    PartBFace,
     Movewall0,
     Movewall1,
     Movewall2,
@@ -64,7 +74,9 @@ public class Map : NetworkBehaviour
     public Vector2 BombPos1 { get => BombPos; set => BombPos = value; }
     public List<GameObject> MoveWalls { get; set; } = new List<GameObject>();
     public bool updateMap=false;
-   
+
+    public Vector2[] WarpPoint = new Vector2[2];
+    public bool isWarpVertical;
 
     private void OnEnable()
     {
@@ -82,8 +94,8 @@ public class Map : NetworkBehaviour
                     {
                         mapObj[i].Add(X.transform.gameObject);
                         spritePos[i].Add(X.transform.position);
+                        // マップ初期化
                         mapInt[i, i] = 0;
-
                     }
                 }
             }
