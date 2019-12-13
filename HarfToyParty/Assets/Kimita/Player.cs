@@ -95,23 +95,23 @@ public class Player : MonoBehaviour
         {
             case 0:// 上
                 rot = 0;
-                Move((MapKind)myNumber, new Vector2(0, 1));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(0, 1));
                 break;
             case 1:// 下
                 rot = 1;
-                Move((MapKind)myNumber, new Vector2(0, -1));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(0, -1));
                 break;
             case 2:// 右
                 rot = 2;
-                Move((MapKind)myNumber, new Vector2(1, 0));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(1, 0));
                 break;
             case 3:// 左
                 rot = 3;
-                Move((MapKind)myNumber, new Vector2(-1, 0));
                 isMove = true;
+                Move((MapKind)myNumber, new Vector2(-1, 0));
                 break;
 
         }

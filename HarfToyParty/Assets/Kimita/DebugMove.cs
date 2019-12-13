@@ -73,23 +73,21 @@ public class DebugMove : NetworkBehaviour
 
     private void Swipe()
     {
-        if (swiChe == false)
-            return;
-        if (TouchPosition.y > StartPosition.y + 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x)
-        {
-            MyPlayer.Move(0);
-        }
-        else if (TouchPosition.y < StartPosition.y - 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x)
-        {
-            MyPlayer.Move(1);
-        }
-        else if (TouchPosition.x > StartPosition.x + 0.1f)
-        {
-            MyPlayer.Move(2);
-        }
-        else if (TouchPosition.x < StartPosition.x - 0.1f)
-        {
-            MyPlayer.Move(3);
+        if (true) {
+            if (swiChe == false)
+                return;
+            if (TouchPosition.y > StartPosition.y + 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x) {
+                MyPlayer.Move(0);
+            }
+            else if (TouchPosition.y < StartPosition.y - 0.1f && Mathf.Abs(TouchPosition.y) - StartPosition.y >= Mathf.Abs(TouchPosition.x) - StartPosition.x) {
+                MyPlayer.Move(1);
+            }
+            else if (TouchPosition.x > StartPosition.x + 0.1f) {
+                MyPlayer.Move(2);
+            }
+            else if (TouchPosition.x < StartPosition.x - 0.1f) {
+                MyPlayer.Move(3);
+            }
         }
 
     }
