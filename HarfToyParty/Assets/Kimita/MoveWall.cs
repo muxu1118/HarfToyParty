@@ -23,6 +23,7 @@ public class MoveWall :MonoBehaviour
     public Vector2 XY;
 
     GameObject player;
+    bool PosUpdateRequest = false;
 
     private void Start()
     {
@@ -54,9 +55,11 @@ public class MoveWall :MonoBehaviour
 
     private void FixedUpdate()
     {
-       
-            //TransmitWallPosition();
-            //LerpWallPos();
+        if (PosUpdateRequest)
+        {
+            player.GetComponent<SyvnPos>().UpdateMePosition(this.gameObject, this.transform.position, this.XY);
+            
+        }
     }
 
 
@@ -171,8 +174,9 @@ public class MoveWall :MonoBehaviour
         XY.y -= vec2.y;
         Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
-         player.GetComponent<SyvnPos>().UpdateMePosition(this.gameObject,this.transform.position,this.XY);
-       
+        PosUpdateRequest = true;
+        yield return new WaitForSeconds(0.1f);
+        PosUpdateRequest = false;
     }
 
 }

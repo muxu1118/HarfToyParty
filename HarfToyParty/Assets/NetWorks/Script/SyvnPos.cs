@@ -8,6 +8,7 @@ public class SyvnPos : NetworkBehaviour
     [SyncVar]
     private Vector3 syncPos;
 
+   [SerializeField]
     [SyncVar]
     private string syncmapdata;
 
@@ -22,8 +23,11 @@ public class SyvnPos : NetworkBehaviour
    
     [SerializeField]
     float lerpRate = 15;
+    [SerializeField]
+    GameObject testwall;
 
-
+    [SerializeField]
+    bool testup;
     void Start()
     {
 
@@ -40,8 +44,25 @@ public class SyvnPos : NetworkBehaviour
             Map.instance.updateMap = false;
             Map.instance.mapInt = stringtoarray(syncmapdata);
         }
+
+        if (testup && isLocalPlayer)
+        {
+            Cmdtest(new Vector2(0, 0));
+        }
     }
 
+
+    [Command]
+    void Cmdtest(Vector2 pos)
+    {
+        Rpctest(pos);
+    }
+
+    [ClientRpc]
+    void Rpctest(Vector2 pos)
+    {
+        testwall.transform.position = pos;
+    }
     /// <summary>
     /// サーバーへ位置変換を要求します。
     /// </summary>
@@ -54,17 +75,15 @@ public class SyvnPos : NetworkBehaviour
     void CmdUpdateWall(GameObject obj,Vector3 pos,Vector2 _XY)
     {
         obj.transform.position = pos;
-        if (obj.GetComponent<MoveWall>() != null)
-        {
-            obj.GetComponent<MoveWall>().XY.x = _XY.x;
-            obj.GetComponent<MoveWall>().XY.y = _XY.y;
-        }
+        obj.GetComponent<MoveWall>().XY.x = _XY.x;
+        obj.GetComponent<MoveWall>().XY.y = _XY.y;
+        Debug.Log("UpdatePositionWall");
     }
 
-    [ClientRpc]
-    void RpcUpdateWallPos(GameObject obj, Vector3 pos, Vector2 _XY)
+    [ClientCallback]
+    void UpdateWallPos(GameObject obj, Vector3 pos, Vector2 _XY)
     {
-        
+       
     }
 
     void LerpPos()

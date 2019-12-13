@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int rot = 2;
     private GameObject bomb;
     private Vector2 bombPos = new Vector2(1,1);
+    [SerializeField]
     bool isMove = false;
 
 
