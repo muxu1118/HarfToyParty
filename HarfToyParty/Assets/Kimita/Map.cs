@@ -76,6 +76,7 @@ public class Map : NetworkBehaviour
     public bool updateMap=false;
 
     public Vector2[] WarpPoint = new Vector2[2];
+    public bool isWarpVertical;
 
     private void OnEnable()
     {

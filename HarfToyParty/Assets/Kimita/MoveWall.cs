@@ -27,9 +27,14 @@ public class MoveWall : NetworkBehaviour
 
     [SerializeField]
     Vector2 XY;
+    int[] warpx = new int[2];
+    int[] warpy = new int[2];
 
+    [SerializeField]
+    GameObject WarpObject;
     private void Start()
     {
+        
         int x = (int)XY.x, y = (int)XY.y;
         switch ((int)myForm)
         {
@@ -54,6 +59,12 @@ public class MoveWall : NetworkBehaviour
 
         }
         syncWallPos = transform.position;
+        for(int i = 0;i<2; i++)
+        {
+            warpx[i] = (int)Map.instance.WarpPoint[i].x;
+            warpy[i] = (int)Map.instance.WarpPoint[i].y;
+        }
+        WarpCheck();
     }
 
     private void Update()
@@ -61,6 +72,52 @@ public class MoveWall : NetworkBehaviour
         TransmitWallPosition();
         LerpWallPos();
     }
+
+    /// <summary>
+    /// ワープ近くにあるかチェック
+    /// </summary>
+    private void WarpCheck()
+    {
+        Debug.Log("Mapの向きは縦" + Map.instance.isWarpVertical);
+        Debug.Log("自分のY:" + (int)XY.y+"ワープのY"+warpy);
+        // ワープの向きが縦だったら
+        if (Map.instance.isWarpVertical)
+        {
+            switch ((int)myForm)
+            {
+                case 0:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (warpy[i] == (int)XY.y)
+                        {
+                            WarpObject.SetActive(true);
+                            return;
+                        }
+                        else
+                        {
+                            WarpObject.SetActive(false);
+                        }
+                    }
+                    break;
+
+                case 2:break;
+                default:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (warpy[i] >= (int)XY.y-1)
+                        {
+                            WarpObject.SetActive(true);
+                            return;
+                        }else
+                        {
+                            WarpObject.SetActive(false);
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
     /// <summary>
     /// 移動できるか
     /// </summary>
@@ -179,6 +236,7 @@ public class MoveWall : NetworkBehaviour
         XY.y -= vec2.y;
         Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
+        WarpCheck();
     }
     void LerpWallPos()
     {
