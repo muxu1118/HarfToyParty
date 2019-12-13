@@ -10,7 +10,17 @@ public class Player : MonoBehaviour
     private GameObject bomb;
     private Vector2 bombPos = new Vector2(1,1);
     [SerializeField]
-    bool isMove = false;
+    bool _isMove = false;
+    bool isMove {
+        get {
+            return _isMove;
+        }
+        set {
+            _isMove = value;
+            Debug.Log("value change");
+        }
+    }
+    System.Action _callback = null;
 
 
 
@@ -72,6 +82,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetActionCallback(System.Action callback)
+    {
+        _callback = callback;
+    }
+
     public void Move(int x)
     {
 
@@ -118,6 +133,7 @@ public class Player : MonoBehaviour
                     {
                         Debug.Log("位置が悪いよ");
                         isMove = false;
+                        PlayerDoNotMove();
                         // WarpWallで移動
                         return;
                     }
@@ -125,6 +141,7 @@ public class Player : MonoBehaviour
                     {
                         Debug.Log("壁があるよ");
                         isMove = false;
+                        PlayerDoNotMove();
                         return;
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0)
@@ -174,5 +191,9 @@ public class Player : MonoBehaviour
         map.updateMap = false;
     }
 
-
+    private void PlayerDoNotMove()
+    {
+        if (_callback != null)
+            _callback();
+    }
 }
