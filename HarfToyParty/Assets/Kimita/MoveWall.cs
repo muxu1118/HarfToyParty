@@ -29,7 +29,8 @@ public class MoveWall :MonoBehaviour
 
     [SerializeField]
     GameObject WarpObject;
-
+    [SerializeField]
+    GameObject SPRObject;
     private void Start()
     {
         player= GameObject.FindObjectOfType<SyvnPos>().gameObject;
@@ -66,6 +67,7 @@ public class MoveWall :MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (PosUpdateRequest)
         {
             player.GetComponent<SyvnPos>().UpdateMePosition(this.gameObject, this.transform.position, this.XY);
@@ -121,30 +123,56 @@ public class MoveWall :MonoBehaviour
     }
     private bool WarpMoveCheck(Vector2 mov2)
     {
+        bool isChange = false, Up = false;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
             {
                 if (Map.instance.mapInt[j, i] == (int)MyWall)
                 {
-                    
                     if ((j - (int)mov2.y > 6 || j - (int)mov2.y < 0)) {
                         if (-(int)mov2.y > 0) {
                             if (Map.instance.mapInt[warpy[0], warpx[0]] != (int)MapKind.YUKA &&
                                 Map.instance.mapInt[warpy[0], warpx[0]] != (int)MyWall) return false;
+                            if (XY.y - (int)mov2.y > 6)
+                            {
+                                Vector3 temp = Vector3.zero;
+                                temp = SPRObject.transform.position;
+                                transform.position = WarpObject.transform.position;
+                                WarpObject.transform.position = temp;
+                                Debug.Log("Change");
+                                Up = false;
+                                isChange = true;
+                            }
                         }else if(-(int)mov2.y < 0)
                         {
                             if (Map.instance.mapInt[warpy[1], warpx[1]] != (int)MapKind.YUKA &&
                                 Map.instance.mapInt[warpy[1], warpx[1]] != (int)MyWall) return false;
+                            Debug.Log("YOYO" + (j - (int)mov2.y));
+                            if (XY.y - (int)mov2.y < 0)
+                            {
+                                Vector3 temp = Vector3.zero;
+                                temp = SPRObject.transform.position;
+                                transform.position = WarpObject.transform.position;
+                                WarpObject.transform.position = temp;
+                                Debug.Log("Change");
+                                Up = true;
+                                isChange = true;
+                            }
                         }
                         continue;
                     }
-                    Debug.Log("ワープ移動できるかチェックするよ！--");
-                    Debug.Log(Map.instance.mapInt[j - (int)mov2.y, i + (int)mov2.x]);
-                    Debug.Log("ここまで--------");
                     if (Map.instance.mapInt[j - (int)mov2.y, i + (int)mov2.x] != (int)MapKind.YUKA && Map.instance.mapInt[j - (int)mov2.y, i + (int)mov2.x] != (int)MyWall) return false;
                 }
             }
+        }
+        if (isChange)
+        {
+            XY = (Up)? new Vector2(4, 6) : new Vector2(2, 0);
+        }else
+        {
+            XY.x += mov2.x;
+            XY.y -= mov2.y;
         }
         return true;
     }
@@ -185,6 +213,7 @@ public class MoveWall :MonoBehaviour
         int x = (int)XY.x, y = (int)XY.y;
         List<int> my = new List<int>();
         List<int> mx = new List<int>();
+        Vector3 vec = transform.position;
         switch ((int)myForm)
         {
             case 0:
@@ -233,17 +262,17 @@ public class MoveWall :MonoBehaviour
                 }
                 break;
         }
+
         while (wait >= 0)
         {
             wait -= Time.deltaTime;
-            gameObject.transform.position += new Vector3((vec3[y - (int)vec2.y][x + (int)vec2.x].x - vec3[y][x].x) / time, (vec3[y - (int)vec2.y][x + (int)vec2.x].y - vec3[y][x].y) / time);
+            gameObject.transform.position += new Vector3((vec3[y][x].x - vec.x) / time, (vec3[y][x].y - vec.y) / time);
 
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        XY.x += vec2.x;
-        XY.y -= vec2.y;
-        Debug.Log("X:" + XY.x + "Y:" + XY.y);
-        gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
+
+        
+        gameObject.transform.position = new Vector3(vec3[y][x].x, vec3[y][x].y);
         PosUpdateRequest = true;
         yield return new WaitForSeconds(0.1f);
         PosUpdateRequest = false;

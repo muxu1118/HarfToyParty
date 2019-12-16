@@ -2219,6 +2219,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 456752234}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &463278369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2989064529292500526, guid: 8e36def7002e3ae4487fe232f522707b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1951633898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &465535195
 GameObject:
   m_ObjectHideFlags: 0
@@ -9098,6 +9104,11 @@ PrefabInstance:
       propertyPath: WarpObject
       value: 
       objectReference: {fileID: 736048606}
+    - target: {fileID: 6994823722643167020, guid: 8e36def7002e3ae4487fe232f522707b,
+        type: 3}
+      propertyPath: SPRObject
+      value: 
+      objectReference: {fileID: 463278369}
     - target: {fileID: 1751782852585736314, guid: 8e36def7002e3ae4487fe232f522707b,
         type: 3}
       propertyPath: m_LocalPosition.x
