@@ -2783,9 +2783,9 @@ MonoBehaviour:
   - {fileID: 768203213}
   updateMap: 0
   WarpPoint:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  isWarpVertical: 0
+  - {x: 2, y: 0}
+  - {x: 4, y: 6}
+  isWarpVertical: 1
 --- !u!114 &583913605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4013,7 +4013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 14, y: -4.519226}
+  m_AnchoredPosition: {x: 14, y: -4.519287}
   m_SizeDelta: {x: -479.7, y: -135.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &835436885
@@ -9036,7 +9036,7 @@ PrefabInstance:
     - target: {fileID: 8211076139872098100, guid: 8e36def7002e3ae4487fe232f522707b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.02
+      value: -1.01
       objectReference: {fileID: 0}
     - target: {fileID: 8211076139872098100, guid: 8e36def7002e3ae4487fe232f522707b,
         type: 3}
@@ -9106,7 +9106,7 @@ PrefabInstance:
     - target: {fileID: 1751782852585736314, guid: 8e36def7002e3ae4487fe232f522707b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.52
+      value: 8.38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e36def7002e3ae4487fe232f522707b, type: 3}

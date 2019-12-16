@@ -171,7 +171,7 @@ public class BPMoveWall : NetworkBehaviour
                 break;
             case 3:
                 y = 0;
-                if (WarpCheck())
+                if (WarpCheck()&&(Map.instance.isWarpVertical&&mov2.y!=0))
                 {
                     WarpMove((int)myForm,mov2);
                     return true;
