@@ -2,44 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-public enum MapKind
-{
-    YUKA = 0,
-    Bomb,
-    Player1,
-    Player2,
-    BombAria1,
-    BombAria2,
-    Wall,
-    BreakWall1,
-    BreakWall2,
-    BreakWall3,
-    BreakWall4,
-    BreakWall5,
-    PartRHand,
-    PartRLeg,
-    PartRFace,
-    PartBHand,
-    PartBLeg,
-    PartBFace,
-    Movewall0,
-    Movewall1,
-    Movewall2,
-    Movewall3,
-    Movewall4,
-    Movewall5,
-    Movewall6,
-    Movewall7,
-    Movewall8,
-    Movewall9,
-    Movewall10,
-}
+//public enum MapKind
+//{
+//    YUKA = 0,
+//    Bomb,
+//    Player1,
+//    Player2,
+//    BombAria1,
+//    BombAria2,
+//    Wall,
+//    BreakWall1,
+//    BreakWall2,
+//    BreakWall3,
+//    BreakWall4,
+//    BreakWall5,
+//    PartRHand,
+//    PartRLeg,
+//    PartRFace,
+//    PartBHand,
+//    PartBLeg,
+//    PartBFace,
+//    Movewall0,
+//    Movewall1,
+//    Movewall2,
+//    Movewall3,
+//    Movewall4,
+//    Movewall5,
+//    Movewall6,
+//    Movewall7,
+//    Movewall8,
+//    Movewall9,
+//    Movewall10,
+//}
 
 
-public class Map : NetworkBehaviour
+public class BPMap : NetworkBehaviour
 {
     //singleton 始まり
-    public static Map instance;
+    public static BPMap instance;
     protected void Awake()
     {
         if (instance != null)
@@ -48,7 +48,7 @@ public class Map : NetworkBehaviour
         }
         else
         {
-            instance = this as Map;
+            instance = this as BPMap;
         }
     }
     protected void OnDestroy()

@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
     public void Move(MapKind player, Vector2 vec2)
     {
         int max = 6, min = 0;
+        float speed = 0.5f; ;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
@@ -139,6 +140,7 @@ public class Player : MonoBehaviour
                             return;
                         }
                         // 壁を押す
+                        speed = 1f;
 
                     }
                     if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min))&&!isWarp)
@@ -161,7 +163,7 @@ public class Player : MonoBehaviour
             }
         }
         isMove = true;
-        StartCoroutine(MoveAnim(1, player, vec2));
+        StartCoroutine(MoveAnim(speed, player, vec2));
     }
     IEnumerator MoveAnim(float wait, MapKind player, Vector2 vec2)
     {

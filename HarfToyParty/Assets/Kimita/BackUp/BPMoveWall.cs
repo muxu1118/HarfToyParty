@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MoveWall : NetworkBehaviour
+public class BPMoveWall : NetworkBehaviour
 {
 
     [SyncVar]
@@ -206,10 +206,10 @@ public class MoveWall : NetworkBehaviour
                 // 横移動だったら返す
                 if (mov2.x != 0) return;
 
-                if(mov2.y > 0)
-                {
-                    StartCoroutine(WarpMoveAnim(1, map, mov2, vec3));
-                }
+                //if(mov2.y > 0)
+                //{
+                //    StartCoroutine(WarpMoveAnim(1, map, mov2, vec3));
+                //}
                 else
                 {
 

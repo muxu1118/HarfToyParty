@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class BPPlayer : MonoBehaviour
 {
     private int myNumber;
     Map map;
@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
     public void Move(MapKind player, Vector2 vec2)
     {
         int max = 6, min = 0;
+        
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
