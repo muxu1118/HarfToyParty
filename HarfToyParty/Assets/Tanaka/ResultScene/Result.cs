@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
@@ -16,10 +15,6 @@ public class Result : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void Onclick()
-    {
-        SceneManager.LoadScene("Title");
-    }
 }
 // ほかのスクリプトで呼び出された時パネルを呼び出し
 // 分けて書くことを意識する、分けて書くと後でバグが起きた時に分かりやすい
