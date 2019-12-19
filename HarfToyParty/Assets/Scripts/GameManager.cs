@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public struct GameRule
 {
@@ -12,6 +13,7 @@ public struct GameRule
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    WinLoss winLoss;
     enum State
     {
         Title,
@@ -35,7 +37,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         game.Stage = 0;
         game.Time = 300;
         gameRule = game;
-        
+        winLoss.WinOrLoss(0);
     }
 
     private void Reset()
@@ -56,11 +58,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             Debug.Log("RedWin");
             GameState = State.Result;
+            winLoss.WinOrLoss(1);
         }
         if (BluePartGet == gameRule.PartGet && GameState == State.Main)
         {
             Debug.Log("BlueWin");
             GameState = State.Result;
+            winLoss.WinOrLoss(2);
         }
     }
     public void StateChange()
