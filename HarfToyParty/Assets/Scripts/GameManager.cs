@@ -32,12 +32,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
+        GameState = State.Main;
         GameRule game;
         game.PartGet = 1;
         game.Stage = 0;
         game.Time = 300;
         gameRule = game;
-        winLoss.WinOrLoss(0);
+        winLoss.GetComponent<WinLoss>();
     }
 
     private void Reset()
@@ -81,7 +82,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 GameState = State.Result;
                 break;
             case State.Result:
-                GameState = State.Main;
+                GameState = State.PlayerChoise;
                 break;
             default:
                 break;

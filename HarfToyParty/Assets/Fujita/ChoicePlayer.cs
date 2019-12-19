@@ -27,22 +27,26 @@ public class ChoicePlayer : MonoBehaviour{
         //デバック用
         if (Player1)
         {
+            
             button.interactable = false;
             Debug.Log("1を選択した");
             playerID = MapKind.Player1;
             if(button.interactable == false && button2.interactable == false)
             {
+                GameManager.instance.StateChange();
                 SceneManager.LoadScene("MainGame");
                 Debug.Log("GameSceneを呼んでるよ");
             }
         }
         else if (Player2)
         {
+            
             button2.interactable = false;
             Debug.Log("2を選択した");
             playerID = MapKind.Player2;
             if (button.interactable == false && button2.interactable == false)
             {
+                GameManager.instance.StateChange();
                 SceneManager.LoadScene("MainGame");
                 Debug.Log("GameSceneを呼んでるよ");
             }

@@ -10,6 +10,7 @@ public class TitleSelect : MonoBehaviour
     GameObject Panel;
     public void Onclick()
     {
+        GameManager.instance.StateChange();
         SceneManager.LoadScene("Choice");
         Panel.SetActive(false);
     }
