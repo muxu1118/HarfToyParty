@@ -6,31 +6,34 @@ using UnityEngine.Networking;
 
 public class WinLoss : NetworkBehaviour
 {
-    [SerializeField]
-    private int winnerDesplay;
+    //[SerializeField]
+    //private int winnerDesplay;
     [SerializeField]
     private Text winnerText;
-    Text ServerText;
-    Text ClientText;
+    [SerializeField]
+    GameObject panel;
+    string ServerText = "Loss";
+    string ClientText = "Loss";
 
     void Start()
-    {
+    {        
         // これがホストだったら
         if (isServer)
         {
             // 1P側の変更
-            ServerText = winnerText;
+            winnerText.text = ServerText;
+            Debug.Log(winnerText.text);
         }
         // これがクライアントだったら
         if (isClient)
         {
             // 2P側の変更
-            ClientText = winnerText;
+            winnerText.text = ClientText;
+            Debug.Log(winnerText.text);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
@@ -41,10 +44,14 @@ public class WinLoss : NetworkBehaviour
         switch (winnerNum)
         {
             case 1:
-                ServerText.text = "Winner";
+                panel.SetActive(true);
+                ServerText = "Win";
+                winnerText.text = ServerText;
                 break;
             case 2:
-                ClientText.text = "Winner";
+                panel.SetActive(true);
+                ClientText = "Win";
+                winnerText.text = ClientText;
                 break;
         }        
     }
