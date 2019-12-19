@@ -5,9 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class WinLoss : NetworkBehaviour
-{
-    //[SerializeField]
-    //private int winnerDesplay;
+{    
+    private int winnerDesplay;
     [SerializeField]
     private Text winnerText;
     [SerializeField]
@@ -35,23 +34,28 @@ public class WinLoss : NetworkBehaviour
 
     private void Update()
     {
-        
+        if(isServer && winnerDesplay == 1)
+        {
+            winnerText.text = ServerText;
+        }
+        if(isClient && winnerDesplay == 2)
+        {
+            winnerText.text = ClientText;
+        }
     }
 
     public void WinOrLoss(int winner)
     {
-        int winnerNum = winner;
-        switch (winnerNum)
+        winnerDesplay = winner;
+        switch (winnerDesplay)
         {
             case 1:
                 panel.SetActive(true);
-                ServerText = "Win";
-                winnerText.text = ServerText;
+                ServerText = "Win";                
                 break;
             case 2:
                 panel.SetActive(true);
                 ClientText = "Win";
-                winnerText.text = ClientText;
                 break;
         }        
     }
