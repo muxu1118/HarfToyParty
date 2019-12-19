@@ -11,6 +11,10 @@ public class WinLoss : NetworkBehaviour
     private Text winnerText;
     [SerializeField]
     GameObject panel;
+
+    Text Server;
+    Text Client;
+    
     string ServerText = "Loss";
     string ClientText = "Loss";
 
@@ -20,15 +24,15 @@ public class WinLoss : NetworkBehaviour
         if (isServer)
         {
             // 1P側の変更
-            winnerText.text = ServerText;
-            Debug.Log(winnerText.text);
+            Server = winnerText;
+            Server.text = ServerText;            
         }
         // これがクライアントだったら
         if (isClient)
         {
             // 2P側の変更
-            winnerText.text = ClientText;
-            Debug.Log(winnerText.text);
+            Client = winnerText;
+            Client.text = ClientText;
         }
     }
 
@@ -36,11 +40,11 @@ public class WinLoss : NetworkBehaviour
     {
         if(isServer && winnerDesplay == 1)
         {
-            winnerText.text = ServerText;
+            Server.text = ServerText;
         }
         if(isClient && winnerDesplay == 2)
         {
-            winnerText.text = ClientText;
+            Client.text = ClientText;
         }
     }
 
