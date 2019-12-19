@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 909433263
+    locked: 0
+  - name: Map
+    uniqueID: 1229423387
+    locked: 0
+  - name: Warp
+    uniqueID: 847308193
+    locked: 0
+  - name: Wall
+    uniqueID: 3667850087
+    locked: 0
