@@ -329,18 +329,20 @@ public class MoveWall :MonoBehaviour
         switch ((int)myForm)
         {
             case 0:
+                
                 if (WarpCheck())
                 {
                     if (WarpMoveCheck(mov2))
                     {
-                        Debug.Log("De");
                         WarpMove((int)myForm, mov2);
                         return true;
                     }
                 }
-                if (XY.x + mov2.x >= 6 || XY.x + mov2.x < 0) return false;
-                if (XY.y - mov2.y >= 6 || XY.y - mov2.y < 0) return false;
-                if (map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Wall || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Bomb || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0) return false;
+                if (XY.x + mov2.x > 6 || XY.x + mov2.x < 0) return false;
+                if (XY.y - mov2.y > 6 || XY.y - mov2.y < 0) return false;
+
+                if (map[(int)XY.y- (int)mov2.y, (int)XY.x+ (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y - (int)mov2.y, (int)XY.x+ (int)mov2.x] != (int)MyWall) return false;
+                //if (map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Wall || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Bomb || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0) return false;
                 break;
             case 1:
                 x = 0;
