@@ -187,7 +187,7 @@ public class MoveWall :MonoBehaviour
         }
         if (isChange)
         {
-            XY = (Up)? new Vector2(4, 6) : new Vector2(2, 0);
+            XY = (Up)? new Vector2(warpx[1], warpy[1]) : new Vector2(warpx[0], warpy[0]);
         }else
         {
             XY.x += mov2.x;
@@ -333,6 +333,7 @@ public class MoveWall :MonoBehaviour
                 {
                     if (WarpMoveCheck(mov2))
                     {
+                        Debug.Log("De");
                         WarpMove((int)myForm, mov2);
                         return true;
                     }
