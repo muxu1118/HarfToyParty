@@ -27,9 +27,6 @@ public class BombButton : Tap
     IEnumerator SetButton()
     {
         yield return new WaitForSeconds(Time.deltaTime*4);
-
-        Debug.Log(GameObject.Find("Player1"));
-        Debug.Log(GameObject.Find("Player2"));
         if (GameObject.Find("Player2") == null)
         {
             MyPlayer = GameObject.Find("Player1").GetComponent<Player>();
