@@ -20,6 +20,7 @@ public class Part : NetworkBehaviour
     public PartKind kind;
     private int MyPartNum;
     private bool server;
+    private GameObject player;
     [SerializeField]
     private Vector2 XY;
     private SpriteRenderer spriteR = new SpriteRenderer();
@@ -27,6 +28,7 @@ public class Part : NetworkBehaviour
     private void Start()
     {
         spriteR = gameObject.GetComponent<SpriteRenderer>();
+        player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; ;
         switch (kind)
         {
             case PartKind.R_Leg:
@@ -74,13 +76,17 @@ public class Part : NetworkBehaviour
         {
             if(Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && server)
             {
-                GameManager.instance.RedPartGet++;
+                player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
+                /* GameManager.instance.RedPartGet++;
+                */
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && !server)
             {
-                GameManager.instance.BluePartGet++;
+                player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
+                /*GameManager.instance.BluePartGet++;
+                */
             }
 
 

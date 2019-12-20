@@ -71,6 +71,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             GameState = State.Result;
             winLoss.WinOrLoss(2);
         }
+
+
     }
     public void StateChange()
     {
