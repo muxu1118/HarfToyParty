@@ -28,6 +28,7 @@ public class DebugMove : NetworkBehaviour
 
     private void Start()
     {
+       
         ButtonPos = GameObject.Find("MoveButton").transform.position;
         MyPlayer.SetActionCallback(PlayerDoNotMove);
         //StartCoroutine("FindPly");

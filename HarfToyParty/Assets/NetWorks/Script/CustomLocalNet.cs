@@ -16,7 +16,6 @@ public class CustomLocalNet : NetworkManager
     string ipAddress;
     public int playingPlayer = 0;
 
-
     public void ShowIp()
     {
         iptext = GameObject.Find("ipText").GetComponent<Text>();
@@ -24,6 +23,7 @@ public class CustomLocalNet : NetworkManager
 
         iptext.text = ipAddress;
     }
+    
 
     public void Startuphost()
     {

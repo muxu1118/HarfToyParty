@@ -14,9 +14,9 @@ public class WinLoss : NetworkBehaviour
 
     Text Server;
     Text Client;
-    
-    string ServerText = "Loss";
-    string ClientText = "Loss";
+
+    string ServerText = "Lose";
+    string ClientText = "Lose";
 
     void Start()
     {        
