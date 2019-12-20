@@ -36,7 +36,14 @@ public class CustomLocalNet : NetworkManager
     {
         SetIPAddress();
         SetPort();
+
+
         NetworkManager.singleton.StartClient();
+    }
+
+    public void CloseGame()
+    {
+        //NetworkManager.singleton.OnStopServer();
     }
 
     void SetIPAddress()

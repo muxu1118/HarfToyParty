@@ -52,6 +52,7 @@ public class SyvnPos : NetworkBehaviour
     }
 
 
+
     [Command]
     void Cmdtest(Vector2 pos)
     {
@@ -85,6 +86,39 @@ public class SyvnPos : NetworkBehaviour
     {
        
     }
+
+
+    /// <summary>
+    /// WinLoss
+    /// </summary>
+    #region WinLose
+
+    // 1=PLayer01,2=Player02
+    public void CheckWinLose(int playerNum)
+    {
+        CmdWinOrLose(playerNum);
+    }
+
+    [Command]
+    void CmdWinOrLose(int playerNum)
+    {
+        RpcUpdateWinOrLose(playerNum);
+    }
+
+    [ClientRpc]
+    void RpcUpdateWinOrLose(int playerNum)
+    {
+        if (playerNum == 1)
+        {
+            GameManager.instance.RedPartGet++;
+        }
+
+        else if (playerNum == 2)
+        {
+            GameManager.instance.BluePartGet++;
+        }
+    }
+    #endregion
 
     void LerpPos()
     {
