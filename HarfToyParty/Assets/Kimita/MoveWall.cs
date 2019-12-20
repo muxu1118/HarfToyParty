@@ -333,6 +333,7 @@ public class MoveWall :MonoBehaviour
                 {
                     if (WarpMoveCheck(mov2))
                     {
+                        Debug.Log("De");
                         WarpMove((int)myForm, mov2);
                         return true;
                     }
