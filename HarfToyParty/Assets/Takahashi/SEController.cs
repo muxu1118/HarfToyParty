@@ -12,6 +12,7 @@ public class SEScript : SingletonMonoBehaviour<SEScript>
         none = -1,
         cursor1,
         BGM基本ループ,
+        MainGame,
     }
 
     public List<AudioClip> SEList;
