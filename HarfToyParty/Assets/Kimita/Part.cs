@@ -28,7 +28,7 @@ public class Part : MonoBehaviour
     private void Start()
     {
         spriteR = gameObject.GetComponent<SpriteRenderer>();
-        player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; ;
+        //player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; ;
         switch (kind)
         {
             case PartKind.R_Leg:
@@ -76,14 +76,14 @@ public class Part : MonoBehaviour
         {
             if(Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 /*&& server*/)
             {
-                player.GetComponent<SyvnPos>().CheckWinLose(1);
+                //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
                 /* GameManager.instance.RedPartGet++;
                 */
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2/* && !server*/)
             {
-                player.GetComponent<SyvnPos>().CheckWinLose(2);
+               // player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
                 /*GameManager.instance.BluePartGet++;
                 */

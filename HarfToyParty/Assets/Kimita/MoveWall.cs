@@ -33,7 +33,7 @@ public class MoveWall :MonoBehaviour
     GameObject SPRObject;
     private void Start()
     {
-        player= GameObject.FindObjectOfType<SyvnPos>().gameObject;
+       // player= GameObject.FindObjectOfType<SyvnPos>().gameObject;
         int x = (int)XY.x, y = (int)XY.y;
         switch ((int)myForm)
         {
