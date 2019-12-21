@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
 
-public class PlayerSprite : NetworkBehaviour
+public class PlayerSprite :MonoBehaviour
 {
     Sprite[] sprites = new Sprite[2];
-    public bool isServe;
+    
+    /*立ち絵の選択*/
+   // public bool isServe;
 
     // Start is called before the first frame update
     void Start()
     {
         sprites[0] = Resources.Load<Sprite>("Sprites/Ani");
         sprites[1] = Resources.Load<Sprite>("Sprites/Otouto");
-        gameObject.GetComponent<SpriteRenderer>().sprite = (isServer) ? sprites[0] : sprites[1];
+        //gameObject.GetComponent<SpriteRenderer>().sprite = (isServer) ? sprites[0] : sprites[1];
 
     }
 

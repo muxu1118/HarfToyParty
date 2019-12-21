@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 public enum MapKind
 {
     YUKA = 0,
@@ -36,7 +36,7 @@ public enum MapKind
 }
 
 
-public class Map : NetworkBehaviour
+public class Map : MonoBehaviour
 {
     //singleton 始まり
     public static Map instance;

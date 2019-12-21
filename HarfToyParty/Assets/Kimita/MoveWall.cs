@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
 public class MoveWall :MonoBehaviour
 {
@@ -311,10 +311,9 @@ public class MoveWall :MonoBehaviour
         
         WarpCheck();
         gameObject.transform.position = new Vector3(vec3[y][x].x, vec3[y][x].y);
-        PosUpdateRequest = true;
-        yield return new WaitForSeconds(0.1f);
-        PosUpdateRequest = false;
-
+        //PosUpdateRequest = true;
+        //yield return new WaitForSeconds(0.1f);
+        //PosUpdateRequest = false;
     }
 
     /// <summary>
@@ -449,9 +448,9 @@ public class MoveWall :MonoBehaviour
         Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
         WarpCheck();
-        PosUpdateRequest = true;
-        yield return new WaitForSeconds(0.1f);
-        PosUpdateRequest = false;
+        //PosUpdateRequest = true;
+        //yield return new WaitForSeconds(0.1f);
+        //PosUpdateRequest = false;
 
     }
 

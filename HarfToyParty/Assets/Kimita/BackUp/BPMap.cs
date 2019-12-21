@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 //public enum MapKind
 //{
 //    YUKA = 0,
@@ -36,7 +36,7 @@ using UnityEngine.Networking;
 //}
 
 
-public class BPMap : NetworkBehaviour
+public class BPMap : MonoBehaviour
 {
     //singleton 始まり
     public static BPMap instance;
