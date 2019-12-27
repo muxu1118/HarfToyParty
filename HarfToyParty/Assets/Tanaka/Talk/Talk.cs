@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Talk : MonoBehaviour
@@ -28,6 +29,7 @@ public class Talk : MonoBehaviour
     private void Update()
     {
         if (sentenceNum >= 5) { return; }
+        if (Time.timeScale == 0) { return; }
 
         if(Input.GetMouseButtonDown(0))
         {
@@ -58,12 +60,20 @@ public class Talk : MonoBehaviour
         sentence[0] = "こんにちは";
         sentence[1] = "はじめまして";
         sentence[2] = "Half Toy Partyへようこそ";
-        sentence[3] = "僕たちの体のパーツを探してきて";
+        sentence[3] = "僕たちの体のパーツを\n探してきて";
         sentence[4] = "行ってらっしゃい";
     }
 
     public void DisplaySentence()
     {
         text.text = sentence[sentenceNum].Substring(0, textNum);
+    }
+
+    private void Scene()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 }
