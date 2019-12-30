@@ -28,7 +28,7 @@ public class Part : MonoBehaviour
     private void Start()
     {
         spriteR = gameObject.GetComponent<SpriteRenderer>();
-        //player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; ;
+        //player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; 
         switch (kind)
         {
             case PartKind.R_Leg:
@@ -74,14 +74,14 @@ public class Part : MonoBehaviour
     {
         if (Map.instance.mapInt[(int)XY.y, (int)XY.x] != MyPartNum && (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 || Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2))
         {
-            if(Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 /*&& server*/)
+            if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && ((int)kind >= 0 && (int)kind <= 2)/*&& server*/)
             {
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
                 /* GameManager.instance.RedPartGet++;
                 */
             }
-            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2/* && !server*/)
+            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && ((int)kind >= 3 && (int)kind <= 5)/* && !server*/) 
             {
                // player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);

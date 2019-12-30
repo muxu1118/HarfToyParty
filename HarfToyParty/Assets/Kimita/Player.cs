@@ -157,7 +157,13 @@ public class Player : MonoBehaviour
                         PlayerDoNotMove();
                         return;
                     }
-                    
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Player1 || map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Player2)
+                    {
+                        Debug.Log("他プレイヤーがいます");
+                        isMove = false;
+                        PlayerDoNotMove();
+                        return;
+                    }
                 }
             }
         }
@@ -180,6 +186,8 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        map.mapInt[y, x] = 0;
+        map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         while (wait >= 0)
         {
             wait -= Time.deltaTime;
@@ -188,8 +196,6 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         transform.position = new Vector3(map.SpritePos[y - (int)vec2.y][x + (int)vec2.x].x, map.SpritePos[y - (int)vec2.y][x + (int)vec2.x].y);
-        map.mapInt[y, x] = 0;
-        map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         isMove = false;
         map.updateMap = true;
         yield return new WaitForSeconds(0.1f);
