@@ -26,7 +26,8 @@ public class MoveWall :MonoBehaviour
     bool PosUpdateRequest = false;
     int[] warpx = new int[2];
     int[] warpy = new int[2];
-
+    int[] Hwarpx = new int[2];
+    int[] Hwarpy = new int[2];
     [SerializeField]
     GameObject WarpObject;
     [SerializeField]
@@ -61,6 +62,8 @@ public class MoveWall :MonoBehaviour
         {
             warpx[i] = (int)Map.instance.WarpPoint[i].x;
             warpy[i] = (int)Map.instance.WarpPoint[i].y;
+            Hwarpx[i] = (int)Map.instance.HWarpPoint[i].x;
+            Hwarpy[i] = (int)Map.instance.HWarpPoint[i].y;
         }
         WarpCheck();
     }
@@ -88,7 +91,47 @@ public class MoveWall :MonoBehaviour
                 case 0:
                     for (int i = 0; i < 2; i++)
                     {
-                        if (warpy[i] == (int)XY.y&& warpx[i] == (int)XY.x)
+                        if (warpy[i] == (int)XY.y && warpx[i] == (int)XY.x)
+                        {
+                            Debug.Log("ワープ発見");
+                            WarpObject.SetActive(true);
+                            return true;
+                        }
+                        else
+                        {
+                            WarpObject.SetActive(false);
+                        }
+                    }
+                    break;
+
+                case 2: break;
+                default:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Debug.Log("ワープY:" + warpy[i] + "ブロックY" + XY.y);
+                        Debug.Log("ワープX:" + warpx[i] + "ブロックX" + XY.x);
+                        if ((warpy[i] == (int)XY.y && warpx[i] == (int)XY.x) || (warpy[i] == (int)XY.y + 1 && warpx[i] == (int)XY.x))
+                        {
+                            Debug.Log("ワープ発見");
+                            WarpObject.SetActive(true);
+                            return true;
+                        }
+                        else
+                        {
+                            WarpObject.SetActive(false);
+                        }
+                    }
+                    break;
+            }
+        }
+        if (Map.instance.isWarpHorizontal)
+        {
+            switch ((int)myForm)
+            {
+                case 0:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (warpy[i] == (int)XY.y && warpx[i] == (int)XY.x)
                         {
                             Debug.Log("ワープ発見");
                             WarpObject.SetActive(true);
@@ -195,7 +238,82 @@ public class MoveWall :MonoBehaviour
         }
         return true;
     }
+    private bool HWarpMoveCheck(Vector2 mov2)
+    {
+        bool isChange = false, Up = false;
+        // ワープの向きが縦だったら
+        if (Map.instance.isWarpHorizontal)
+        {
+            switch ((int)myForm)
+            {
+                case 0:
+                    // 縦移動だったら返す
+                    if (mov2.y != 0) return false;
+                    break;
 
+                case 2: break;
+                default:
+                    // 縦移動だったら返す
+                    if (mov2.y != 0) return false;
+                    break;
+            }
+        }
+        for (int i = 0; i <= 6; i++)
+        {
+            for (int j = 0; j <= 6; j++)
+            {
+                if (Map.instance.mapInt[j, i] == (int)MyWall)
+                {
+                    if ((i - (int)mov2.x > 6 || i - (int)mov2.x < 0))
+                    {
+                        if (-(int)mov2.x > 0)
+                        {
+                            if (Map.instance.mapInt[warpy[0], warpx[0]] != (int)MapKind.YUKA &&
+                                Map.instance.mapInt[warpy[0], warpx[0]] != (int)MyWall) return false;
+                            if (XY.x - (int)mov2.x > 6)
+                            {
+                                Vector3 temp = Vector3.zero;
+                                temp = SPRObject.transform.position;
+                                transform.position = new Vector3(Map.instance.SpritePos[warpy[0]][warpx[0]].x, Map.instance.SpritePos[warpy[0]][warpx[0]].y - (Map.instance.SpritePos[warpy[0] + 1][warpx[0]].y - Map.instance.SpritePos[warpy[0]][warpx[0]].y), 0);
+                                WarpObject.transform.position = temp;
+                                Debug.Log("Change");
+                                Up = false;
+                                isChange = true;
+                            }
+                        }
+                        else if (-(int)mov2.x < 0)
+                        {
+                            if (Map.instance.mapInt[warpy[1], warpx[1]] != (int)MapKind.YUKA &&
+                                Map.instance.mapInt[warpy[1], warpx[1]] != (int)MyWall) return false;
+                            Debug.Log("YOYO" + (i - (int)mov2.x));
+                            if (XY.x - (int)mov2.x < 0)
+                            {
+                                Vector3 temp = Vector3.zero;
+                                temp = SPRObject.transform.position;
+                                transform.position = new Vector3(Map.instance.SpritePos[warpy[1]][warpx[1]].x, Map.instance.SpritePos[warpy[1]][warpx[1]].y + (Map.instance.SpritePos[1][0].y - Map.instance.SpritePos[0][0].y), 0);
+                                WarpObject.transform.position = temp;
+                                Debug.Log("Change");
+                                Up = true;
+                                isChange = true;
+                            }
+                        }
+                        continue;
+                    }
+                    if (Map.instance.mapInt[j - (int)mov2.y, i + (int)mov2.x] != (int)MapKind.YUKA && Map.instance.mapInt[j - (int)mov2.y, i + (int)mov2.x] != (int)MyWall) return false;
+                }
+            }
+        }
+        if (isChange)
+        {
+            XY = (Up) ? new Vector2(warpx[1], warpy[1]) : new Vector2(warpx[0], warpy[0]);
+        }
+        else
+        {
+            XY.x += mov2.x;
+            XY.y -= mov2.y;
+        }
+        return true;
+    }
     private void WarpMove(int form, Vector2 mov2)
     {
         // 形によって入れるわーぷが変わるため移動を変える

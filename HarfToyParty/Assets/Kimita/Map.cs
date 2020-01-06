@@ -78,6 +78,9 @@ public class Map : MonoBehaviour
     public Vector2[] WarpPoint = new Vector2[2];
     public bool isWarpVertical;
 
+    public Vector2[] HWarpPoint = new Vector2[2];
+    public bool isWarpHorizontal;
+
     private void OnEnable()
     {
 

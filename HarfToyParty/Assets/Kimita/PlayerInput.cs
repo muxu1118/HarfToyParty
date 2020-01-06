@@ -22,6 +22,7 @@ public class PlayerInput : MonoBehaviour
     {
         InputMove();
         ActionInput();
+        TestInput();
     }
 
 
@@ -29,38 +30,38 @@ public class PlayerInput : MonoBehaviour
     {
         if (MyPlayer.name == "Player1")
         {
-            if (Input.GetAxisRaw("C1V") > 0.1f && Mathf.Abs(Input.GetAxisRaw("C1V")) >= Mathf.Abs(Input.GetAxisRaw("C1H")))
+            if (Input.GetAxisRaw("Joystick 1 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
             {
                 MyPlayer.Move(0);
             }
-            else if (Input.GetAxisRaw("C1V") < -0.1f && Mathf.Abs(Input.GetAxisRaw("C1V")) >= Mathf.Abs(Input.GetAxisRaw("C1H")))
+            else if (Input.GetAxisRaw("Joystick 1 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
             {
                 MyPlayer.Move(1);
             }
-            else if (Input.GetAxisRaw("C1H") > 0.1f)
+            else if (Input.GetAxisRaw("Joystick 1 Horizontal") > 0.1f)
             {
                 MyPlayer.Move(2);
             }
-            else if (Input.GetAxisRaw("C1H") < -0.1f)
+            else if (Input.GetAxisRaw("Joystick 1 Horizontal") < -0.1f)
             {
                 MyPlayer.Move(3);
             }
         }
         else if (MyPlayer.name == "Player2")
         {
-            if (Input.GetAxisRaw("C2V") > 0.1f && Mathf.Abs(Input.GetAxisRaw("C2V")) >= Mathf.Abs(Input.GetAxisRaw("C2H")))
+            if (Input.GetAxisRaw("Joystick 2 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
             {
                 MyPlayer.Move(0);
             }
-            else if (Input.GetAxisRaw("C2V") < -0.1f && Mathf.Abs(Input.GetAxisRaw("C2V")) >= Mathf.Abs(Input.GetAxisRaw("C2H")))
+            else if (Input.GetAxisRaw("Joystick 2 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
             {
                 MyPlayer.Move(1);
             }
-            else if (Input.GetAxisRaw("C2H") > 0.1f)
+            else if (Input.GetAxisRaw("Joystick 2 Horizontal") > 0.1f)
             {
                 MyPlayer.Move(2);
             }
-            else if (Input.GetAxisRaw("C2H") < -0.1f)
+            else if (Input.GetAxisRaw("Joystick 2 Horizontal") < -0.1f)
             {
                 MyPlayer.Move(3);
             }
@@ -88,6 +89,27 @@ public class PlayerInput : MonoBehaviour
                 // 爆弾範囲をだす
                 Map.instance.AriaSet(P, A);
             }
+        }
+    }
+
+    private void TestInput()
+    {
+        int num = (MyPlayer.name == "Player1") ? 1 : 2;
+        if (Input.GetKeyDown("joystick 1 button 0"))
+        {
+            Debug.Log("JoyStick0");
+        }
+        if (Input.GetKeyDown("joystick " + num.ToString() + " button 1"))
+        {
+            Debug.Log("JoyStick1");
+        }
+        if (Input.GetKeyDown("joystick " + num.ToString() + " button 2"))
+        {
+            Debug.Log("JoyStick2");
+        }
+        if (Input.GetKeyDown("joystick " + num.ToString() + " button 3"))
+        {
+            Debug.Log("JoyStick3");
         }
     }
 
