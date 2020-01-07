@@ -618,7 +618,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1aafdc5fd0a841c4292967551d7a6a34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97bbec7ac66dd6f428df3f650af8bf99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1419,7 +1419,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 6da6e76a00b27dd45a88b564ec8ba302, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a8f702571e477f4983be34e4d980589, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2806,7 +2806,7 @@ MonoBehaviour:
   HWarpPoint:
   - {x: 0, y: 3}
   - {x: 6, y: 3}
-  isWarpHorizontal: 0
+  isWarpHorizontal: 1
 --- !u!1001 &585139973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2879,6 +2879,11 @@ PrefabInstance:
       propertyPath: myForm
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 33320817, guid: e1efd36314ef5134383538c31b808899, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2ecfe482235dd6c44a449e8ab4df29d7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1efd36314ef5134383538c31b808899, type: 3}
 --- !u!4 &585139974 stripped
@@ -4604,7 +4609,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 19a7e5bd7acac3e4cb291f165444db06, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02ae890123fb17a499385c91293533a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

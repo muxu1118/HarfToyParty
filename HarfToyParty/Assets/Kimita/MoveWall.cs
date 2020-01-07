@@ -131,7 +131,7 @@ public class MoveWall :MonoBehaviour
                 case 0:
                     for (int i = 0; i < 2; i++)
                     {
-                        if (warpy[i] == (int)XY.y && warpx[i] == (int)XY.x)
+                        if (Hwarpy[i] == (int)XY.y && Hwarpx[i] == (int)XY.x)
                         {
                             Debug.Log("ワープ発見");
                             WarpObject.SetActive(true);
@@ -148,9 +148,9 @@ public class MoveWall :MonoBehaviour
                 default:
                     for (int i = 0; i < 2; i++)
                     {
-                        Debug.Log("ワープY:" + warpy[i] + "ブロックY" + XY.y);
-                        Debug.Log("ワープX:" + warpx[i] + "ブロックX" + XY.x);
-                        if ((warpy[i] == (int)XY.y && warpx[i] == (int)XY.x) || (warpy[i] == (int)XY.y + 1 && warpx[i] == (int)XY.x))
+                        Debug.Log("ワープY:" + Hwarpy[i] + "ブロックY" + XY.y);
+                        Debug.Log("ワープX:" + Hwarpx[i] + "ブロックX" + XY.x);
+                        if ((Hwarpy[i] == (int)XY.y && Hwarpx[i] == (int)XY.x) || (Hwarpy[i] == (int)XY.y + 1 && Hwarpx[i] == (int)XY.x))
                         {
                             Debug.Log("ワープ発見");
                             WarpObject.SetActive(true);
