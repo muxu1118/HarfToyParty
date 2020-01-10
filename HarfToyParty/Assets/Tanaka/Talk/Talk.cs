@@ -7,18 +7,20 @@ using UnityEngine.UI;
 public class Talk : MonoBehaviour
 {
     private Text text;
-    // 文章の数の宣言
-    private string[] sentence = new string[5];
+    
+    // 文章の数の宣言 二次元配列[]↓[]→
+    private string[][] sentence = new string[2][3];
+    
     // 文章の番号
     public int sentenceNum = 0;
     // 今出力されている文字数
     private int textNum;
+
     // 0.1秒ごとに文字が出力される
     private float textSpeed = 0.1f;
     private float maxTextSpeed;
 
     private bool textFlag = false;
-
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class Talk : MonoBehaviour
     private void Update()
     {
         if (sentenceNum >= 5) { return; }
+
         if (Time.timeScale == 0) { return; }
 
         if (Input.GetKeyDown("joystick button 2"))
@@ -40,6 +43,7 @@ public class Talk : MonoBehaviour
         }
         // 0.1秒ずつ減っていって0を下回った時
         textSpeed -= Time.deltaTime;
+
         if (textSpeed <= 0 && textFlag)
         {
             // 文字を出力する
@@ -58,11 +62,16 @@ public class Talk : MonoBehaviour
 
     public void Sentence()
     {
-        sentence[0] = "こんにちは";
-        sentence[1] = "はじめまして";
-        sentence[2] = "Half Toy Partyへようこそ";
-        sentence[3] = "僕たちの体のパーツを\n探してきて";
-        sentence[4] = "行ってらっしゃい";
+        sentence[0][] = "こんにちは";
+        sentence[1][] = "はじめまして";
+        sentence[2][] = "Half Toy Partyへようこそ";
+        sentence[3][] = "僕たちの体のパーツを\n探してきて";
+        sentence[4][] = "行ってらっしゃい";
+        sentence[5][] = "行ってらっしゃい";
+        sentence[6][] = "行ってらっしゃい";
+        sentence[7][] = "行ってらっしゃい";
+        sentence[8][] = "行ってらっしゃい";
+        sentence[9][] = "行ってらっしゃい";
     }
 
     public void DisplaySentence()

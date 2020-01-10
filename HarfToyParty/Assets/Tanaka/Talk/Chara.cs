@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class Chara : MonoBehaviour
 {
-    [SerializeField]
-    SpriteRenderer a;
-    [SerializeField]
-    SpriteRenderer b;
+    [SerializeField] SpriteRenderer a;
+    [SerializeField] SpriteRenderer b;
 
-
+    [SerializeField]
+    GameObject ai;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,17 +20,18 @@ public class Chara : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
-            a.color = new Color(1, 1, 1, 0.6f);
+            ai.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
+            //a.color = new Color(1, 1, 1, 0.6f);
         }
         if (Input.GetMouseButtonDown(1))
         {
-            a.color = new Color(1, 1, 1, 1);
+            ai.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            //a.color = new Color(1, 1, 1, 1);
         }
-
     }
+
     public void P(string player)
     {
         string playerNum = player;
