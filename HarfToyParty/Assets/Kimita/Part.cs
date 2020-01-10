@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
-public class Part : NetworkBehaviour
+public class Part : MonoBehaviour
 {
     public enum PartKind
     {
@@ -19,7 +19,7 @@ public class Part : NetworkBehaviour
 
     public PartKind kind;
     private int MyPartNum;
-    private bool server;
+    //private bool server;
     private GameObject player;
     [SerializeField]
     private Vector2 XY;
@@ -28,7 +28,7 @@ public class Part : NetworkBehaviour
     private void Start()
     {
         spriteR = gameObject.GetComponent<SpriteRenderer>();
-        player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; ;
+        //player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; 
         switch (kind)
         {
             case PartKind.R_Leg:
@@ -58,7 +58,7 @@ public class Part : NetworkBehaviour
             default:
                 break;
         }
-        server = isServer;
+        //server = isServer;
 
     }
     private void Update()
@@ -74,16 +74,16 @@ public class Part : NetworkBehaviour
     {
         if (Map.instance.mapInt[(int)XY.y, (int)XY.x] != MyPartNum && (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 || Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2))
         {
-            if(Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && server)
+            if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && ((int)kind >= 0 && (int)kind <= 2)/*&& server*/)
             {
-                player.GetComponent<SyvnPos>().CheckWinLose(1);
+                //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
                 /* GameManager.instance.RedPartGet++;
                 */
             }
-            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && !server)
+            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && ((int)kind >= 3 && (int)kind <= 5)/* && !server*/) 
             {
-                player.GetComponent<SyvnPos>().CheckWinLose(2);
+               // player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
                 /*GameManager.instance.BluePartGet++;
                 */

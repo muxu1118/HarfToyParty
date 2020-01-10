@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 /**
  * タップを検知する
  */
-public class Tap : NetworkBehaviour
+public class Tap : MonoBehaviour
 {
     
     protected Vector2 TouchPosition = Vector2.zero;
@@ -27,11 +27,11 @@ public class Tap : NetworkBehaviour
 
     public static bool IsBomb { get => isBomb; set => isBomb = value; }
     public static bool IsBomb2 { get => isBomb2; set => isBomb2 = value; }
-    public static bool IsSerVer { get; set; }
+    //public static bool IsSerVer { get; set; }
 
     private void Awake()
     {
-        IsSerVer = isServer;
+        //IsSerVer = isServer;
     }
 
     private void Start()

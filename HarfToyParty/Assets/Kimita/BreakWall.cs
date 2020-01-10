@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
-public class BreakWall : NetworkBehaviour
+public class BreakWall : MonoBehaviour
 {
-
-    [SyncVar]
-    private Vector3 syncWallPos;
 
     [SerializeField]
     float lerpRate = 15;
@@ -55,13 +52,12 @@ public class BreakWall : NetworkBehaviour
                 break;
 
         }
-        syncWallPos = transform.position;
     }
 
     private void Update()
     {
-        TransmitWallPosition();
-        LerpWallPos();
+        //TransmitWallPosition();
+        //LerpWallPos();
     }
     ///// <summary>
     ///// 移動できるか
@@ -175,28 +171,5 @@ public class BreakWall : NetworkBehaviour
     //    Debug.Log("X:" + XY.x + "Y:" + XY.y);
     //    gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
     //}
-    void LerpWallPos()
-    {
-        if (!isLocalPlayer)
-        {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, syncWallPos, Time.deltaTime * lerpRate);
-
-        }
-    }
-
-    [Command]
-    void CmdIpdateWallPosition(Vector3 wallpos)
-    {
-        syncWallPos = wallpos;
-    }
-
-    [ClientCallback]
-    void TransmitWallPosition()
-    {
-        if (isLocalPlayer)
-        {
-            CmdIpdateWallPosition(gameObject.transform.position);
-        }
-    }
-
+   
 }

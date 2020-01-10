@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
-public class DebugMove : NetworkBehaviour
+public class DebugMove :MonoBehaviour
 {
     [SerializeField]
     private float touchRangeX;
@@ -51,24 +51,25 @@ public class DebugMove : NetworkBehaviour
     // Swipe 
     private void GetClick()
     {
-        if (isLocalPlayer) {
-            if (Input.GetMouseButtonDown(0))
-            {
-                TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                StartPosition = TouchPosition;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                StartPosition = Vector2.zero;
-                swiChe = false;
-            }
-            else if (Input.GetMouseButton(0)) {
-                TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if (StartPosition.x <= ButtonPos.x + touchRangeX && StartPosition.x >= ButtonPos.x - touchRangeX && StartPosition.y <= ButtonPos.y + touchRangeY && StartPosition.y >= ButtonPos.y - touchRangeY) {
-                    swiChe = true;
-                }
-            }
 
+        ///プレイヤー移動関係
+        if (Input.GetMouseButtonDown(0))
+        {
+            TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            StartPosition = TouchPosition;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            StartPosition = Vector2.zero;
+            swiChe = false;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            TouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (StartPosition.x <= ButtonPos.x + touchRangeX && StartPosition.x >= ButtonPos.x - touchRangeX && StartPosition.y <= ButtonPos.y + touchRangeY && StartPosition.y >= ButtonPos.y - touchRangeY)
+            {
+                swiChe = true;
+            }
         }
     }
 
