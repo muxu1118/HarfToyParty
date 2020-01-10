@@ -2,65 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 
-public class WinLoss : NetworkBehaviour
-{    
-    private int winnerDesplay;
-    [SerializeField]
-    private Text winnerText;
+public class WinLoss : MonoBehaviour
+{         
     [SerializeField]
     GameObject panel;
+    [SerializeField]
+    Image image;
 
-    Text Server;
-    Text Client;
+    GameManager manager;
 
-    string ServerText = "Lose";
-    string ClientText = "Lose";
+    Sprite[] sprites;
+    Sprite redWin;
+    Sprite blueWin;
 
     void Start()
-    {        
-        // これがホストだったら
-        if (isServer)
-        {
-            // 1P側の変更
-            Server = winnerText;
-            Server.text = ServerText;            
-        }
-        // これがクライアントだったら
-        if (isClient)
-        {
-            // 2P側の変更
-            Client = winnerText;
-            Client.text = ClientText;
-        }
-    }
-
-    private void Update()
     {
-        if(isServer && winnerDesplay == 1)
-        {
-            Server.text = ServerText;
-        }
-        if(isClient && winnerDesplay == 2)
-        {
-            Client.text = ClientText;
-        }
+        //画像の取得
+        sprites = Resources.LoadAll<Sprite>("Sprites/");                                
     }
 
     public void WinOrLoss(int winner)
     {
-        winnerDesplay = winner;
+        int winnerDesplay = winner;
         switch (winnerDesplay)
         {
             case 1:
-                panel.SetActive(true);
-                ServerText = "Win";                
+                //赤の勝利
+                image.sprite = redWin;
+                redWin = sprites[1];
                 break;
             case 2:
-                panel.SetActive(true);
-                ClientText = "Win";
+                //青の勝利
+                image.sprite = blueWin;
+                blueWin = sprites[2];
                 break;
         }        
+    }
+
+    private void title()
+    {
+        Resources.Load("Title");
+        
     }
 }
