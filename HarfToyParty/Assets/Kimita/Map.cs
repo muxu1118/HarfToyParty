@@ -80,6 +80,8 @@ public class Map : MonoBehaviour
 
     public Vector2[] HWarpPoint = new Vector2[2];
     public bool isWarpHorizontal;
+    
+    public Vector3[,] warpPos = new Vector3[4, 2];
 
     private void OnEnable()
     {
@@ -109,7 +111,11 @@ public class Map : MonoBehaviour
         {
             maps.Add((MapKind)i);
         }
-
+        warpPos[0, 0] = new Vector3(0,18.31f,0);
+        warpPos[0, 1] = new Vector3(18.4f, 0, 0);
+        warpPos[1, 0] = new Vector3(-16.93f, 0, 0);
+        warpPos[1, 1] = new Vector3(19.53f, 0, 0);
+        warpPos[3, 0] = new Vector3(0, 8.39f, 0);
     }
     IEnumerator moveWallAdd()
     {
