@@ -10,7 +10,7 @@ public class Talk : MonoBehaviour
     // 文章の数の宣言
     private string[] sentence = new string[5];
     // 文章の番号
-    private int sentenceNum = 0;
+    public int sentenceNum = 0;
     // 今出力されている文字数
     private int textNum;
     // 0.1秒ごとに文字が出力される
@@ -18,6 +18,7 @@ public class Talk : MonoBehaviour
     private float maxTextSpeed;
 
     private bool textFlag = false;
+
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class Talk : MonoBehaviour
         if (sentenceNum >= 5) { return; }
         if (Time.timeScale == 0) { return; }
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("joystick button 2"))
         {
             textNum = 0;
             sentenceNum++;
@@ -71,7 +72,7 @@ public class Talk : MonoBehaviour
 
     private void Scene()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("joystick 1 button 2"))
         {
             SceneManager.LoadScene("Title");
         }
