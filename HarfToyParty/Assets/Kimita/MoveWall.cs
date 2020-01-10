@@ -67,6 +67,7 @@ public class MoveWall :MonoBehaviour
             Hwarpx[i] = (int)Map.instance.HWarpPoint[i].x;
             Hwarpy[i] = (int)Map.instance.HWarpPoint[i].y;
         }
+        HWarpCheck();
         WarpCheck();
     }
 
@@ -97,7 +98,7 @@ public class MoveWall :MonoBehaviour
                         {
                             Debug.Log("ワープ発見");
                             WarpObject.SetActive(true);
-                            WarpObject.transform.localPosition = Map.instance.warpPos[0, 0];
+                            WarpObject.transform.localPosition = Map.instance.warpPos[0, (i == 0) ? 1 : 0];
                             return true;
                         }
                         else
@@ -117,7 +118,7 @@ public class MoveWall :MonoBehaviour
                         {
                             Debug.Log("ワープ発見");
                             WarpObject.SetActive(true);
-                            WarpObject.transform.localPosition = Map.instance.warpPos[3, 0];
+                            //WarpObject.transform.localPosition = Map.instance.warpPos[3, (i == 0) ? 1 : 0];
                             return true;
                         }
                         else
@@ -144,7 +145,7 @@ public class MoveWall :MonoBehaviour
                         {
                             Debug.Log("ワープ発見");
                             WarpObject.SetActive(true);
-                            WarpObject.transform.localPosition = Map.instance.warpPos[0, 1];
+                            WarpObject.transform.localPosition = Map.instance.warpPos[0, (i == 0) ? 1 : 0];
                             return true;
                         }
                         else
@@ -222,7 +223,6 @@ public class MoveWall :MonoBehaviour
                         {
                             if (Map.instance.mapInt[warpy[1], warpx[1]] != (int)MapKind.YUKA &&
                                 Map.instance.mapInt[warpy[1], warpx[1]] != (int)MyWall) return false;
-                            Debug.Log("YOYO" + (j - (int)mov2.y));
                             if (XY.y - (int)mov2.y < 0)
                             {
                                 Vector3 temp = Vector3.zero;
@@ -276,7 +276,6 @@ public class MoveWall :MonoBehaviour
             {
                 if (Map.instance.mapInt[j, i] == (int)MyWall)
                 {
-
                     if ((i + (int)mov2.x > 6 || i + (int)mov2.x < 0))
                     {
                         // 右の時
@@ -288,10 +287,10 @@ public class MoveWall :MonoBehaviour
                             {
                                 Vector3 temp = Vector3.zero;
                                 temp = SPRObject.transform.position;
-                                transform.position = new Vector3(Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0]].x - (Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0] + 1].x - Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0]].x), Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0]].y, 0);
+                                transform.position = new Vector3(Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0]].x + (Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0]].x - Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0] + 1].x) , Map.instance.SpritePos[Hwarpy[0]][Hwarpx[0]].y, 0);
                                 WarpObject.transform.position = temp;
                                 Debug.Log("Change");
-                                Up = false;
+                                Up = true;
                                 isChange = true;
                             }
                         }
@@ -299,15 +298,15 @@ public class MoveWall :MonoBehaviour
                         {
                             if (Map.instance.mapInt[Hwarpy[1], Hwarpx[1]] != (int)MapKind.YUKA &&
                                 Map.instance.mapInt[Hwarpy[1], Hwarpx[1]] != (int)MyWall) return false;
-                            Debug.Log("YOYO" + (i - (int)mov2.x));
+                            Debug.Log("YOYO" + (i + (int)mov2.x));
                             if (XY.x + (int)mov2.x < 0)
                             {
                                 Vector3 temp = Vector3.zero;
                                 temp = SPRObject.transform.position;
-                                transform.position = new Vector3(Map.instance.SpritePos[Hwarpy[1]][Hwarpx[1]].x, Map.instance.SpritePos[Hwarpy[1]][Hwarpx[1]].y + (Map.instance.SpritePos[1][0].y - Map.instance.SpritePos[0][0].y), 0);
+                                transform.position = new Vector3(Map.instance.SpritePos[Hwarpy[1]][Hwarpx[1]].x - (Map.instance.SpritePos[0][0].x - Map.instance.SpritePos[0][1].x), Map.instance.SpritePos[Hwarpy[1]][Hwarpx[1]].y , 0);
                                 WarpObject.transform.position = temp;
                                 Debug.Log("Change");
-                                Up = true;
+                                Up = false;
                                 isChange = true;
                             }
                         }
@@ -334,21 +333,20 @@ public class MoveWall :MonoBehaviour
         switch (form)
         {
             case 0:
-                // 横移動だったら返す
-                if (mov2.x != 0) return;
-
-                if (mov2.y > 0)
-                {
-                    Debug.Log("WarpCheck↑");
-                    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
-                    return;
-                }
-                else
-                {
-                    Debug.Log("WarpCheck↓");
-                    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
-                    return;
-                }
+                StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                return;
+                //if (mov2.y > 0)
+                //{
+                //    Debug.Log("WarpCheck↑");
+                //    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                //    return;
+                //}
+                //else
+                //{
+                //    Debug.Log("WarpCheck↓");
+                //    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                //    return;
+                //}
             case 1:
                 if (mov2.y != 0) return;
 
@@ -364,7 +362,6 @@ public class MoveWall :MonoBehaviour
                     StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
-                break;
             case 2:
                 break;
             case 3:
@@ -422,9 +419,11 @@ public class MoveWall :MonoBehaviour
                 for (int i = 0; i < my.Count; i++)
                 {
                     Debug.Log("Count" + my.Count);
-                    if (mx[i] + (int)vec2.x == 7) { Debug.Log("ワープの場所X" + Hwarpx[0] + "Y" + Hwarpy[0]); my[i] = Hwarpy[0]; mx[i] = Hwarpx[0]+1; }
-                    else if (mx[i] + (int)vec2.x == -1) { my[i] = Hwarpy[1] ; mx[i] = warpx[1] - 1; }
-                    Map.instance.mapInt[my[i] - (int)vec2.y, mx[i]] = (int)MyWall;
+                    if (mx[i] + (int)vec2.x == 7) { Debug.Log("ワープの場所X" + Hwarpx[0] + "Y" + Hwarpy[0]); my[i] = Hwarpy[0]; mx[i] = Hwarpx[0]-1; }
+                    else if (mx[i] + (int)vec2.x == -1) { my[i] = Hwarpy[1] ; mx[i] = Hwarpx[1]+1; }
+
+                    Debug.Log("my[" + i + "] = " + my[i] + "mx[" + i + "] = " + mx[i]);
+                    Map.instance.mapInt[my[i], mx[i] + (int)vec2.x] = (int)MyWall;
                 }
                 break;
             case 2:
@@ -456,9 +455,9 @@ public class MoveWall :MonoBehaviour
                 WarpCheck();
                 for (int i = 0; i < my.Count; i++)
                 {
-                    Debug.Log("Count"+my.Count);
                     if (my[i] - (int)vec2.y == 7) { Debug.Log("ワープの場所X" + warpx[0]+ "Y" + warpy[0]); my[i] = warpy[0]-1; mx[i] = warpx[0]; }
                     else if (my[i] - (int)vec2.y == -1) { my[i] = warpy[1]+1; mx[i] = warpx[1]; }
+
                     Map.instance.mapInt[my[i] - (int)vec2.y, mx[i]] = (int)MyWall;
                 }
                 break;
@@ -473,6 +472,7 @@ public class MoveWall :MonoBehaviour
         }
         
         WarpCheck();
+        HWarpCheck();
         gameObject.transform.position = new Vector3(vec3[y][x].x, vec3[y][x].y);
         //PosUpdateRequest = true;
         //yield return new WaitForSeconds(0.1f);
