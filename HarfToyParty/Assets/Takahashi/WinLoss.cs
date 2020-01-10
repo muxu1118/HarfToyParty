@@ -12,15 +12,12 @@ public class WinLoss : MonoBehaviour
 
     GameManager manager;
 
-    Sprite[] sprites;
-    Sprite redWin;
-    Sprite blueWin;
-
+    Sprite sprites;
+    
     void Start()
     {
         //画像の取得
-        sprites = Resources.LoadAll<Sprite>("Sprites/");                                
-    }
+            }
 
     public void WinOrLoss(int winner)
     {
@@ -29,13 +26,15 @@ public class WinLoss : MonoBehaviour
         {
             case 1:
                 //赤の勝利
-                image.sprite = redWin;
-                redWin = sprites[1];
+                panel.SetActive(true);
+                sprites = Resources.Load<Sprite>("Sprites/");
+                image.sprite = sprites;
                 break;
             case 2:
                 //青の勝利
-                image.sprite = blueWin;
-                blueWin = sprites[2];
+                panel.SetActive(true);
+                sprites = Resources.Load<Sprite>("Sprites/");
+                image.sprite = sprites;
                 break;
         }        
     }
