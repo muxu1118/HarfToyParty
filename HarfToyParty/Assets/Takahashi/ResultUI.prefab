@@ -423,8 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aba65f2b4194141b2c644204534c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winnerText: {fileID: 7140153089866968956}
   panel: {fileID: 7140153089866968957}
+  image: {fileID: 0}
 --- !u!114 &7140153089866968952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2550281356987353978
 Transform:
   m_ObjectHideFlags: 0
