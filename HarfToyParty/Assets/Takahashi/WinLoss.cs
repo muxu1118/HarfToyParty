@@ -6,42 +6,44 @@ using UnityEngine.UI;
 public class WinLoss : MonoBehaviour
 {         
     [SerializeField]
-    GameObject panel;
+    GameObject panel; 
     [SerializeField]
-    Image image;
+    Image red;
+    [SerializeField]
+    Image blue;
 
-    GameManager manager;
+    Sprite Win;
+    Sprite Lose;
 
-    Sprite sprites;
-    
     void Start()
     {
-        //画像の取得
-            }
+        //1P勝利の画像を取得
+        Win = Resources.Load<Sprite>("Sprites/w");
+        //2P勝利の画像を取得
+        Lose = Resources.Load<Sprite>("Sprites/l");
+    }
 
+    /// <summary>
+    /// 試合が終了したときにどちらが勝ったかを表示させる
+    /// </summary>
+    /// <param name="winner">勝ったプレイヤー</param>
     public void WinOrLoss(int winner)
     {
+        //リザルトUIを表示
+        panel.SetActive(true);
         int winnerDesplay = winner;
         switch (winnerDesplay)
         {
             case 1:
-                //赤の勝利
-                panel.SetActive(true);
-                sprites = Resources.Load<Sprite>("Sprites/");
-                image.sprite = sprites;
+                //赤の勝利                
+                red.sprite = Win;
+                blue.sprite = Lose;
                 break;
             case 2:
-                //青の勝利
-                panel.SetActive(true);
-                sprites = Resources.Load<Sprite>("Sprites/");
-                image.sprite = sprites;
+                //青の勝利                
+                red.sprite = Lose;
+                blue.sprite = Win;
                 break;
         }        
-    }
-
-    private void title()
-    {
-        Resources.Load("Title");
-        
     }
 }

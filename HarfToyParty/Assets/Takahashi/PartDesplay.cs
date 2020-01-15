@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class PartDesplay : MonoBehaviour
 {
-    [SerializeField]
-    Sprite[] choicePart;
+    //[SerializeField]
+    //Sprite[] choicePart;
     string getPart;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    [NamedArrayAttribute(new string[] {"R_Leg", "R_Face", "R_Hand", "B_Leg", "B_Face", "B_Hand" })]
+    [SerializeField]
+    Sprite[] choicePart;
 
     /// <summary>
     /// パーツを取得したときに呼び出される
