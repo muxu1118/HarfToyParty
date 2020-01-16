@@ -15,12 +15,15 @@ public class WinLoss : MonoBehaviour
     Sprite Win;
     Sprite Lose;
 
+    [SerializeField]
+    GameObject[] crownTear;
+
     void Start()
     {
         //1P勝利の画像を取得
-        Win = Resources.Load<Sprite>("Sprites/w");
+        Win = Resources.Load<Sprite>("Sprites/WinLose/w");
         //2P勝利の画像を取得
-        Lose = Resources.Load<Sprite>("Sprites/l");
+        Lose = Resources.Load<Sprite>("Sprites/WinLose/l");
     }
 
     /// <summary>
@@ -38,11 +41,15 @@ public class WinLoss : MonoBehaviour
                 //赤の勝利                
                 red.sprite = Win;
                 blue.sprite = Lose;
+                crownTear[0].SetActive(true);
+                crownTear[1].SetActive(false);
                 break;
             case 2:
                 //青の勝利                
                 red.sprite = Lose;
                 blue.sprite = Win;
+                crownTear[0].SetActive(false);
+                crownTear[1].SetActive(true);
                 break;
         }        
     }
