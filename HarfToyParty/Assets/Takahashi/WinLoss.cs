@@ -29,8 +29,7 @@ public class WinLoss : MonoBehaviour
     GameObject[] Blue_resultUI;
 
     void Start()
-    {        
-        
+    {                
         //1P勝利の画像を取得
         Win = Resources.Load<Sprite>("Sprites/WinLose/w");
         //2P勝利の画像を取得
