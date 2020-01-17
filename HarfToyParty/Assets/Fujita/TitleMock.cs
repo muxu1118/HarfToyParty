@@ -66,9 +66,9 @@ public class TitleMock : MonoBehaviour
     #endregion
     private void SceneLoad()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("joystick 1 button 2"))
         {
-            SceneManager.LoadScene("Choice");
+            SceneManager.LoadScene("MainGame");
             Debug.Log("ChoiceSceneを呼んでるよ");
         }
     }
