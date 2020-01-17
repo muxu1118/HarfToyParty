@@ -8,7 +8,7 @@ public class PartDesplay : MonoBehaviour
     //Sprite[] choicePart;
     string getPart;
 
-    [NamedArrayAttribute(new string[] {"R_Leg", "R_Face", "R_Hand", "B_Leg", "B_Face", "B_Hand" })]
+    //[NamedArrayAttribute(new string[] {"R_Leg", "R_Face", "R_Hand", "B_Leg", "B_Face", "B_Hand" })]
     [SerializeField]
     Sprite[] choicePart;
 
