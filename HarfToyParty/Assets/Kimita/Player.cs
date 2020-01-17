@@ -21,22 +21,20 @@ public class Player : MonoBehaviour
         }
     }
     System.Action _callback = null;
-
-
+    
+    public int[] SpawnXY = new int[2];
 
     private void Start()
     {
 
         map = Map.instance;
         myNumber = (gameObject.name == "Player1") ? (int)MapKind.Player1: (int)MapKind.Player2;
-        int x, y;
-        x = (gameObject.name == "Player1") ? 0 : 6;
-        y = (gameObject.name == "Player1") ? 6 : 0;
-        map.mapInt[y, x] = myNumber;
-        transform.position = Map.instance.SpritePos[y][x];
+        
+        map.mapInt[SpawnXY[0], SpawnXY[1]] = myNumber;
+        transform.position = Map.instance.SpritePos[SpawnXY[0]][SpawnXY[1]];
         
 
-        StartCoroutine(SetMoveButton());
+        //StartCoroutine(SetMoveButton());
     }
     IEnumerator SetMoveButton()
     {
@@ -150,7 +148,7 @@ public class Player : MonoBehaviour
                         speed = 1f;
 
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall||(map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.BreakWall1&& map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.BreakWall6))
                     {
                         Debug.Log("壁があるよ");
                         isMove = false;

@@ -8,6 +8,9 @@ public class PlayerInput : MonoBehaviour
     private Player MyPlayer;
     private bool isbomb;
 
+    float Recast = 7;
+    [SerializeField]
+    float Recastlimit = 7;
     public bool Isbomb { get => isbomb;}
 
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class PlayerInput : MonoBehaviour
         InputMove();
         ActionInput();
         TestInput();
+        Recast += Time.deltaTime;
     }
 
 
@@ -71,14 +75,18 @@ public class PlayerInput : MonoBehaviour
     private void ActionInput()
     {
 
+        if (Recastlimit >= Recast) return;
         int num = (MyPlayer.name == "Player1") ? 1 : 2;
-        if (Input.GetKeyDown("joystick " + num.ToString() + " button 0"))
+
+        if (Input.GetKeyDown("joystick " + num.ToString() + " button 2"))
         {
             MapKind P = (MyPlayer.name == "Player1") ? MapKind.Player1 : MapKind.Player2;
             MapKind A = (P == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
 
+            
             if (Isbomb)
             {
+                Recast = 0;
                 isbomb = false;
                 // 爆弾を置く
                 Map.instance.BombAria(MyPlayer.rot, P);

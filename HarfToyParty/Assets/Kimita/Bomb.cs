@@ -9,6 +9,9 @@ public class Bomb : Tap
     private Vector3 v3 = new Vector3();
     private PlayerInput PI;
 
+    
+    
+
     private void Start()
     {
         v3 = transform.position;
@@ -45,6 +48,7 @@ public class Bomb : Tap
 
     public IEnumerator AriaSet(MapKind player, MapKind Aria,Vector2 BombPos)
     {
+        
         while (gameObject.activeSelf&&PI.Isbomb)
         {
             int x = 0, y = 0;

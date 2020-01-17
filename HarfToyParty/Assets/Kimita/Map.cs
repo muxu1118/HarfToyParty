@@ -16,6 +16,7 @@ public enum MapKind
     BreakWall3,
     BreakWall4,
     BreakWall5,
+    BreakWall6,
     PartRHand,
     PartRLeg,
     PartRFace,
