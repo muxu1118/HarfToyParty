@@ -21,10 +21,10 @@ public class WinLoss : MonoBehaviour
     //[SerializeField]
     //GameObject[] crownTear;
 
-    [NamedArrayAttribute(new string[] {"RedPlayer","RedCrown","RedTear"})]
+    //[NamedArrayAttribute(new string[] {"RedPlayer","RedCrown","RedTear"})]
     [SerializeField]
     GameObject[] Red_resultUI;
-    [NamedArrayAttribute(new string[] {"BluePlayer","BlueCrown","BlueTear" })]
+    //[NamedArrayAttribute(new string[] {"BluePlayer","BlueCrown","BlueTear" })]
     [SerializeField]
     GameObject[] Blue_resultUI;
 
