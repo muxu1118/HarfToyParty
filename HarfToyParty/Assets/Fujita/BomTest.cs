@@ -61,7 +61,7 @@ public class BomTest : MonoBehaviour
                     Debug.Log("プレイヤーの位置X:" + (x + i) + "Y:" + (y - j));
                     Debug.Log((MapKind)Map.instance.mapInt[y - j, x + i] + "にダメージ");
                 }
-                if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.Movewall10 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.Movewall10)
+                if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.BreakWall1 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.BreakWall6)
                 {
                     BreakWall[] breakObjects = FindObjectsOfType<BreakWall>();
                     foreach (BreakWall BW in breakObjects)
@@ -70,6 +70,7 @@ public class BomTest : MonoBehaviour
                         {
                             Debug.Log(BW+"を破壊");
                             Destroy(BW.transform.gameObject);
+                            Map.instance.mapInt[y - j, x + i] = (int)MapKind.YUKA;
                         }
                     }
                 }

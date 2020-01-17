@@ -64,10 +64,7 @@ public class Part : MonoBehaviour
     private void Update()
     {
         GetPart();
-        //if (Map.instance.mapInt[(int)XY.y, (int)XY.x] != (int)MapKind.YUKA)
-        //{
-        //    Map.instance.mapInt[(int)XY.y, (int)XY.x] = (int)MapKind.RedPart;
-        //}
+        
     }
 
     public void GetPart()
@@ -78,15 +75,14 @@ public class Part : MonoBehaviour
             {
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
-                /* GameManager.instance.RedPartGet++;
-                */
+                GameManager.instance.RedPartGet++;
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && ((int)kind >= 3 && (int)kind <= 5)/* && !server*/) 
             {
-               // player.GetComponent<SyvnPos>().CheckWinLose(2);
+                //player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
-                /*GameManager.instance.BluePartGet++;
-                */
+                GameManager.instance.BluePartGet++;
+
             }
 
 
