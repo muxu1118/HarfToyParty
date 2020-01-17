@@ -57,7 +57,7 @@ public class WinLoss : MonoBehaviour
                 Blue_resultUI[1].SetActive(false);
 
                 //player[1].SetActive(false);
-                Blue_resultUI[2].SetActive(false);
+                Red_resultUI[2].SetActive(false);
                 break;
             case 2:
                 //青の勝利                
@@ -69,7 +69,7 @@ public class WinLoss : MonoBehaviour
                 Red_resultUI[1].SetActive(false);
 
                 //player[0].SetActive(false);
-                Red_resultUI[2].SetActive(false);
+                Blue_resultUI[2].SetActive(false);
                 break;
         }        
     }
