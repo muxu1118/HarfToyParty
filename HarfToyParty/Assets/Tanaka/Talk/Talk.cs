@@ -9,7 +9,7 @@ public class Talk : MonoBehaviour
     private Text text;
     
     // 文章の数の宣言 二次元配列[]↓[]→
-    private string[][] sentence = new string[2][3];
+    private string[] sentence = new string[10];
     
     // 文章の番号
     public int sentenceNum = 0;
@@ -35,12 +35,12 @@ public class Talk : MonoBehaviour
 
         if (Time.timeScale == 0) { return; }
 
-        if (Input.GetKeyDown("joystick button 2"))
-        {
+        //if (Input.GetKeyDown("joystick button 2"))
+        //{
             textNum = 0;
             sentenceNum++;
             textFlag = true;
-        }
+        //}
         // 0.1秒ずつ減っていって0を下回った時
         textSpeed -= Time.deltaTime;
 
@@ -62,21 +62,29 @@ public class Talk : MonoBehaviour
 
     public void Sentence()
     {
-        sentence[0][] = "こんにちは";
-        sentence[1][] = "はじめまして";
-        sentence[2][] = "Half Toy Partyへようこそ";
-        sentence[3][] = "僕たちの体のパーツを\n探してきて";
-        sentence[4][] = "行ってらっしゃい";
-        sentence[5][] = "行ってらっしゃい";
-        sentence[6][] = "行ってらっしゃい";
-        sentence[7][] = "行ってらっしゃい";
-        sentence[8][] = "行ってらっしゃい";
-        sentence[9][] = "行ってらっしゃい";
+        sentence[0] = "1";
+        sentence[1] = "2";
+        sentence[2] = "3";
+        sentence[3] = "4";
+        sentence[4] = "5";
+        sentence[5] = "6";
+        sentence[6] = "7";
+        sentence[7] = "8";
+        sentence[8] = "9";
+        sentence[9] = "10";
     }
 
     public void DisplaySentence()
     {
         text.text = sentence[sentenceNum].Substring(0, textNum);
+    }
+
+    private void Select()
+    {
+        if (Input.GetKeyDown("joystick 1 button 2"))
+        {
+            SceneManager.LoadScene("MainGame");
+        }
     }
 
     private void Scene()
