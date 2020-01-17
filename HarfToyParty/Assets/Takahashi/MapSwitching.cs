@@ -11,14 +11,15 @@ public class MapSwitching : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {        
         for(int i = 0; i < gameMap.Length; i++)
         {
             int RandomMap = map[i];
             int random = Random.Range(i, gameMap.Length);
-            //map[i] = 
+            map[i] = map[random];
+            map[random] = RandomMap;
         }
+        Debug.Log(map);
     }
 
     // Update is called once per frame
