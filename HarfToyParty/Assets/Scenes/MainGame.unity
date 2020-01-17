@@ -3876,8 +3876,8 @@ MonoBehaviour:
   MapObject:
   - {fileID: 0}
   - {fileID: 6607480767209317280, guid: a2a40585f710d7d4fb617f8cf5b1280f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1432927846}
+  - {fileID: 216187738}
   - {fileID: 829303865}
   - {fileID: 848358494}
   - {fileID: 768203213}
@@ -12275,6 +12275,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158801893378652993, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e012c1a6e910baa4590698c333f98bb5,
+        type: 3}
+    - target: {fileID: 6158801893378652993, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158801893378652993, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158801893378652993, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.56
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2649213060441875210, guid: 4f2bd3e25d099794f9e3df05e954f4ee, type: 3}

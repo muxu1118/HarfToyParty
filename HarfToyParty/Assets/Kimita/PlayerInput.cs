@@ -12,12 +12,17 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     float Recastlimit = 7;
     public bool Isbomb { get => isbomb;}
+    float crash;
+    float crashLimit = 1;
+    Sprite psp;//PlayerのSprite
 
     // Start is called before the first frame update
     void Start()
     {
         float x = Input.GetAxisRaw("Horizontal");
         isbomb = false;
+        crash = 0.9f;
+        psp = GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
@@ -27,11 +32,30 @@ public class PlayerInput : MonoBehaviour
         ActionInput();
         TestInput();
         Recast += Time.deltaTime;
+        crash += Time.deltaTime;
+
     }
 
 
     private void InputMove()
     {
+        if (crash < crashLimit)
+        {
+            if(crash <= 0.05f)
+            {
+                GetComponent<SpriteRenderer>().sprite = psp;
+            }
+            else if ((int)(crash * 10) % 2 == 0)
+            {
+                GetComponent<SpriteRenderer>().sprite = null;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = psp;
+            }
+            return;
+        }
+
         if (MyPlayer.name == "Player1")
         {
             if (Input.GetAxisRaw("Joystick 1 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
@@ -119,6 +143,11 @@ public class PlayerInput : MonoBehaviour
         {
             Debug.Log("JoyStick3");
         }
+    }
+
+    public void BombCrash()
+    {
+        crash = 0;
     }
 
     private void BombInput()
