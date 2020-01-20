@@ -31,6 +31,7 @@ public class PlayerInput : MonoBehaviour
         InputMove();
         ActionInput();
         TestInput();
+        WallGrab();
         Recast += Time.deltaTime;
         crash += Time.deltaTime;
 
@@ -180,6 +181,21 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown("joystick " + num.ToString() + " button 3"))
         {
             Debug.Log("JoyStick3");
+        }
+    }
+
+    private void WallGrab()
+    {
+        int num = (MyPlayer.name == "Player1") ? 1 : 2;
+        if (Input.GetKeyDown("joystick " + num.ToString() + " button 3"))
+        {
+            Grab gr = GetComponent<Grab>();
+            gr.PullWall();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Grab gr = GetComponent<Grab>();
+            gr.PullWall();
         }
     }
 

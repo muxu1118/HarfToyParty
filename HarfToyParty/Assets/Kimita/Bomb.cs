@@ -97,16 +97,15 @@ public class Bomb : Tap
                                 Map.instance.BombPos1 = new Vector2((int)Map.instance.WarpPoint[0].x, (int)Map.instance.WarpPoint[0].y);
                                 continue;
                             }
-                            else if ((j + y < 0 && j == Map.instance.WarpPoint[1].x) && Map.instance.mapInt[(int)Map.instance.WarpPoint[1].y, (int)Map.instance.WarpPoint[1].x] == (int)MapKind.YUKA)
+                            else if ((j + y < 0 && i == Map.instance.WarpPoint[1].x) && Map.instance.mapInt[(int)Map.instance.WarpPoint[1].y, (int)Map.instance.WarpPoint[1].x] == (int)MapKind.YUKA)
                             {
+
                                 y = (int)Map.instance.WarpPoint[1].y;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[y][i].x, Map.instance.SpritePos[y][i].y, 1);
                                 Map.instance.BombPos1 = new Vector2((int)Map.instance.WarpPoint[1].x, (int)Map.instance.WarpPoint[1].y);
                                 continue;
                             }
-                            else { x = 0; }
-                            y = 0;
-
+                            else { y = 0; }
 
                         }
                         gameObject.transform.position = new Vector3(Map.instance.SpritePos[j + y][i + x].x, Map.instance.SpritePos[j + y][i + x].y, 1);
