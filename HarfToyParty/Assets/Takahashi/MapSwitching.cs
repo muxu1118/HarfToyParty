@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class MapSwitching : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] gameMap;
-    int[] map;
-    int mapNumber;
+    //[SerializeField]
+    //GameObject[] gameMap;
+    int mapNumber = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {        
-        for(int i = 0; i < gameMap.Length; i++)
-        {
-            int RandomMap = map[i];
-            int random = Random.Range(i, gameMap.Length);
-            map[i] = map[random];
-            map[random] = RandomMap;
-        }
-        Debug.Log(map);
-    }
+    string[] serihu;
+    int[] mozisuu;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        serihu[0] = "taka";
+        mozisuu[0] = serihu[0].Length;
+        Debug.Log(mozisuu[0]);
     }
 
-    private void MapDesplay()
-    {
-        gameMap[mapNumber].SetActive(true);
-    }
+    //public void MapDesplay()
+    //{
+    //    MapFalse();
+    //    gameMap[mapNumber].SetActive(true);
+    //    mapNumber++;
+    //}
+
+    //private void MapFalse()
+    //{
+    //    switch (mapNumber)
+    //    {
+    //        case 0:
+    //            gameMap[mapNumber].SetActive(false);
+    //            break;
+    //        case 1:
+    //            gameMap[mapNumber].SetActive(false);
+    //            break;
+    //        case 2:
+    //            gameMap[mapNumber].SetActive(false);
+    //            break;
+    //    }
+    //}
 }
