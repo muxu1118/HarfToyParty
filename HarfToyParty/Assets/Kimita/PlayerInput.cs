@@ -74,6 +74,24 @@ public class PlayerInput : MonoBehaviour
             {
                 MyPlayer.Move(3);
             }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                MyPlayer.Move(0);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                MyPlayer.Move(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MyPlayer.Move(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MyPlayer.Move(3);
+            }
+
         }
         else if (MyPlayer.name == "Player2")
         {
@@ -108,6 +126,26 @@ public class PlayerInput : MonoBehaviour
             MapKind A = (P == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
 
             
+            if (Isbomb)
+            {
+                Recast = 0;
+                isbomb = false;
+                // 爆弾を置く
+                Map.instance.BombAria(MyPlayer.rot, P);
+            }
+            else
+            {
+                isbomb = true;
+                // 爆弾範囲をだす
+                Map.instance.AriaSet(P, A);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            MapKind P = (MyPlayer.name == "Player1") ? MapKind.Player1 : MapKind.Player2;
+            MapKind A = (P == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
+
+
             if (Isbomb)
             {
                 Recast = 0;
