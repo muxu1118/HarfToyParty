@@ -12,16 +12,21 @@ public class Option : MonoBehaviour
 
     private void Start()
     {
-        Panel.SetActive(true);
+        menu.SetActive(true);
     }
 
     public void Menumenu()
     {
-        Panel.SetActive(true);
+        if (Input.GetKeyDown("joystick 1 button 2"))
+        {
+            Panel.SetActive(true);
+            Debug.Log("押されてるよ");
+        }
     }
 
     public void Numenume()
     {
-        Panel.SetActive(false);
+        if (Input.GetKeyDown("joystick 1 button 2"))
+            Panel.SetActive(false);
     }
 }

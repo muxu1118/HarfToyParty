@@ -17,8 +17,27 @@ public class TalkPanel : MonoBehaviour
 
     private void Update()
     {
-        // Qkeyを押すとパネル表示、非表示の切り替え
-        if (Input.GetKeyDown(KeyCode.Q))
+        //if (Input.GetKeyDown("joystick 1 button 2"))
+        //{
+        //    // activeFlagがtrueの時呼び出される
+        //    if (activeFlag)
+        //    {
+        //        SetFalse();
+        //    }
+        //    // activeFlagがfalseの時呼び出される
+        //    else
+        //    {
+        //        SetTrue();
+        //    }
+        //    // On / Off切り替え
+        //    activeFlag = !activeFlag;
+        //}
+    }
+
+    public void Menu()
+    {
+        if(Input.GetMouseButtonDown(0))
+        //if (Input.GetKeyDown("joystick 1 button 2"))
         {
             // activeFlagがtrueの時呼び出される
             if (activeFlag)
