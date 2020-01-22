@@ -34,37 +34,39 @@ public class TalkPanel : MonoBehaviour
         //}
     }
 
-    public void Menu()
-    {
-        if(Input.GetMouseButtonDown(0))
-        //if (Input.GetKeyDown("joystick 1 button 2"))
-        {
-            // activeFlagがtrueの時呼び出される
-            if (activeFlag)
-            {
-                SetFalse();
-            }
-            // activeFlagがfalseの時呼び出される
-            else
-            {
-                SetTrue();
-            }
-            // On / Off切り替え
-            activeFlag = !activeFlag;
-        }
-    }
+    //public void Menu()
+    //{
+    //    //if (Input.GetKeyDown("joystick 1 button 2"))
+    //    if(Input.GetMouseButtonDown(0))
+    //    {
+    //        // activeFlagがtrueの時呼び出される
+    //        if (activeFlag)
+    //        {
+    //            SetFalse();
+    //            Time.timeScale = 0f;
+    //        }
+    //        // activeFlagがfalseの時呼び出される
+    //        else
+    //        {
+    //            SetTrue();
+    //            Time.timeScale = 1f;
+    //        }
+    //        // On / Off切り替え
+    //        activeFlag = !activeFlag;
+    //    }
+    //}
 
-    public void SetTrue()
-    {
-        Panel.SetActive(true);
-        Time.timeScale = 0f;
-    }
+    //public void SetTrue()
+    //{
+    //    Panel.SetActive(true);
+    //    Time.timeScale = 0f;
+    //}
 
-    public void SetFalse()
-    {
-        Panel.SetActive(false);
-        Time.timeScale = 1f;
-    }
+    //public void SetFalse()
+    //{
+    //    Panel.SetActive(false);
+    //    Time.timeScale = 1f;
+    //}
 
     public void Skip()
     {

@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class TextMessage : MonoBehaviour
 {
     List<string> messageList = new List<string>();
+
     [SerializeField] Text text;
     [SerializeField] float novelSpeed;
     [SerializeField] float sentenceSpeed;
+
     int novelListIndex = 0;
+
     public static string[] sentence = new string[10];
     public static int sentenceNum = 0;
 
@@ -30,28 +33,34 @@ public class TextMessage : MonoBehaviour
         {
             sentenceNum = 3;
         }
+
         else if(novelListIndex % 2 == 0)
         {
             sentenceNum = 1;
         }
+
         else
         {
             sentenceNum = 2;
         }
     }
+
     private IEnumerator Novel()
     {
         sssss();
         int messageCount = 0;
         text.text = "";
+
         while(messageList[novelListIndex].Length > messageCount)
         {
             text.text += messageList[novelListIndex][messageCount];
             messageCount++;
             yield return new WaitForSeconds(novelSpeed);
         }
+
         yield return new WaitForSeconds(sentenceSpeed);
         novelListIndex++;
+
         if(novelListIndex < messageList.Count)
         {
             StartCoroutine(Novel());
@@ -62,12 +71,12 @@ public class TextMessage : MonoBehaviour
     {
         sentence[0] = "こんにちは";
         sentence[1] = "初めまして";
-        sentence[2] = "HalfToyPartyへ\nようこそ";
+        sentence[2] = "HalfToyPartyへようこそ";
         sentence[3] = "今からルール説明を\nしていくね";
         sentence[4] = "邪魔なブロックを動かして\n体のパーツを探してきてね";
         sentence[5] = "先に体のパーツを\n取り戻したほうが勝利だよ";
         sentence[6] = "ルールは大体こんな感じ";
-        sentence[7] = "分かっかたな？";
+        sentence[7] = "分かったかな？";
         sentence[8] = "それじゃあ行ってらっしゃい";
         sentence[9] = "また会おうね^^";
     }
