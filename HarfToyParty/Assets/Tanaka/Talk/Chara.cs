@@ -8,44 +8,47 @@ public class Chara : MonoBehaviour
     [SerializeField] SpriteRenderer a;
     [SerializeField] SpriteRenderer b;
 
-    [SerializeField]
-    GameObject ai;
+    [SerializeField] GameObject ai;
     // Start is called before the first frame update
     void Start()
     {
-        a = GetComponent<SpriteRenderer>();
-        b = GetComponent<SpriteRenderer>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ai.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
-            //a.color = new Color(1, 1, 1, 0.6f);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            ai.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            //a.color = new Color(1, 1, 1, 1);
-        }
+        P();
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    ai.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
+        //    //a.color = new Color(1, 1, 1, 0.6f);
+        //}
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    ai.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        //    //a.color = new Color(1, 1, 1, 1);
+        //}
     }
 
-    public void P(string player)
+    public void P()
     {
-        string playerNum = player;
-        switch (playerNum)
+        switch (TextMessage.sentenceNum)
         {
-            case "1":
+            case 1:
                 a.color = new Color(1, 1, 1, 1);
                 b.color = new Color(1, 1, 1, 0.6f);
                 break;
-            case "2":
+            case 2:
                 a.color = new Color(1, 1, 1, 0.6f);
                 b.color = new Color(1, 1, 1, 1);
                 break;
-
+            case 3:
+                a.color = new Color(1, 1, 1, 1);
+                b.color = new Color(1, 1, 1, 1);
+                break;
+            default:
+                break;
         }
     }
 }
