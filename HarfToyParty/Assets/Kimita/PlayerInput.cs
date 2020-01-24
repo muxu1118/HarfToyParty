@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     float crashLimit = 1;
     Sprite psp;//PlayerのSprite
     bool ispulling = false;//壁を引いてるか
+    int pullWallN = 0;//引いてる壁の値
 
     // Start is called before the first frame update
     void Start()
@@ -62,19 +63,67 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetAxisRaw("Joystick 1 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
             {
-                MyPlayer.Move(0);
+                Debug.Log("上向いた");
+                MyPlayer.rot = 0;
             }
             else if (Input.GetAxisRaw("Joystick 1 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
             {
-                MyPlayer.Move(1);
+                Debug.Log("下向いた");
+                MyPlayer.rot = 1;
             }
             else if (Input.GetAxisRaw("Joystick 1 Horizontal") > 0.1f)
             {
-                MyPlayer.Move(2);
+                Debug.Log("右向いた");
+                MyPlayer.rot = 2;
             }
             else if (Input.GetAxisRaw("Joystick 1 Horizontal") < -0.1f)
             {
-                MyPlayer.Move(3);
+                Debug.Log("左向いた");
+                MyPlayer.rot = 3;
+            }
+            if (Input.GetAxisRaw("Joysticks 1 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joysticks 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joysticks 1 Horizontal")))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(1, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(1);
+                }
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joysticks 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joysticks 1 Horizontal")))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(0, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(0);
+                }
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f)
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(2, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(2);
+                }
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1f)
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(3, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(3);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -97,19 +146,35 @@ public class PlayerInput : MonoBehaviour
         }
         else if (MyPlayer.name == "Player2")
         {
-            if (Input.GetAxisRaw("Joystick 2 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
+            //if (Input.GetAxisRaw("Joystick 2 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
+            //{
+            //    MyPlayer.Move(0);
+            //}
+            //else if (Input.GetAxisRaw("Joystick 2 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
+            //{
+            //    MyPlayer.Move(1);
+            //}
+            //else if (Input.GetAxisRaw("Joystick 2 Horizontal") > 0.1f)
+            //{
+            //    MyPlayer.Move(2);
+            //}
+            //else if (Input.GetAxisRaw("Joystick 2 Horizontal") < -0.1f)
+            //{
+            //    MyPlayer.Move(3);
+            //}
+            if (Input.GetAxisRaw("Joysticks 2 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joysticks 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joysticks 2 Horizontal")))
             {
                 MyPlayer.Move(0);
             }
-            else if (Input.GetAxisRaw("Joystick 2 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
+            else if (Input.GetAxisRaw("Joysticks 2 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joysticks 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joysticks 2 Horizontal")))
             {
                 MyPlayer.Move(1);
             }
-            else if (Input.GetAxisRaw("Joystick 2 Horizontal") > 0.1f)
+            else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1f)
             {
                 MyPlayer.Move(2);
             }
-            else if (Input.GetAxisRaw("Joystick 2 Horizontal") < -0.1f)
+            else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1f)
             {
                 MyPlayer.Move(3);
             }
@@ -191,12 +256,13 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown("joystick " + num.ToString() + " button 3"))
         {
             Grab gr = GetComponent<Grab>();
-            ispulling = gr.PullWall();
+            ispulling = gr.PullWall(ref pullWallN);
+            Debug.Log("壁->"+(MapKind)pullWallN);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Grab gr = GetComponent<Grab>();
-            ispulling = gr.PullWall();
+            ispulling = gr.PullWall(ref pullWallN);
         }
         if(Input.GetKeyUp("joystick " + num.ToString() + " button 3"))
         {

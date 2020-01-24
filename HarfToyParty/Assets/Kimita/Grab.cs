@@ -12,14 +12,14 @@ public class Grab : MonoBehaviour
         playernum = (gameObject.name == "Player1") ?(int)MapKind.Player1: (int)MapKind.Player2;
     }
 
-    public bool PullWall ()
+    public bool PullWall (ref int num)
     {
-        if (!GrabWallCheck()) return false;
+        if (!GrabWallCheck(ref num)) return false;
         Debug.Log("壁があります");
         return true;
     }
 
-    private bool GrabWallCheck()
+    private bool GrabWallCheck(ref int num)
     {
         Debug.Log(player.rot);
         int x=0, y=0;
@@ -39,21 +39,24 @@ public class Grab : MonoBehaviour
         switch (player.rot)
         {
             case 0:// 上
-                Debug.Log((MapKind)Map.instance.mapInt[y - 1, x]);
                 if (y - 1 < 0) return false;
                 if (!(Map.instance.mapInt[y - 1, x] >= (int)MapKind.Movewall0 && Map.instance.mapInt[y - 1, x] <= (int)MapKind.Movewall10)) return false;
+                num = Map.instance.mapInt[y - 1, x];
                 break;
             case 1:// 下
                 if (y + 1 >= 6) return false;
                 if (!(Map.instance.mapInt[y + 1, x] >= (int)MapKind.Movewall0 && Map.instance.mapInt[y + 1, x] <= (int)MapKind.Movewall10)) return false;
+                num = Map.instance.mapInt[y + 1, x];
                 break;
             case 2:// 右
                 if (x + 1 >= 6) return false;
                 if (!(Map.instance.mapInt[y, x+1] >= (int)MapKind.Movewall0 && Map.instance.mapInt[y, x + 1] <= (int)MapKind.Movewall10)) return false;
+                num = Map.instance.mapInt[y, x + 1];
                 break;
             case 3:// 左
                 if (x - 1 < 0) return false;
                 if (!(Map.instance.mapInt[y, x - 1] >= (int)MapKind.Movewall0 && Map.instance.mapInt[y, x - 1] <= (int)MapKind.Movewall10)) return false;
+                num = Map.instance.mapInt[y, x - 1];
                 break;
             default:
                 break;
