@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
     float crash;
     float crashLimit = 1;
     Sprite psp;//PlayerのSprite
+    bool ispulling = false;//壁を引いてるか
 
     // Start is called before the first frame update
     void Start()
@@ -190,13 +191,18 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown("joystick " + num.ToString() + " button 3"))
         {
             Grab gr = GetComponent<Grab>();
-            gr.PullWall();
+            ispulling = gr.PullWall();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Grab gr = GetComponent<Grab>();
-            gr.PullWall();
+            ispulling = gr.PullWall();
         }
+        if(Input.GetKeyUp("joystick " + num.ToString() + " button 3"))
+        {
+            ispulling = false;
+        }
+
     }
 
     public void BombCrash()
