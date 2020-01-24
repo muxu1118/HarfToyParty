@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TextMessage : MonoBehaviour
@@ -61,9 +62,14 @@ public class TextMessage : MonoBehaviour
         yield return new WaitForSeconds(sentenceSpeed);
         novelListIndex++;
 
-        if(novelListIndex < messageList.Count)
+        if (novelListIndex < messageList.Count)
         {
             StartCoroutine(Novel());
+        }
+
+        if (novelListIndex == 10)
+        {
+            SceneManager.LoadScene("Choice");
         }
     }
 
@@ -71,7 +77,7 @@ public class TextMessage : MonoBehaviour
     {
         sentence[0] = "こんにちは";
         sentence[1] = "初めまして";
-        sentence[2] = "HalfToyPartyへようこそ";
+        sentence[2] = "Harf Toy Partyへようこそ";
         sentence[3] = "今からルール説明を\nしていくね";
         sentence[4] = "邪魔なブロックを動かして\n体のパーツを探してきてね";
         sentence[5] = "先に体のパーツを\n取り戻したほうが勝利だよ";
