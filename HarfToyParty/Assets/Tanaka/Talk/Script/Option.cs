@@ -20,22 +20,29 @@ public class Option : MonoBehaviour
 
     public void Update()
     {
-        Skip();
-        SkipVerification();
         End();
+        Move();
 
         if (Input.GetKeyDown("joystick 1 button 5"))    // RB
         {
+            if (Verification.activeSelf == false)
+            {
+                if (activeFlag)
+                    Menumenu(); 
+                else
+                    Numenume();
+                    
+                activeFlag = !activeFlag;
+            }
+        }
+
+        else if (Input.GetKeyDown("joystick 1 button 1"))    //A
+        {
             if (activeFlag)
-            {
-                Menumenu();
-                Debug.Log("aaaa");
-            }
+                Skip();
             else
-            {
-                Numenume();
-                Debug.Log("bbbb");
-            }
+                SkipVerification();
+            
             activeFlag = !activeFlag;
         }
     }
@@ -54,13 +61,10 @@ public class Option : MonoBehaviour
 
     public void Skip()
     {
-        if (Input.GetKeyDown("joystick 1 button 2"))
+        if (option.activeSelf == false)
         {
-            if (option.activeSelf == false)
-            {
-                Verification.SetActive(true);
-                Time.timeScale = 0f;
-            }
+            Verification.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
@@ -68,23 +72,23 @@ public class Option : MonoBehaviour
     {
         if (Verification.activeSelf == true)
         {
-            if (Input.GetKeyDown("joystick 1 button 1"))
-            {
-                Verification.SetActive(false);
-                Time.timeScale = 1f;
-            }
-
-            else if (Input.GetKeyDown("joystick 1 button 3"))
-                SceneManager.LoadScene("Choice");
+            Verification.SetActive(false);
+            Time.timeScale = 1f;
         }
+
+    }
+
+    public void Move()
+    {
+        if (Input.GetKeyDown("joystick 1 button 3"))   // Y
+            if (Verification.activeSelf == true)
+                SceneManager.LoadScene("Choice");
     }
 
     public void End()
     {
-        if (Input.GetKeyDown("joystick 1 button 3"))
-        {
+        if (Input.GetKeyDown("joystick 1 button 3"))    // Y
             if (option.activeSelf == true)
                 SceneManager.LoadScene("Title");
-        }
     }
 }

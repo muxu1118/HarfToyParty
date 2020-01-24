@@ -22,28 +22,19 @@ public class TextMessage : MonoBehaviour
     {
         Sentence();
         for (int i = 0; i < sentence.Length; i++)
-        {
             messageList.Add(sentence[i]);
-        }
+        
         StartCoroutine(Novel());
     }
 
     void sssss()
     {
         if (novelListIndex == 9 || novelListIndex == 2)
-        {
             sentenceNum = 3;
-        }
-
         else if(novelListIndex % 2 == 0)
-        {
             sentenceNum = 1;
-        }
-
         else
-        {
             sentenceNum = 2;
-        }
     }
 
     private IEnumerator Novel()
@@ -63,14 +54,10 @@ public class TextMessage : MonoBehaviour
         novelListIndex++;
 
         if (novelListIndex < messageList.Count)
-        {
             StartCoroutine(Novel());
-        }
 
-        if (novelListIndex == 10)
-        {
+        else if (novelListIndex == 10)
             SceneManager.LoadScene("Choice");
-        }
     }
 
     public void Sentence()
