@@ -65,7 +65,7 @@ public class TextMessage : MonoBehaviour
         sentence[0] = "こんにちは";
         sentence[1] = "初めまして";
         sentence[2] = "Harf Toy Partyへようこそ";
-        sentence[3] = "今からルール説明を\nしていくね";
+        sentence[3] = "今からルール説明をしていくね";
         sentence[4] = "邪魔なブロックを動かして\n体のパーツを探してきてね";
         sentence[5] = "先に体のパーツを\n取り戻したほうが勝利だよ";
         sentence[6] = "ルールは大体こんな感じ";
