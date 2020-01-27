@@ -16,12 +16,7 @@ public class WinLoss : MonoBehaviour
     Image blue;
 
     Sprite Win; //Winのスプライト画像を取得するためのもの
-    Sprite Lose; //Loseのスプライト画像を取得するためのもの
-    
-    //[SerializeField]
-    //GameObject[] Red_resultUI;
-    //[SerializeField]
-    //GameObject[] Blue_resultUI;
+    Sprite Lose; //Loseのスプライト画像を取得するためのもの    
 
     [SerializeField]
     float b,x,y;
@@ -108,7 +103,7 @@ public class WinLoss : MonoBehaviour
     {
         //リザルトUIを表示
         panel.SetActive(true);
-        background.transform.position = new Vector3(85, 96, 0);
+        background.transform.position = new Vector3(1000, 540, 0); 
         int winnerDesplay = winner;
         switch (winnerDesplay)
         {
