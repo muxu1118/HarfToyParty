@@ -164,7 +164,7 @@ public class Player : MonoBehaviour
                         // WarpWallで移動
                         return;
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.Movewall9)
+                    if ((wall != map.mapInt[j - (int)vec2.y, i + (int)vec2.x]) &&map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.Movewall9)
                     {
                         Debug.Log("動かす壁" + map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0]);
                         if (!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
@@ -292,6 +292,7 @@ public class Player : MonoBehaviour
         }
         transform.position = new Vector3(map.SpritePos[y - (int)vec2.y][x + (int)vec2.x].x, map.SpritePos[y - (int)vec2.y][x + (int)vec2.x].y);
         isMove = false;
+        map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         map.updateMap = true;
         yield return new WaitForSeconds(0.1f);
         map.updateMap = false;

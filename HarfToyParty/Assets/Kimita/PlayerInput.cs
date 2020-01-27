@@ -128,19 +128,48 @@ public class PlayerInput : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                MyPlayer.Move(0);
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(0, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(0);
+                }
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                MyPlayer.Move(1);
+
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(1, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(1);
+                }
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                MyPlayer.Move(2);
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(2, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(2);
+                }
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                MyPlayer.Move(3);
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(3, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(3);
+                }
             }
 
         }
