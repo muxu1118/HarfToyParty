@@ -9,63 +9,80 @@ public class WinLoss : MonoBehaviour
     [SerializeField]
     GameObject panel;
     [SerializeField]
+    GameObject background;
+    [SerializeField]
     Image red;
     [SerializeField]
     Image blue;
-   
+
     Sprite Win; //Winのスプライト画像を取得するためのもの
     Sprite Lose; //Loseのスプライト画像を取得するためのもの
     
-    [SerializeField]
-    GameObject[] Red_resultUI;
-    [SerializeField]
-    GameObject[] Blue_resultUI;
+    //[SerializeField]
+    //GameObject[] Red_resultUI;
+    //[SerializeField]
+    //GameObject[] Blue_resultUI;
 
     [SerializeField]
-    float b;
+    float b,x,y;
     //王冠の場合b = 0.2が弟　-0.2が兄
+    float crownAngle = 0.2f;
+    //王冠の位置
+    float crown_x, crown_y;
+    //涙の位置
+    float tear_x, tear_y;
 
     GameObject crownPrefab;
     GameObject tearPrefab;
 
-    bool slore = true;       
-
-    private void Update()
-    {
-        //位置確認用
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Quaternion rote = new Quaternion(0.0f, 0.0f, b, 1.0f);
-            
-            GameObject crown = Instantiate(Red_resultUI[0], new Vector3(1.0f, 2.0f, 0.0f), rote);
-            crown.transform.parent = panel.transform;            
-        }
-    }
+    //王冠と涙の位置を勝者に合わせるためのもの
+    bool slore = true;
 
     void Start()
-    {        
+    {
         //1P勝利の画像を取得
         Win = Resources.Load<Sprite>("Sprites/WinLose/w");
         //2P勝利の画像を取得
         Lose = Resources.Load<Sprite>("Sprites/WinLose/l");
-        crownPrefab = (GameObject)Resources.Load("Prefabs/crown");
-        tearPrefab = (GameObject)Resources.Load("Prefabs/tear");
+        //王冠のプレハブを取得
+        crownPrefab = (GameObject)Resources.Load("Prefabs/ResultUI/Crown");
+        //涙のプレハブを取得
+        tearPrefab = (GameObject)Resources.Load("Prefabs/ResultUI/Tear");
+        
     }
+
+    private void Update()
+    {        
+        //位置確認用
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Quaternion rote = new Quaternion(0.0f, 0.0f, b, 1.0f);
+
+            GameObject crown = Instantiate(crownPrefab, new Vector3(x, y, 0.0f), rote);
+            //crown.transform.parent = panel.transform;
+            crown.transform.SetParent(panel.transform, false);
+            Debug.Log("wwww");
+        }        
+    }    
 
     /// <summary>
     /// 王冠を生成する
     /// </summary>
     private void crownGenerate()
-    {
-        //赤が勝利の場合
+    {        
         if (slore)
-        {             
-            b *= -0.1f;
-        }        
-        Quaternion rote = new Quaternion(0.0f, 0.0f, b, 1.0f);
-        //
-        GameObject crowCroaw = Instantiate(crownPrefab, new Vector3(1.0f, 2.0f, 0.0f), rote);
-        crowCroaw.transform.parent = panel.transform;
+        {
+            //赤が勝利した場合角度と場所を反転
+            crownAngle *= -1f; 
+            crown_x *= -1f;
+            crown_y *= -1f;
+        }
+        //王冠の角度を設定
+        Quaternion rote = new Quaternion(0.0f, 0.0f, crownAngle, 1.0f);
+        //王冠を指定した位置に生成
+        GameObject crown = Instantiate(crownPrefab, new Vector3(crown_x,crown_y, 0.0f), rote);        
+        //指定した親に子として生成
+        crown.transform.SetParent(panel.transform, false);        
     }
 
     /// <summary>
@@ -73,8 +90,13 @@ public class WinLoss : MonoBehaviour
     /// </summary>
     private void tearGenerate()
     {
-        //赤が敗北の場合        
-        GameObject crowTear = Instantiate(tearPrefab, new Vector3(1.0f, 2.0f, 0.0f), Quaternion.identity);
+        if (slore)
+        {
+            //赤が勝利した場合場所を反転
+            tear_x *= -1f;
+            tear_y *= -1f;
+        }
+        GameObject crowTear = Instantiate(tearPrefab, new Vector3(tear_x, tear_y, 0.0f), Quaternion.identity);
         crowTear.transform.parent = panel.transform;
     }
 
@@ -86,27 +108,35 @@ public class WinLoss : MonoBehaviour
     {
         //リザルトUIを表示
         panel.SetActive(true);
+        background.transform.position = new Vector3(85, 96, 0);
         int winnerDesplay = winner;
         switch (winnerDesplay)
         {
             case 1:
-                
+                //赤が勝利の場合
+
+                crownGenerate();
+                tearGenerate();
+
                 blue.sprite = Lose;
 
-                Blue_resultUI[0].SetActive(false);
-                Blue_resultUI[1].SetActive(false);
+                //Blue_resultUI[0].SetActive(false);
+                //Blue_resultUI[1].SetActive(false);
 
-                Red_resultUI[2].SetActive(false);
+                //Red_resultUI[2].SetActive(false);
                 break;
             case 2:
                 //青の勝利  
                 slore = false;
                 red.sprite = Lose;
 
-                Red_resultUI[0].SetActive(false);
-                Red_resultUI[1].SetActive(false);
+                crownGenerate();
+                tearGenerate();
 
-                Blue_resultUI[2].SetActive(false);
+                //Red_resultUI[0].SetActive(false);
+                //Red_resultUI[1].SetActive(false);
+
+                //Blue_resultUI[2].SetActive(false);
                 break;
         }        
     }

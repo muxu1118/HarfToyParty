@@ -12,6 +12,14 @@ public class PartDesplay : MonoBehaviour
     [SerializeField]
     Sprite[] choicePart;
 
+    [SerializeField]
+    GameObject part;
+
+    private void Start()
+    {
+        
+    }
+
     /// <summary>
     /// パーツを取得したときに呼び出される
     /// </summary>
@@ -21,6 +29,7 @@ public class PartDesplay : MonoBehaviour
         getPart = part;
         switch (getPart) {
             case "R_Leg":
+                part.Split = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 choicePart[0] = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //PartSearch(0);
                 break;
