@@ -8,19 +8,18 @@ public class WinLoss : MonoBehaviour
     //リザルトUI
     [SerializeField]
     GameObject panel;
+    //リザルト画面の背景
     [SerializeField]
     GameObject background;
+    //Win,Loseを表示させるための場所に配置したオブジェクト
     [SerializeField]
-    Image red;
-    [SerializeField]
-    Image blue;
-
-    Sprite Win; //Winのスプライト画像を取得するためのもの
-    Sprite Lose; //Loseのスプライト画像を取得するためのもの    
+    Image red,blue;
+    //Win,Loseのスプライト画像を取得するためのもの
+    Sprite Win,Lose; 
 
     [SerializeField]
     float b,x,y;
-    //王冠の場合b = 0.2が弟　-0.2が兄
+    //王冠の角度b = 0.2が弟　-0.2が兄
     float crownAngle = 0.2f;
     //王冠の位置
     float crown_x, crown_y;
@@ -103,7 +102,7 @@ public class WinLoss : MonoBehaviour
     {
         //リザルトUIを表示
         panel.SetActive(true);
-        background.transform.position = new Vector3(1000, 540, 0); 
+        background.transform.position = new Vector3(970, 520, 0);
         int winnerDesplay = winner;
         switch (winnerDesplay)
         {

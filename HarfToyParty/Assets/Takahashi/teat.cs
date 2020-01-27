@@ -14,9 +14,12 @@ public class teat : MonoBehaviour
     [SerializeField]
     GameObject background;
 
+    [SerializeField]
+    float x, y;
+
     private void Start()
     {
-        background.transform.position = new Vector3(1000, 540, 0);
+        //background.transform.position = new Vector3(970, 520, 0);
     }
 
     void Update()
@@ -24,7 +27,7 @@ public class teat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //PartGet();
-            
+            background.transform.position = new Vector3(x, y, 0);
         }
     }
 
