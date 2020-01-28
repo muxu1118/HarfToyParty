@@ -12,6 +12,7 @@ public class TitleMock : MonoBehaviour
     void Start()
     {
         time = Time.time;
+        GameManager.instance.startScene();
     }
 
     // Update is called once per frame
@@ -67,8 +68,15 @@ public class TitleMock : MonoBehaviour
     private void SceneLoad()
     {
         if (Input.GetKeyDown("joystick 1 button 2"))
+        {     
+            GameManager.instance.StateChange();
+            SceneController.instance.sceneSwitching("TalkScene");
+            Debug.Log("ChoiceSceneを呼んでるよ");
+        }
+        else if (Input.GetKeyDown("joystick 2 button 2"))
         {
-            SceneManager.LoadScene("MainGame");
+            GameManager.instance.StateChange();
+            SceneController.instance.sceneSwitching("TalkScene");
             Debug.Log("ChoiceSceneを呼んでるよ");
         }
     }

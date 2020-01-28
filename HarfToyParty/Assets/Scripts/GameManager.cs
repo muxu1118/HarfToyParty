@@ -14,16 +14,16 @@ public struct GameRule
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     WinLoss winLoss;
-    enum State
+    public enum State
     {
         Title,
-        PlayerChoise,
+        Story,
         MapSelect,
         RuleSelect,
         Main,
         Result
     }
-
+    [SerializeField]
     State GameState;
     public GameRule gameRule = new GameRule();
 
@@ -32,13 +32,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
-        GameState = State.Main;
-        GameRule game;
-        game.PartGet = 1;
-        game.Stage = 0;
-        game.Time = 300;
-        gameRule = game;
-        winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
+        //GameState = State.Main;
+        //GameState = State.Title;
+        //GameRule game;
+        //game.PartGet = 1;
+        //game.Stage = 0;
+        //game.Time = 300;
+        //gameRule = game;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Reset()
@@ -60,7 +61,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
-            GameState = State.Result;
+            GameState = State.Title;
             winLoss.WinOrLoss(1);
         }
         // 青が勝ったら
@@ -68,31 +69,47 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("BlueWin");
-            GameState = State.Result;
+            GameState = State.Title;
             winLoss.WinOrLoss(2);
-        }
-
-
+        }        
     }
+
     public void StateChange()
     {
+        Debug.Log(GameState);
         switch (GameState)
         {
             case State.Title:
-                GameState = State.PlayerChoise;
+                GameState = State.Story;
                 break;
-            case State.PlayerChoise:
+            case State.Story:
                 GameState = State.Main;
                 break;
             case State.Main:
-                GameState = State.Result;
+                GameState = State.Title;
                 break;
-            case State.Result:
-                GameState = State.PlayerChoise;
-                break;
+            //case State.Result:
+            //    GameState = State.Title;
+            //    break;
             default:
                 break;
         }
         return;
     }
+
+    public void StateCall(State state)
+    {
+        GameState = state;
+    }
+
+    public void startScene()
+    {
+        GameState = State.Title;
+        GameRule game;
+        game.PartGet = 1;
+        game.Stage = 0;
+        game.Time = 300;
+        gameRule = game;
+
+    }    
 }

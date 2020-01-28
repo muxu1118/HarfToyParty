@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Fujita/Title.unity
     guid: 38a794f5c01fd7d4389db921d2cdb5e9
   - enabled: 1
+    path: Assets/Tanaka/Talk/TalkScene.unity
+    guid: 780c9ccf4ab831b4995fafc0a4198c2a
+  - enabled: 1
     path: Assets/Scenes/MainGame.unity
     guid: 0011829af222e9c4e9f20bdbadc99dc4
   m_configObjects: {}

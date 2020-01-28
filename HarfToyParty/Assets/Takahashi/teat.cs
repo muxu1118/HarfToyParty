@@ -2,24 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class teat : MonoBehaviour
 {
     [SerializeField]
     //Image[] image;
-    Sprite[] image;
+    //Sprite[] image;
+    SpriteRenderer[] spriteRenderers;
     int i = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    GameObject background;
+
+    [SerializeField]
+    float x, y;
+
+    private void Start()
     {
-        
+        //background.transform.position = new Vector3(970, 520, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //PartGet();
+            background.transform.position = new Vector3(x, y, 0);
+        }
     }
 
     public void PartGet()
@@ -30,15 +40,32 @@ public class teat : MonoBehaviour
         switch (i)
         {
             case 1:
-                image[0] = Resources.Load<Sprite>("Sprites/Part/gimmick_body3_B");
+                spriteRenderers[0].sprite = Resources.Load<Sprite>("Sprites/old/Part/gimmick_body3_B");
                 //Debug.LogError("来た");
                 break;
             case 2:
-                image[1]= Resources.Load<Sprite>("Sprites/Part/gimmick_body01_B");
+                spriteRenderers[1].sprite = Resources.Load<Sprite>("Sprites/old/Part/gimmick_body01_B");
                 break;
             case 3:
-                image[2]= Resources.Load<Sprite>("Sprites/Part/gimmick_body2_B");
+                spriteRenderers[2].sprite = Resources.Load<Sprite>("Sprites/old/Part/gimmick_body2_B");
                 break;
+        }
+    }
+
+    private void sceneChange()
+    {
+        if (Input.GetKeyDown("joystick 1 button 3"))
+        {
+            if (SceneManager.GetActiveScene().name == "Title")
+            {
+                //GameState = State.PlayerChoise;
+                SceneController.instance.sceneSwitching("TalkScene");
+            }
+            else if (SceneManager.GetActiveScene().name == "TalkScene")
+            {
+                //GameState = State.Main;
+                SceneController.instance.sceneSwitching("MainGame");
+            }
         }
     }
 }
