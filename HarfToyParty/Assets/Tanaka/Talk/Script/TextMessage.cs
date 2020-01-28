@@ -14,7 +14,7 @@ public class TextMessage : MonoBehaviour
 
     int novelListIndex = 0;
 
-    public static string[] sentence = new string[10];
+    public static string[] sentence = new string[7];
     public static int sentenceNum = 0;
 
     // Start is called before the first frame update
@@ -29,9 +29,11 @@ public class TextMessage : MonoBehaviour
 
     void sssss()
     {
-        if (novelListIndex == 9 || novelListIndex == 2)
+        //if (novelListIndex == 4 || novelListIndex == 2)
+        //    sentenceNum = 3;
+        if (novelListIndex == 6)
             sentenceNum = 3;
-        else if(novelListIndex % 2 == 0)
+        else if (novelListIndex % 2 == 0)
             sentenceNum = 1;
         else
             sentenceNum = 2;
@@ -56,21 +58,18 @@ public class TextMessage : MonoBehaviour
         if (novelListIndex < messageList.Count)
             StartCoroutine(Novel());
 
-        else if (novelListIndex == 10)
+        else if (novelListIndex == 7)
             SceneManager.LoadScene("Choice");
     }
 
     public void Sentence()
     {
-        sentence[0] = "こんにちは";
-        sentence[1] = "初めまして";
-        sentence[2] = "Harf Toy Partyへようこそ";
-        sentence[3] = "今からルール説明をしていくね";
-        sentence[4] = "邪魔なブロックを動かして\n体のパーツを探してきてね";
-        sentence[5] = "先に体のパーツを\n取り戻したほうが勝利だよ";
-        sentence[6] = "ルールは大体こんな感じ";
-        sentence[7] = "分かったかな？";
-        sentence[8] = "それじゃあ行ってらっしゃい";
-        sentence[9] = "また会おうね^^";
+        sentence[0] = "やっほー！\n今日は僕たちと遊んでくれる？";
+        sentence[1] = "くれるよね？";
+        sentence[2] = "僕と弟はこのトイパーティを\n開いてみたんだ";
+        sentence[3] = "僕とお兄ちゃんはそっくりでしょ？\n双子なんだ";
+        sentence[4] = "そんな僕たちの\n体を半分にしてみたから";
+        sentence[5] = "僕たちを操作して\n先に体のパーツをゲットしてね";
+        sentence[6] = "それじゃあ、レッツスタート！";
     }
 }
