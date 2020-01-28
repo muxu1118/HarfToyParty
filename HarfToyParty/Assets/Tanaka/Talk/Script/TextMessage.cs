@@ -59,7 +59,11 @@ public class TextMessage : MonoBehaviour
             StartCoroutine(Novel());
 
         else if (novelListIndex == 7)
-            SceneManager.LoadScene("Choice");
+        {
+            GameManager.instance.StateChange();
+            SceneController.instance.sceneSwitching("MainGame");
+        }
+        //SceneManager.LoadScene("Choice");
     }
 
     public void Sentence()

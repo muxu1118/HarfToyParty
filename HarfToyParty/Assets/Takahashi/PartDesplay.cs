@@ -18,25 +18,25 @@ public class PartDesplay : MonoBehaviour
     {
         getPart = part;
         switch (getPart) {
-            case "R_Leg":
+            case "R_Face":
                 character_changePart[0].sprite = Resources.Load<Sprite>("Sprite/ChangePart/RightFace");
                 //part.Split = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //choicePart[0] = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //PartSearch(0);
                 break;
-            case "R_Face":
+            case "R_Hand":
                 character_changePart[1].sprite = Resources.Load<Sprite>("Sprite/ChangePart/RightArm");
                 break;
-            case "R_Hand":
+            case "R_Leg":
                 character_changePart[2].sprite = Resources.Load<Sprite>("Sprite/ChangePart/RightLeg");
                 break;
-            case "B_Leg":
+            case "B_Face":
                 character_changePart[3].sprite = Resources.Load<Sprite>("Sprite/ChangePart/LeftFace");
                 break;
-            case "B_Face":
+            case "B_Hand":
                 character_changePart[4].sprite = Resources.Load<Sprite>("Sprite/ChangePart/LeftArm");
                 break;
-            case "B_Hand":
+            case "B_Leg":
                 character_changePart[5].sprite = Resources.Load<Sprite>("Sprite/Part/LeftLeg");
                 break;
         }

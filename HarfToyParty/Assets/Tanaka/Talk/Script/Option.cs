@@ -89,6 +89,11 @@ public class Option : MonoBehaviour
     {
         if (Input.GetKeyDown("joystick 1 button 3"))    // Y
             if (option.activeSelf == true)
-                SceneManager.LoadScene("Choice");
+            {
+                GameManager.instance.StateChange();
+                SceneController.instance.sceneSwitching("Title");
+
+            }
+        //SceneManager.LoadScene("Choice");
     }
 }

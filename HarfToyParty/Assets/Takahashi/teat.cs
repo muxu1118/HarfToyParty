@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class teat : MonoBehaviour
 {
@@ -48,6 +49,23 @@ public class teat : MonoBehaviour
             case 3:
                 spriteRenderers[2].sprite = Resources.Load<Sprite>("Sprites/old/Part/gimmick_body2_B");
                 break;
+        }
+    }
+
+    private void sceneChange()
+    {
+        if (Input.GetKeyDown("joystick 1 button 3"))
+        {
+            if (SceneManager.GetActiveScene().name == "Title")
+            {
+                //GameState = State.PlayerChoise;
+                SceneController.instance.sceneSwitching("TalkScene");
+            }
+            else if (SceneManager.GetActiveScene().name == "TalkScene")
+            {
+                //GameState = State.Main;
+                SceneController.instance.sceneSwitching("MainGame");
+            }
         }
     }
 }
