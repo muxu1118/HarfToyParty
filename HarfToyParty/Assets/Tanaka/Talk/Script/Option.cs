@@ -15,6 +15,10 @@ public class Option : MonoBehaviour
     private void Start()
     {
         option.SetActive(false);
+        if (SceneManager.GetActiveScene().name == "TalkScene")
+        {
+            Skip.SetActive(true);
+        }
     }
 
     public void Update()
