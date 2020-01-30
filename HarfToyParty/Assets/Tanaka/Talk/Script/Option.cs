@@ -8,7 +8,7 @@ public class Option : MonoBehaviour
 {
     [SerializeField] GameObject option;
     [SerializeField] GameObject menu;
-    [SerializeField] GameObject menubutton;
+    [SerializeField] GameObject Skip;
 
     private bool activeFlag = true;
 
@@ -20,7 +20,7 @@ public class Option : MonoBehaviour
     public void Update()
     {
         End();
-
+       
         // RB で activeFlagの入れ替え
         if (Input.GetKeyDown("joystick 1 button 5"))    // RB
         {
@@ -34,7 +34,7 @@ public class Option : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "MainGeme")
         {
-            menu.SetActive(false);
+            Skip.SetActive(false);
         }
     }
 
@@ -56,8 +56,8 @@ public class Option : MonoBehaviour
             if (option.activeSelf == true)
             {
                 GameManager.instance.StateChange();
-                SceneController.instance.sceneSwitching("MainGeme");
-
+                //SceneController.instance.sceneSwitching("Choice");
+                SceneController.instance.sceneSwitching("MainGame");
             }
     }
 }
