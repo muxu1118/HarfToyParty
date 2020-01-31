@@ -71,18 +71,22 @@ public class Part : MonoBehaviour
     {
         if (Map.instance.mapInt[(int)XY.y, (int)XY.x] != MyPartNum && (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 || Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2))
         {
-            if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && ((int)kind >= 0 && (int)kind <= 2)/*&& server*/)
+            if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && (kind >= 0 && (int)kind <= 2)/*&& server*/)
             {
+                Debug.Log("koko");
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
                 GameManager.instance.RedPartGet++;
+                GameManager.instance.StageCount++;
+                
             }
-            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && ((int)kind >= 3 && (int)kind <= 5)/* && !server*/) 
+            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/) 
             {
+                Debug.Log("koko2");
                 //player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
                 GameManager.instance.BluePartGet++;
-
+                GameManager.instance.StageCount++;
             }
 
 

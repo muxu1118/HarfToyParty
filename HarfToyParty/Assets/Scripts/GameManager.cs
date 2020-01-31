@@ -33,6 +33,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public int StageCount;
 
+    public int savePartB = 0;
+    public int savePartR = 0;
+
     private void Start()
     {
         //GameState = State.Main;
@@ -54,7 +57,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // Update is called once per frame
     void Update()
     {
-        MainGame();   
+        MainGame();
         //if(RedPartGet == 1 || BluePartGet == 1)
         //{
         //    StageCount = 1;
@@ -63,6 +66,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         //{
         //    StageCount = 2;
         //}
+        //stageChange();
     }
 
     private void MainGame()
@@ -72,7 +76,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
-            GameState = State.Title;
+            //GameState = State.Title;
             winLoss.WinOrLoss(1);
         }
         // 青が勝ったら
@@ -80,9 +84,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("BlueWin");
-            GameState = State.Title;
+            //GameState = State.Title;
             winLoss.WinOrLoss(2);
-        }        
+        }
     }
 
     public void StateChange()
@@ -117,7 +121,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         GameState = State.Title;
         GameRule game;
-        game.PartGet = 2;
+        game.PartGet = 1;
         game.Stage = 0;
         game.Time = 300;
         game.GameCount = 0;
@@ -127,10 +131,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void stageChange()
     {
         switch (StageCount)
-        {            
+        {
+            //case 0:
+            //    Stage.instance.StageSelect(StageCount);
+            //    Debug.Log("ステージ変更");
+            //    break;
             case 1:
+                Stage.instance.StageSelect(StageCount);
                 break;
             case 2:
+                Stage.instance.StageSelect(StageCount);
                 break;            
         }    
     }

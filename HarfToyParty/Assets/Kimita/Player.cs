@@ -26,14 +26,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
-        map = Map.instance;
         myNumber = (gameObject.name == "Player1") ? (int)MapKind.Player1: (int)MapKind.Player2;
-        
-        map.mapInt[SpawnXY[0], SpawnXY[1]] = myNumber;
-        transform.position = Map.instance.SpritePos[SpawnXY[0]][SpawnXY[1]];
-        
-
+        PlayerMapWrite();
         //StartCoroutine(SetMoveButton());
     }
     IEnumerator SetMoveButton()
@@ -43,6 +37,13 @@ public class Player : MonoBehaviour
         GameObject.Find("MoveButton").GetComponent<MoveButton>().MyPlayer = gameObject.GetComponent<Player>(); 
 
     }
+    public void PlayerMapWrite()
+    {
+        map = Map.instance;
+        map.mapInt[SpawnXY[0], SpawnXY[1]] = myNumber;
+        transform.position = Map.instance.SpritePos[SpawnXY[0]][SpawnXY[1]];
+    }
+
     private void Update()
     {
         //if (bomb.activeSelf)
@@ -66,16 +67,16 @@ public class Player : MonoBehaviour
         switch (rot)
         {
             case 0:// 上
-                //transform.eulerAngles = new Vector3(0, 0, 90);
+                transform.eulerAngles = new Vector3(0, 0, 90);
                 break;
             case 1:// 下
-                //transform.eulerAngles = new Vector3(0, 0, 270);
+                transform.eulerAngles = new Vector3(0, 0, 270);
                 break;
             case 2:// 右
-                //transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             case 3:// 左
-                //transform.eulerAngles = new Vector3(0, 0, 180);
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 break;
         }
     }
@@ -199,6 +200,7 @@ public class Player : MonoBehaviour
                     }
                     else if(PullWallCheck(vec2, wall))
                     {
+                        Debug.Log("ここが呼ばれてる");
                         return;
                     }
                 }

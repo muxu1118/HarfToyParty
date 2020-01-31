@@ -34,7 +34,7 @@ public class WinLoss : MonoBehaviour
 
     void Start()
     {
-        panel.SetActive(false);
+        //panel.SetActive(false);
         //1P勝利の画像を取得
         Win = Resources.Load<Sprite>("Sprites/WinLose/w");
         //2P勝利の画像を取得
@@ -93,7 +93,8 @@ public class WinLoss : MonoBehaviour
         //王冠の角度b = 0.2が弟　-0.2が兄
         float crownAngle = 0.2f;
         //王冠の位置
-        float crown_x = -232, crown_y = 206;
+        //float crown_x = -232, crown_y = 206;
+        float crown_x = -242, crown_y = 166;
 
         if (!slore)
         {
@@ -117,7 +118,8 @@ public class WinLoss : MonoBehaviour
     private void tearGenerate()
     {
         //涙の位置
-        float tear_x = -208, tear_y = 144;
+        //float tear_x = -208, tear_y = 144;
+        float tear_x = -218, tear_y = 124;
 
         if (slore)
         {
@@ -165,10 +167,10 @@ public class WinLoss : MonoBehaviour
 
     private void titleSceneLoad()
     {
-        if (Input.GetKeyDown("joystick 1 button 2"))
+        if (Input.GetKeyDown("joystick 1 button 4"))
         {
             GameManager.instance.StateChange();
-            SceneController.instance.sceneSwitching("Title");            
+            SceneController.instance.sceneSwitching("Title");
         }
     }
 }

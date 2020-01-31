@@ -57,6 +57,7 @@ public class Option : MonoBehaviour
         if (Input.GetKeyDown("joystick button 3"))    // Y
             if (option.activeSelf == true)
             {
+                Time.timeScale = 1f;
                 GameManager.instance.StateChange();
                 //SceneController.instance.sceneSwitching("Choice");
                 SceneController.instance.sceneSwitching("MainGame");

@@ -8,8 +8,15 @@ public class PartDesplay : MonoBehaviour
 
     //プレイヤーの変更する画像を選択
     [SerializeField]
-    SpriteRenderer[] character_changePart;   
+    SpriteRenderer[] character_changePart;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
+    }
 
     /// <summary>
     /// パーツを取得したときに呼び出される
