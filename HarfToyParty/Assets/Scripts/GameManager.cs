@@ -8,6 +8,7 @@ public struct GameRule
     public int PartGet;
     public int Time;
     public int Stage;
+    public int GameCount;
 }
 
 
@@ -29,6 +30,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public int RedPartGet;
     public int BluePartGet;
+
+    public int StageCount;
 
     private void Start()
     {
@@ -52,12 +55,20 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     void Update()
     {
         MainGame();   
+        //if(RedPartGet == 1 || BluePartGet == 1)
+        //{
+        //    StageCount = 1;
+        //}
+        //else if(RedPartGet == 1 || BluePartGet == 1)
+        //{
+        //    StageCount = 2;
+        //}
     }
 
     private void MainGame()
     {
         // 赤が勝ったら
-        if(RedPartGet == gameRule.PartGet&&GameState == State.Main)
+        if(RedPartGet == gameRule.PartGet && GameState == State.Main)
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
@@ -106,10 +117,21 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         GameState = State.Title;
         GameRule game;
-        game.PartGet = 1;
+        game.PartGet = 2;
         game.Stage = 0;
         game.Time = 300;
-        gameRule = game;
-
-    }    
+        game.GameCount = 0;
+        gameRule = game;        
+    }     
+    
+    private void stageChange()
+    {
+        switch (StageCount)
+        {            
+            case 1:
+                break;
+            case 2:
+                break;            
+        }    
+    }
 }

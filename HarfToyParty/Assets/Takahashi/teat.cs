@@ -12,15 +12,20 @@ public class teat : MonoBehaviour
     SpriteRenderer[] spriteRenderers;
     int i = 0;
 
-    [SerializeField]
-    GameObject background;
+    //[SerializeField]
+    //GameObject background;
+
+    //[SerializeField]
+    float x, y;
 
     [SerializeField]
-    float x, y;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         //background.transform.position = new Vector3(970, 520, 0);
+        //x = 255/2;
+        spriteRenderer.color = new Color(x,x,x, 255);
     }
 
     void Update()
@@ -28,7 +33,7 @@ public class teat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //PartGet();
-            background.transform.position = new Vector3(x, y, 0);
+            //background.transform.position = new Vector3(x, y, 0);
         }
     }
 

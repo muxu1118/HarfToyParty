@@ -10,6 +10,7 @@ public class PartDesplay : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] character_changePart;   
 
+
     /// <summary>
     /// パーツを取得したときに呼び出される
     /// </summary>
@@ -45,5 +46,18 @@ public class PartDesplay : MonoBehaviour
     private void PartSearch(int arrayNumber)
     {
         character_changePart[arrayNumber].sprite = Resources.Load<Sprite>("Sprite/Part" + getPart);
+    }
+
+    public void conclusion(int win)
+    {
+        int winNumber = win;
+        switch (winNumber)
+        {
+            case 1:
+                character_changePart[0].color = new Color(255 / 2, 255 / 2, 255 / 2, 1);
+                break;
+            case 2:
+                break;
+        }
     }
 }
