@@ -290,4 +290,8 @@ public class Map : MonoBehaviour
         return;
 
     }
+    public void PlayerBomDown(MapKind map)
+    {
+        MapObject[(int)map].GetComponent<PlayerInput>().BombCrash();
+    }
 }

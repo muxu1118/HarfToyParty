@@ -636,4 +636,55 @@ public class MoveWall :MonoBehaviour
 
     }
 
+    public bool PullMoveCheck(int Player,Vector2 mov2, List<List<Vector3>> vec3)
+    {
+        int[,] map = Map.instance.mapInt;
+        bool isMove;
+        int x = 0, y = 0;
+        switch ((int)myForm)
+        {
+            case 0:
+                if (XY.x + mov2.x > 6 || XY.x + mov2.x < 0) return false;
+                if (XY.y - mov2.y > 6 || XY.y - mov2.y < 0) return false;
+
+                if (map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] != (int)MyWall && map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] != (int)Player) return false;
+                break;
+            case 1:
+                x = 0;
+                if (XY.x + 1 + mov2.x > 6 || XY.x + mov2.x < 0) return false;
+                if (XY.y - mov2.y > 6 || XY.y - mov2.y < 0) return false;
+
+                if (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
+                x = 1;
+                if (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
+                break;
+            case 2:
+                if (XY.x + 1 + mov2.x > 6 || XY.x - 1 + mov2.x < 0) return false;
+                if (XY.y + 1 - mov2.y > 6 || XY.y - 1 - mov2.y < 0) return false;
+
+                x = -1; y = 0;
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
+                x = 1; y = 0;
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
+                x = 0; y = -1;
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
+                x = 0; y = 1;
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
+
+                break;
+            case 3:
+                y = 0;
+                if (XY.x + mov2.x >= 6 || XY.x + mov2.x < 0) return false;
+                if (XY.y + 1 - mov2.y > 6 || XY.y - mov2.y < 0) return false;
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] != (int)Player) return false;
+                y = 1;
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] != (int)Player) return false;
+                break;
+        }
+        return true;
+    }
+    public void PullWall(Vector2 mov2)
+    {
+        StartCoroutine(WallMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+    }
 }

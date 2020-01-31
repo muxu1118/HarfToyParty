@@ -60,6 +60,7 @@ public class BomTest : MonoBehaviour
                     // プレイヤーにダメージを与えたい
                     Debug.Log("プレイヤーの位置X:" + (x + i) + "Y:" + (y - j));
                     Debug.Log((MapKind)Map.instance.mapInt[y - j, x + i] + "にダメージ");
+                    Map.instance.PlayerBomDown((MapKind)Map.instance.mapInt[y - j, x + i]);
                 }
                 if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.BreakWall1 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.BreakWall6)
                 {
