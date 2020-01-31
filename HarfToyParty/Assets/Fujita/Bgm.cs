@@ -21,10 +21,4 @@ public class Bgm : MonoBehaviour
         DontDestroyBgm = false;
         Destroy(this.gameObject);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

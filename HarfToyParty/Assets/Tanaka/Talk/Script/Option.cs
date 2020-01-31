@@ -16,9 +16,7 @@ public class Option : MonoBehaviour
     {
         option.SetActive(false);
         if (SceneManager.GetActiveScene().name == "TalkScene")
-        {
             Skip.SetActive(true);
-        }
     }
 
     public void Update()
@@ -36,7 +34,7 @@ public class Option : MonoBehaviour
             activeFlag = !activeFlag;
         }
 
-        if(SceneManager.GetActiveScene().name == "MainGeme")
+        else if(SceneManager.GetActiveScene().name == "MainGeme")
         {
             Skip.SetActive(false);
         }
