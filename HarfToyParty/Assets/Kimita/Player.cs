@@ -67,16 +67,16 @@ public class Player : MonoBehaviour
         switch (rot)
         {
             case 0:// 上
-                //transform.eulerAngles = new Vector3(0, 0, 90);
+                transform.eulerAngles = new Vector3(0, 0, 90);
                 break;
             case 1:// 下
-                //transform.eulerAngles = new Vector3(0, 0, 270);
+                transform.eulerAngles = new Vector3(0, 0, 270);
                 break;
             case 2:// 右
-                //transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             case 3:// 左
-                //transform.eulerAngles = new Vector3(0, 0, 180);
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 break;
         }
     }
