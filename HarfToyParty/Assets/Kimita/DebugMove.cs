@@ -29,7 +29,7 @@ public class DebugMove :MonoBehaviour
     private void Start()
     {
        
-        ButtonPos = GameObject.Find("MoveButton").transform.position;
+        //ButtonPos = GameObject.Find("MoveButton").transform.position;
         MyPlayer.SetActionCallback(PlayerDoNotMove);
         //StartCoroutine("FindPly");
     }
