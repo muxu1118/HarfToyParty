@@ -10,11 +10,17 @@ public class PartDesplay : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] character_changePart;
 
+    int i = 1;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
+            if(i == 1)
+            {
+                PartGet("R_Hand");
+                i++;
+            }
+            
         }
     }
 
@@ -27,7 +33,7 @@ public class PartDesplay : MonoBehaviour
         getPart = part;
         switch (getPart) {
             case "R_Face":
-                character_changePart[0].sprite = Resources.Load<Sprite>("Sprite/ChangePart/RightFace");
+                character_changePart[0].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightFace");
                 //part.Split = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //choicePart[0] = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //PartSearch(0);
