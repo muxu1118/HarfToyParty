@@ -47,6 +47,7 @@ public class BomTest : MonoBehaviour
     private void Explosion()
     {
         int x = (int)MyPosi.x, y = (int)MyPosi.y;
+        Debug.Log("Bomの位置X:" + MyPosi.x + "Y:" + MyPosi.y);
         for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
@@ -58,8 +59,6 @@ public class BomTest : MonoBehaviour
                 if (Map.instance.mapInt[y - j, x + i] == (int)MapKind.Player1 || Map.instance.mapInt[y - j, x + i] == (int)MapKind.Player2) 
                 {
                     // プレイヤーにダメージを与えたい
-                    Debug.Log("プレイヤーの位置X:" + (x + i) + "Y:" + (y - j));
-                    Debug.Log((MapKind)Map.instance.mapInt[y - j, x + i] + "にダメージ");
                     Map.instance.PlayerBomDown((MapKind)Map.instance.mapInt[y - j, x + i]);
                 }
                 if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.BreakWall1 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.BreakWall6)
@@ -69,7 +68,6 @@ public class BomTest : MonoBehaviour
                     {
                         if((int)BW.MyWallP == Map.instance.mapInt[y - j, x + i])
                         {
-                            Debug.Log(BW+"を破壊");
                             Destroy(BW.transform.gameObject);
                             Map.instance.mapInt[y - j, x + i] = (int)MapKind.YUKA;
                         }
