@@ -8,6 +8,7 @@ public class TextMessage : MonoBehaviour
 {
     List<string> messageList = new List<string>();
 
+    [SerializeField] GameObject Check;
     [SerializeField] Text text;
     [SerializeField] float novelSpeed;
     [SerializeField] float sentenceSpeed;
@@ -17,9 +18,12 @@ public class TextMessage : MonoBehaviour
     public static string[] sentence = new string[7];
     public static int sentenceNum = 0;
 
+    //private bool Scene = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        Check.SetActive(false);
         Sentence();
         for (int i = 0; i < sentence.Length; i++)
             messageList.Add(sentence[i]);
@@ -27,10 +31,16 @@ public class TextMessage : MonoBehaviour
         StartCoroutine(Novel());
     }
 
+    private void Update()
+    {
+        Scene();
+    }
+
     void sssss()
     {
         //if (novelListIndex == 4 || novelListIndex == 2)
         //    sentenceNum = 3;
+        // キャラの不透明度とカラー替え
         if (novelListIndex == 6)
             sentenceNum = 3;
         else if (novelListIndex % 2 == 0)
@@ -60,12 +70,24 @@ public class TextMessage : MonoBehaviour
 
         else if (novelListIndex == 7)
         {
-            GameManager.instance.StateChange();
-            SceneController.instance.sceneSwitching("MainGame");
+            Check.SetActive(true);
         }
         //SceneManager.LoadScene("Choice");
     }
 
+    public void Scene()
+    {
+        if (Check.activeSelf == true)
+        {
+            if (Input.GetKeyDown("joystick button 2"))
+            {
+                GameManager.instance.StateChange();
+                SceneController.instance.sceneSwitching("MainGame");
+            }
+        }
+    }
+
+    // シナリオ変わる可能性有り
     public void Sentence()
     {
         sentence[0] = "やっほー！\n今日は僕たちと遊んでくれる？";

@@ -24,7 +24,7 @@ public class Option : MonoBehaviour
         End();
        
         // RB で activeFlagの入れ替え
-        if (Input.GetKeyDown("joystick 1 button 5"))    // RB
+        if (Input.GetKeyDown("joystick button 5"))    // RB
         {
             if (activeFlag)
                 Menumenu();
@@ -54,7 +54,7 @@ public class Option : MonoBehaviour
 
     public void End()
     {
-        if (Input.GetKeyDown("joystick 1 button 3"))    // Y
+        if (Input.GetKeyDown("joystick button 3"))    // Y
             if (option.activeSelf == true)
             {
                 Time.timeScale = 1f;
