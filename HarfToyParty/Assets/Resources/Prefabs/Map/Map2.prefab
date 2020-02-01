@@ -1389,7 +1389,7 @@ MonoBehaviour:
   lerpRate: 15
   myForm: 0
   MyWall: 9
-  XY: {x: 5, y: 5}
+  XY: {x: 4, y: 5}
 --- !u!1 &8363274795192868096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 6376944571340575634}
+  BomPos: {x: 0, y: 0}
 --- !u!1 &8363274795547009073
 GameObject:
   m_ObjectHideFlags: 0
@@ -5087,6 +5088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 3340526938240524235}
+  BomPos: {x: 0, y: 0}
 --- !u!1 &8363274796391019070
 GameObject:
   m_ObjectHideFlags: 0

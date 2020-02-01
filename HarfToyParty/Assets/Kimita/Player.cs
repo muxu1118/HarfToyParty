@@ -134,7 +134,6 @@ public class Player : MonoBehaviour
                 {
                     bool isWarp = false;
                     // Debug
-                    Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
                     if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)) && !isWarp)
                     {
                         // 範囲外
@@ -151,6 +150,9 @@ public class Player : MonoBehaviour
                             return;
                         }
                         speed = 1f;
+                        isMove = true;
+                        StartCoroutine(MoveAnim(speed, player, vec2));
+                        return;
                     }
                     if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall || (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.BreakWall1 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.BreakWall6))
                     {
@@ -171,8 +173,8 @@ public class Player : MonoBehaviour
                         // 引き動作
                         isMove = true;
                         speed = 1f;
-                        map.MoveWalls[wall - (int)MapKind.Movewall0].GetComponent<MoveWall>().PullWall(vec2);
                         StartCoroutine(MoveAnim(speed, player, vec2));
+                        map.MoveWalls[wall - (int)MapKind.Movewall0].GetComponent<MoveWall>().PullWall(vec2);
                         return;
                     }
                     else
@@ -187,7 +189,6 @@ public class Player : MonoBehaviour
     private bool PullWallCheck(Vector2 vector2,int wall)
     {
         return map.MoveWalls[wall-(int)MapKind.Movewall0].GetComponent<MoveWall>().PullMoveCheck(myNumber,vector2, map.SpritePos);
-
     }
     public void Move(MapKind player, Vector2 vec2)
     {
@@ -241,7 +242,6 @@ public class Player : MonoBehaviour
     }
     IEnumerator MoveAnim(float wait, MapKind player, Vector2 vec2)
     {
-       
         float time = 0;
         int x = -1, y = -1;
         for (int i = 0; i <= 6; i++)

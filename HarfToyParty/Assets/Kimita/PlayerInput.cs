@@ -230,6 +230,52 @@ public class PlayerInput : MonoBehaviour
                     MyPlayer.Move(3);
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(0, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(0);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(1, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(1);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(2, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(2);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(3, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(3);
+                }
+            }
         }
     }
 
