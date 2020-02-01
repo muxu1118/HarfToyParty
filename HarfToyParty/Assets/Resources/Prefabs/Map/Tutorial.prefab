@@ -685,8 +685,8 @@ MonoBehaviour:
   MapObject:
   - {fileID: 0}
   - {fileID: 6607480767209317280, guid: a2a40585f710d7d4fb617f8cf5b1280f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7598467130317149065}
+  - {fileID: 2258475329671247367}
   - {fileID: 4979867142444405641}
   - {fileID: 4979867143864609112}
   - {fileID: 4979867143378705582}
@@ -5818,6 +5818,7 @@ PrefabInstance:
     - {fileID: 79533873896835470, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
     - {fileID: 8319426604763690797, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
     - {fileID: 2385714785293738864, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
+    - {fileID: 7069117837745771381, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
 --- !u!4 &3565645039539508552 stripped
 Transform:

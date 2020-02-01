@@ -1389,7 +1389,7 @@ MonoBehaviour:
   lerpRate: 15
   myForm: 0
   MyWall: 9
-  XY: {x: 4, y: 5}
+  XY: {x: 5, y: 5}
 --- !u!1 &8363274795192868096
 GameObject:
   m_ObjectHideFlags: 0
@@ -4763,8 +4763,8 @@ MonoBehaviour:
   MapObject:
   - {fileID: 0}
   - {fileID: 6607480767209317280, guid: a2a40585f710d7d4fb617f8cf5b1280f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6376944571340575634}
+  - {fileID: 3340526938240524235}
   - {fileID: 8363274795533014258}
   - {fileID: 8363274796345981293}
   - {fileID: 8363274794748919345}
@@ -6552,6 +6552,7 @@ PrefabInstance:
     - {fileID: 79533873896835470, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
     - {fileID: 8319426604763690797, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
     - {fileID: 2385714785293738864, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
+    - {fileID: 7069117837745771381, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
 --- !u!4 &33758924445875332 stripped
 Transform:
