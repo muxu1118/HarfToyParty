@@ -38,8 +38,6 @@ public class TextMessage : MonoBehaviour
 
     void sssss()
     {
-        //if (novelListIndex == 4 || novelListIndex == 2)
-        //    sentenceNum = 3;
         // キャラの不透明度とカラー替え
         if (novelListIndex == 6)
             sentenceNum = 3;

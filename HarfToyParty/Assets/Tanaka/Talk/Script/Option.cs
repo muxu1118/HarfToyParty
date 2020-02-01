@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Option : MonoBehaviour
 {
     [SerializeField] GameObject option;
+    [SerializeField] GameObject optionShadow;
     [SerializeField] GameObject menu;
     [SerializeField] GameObject Skip;
 
@@ -15,6 +16,7 @@ public class Option : MonoBehaviour
     private void Start()
     {
         option.SetActive(false);
+        optionShadow.SetActive(false);
         if (SceneManager.GetActiveScene().name == "TalkScene")
             Skip.SetActive(true);
     }
@@ -43,19 +45,21 @@ public class Option : MonoBehaviour
     public void Menumenu()
     {
         option.SetActive(true);
+        optionShadow.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void Numenume()
     {
         option.SetActive(false);
+        optionShadow.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void End()
     {
         if (Input.GetKeyDown("joystick button 3"))    // Y
-            if (option.activeSelf == true)
+            if (option.activeSelf == true && optionShadow.activeSelf == true)
             {
                 Time.timeScale = 1f;
                 GameManager.instance.StateChange();
