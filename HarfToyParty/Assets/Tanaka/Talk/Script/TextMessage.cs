@@ -23,7 +23,6 @@ public class TextMessage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         Check.SetActive(false);
         Sentence();
         for (int i = 0; i < sentence.Length; i++)
@@ -41,6 +40,7 @@ public class TextMessage : MonoBehaviour
     {
         //if (novelListIndex == 4 || novelListIndex == 2)
         //    sentenceNum = 3;
+        // キャラの不透明度とカラー替え
         if (novelListIndex == 6)
             sentenceNum = 3;
         else if (novelListIndex % 2 == 0)
@@ -87,6 +87,7 @@ public class TextMessage : MonoBehaviour
         }
     }
 
+    // シナリオ変わる可能性有り
     public void Sentence()
     {
         sentence[0] = "やっほー！\n今日は僕たちと遊んでくれる？";

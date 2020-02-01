@@ -20,10 +20,10 @@ public class Chara : MonoBehaviour
         {
             case 1:
                 a.color = new Color(1, 1, 1, 1);
-                b.color = new Color(1, 1, 1, 0.6f);
+                b.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
                 break;
             case 2:
-                a.color = new Color(1, 1, 1, 0.6f);
+                a.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
                 b.color = new Color(1, 1, 1, 1);
                 break;
             case 3:
