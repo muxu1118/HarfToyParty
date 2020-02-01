@@ -335,30 +335,16 @@ public class MoveWall :MonoBehaviour
             case 0:
                 StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                 return;
-                //if (mov2.y > 0)
-                //{
-                //    Debug.Log("WarpCheck↑");
-                //    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
-                //    return;
-                //}
-                //else
-                //{
-                //    Debug.Log("WarpCheck↓");
-                //    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
-                //    return;
-                //}
             case 1:
                 if (mov2.y != 0) return;
 
                 if (mov2.x > 0)
                 {
-                    Debug.Log("WarpCheck→");
                     StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
                 else
                 {
-                    Debug.Log("WarpCheck←");
                     StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
@@ -370,13 +356,11 @@ public class MoveWall :MonoBehaviour
 
                 if (mov2.y > 0)
                 {
-                    Debug.Log("WarpCheck↑");
                     StartCoroutine(WarpMoveAnim(1,Map.instance.mapInt, mov2,Map.instance.SpritePos));
                     return;
                 }
                 else
                 {
-                    Debug.Log("WarpCheck↓");
                     StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
@@ -402,7 +386,6 @@ public class MoveWall :MonoBehaviour
                 }
                 break;
             case 1:
-                Debug.Log("WarpMove");
                 for (int i = 0; i <= 6; i++)
                 {
                     for (int j = 0; j <= 6; j++)
@@ -418,11 +401,14 @@ public class MoveWall :MonoBehaviour
                 HWarpCheck();
                 for (int i = 0; i < my.Count; i++)
                 {
-                    Debug.Log("Count" + my.Count);
-                    if (mx[i] + (int)vec2.x == 7) { Debug.Log("ワープの場所X" + Hwarpx[0] + "Y" + Hwarpy[0]); my[i] = Hwarpy[0]; mx[i] = Hwarpx[0]-1; }
-                    else if (mx[i] + (int)vec2.x == -1) { my[i] = Hwarpy[1] ; mx[i] = Hwarpx[1]+1; }
-
-                    Debug.Log("my[" + i + "] = " + my[i] + "mx[" + i + "] = " + mx[i]);
+                    if (mx[i] + (int)vec2.x == 7) {
+                        my[i] = Hwarpy[0];
+                        mx[i] = Hwarpx[0]-1;
+                    }
+                    else if (mx[i] + (int)vec2.x == -1) {
+                        my[i] = Hwarpy[1];
+                        mx[i] = Hwarpx[1]+1;
+                    }
                     Map.instance.mapInt[my[i], mx[i] + (int)vec2.x] = (int)MyWall;
                 }
                 break;
@@ -439,7 +425,6 @@ public class MoveWall :MonoBehaviour
                 Map.instance.mapInt[y - (int)vec2.y, x + (int)vec2.x - 1] = (int)MyWall;
                 break;
             case 3:
-                Debug.Log("WarpMove");
                 for (int i = 0; i <= 6; i++)
                 {
                     for (int j = 0; j <= 6; j++)
@@ -455,9 +440,14 @@ public class MoveWall :MonoBehaviour
                 WarpCheck();
                 for (int i = 0; i < my.Count; i++)
                 {
-                    if (my[i] - (int)vec2.y == 7) { Debug.Log("ワープの場所X" + warpx[0]+ "Y" + warpy[0]); my[i] = warpy[0]-1; mx[i] = warpx[0]; }
-                    else if (my[i] - (int)vec2.y == -1) { my[i] = warpy[1]+1; mx[i] = warpx[1]; }
-
+                    if (my[i] - (int)vec2.y == 7) {
+                        my[i] = warpy[0]-1;
+                        mx[i] = warpx[0];
+                    }
+                    else if (my[i] - (int)vec2.y == -1) {
+                        my[i] = warpy[1]+1;
+                        mx[i] = warpx[1];
+                    }
                     Map.instance.mapInt[my[i] - (int)vec2.y, mx[i]] = (int)MyWall;
                 }
                 break;
@@ -474,9 +464,6 @@ public class MoveWall :MonoBehaviour
         WarpCheck();
         HWarpCheck();
         gameObject.transform.position = new Vector3(vec3[y][x].x, vec3[y][x].y);
-        //PosUpdateRequest = true;
-        //yield return new WaitForSeconds(0.1f);
-        //PosUpdateRequest = false;
     }
 
     /// <summary>
@@ -512,12 +499,10 @@ public class MoveWall :MonoBehaviour
                 if (XY.y - mov2.y > 6 || XY.y - mov2.y < 0) return false;
 
                 if (map[(int)XY.y- (int)mov2.y, (int)XY.x+ (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y - (int)mov2.y, (int)XY.x+ (int)mov2.x] != (int)MyWall) return false;
-                //if (map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Wall || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y - (int)mov2.y, (int)XY.x + (int)mov2.x] == (int)MapKind.Bomb || map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0) return false;
                 break;
             case 1:
                 if (HWarpCheck())
                 {
-                    Debug.Log("横移動");
                     if (HWarpMoveCheck(mov2))
                     {
                         WarpMove((int)myForm, mov2);
@@ -525,8 +510,6 @@ public class MoveWall :MonoBehaviour
                     }
                 }
                 x = 0;
-                Debug.Log("今X" + XY.x + "後" + mov2.x);
-                Debug.Log("今Y" + XY.y+"後"+mov2.y);
                 if (XY.x + 1 + mov2.x > 6 || XY.x + mov2.x < 0) return false;
                 if (XY.y - mov2.y > 6 || XY.y - mov2.y < 0) return false;
                 
@@ -546,11 +529,6 @@ public class MoveWall :MonoBehaviour
                 if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
                 x = 0; y = 1;
                 if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || (map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.BreakWall1 && map[(int)XY.y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] <= (int)MapKind.BreakWall6) || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0&& map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
-                //Map.instance.mapInt[y, x] = (int)MyWall;
-                //Map.instance.mapInt[y + 1, x] = (int)MyWall;
-                //Map.instance.mapInt[y - 1, x] = (int)MyWall;
-                //Map.instance.mapInt[y, x + 1] = (int)MyWall;
-                //Map.instance.mapInt[y, x - 1] = (int)MyWall;
                 break;
             case 3:
                 y = 0;
@@ -566,20 +544,13 @@ public class MoveWall :MonoBehaviour
                 if (XY.y + 1 - mov2.y > 6 || XY.y - mov2.y < 0) return false;
                 Debug.Log((MapKind)map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x]);
                 if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall) return false;
-                //if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
                 y = 1;
                 Debug.Log((MapKind)map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x]);
                 if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall) return false;
-                //if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Wall || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player2 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Player1 || map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] == (int)MapKind.Bomb || (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] >= (int)MapKind.Movewall0 && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall)) return false;
                 break;
         }
         StartCoroutine(WallMoveAnim(1, map, mov2, vec3));
         return true;
-    }
-
-    private void WallMove()
-    {
-        
     }
     IEnumerator WallMoveAnim(float wait, int[,] mapInt, Vector2 vec2, List<List<Vector3>> vec3)
     {
@@ -626,20 +597,14 @@ public class MoveWall :MonoBehaviour
             
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        Debug.Log("X:" + XY.x + "Y:" + XY.y);
         gameObject.transform.position = new Vector3(vec3[y - (int)vec2.y][x + (int)vec2.x].x, vec3[y - (int)vec2.y][x + (int)vec2.x].y);
         WarpCheck();
         HWarpCheck();
-        //PosUpdateRequest = true;
-        //yield return new WaitForSeconds(0.1f);
-        //PosUpdateRequest = false;
-
     }
 
     public bool PullMoveCheck(int Player,Vector2 mov2, List<List<Vector3>> vec3)
     {
         int[,] map = Map.instance.mapInt;
-        bool isMove;
         int x = 0, y = 0;
         switch ((int)myForm)
         {
@@ -657,22 +622,18 @@ public class MoveWall :MonoBehaviour
                 if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)Player) return false;
                 x = 1;
                 if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)Player) return false;
-                
-                
-                 
                 break;
             case 2:
                 if (XY.x + 1 + mov2.x > 6 || XY.x - 1 + mov2.x < 0) return false;
                 if (XY.y + 1 - mov2.y > 6 || XY.y - 1 - mov2.y < 0) return false;
                 x = 0; y = 1;
-                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) {
-                    return false; }
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) return false; 
                 x = -1; y = 0;
-                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) { Debug.Log("ここ"+0); return false; }
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) return false;
                 x = 1; y = 0;
-                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) { Debug.Log("ここ" + 1); return false; }
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) return false;
                 x = 0; y = -1;
-                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) { Debug.Log("ここ" + 2); return false; }
+                if (map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MapKind.YUKA && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != (int)MyWall && map[(int)XY.y + y - (int)mov2.y, (int)XY.x + x + (int)mov2.x] != Player) return false;
                 
                 break;
             case 3:

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Tap
+public class Bomb : MonoBehaviour
 {
     [SerializeField]
     private GameObject Player;
@@ -24,28 +24,7 @@ public class Bomb : Tap
             transform.position = v3;
         }
     }
-    /// <summary>
-    /// ボムの範囲チェック
-    /// </summary>
-    public void BombRange()
-    {
-        
-    }
-
-    public void BombPut()
-    {
-        if (Player.gameObject.name == "Player1")
-        {
-            gameObject.SetActive(false);
-            Map.instance.BombAria(Player.GetComponent<Player>().rot, MapKind.Player1);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-            Map.instance.BombAria(Player.GetComponent<Player>().rot, MapKind.Player2);
-        }
-    }
-
+    
     public IEnumerator AriaSet(MapKind player, MapKind Aria,Vector2 BombPos)
     {
         

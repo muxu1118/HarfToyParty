@@ -22,6 +22,7 @@ public class LogDisplay : MonoBehaviour
     }
     public void PushButton()
     {
+        if (!Input.GetKeyDown(KeyCode.A)) return;
         string str = "";
         for (int i = 0; i <= 6; i++)
         {
