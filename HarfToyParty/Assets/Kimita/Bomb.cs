@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Tap
+public class Bomb : MonoBehaviour
 {
     [SerializeField]
     private GameObject Player;
     private Vector3 v3 = new Vector3();
     private PlayerInput PI;
-
+    public Vector2 BomPos = new Vector2();
     
     
 
@@ -24,31 +24,16 @@ public class Bomb : Tap
             transform.position = v3;
         }
     }
+    
     /// <summary>
-    /// ボムの範囲チェック
+    /// ボム範囲を出すスクリプト
     /// </summary>
-    public void BombRange()
-    {
-        
-    }
-
-    public void BombPut()
-    {
-        if (Player.gameObject.name == "Player1")
-        {
-            gameObject.SetActive(false);
-            Map.instance.BombAria(Player.GetComponent<Player>().rot, MapKind.Player1);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-            Map.instance.BombAria(Player.GetComponent<Player>().rot, MapKind.Player2);
-        }
-    }
-
+    /// <param name="player"></param>
+    /// <param name="Aria"></param>
+    /// <param name="BombPos"></param>
+    /// <returns></returns>
     public IEnumerator AriaSet(MapKind player, MapKind Aria,Vector2 BombPos)
     {
-        
         while (gameObject.activeSelf&&PI.Isbomb)
         {
             int x = 0, y = 0;
@@ -79,12 +64,14 @@ public class Bomb : Tap
                                 x = (int)Map.instance.HWarpPoint[0].x;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[j][x].x, Map.instance.SpritePos[j][x].y, 1);
                                 Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[0].x, (int)Map.instance.HWarpPoint[0].y);
+                                BomPos = new Vector2((int)Map.instance.HWarpPoint[0].x, (int)Map.instance.HWarpPoint[0].y);
                                 continue;
                             }
                             else if ((i + x < 0 && j == Map.instance.HWarpPoint[1].y) && Map.instance.mapInt[(int)Map.instance.HWarpPoint[1].y, (int)Map.instance.HWarpPoint[1].x] == (int)MapKind.YUKA) {
                                 x = (int)Map.instance.HWarpPoint[1].x;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[j][x].x, Map.instance.SpritePos[j][x].y, 1);
                                 Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[1].x, (int)Map.instance.HWarpPoint[1].y);
+                                BomPos = new Vector2((int)Map.instance.HWarpPoint[1].x, (int)Map.instance.HWarpPoint[1].y);
                                 continue;
                             }
                             else { x = 0; }

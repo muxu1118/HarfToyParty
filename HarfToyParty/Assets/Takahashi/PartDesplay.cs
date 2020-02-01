@@ -10,9 +10,10 @@ public class PartDesplay : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] character_changePart;
     [SerializeField]
-    
+    GameObject blackOut;
 
     int i = 1;
+
     private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -60,6 +61,21 @@ public class PartDesplay : MonoBehaviour
     private void PartSearch(int arrayNumber)
     {
         character_changePart[arrayNumber].sprite = Resources.Load<Sprite>("Sprite/Part" + getPart);
+    }
+
+    private void partDisplay()
+    {
+        
+
+    }
+
+    IEnumerator Direct()
+    {
+        //blackOut.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        //blackOut.SetActive(false);
     }
 
     public void conclusion(int win)
