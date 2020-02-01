@@ -25,22 +25,13 @@ public class PlayerInput : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         isbomb = false;
         crash = 1.1f;
-        //StartCoroutine(SpriteSet());
     }
-    //IEnumerator SpriteSet()
-    //{
-    //    Debug.Log("aa");
-    //    yield return new WaitForSeconds(0.5f);
-    //    psp = (MyPlayer.name == "Player1") ? Resources.Load<Sprite>("Sprites/icon_red") : Resources.Load<Sprite>("icon_blue");
-    //    GetComponent<SpriteRenderer>().sprite = psp;
-    //}
 
     // Update is called once per frame
     void Update()
     {
         InputMove();
         ActionInput();
-        TestInput();
         WallGrab();
         Recast += Time.deltaTime;
         crash += Time.deltaTime;
@@ -69,34 +60,37 @@ public class PlayerInput : MonoBehaviour
 
         if (MyPlayer.name == "Player1")
         {
+            // 上方向に向く
             if (Input.GetAxisRaw("Joystick 1 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
             {
-                Debug.Log("上向いた");
                 MyPlayer.rot = 0;
             }
+            // 下方向に向く
             else if (Input.GetAxisRaw("Joystick 1 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 1 Horizontal")))
             {
-                Debug.Log("下向いた");
                 MyPlayer.rot = 1;
             }
+            // 右方向に向く
             else if (Input.GetAxisRaw("Joystick 1 Horizontal") > 0.1f)
             {
-                Debug.Log("右向いた");
                 MyPlayer.rot = 2;
             }
+            // 左方向に向く
             else if (Input.GetAxisRaw("Joystick 1 Horizontal") < -0.1f)
             {
-                Debug.Log("左向いた");
                 MyPlayer.rot = 3;
             }
+            // 十字キー
             if (Input.GetAxisRaw("Joysticks 1 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joysticks 1 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joysticks 1 Horizontal")))
             {
+                // 引き動作がオンだったら
                 if (ispulling)
                 {
                     MyPlayer.PullMove(1, pullWallN);
                 }
                 else
                 {
+                    // 下方向に向く
                     MyPlayer.Move(1);
                 }
             }
@@ -108,6 +102,7 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
+                    // 上方向に向く
                     MyPlayer.Move(0);
                 }
             }
@@ -119,6 +114,7 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
+                    // 右方向に向く
                     MyPlayer.Move(2);
                 }
             }
@@ -130,10 +126,12 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
+                    // 左方向に向く
                     MyPlayer.Move(3);
                 }
             }
 
+            // Debug用入力
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (ispulling)
@@ -183,31 +181,16 @@ public class PlayerInput : MonoBehaviour
         }
         else if (MyPlayer.name == "Player2")
         {
-            //if (Input.GetAxisRaw("Joystick 2 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
-            //{
-            //    MyPlayer.Move(0);
-            //}
-            //else if (Input.GetAxisRaw("Joystick 2 Vertical") < -0.1f && Mathf.Abs(Input.GetAxisRaw("Joystick 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joystick 2 Horizontal")))
-            //{
-            //    MyPlayer.Move(1);
-            //}
-            //else if (Input.GetAxisRaw("Joystick 2 Horizontal") > 0.1f)
-            //{
-            //    MyPlayer.Move(2);
-            //}
-            //else if (Input.GetAxisRaw("Joystick 2 Horizontal") < -0.1f)
-            //{
-            //    MyPlayer.Move(3);
-            //}
             if (Input.GetAxisRaw("Joysticks 2 Vertical") > 0.1f && Mathf.Abs(Input.GetAxisRaw("Joysticks 2 Vertical")) >= Mathf.Abs(Input.GetAxisRaw("Joysticks 2 Horizontal")))
             {
-
+                // 引き動作がオンの時
                 if (ispulling)
                 {
                     MyPlayer.PullMove(1, pullWallN);
                 }
                 else
                 {
+                    // 下方向に向く
                     MyPlayer.Move(1);
                 }
             }
@@ -219,6 +202,7 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
+                    // 上方向に向く
                     MyPlayer.Move(0);
                 }
             }
@@ -230,10 +214,58 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
+                    // 右方向に向く
                     MyPlayer.Move(2);
                 }
             }
             else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1f)
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(3, pullWallN);
+                }
+                else
+                {
+                    // 左方向に向く
+                    MyPlayer.Move(3);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(0, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(0);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(1, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(1);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (ispulling)
+                {
+                    MyPlayer.PullMove(2, pullWallN);
+                }
+                else
+                {
+                    MyPlayer.Move(2);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.J))
             {
                 if (ispulling)
                 {
@@ -294,27 +326,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
-
-    private void TestInput()
-    {
-        int num = (MyPlayer.name == "Player1") ? 1 : 2;
-        if (Input.GetKeyDown("joystick 1 button 0"))
-        {
-            Debug.Log("JoyStick0");
-        }
-        if (Input.GetKeyDown("joystick " + num.ToString() + " button 1"))
-        {
-            Debug.Log("JoyStick1");
-        }
-        if (Input.GetKeyDown("joystick " + num.ToString() + " button 2"))
-        {
-            Debug.Log("JoyStick2");
-        }
-        if (Input.GetKeyDown("joystick " + num.ToString() + " button 3"))
-        {
-            Debug.Log("JoyStick3");
-        }
-    }
+    
 
     private void WallGrab()
     {
@@ -340,11 +352,6 @@ public class PlayerInput : MonoBehaviour
     public void BombCrash()
     {
         crash = 0;
-    }
-
-    private void BombInput()
-    {
-
     }
     
 }
