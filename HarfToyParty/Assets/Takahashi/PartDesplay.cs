@@ -9,19 +9,20 @@ public class PartDesplay : MonoBehaviour
     //プレイヤーの変更する画像を選択
     [SerializeField]
     SpriteRenderer[] character_changePart;
+    [SerializeField]
+    
 
     int i = 1;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(i == 1)
-            {
-                PartGet("R_Hand");
-                i++;
-            }
-            
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if(i == 1)
+        //    {
+        //        PartGet("R_Hand");
+        //        i++;
+        //    }            
+        //}
     }
 
     /// <summary>
@@ -30,7 +31,7 @@ public class PartDesplay : MonoBehaviour
     /// <param name="GetPart"></param>
     public void PartGet(string part)
     {
-        getPart = part;
+        string getPart = part;
         switch (getPart) {
             case "R_Face":
                 character_changePart[0].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightFace");
@@ -67,7 +68,7 @@ public class PartDesplay : MonoBehaviour
         switch (winNumber)
         {
             case 1:
-                character_changePart[0].color = new Color(255 / 2, 255 / 2, 255 / 2, 1);
+                character_changePart[0].color = new Color(255 / 2, 255 / 2, 255 / 2, 255);
                 break;
             case 2:
                 break;

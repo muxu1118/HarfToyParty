@@ -149,8 +149,9 @@ public class WinLoss : MonoBehaviour
                 red.sprite = Win;
 
                 crownGenerate();
-                tearGenerate(); 
-                
+                tearGenerate();
+
+                GameManager.instance.StateChange();                
                 break;
             case 2:
                 //青の勝利  
@@ -161,6 +162,7 @@ public class WinLoss : MonoBehaviour
                 crownGenerate();
                 tearGenerate();
 
+                GameManager.instance.StateChange();
                 break;
         } 
     }
