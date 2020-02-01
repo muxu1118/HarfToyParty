@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Fujita/Title.unity
+    path: Assets/Scenes/Title.unity
     guid: 38a794f5c01fd7d4389db921d2cdb5e9
   - enabled: 1
     path: Assets/Tanaka/Talk/TalkScene.unity
