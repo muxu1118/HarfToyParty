@@ -37,8 +37,7 @@ public class Option : MonoBehaviour
         MoveFrame();
 
         // RB で activeFlagの入れ替え
-        //if (Input.GetKeyDown("joystick button 5"))    // RB
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown("joystick button 5"))    // RB
         {
             if (activeFlag)
                 Menumenu();
@@ -47,7 +46,6 @@ public class Option : MonoBehaviour
 
             activeFlag = !activeFlag;
         }
-
         else if (SceneManager.GetActiveScene().name == "MainGeme")
             Skip.SetActive(false);
     }
@@ -74,19 +72,17 @@ public class Option : MonoBehaviour
 
     public void End()
     {
-        if (SceneManager.GetActiveScene().name == "TalkScene")
-        {
-            if (Input.GetKeyDown("joystick button 2"))    // B
-                if (option.activeSelf == true && optionShadow.activeSelf == true)
-                {
-                    Time.timeScale = 1f;
-                    GameManager.instance.StateChange();
-                    SceneController.instance.sceneSwitching("MainGame");
-                }
-        }
-
-        else if (SceneManager.GetActiveScene().name == "MainGame")
-        {
+        //if (SceneManager.GetActiveScene().name == "TalkScene")
+        //{
+        //    if (Input.GetKeyDown("joystick button 2"))    // B
+        //        if (option.activeSelf == true && optionShadow.activeSelf == true)
+        //        {
+        //            Time.timeScale = 1f;
+        //            GameManager.instance.StateChange();
+        //            SceneController.instance.sceneSwitching("MainGame");
+        //        }
+        //}
+        if (SceneManager.GetActiveScene().name == "MainGame")
             if (Input.GetKeyDown("joystick button 2"))    // B
                 if (option.activeSelf == true && optionShadow.activeSelf == true)
                 {
@@ -94,7 +90,6 @@ public class Option : MonoBehaviour
                     GameManager.instance.StateChange();
                     SceneController.instance.sceneSwitching("Title");
                 }
-        }
     }
 
     public void Frame01()
@@ -124,7 +119,7 @@ public class Option : MonoBehaviour
     public void MoveFrame()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick Analog5"))
+            if (Input.GetKeyDown("joystick button 3"))  // Y
             {
                 if (activeFlag)
                     Choice02();
@@ -133,12 +128,20 @@ public class Option : MonoBehaviour
 
                 activeFlag = !activeFlag;
             }
+            else if (Input.GetKeyDown("joystick button 2"))  // B
+                if (Frame1.activeSelf == true && Choice1.activeSelf == true)
+                {
+                    GameManager.instance.StateChange();
+                    SceneController.instance.sceneSwitching("Title");
+                }
+                else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
+                    Numenume();
     }
 
     public void FramemMove()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick Analog4"))
+            if (Input.GetKeyDown("joystick button 0"))   // 十字キー左右
             {
                 if (activeFlag)
                     Frame01();
@@ -147,5 +150,14 @@ public class Option : MonoBehaviour
 
                 activeFlag = !activeFlag;
             }
+            else if (Input.GetKeyDown("joystick button 2"))  // B
+                if (Frame1.activeSelf == true && Choice1.activeSelf == true)
+                {
+                    Time.timeScale = 1f;
+                    GameManager.instance.StateChange();
+                    SceneController.instance.sceneSwitching("MainGame");
+                }
+                else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
+                    Numenume();
     }
 }
