@@ -18,8 +18,6 @@ public class TextMessage : MonoBehaviour
     public static string[] sentence = new string[7];
     public static int sentenceNum = 0;
 
-    //private bool Scene = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +34,7 @@ public class TextMessage : MonoBehaviour
         Scene();
     }
 
-    void sssss()
+    void ColorChange()
     {
         // キャラの不透明度とカラー替え
         if (novelListIndex == 6)
@@ -49,7 +47,7 @@ public class TextMessage : MonoBehaviour
 
     private IEnumerator Novel()
     {
-        sssss();
+        ColorChange();
         int messageCount = 0;
         text.text = "";
 

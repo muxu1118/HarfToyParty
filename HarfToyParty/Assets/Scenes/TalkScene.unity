@@ -1865,8 +1865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de56921605c9674ca4db92861bb9d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a: {fileID: 973185000}
-  b: {fileID: 424451987}
+  redBrother: {fileID: 973185000}
+  blueBrother: {fileID: 424451987}
 --- !u!212 &1968287916
 SpriteRenderer:
   m_ObjectHideFlags: 0

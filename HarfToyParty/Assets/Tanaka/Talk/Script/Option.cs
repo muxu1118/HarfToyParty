@@ -72,16 +72,6 @@ public class Option : MonoBehaviour
 
     public void End()
     {
-        //if (SceneManager.GetActiveScene().name == "TalkScene")
-        //{
-        //    if (Input.GetKeyDown("joystick button 2"))    // B
-        //        if (option.activeSelf == true && optionShadow.activeSelf == true)
-        //        {
-        //            Time.timeScale = 1f;
-        //            GameManager.instance.StateChange();
-        //            SceneController.instance.sceneSwitching("MainGame");
-        //        }
-        //}
         if (SceneManager.GetActiveScene().name == "MainGame")
             if (Input.GetKeyDown("joystick button 2"))    // B
                 if (option.activeSelf == true && optionShadow.activeSelf == true)
