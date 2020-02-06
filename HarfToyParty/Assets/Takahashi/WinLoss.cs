@@ -26,6 +26,13 @@ public class WinLoss : MonoBehaviour
     GameObject crown;
     GameObject tear;
 
+    //王冠の角度
+    float crownAngle = 0.2f;
+    //王冠の位置
+    float crown_x = -242, crown_y = 166;
+    //涙の位置
+    float tear_x = -218, tear_y = 124;
+
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
 
@@ -90,26 +97,18 @@ public class WinLoss : MonoBehaviour
     /// </summary>
     private void crownGenerate()
     {
-        //王冠の角度b = 0.2が弟　-0.2が兄
-        float crownAngle = 0.2f;
-        //王冠の位置
-        //float crown_x = -232, crown_y = 206;
-        float crown_x = -242, crown_y = 166;
-
         if (!slore)
         {
             //青が勝利した場合角度と場所を反転
             crownAngle *= -1f; 
             crown_x = 400;
         }
-
         //王冠の角度を設定
         Quaternion rote = new Quaternion(0.0f, 0.0f, crownAngle, 1.0f);
         //王冠を指定した位置に生成
         crown = Instantiate(crownPrefab, new Vector3(crown_x,crown_y, 0.0f), rote);        
         //指定した親に子として生成
         crown.transform.SetParent(panel.transform, false);
-        //Debug.Log("kita");
     }
 
     /// <summary>
@@ -117,10 +116,6 @@ public class WinLoss : MonoBehaviour
     /// </summary>
     private void tearGenerate()
     {
-        //涙の位置
-        //float tear_x = -208, tear_y = 144;
-        float tear_x = -218, tear_y = 124;
-
         if (slore)
         {
             //赤が勝利した場合場所を反転
@@ -151,7 +146,7 @@ public class WinLoss : MonoBehaviour
                 crownGenerate();
                 tearGenerate();
 
-                GameManager.instance.StateChange();                
+                //GameManager.instance.StateChange();                
                 break;
             case 2:
                 //青の勝利  
@@ -162,7 +157,7 @@ public class WinLoss : MonoBehaviour
                 crownGenerate();
                 tearGenerate();
 
-                GameManager.instance.StateChange();
+                //GameManager.instance.StateChange();
                 break;
         } 
     }
