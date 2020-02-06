@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 8863371754808273770}
   - component: {fileID: 3009345080555688575}
   - component: {fileID: 7375264821378515723}
-  - component: {fileID: 5326243421015404949}
   m_Layer: 0
   m_Name: menu
   m_TagString: Untagged
@@ -174,22 +173,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438621703086157300}
   m_CullTransparentMesh: 0
---- !u!114 &5326243421015404949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438621703086157300}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 632efd5d64233db4db106a866d5fff76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  option: {fileID: 6443095874642896978}
-  optionShadow: {fileID: 0}
-  menu: {fileID: 438621703086157300}
-  Skip: {fileID: 8705361497439061834}
 --- !u!1 &802474427903122294
 GameObject:
   m_ObjectHideFlags: 0

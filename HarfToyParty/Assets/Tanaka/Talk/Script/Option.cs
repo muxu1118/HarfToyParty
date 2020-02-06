@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// TalkScene 用の Script
 public class Option : MonoBehaviour
 {
     [SerializeField] GameObject option;
@@ -19,38 +20,49 @@ public class Option : MonoBehaviour
 
     private void Start()
     {
-        option.SetActive(false);
-        optionShadow.SetActive(false);
-        Frame1.SetActive(false);
-        Frame2.SetActive(false);
-        Choice1.SetActive(false);
-        Choice2.SetActive(false);
-
         if (SceneManager.GetActiveScene().name == "TalkScene")
+        {
+            option.SetActive(false);
+            optionShadow.SetActive(false);
+            Frame1.SetActive(false);
+            Frame2.SetActive(false);
+            Choice1.SetActive(false);
+            Choice2.SetActive(false);
             Skip.SetActive(true);
+        }
     }
 
     public void Update()
     {
-        End();
+        Move();
         FramemMove();
-        MoveFrame();
+        SelectFrame();     
 
-        // RB で activeFlagの入れ替え
-        if (Input.GetKeyDown("joystick button 5"))    // RB
+        if (SceneManager.GetActiveScene().name == "TalkScene")
         {
-            if (activeFlag)
-                Menumenu();
-            else
-                Numenume();
+            // RB で activeFlagの入れ替え
+            //if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown("joystick button 5"))    // RB
+            {
+                if (activeFlag)
+                    SystemCall();
+                else
+                    MenuOut();
 
-            activeFlag = !activeFlag;
+                activeFlag = !activeFlag;
+            }
         }
-        else if (SceneManager.GetActiveScene().name == "MainGeme")
-            Skip.SetActive(false);
+   }
+
+    void Move()
+    {
+        if (option.activeSelf == true)
+            Time.timeScale = 0f;
+        else if (option.activeSelf == false)
+            Time.timeScale = 1f;
     }
 
-    public void Menumenu()
+    public void SystemCall()
     {
         option.SetActive(true);
         optionShadow.SetActive(true);
@@ -58,28 +70,14 @@ public class Option : MonoBehaviour
 
         if (Frame2.activeSelf == true)
             Frame1.SetActive(false);
-        Time.timeScale = 0f;
     }
 
-    public void Numenume()
+    public void MenuOut()
     {
         option.SetActive(false);
         optionShadow.SetActive(false);
         Frame1.SetActive(false);
         Frame2.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    public void End()
-    {
-        if (SceneManager.GetActiveScene().name == "MainGame")
-            if (Input.GetKeyDown("joystick button 2"))    // B
-                if (option.activeSelf == true && optionShadow.activeSelf == true)
-                {
-                    Time.timeScale = 1f;
-                    GameManager.instance.StateChange();
-                    SceneController.instance.sceneSwitching("Title");
-                }
     }
 
     public void Frame01()
@@ -106,9 +104,10 @@ public class Option : MonoBehaviour
         Choice2.SetActive(true);
     }
 
-    public void MoveFrame()
+    public void SelectFrame()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
+            //if (Input.GetKeyDown(KeyCode.A))
             if (Input.GetKeyDown("joystick button 3"))  // Y
             {
                 if (activeFlag)
@@ -118,20 +117,22 @@ public class Option : MonoBehaviour
 
                 activeFlag = !activeFlag;
             }
-            else if (Input.GetKeyDown("joystick button 2"))  // B
-                if (Frame1.activeSelf == true && Choice1.activeSelf == true)
+            else if (Frame1.activeSelf == true && Choice1.activeSelf == true)
+                if (Input.GetKeyDown("joystick button 2"))  // B
+                //if (Input.GetKeyDown(KeyCode.W))
                 {
                     GameManager.instance.StateChange();
                     SceneController.instance.sceneSwitching("Title");
                 }
                 else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
-                    Numenume();
+                    MenuOut();
     }
 
     public void FramemMove()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 0"))   // 十字キー左右
+            //if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown("joystick button 0"))
             {
                 if (activeFlag)
                     Frame01();
@@ -140,14 +141,15 @@ public class Option : MonoBehaviour
 
                 activeFlag = !activeFlag;
             }
-            else if (Input.GetKeyDown("joystick button 2"))  // B
-                if (Frame1.activeSelf == true && Choice1.activeSelf == true)
+            else if (Frame1.activeSelf == true && Choice1.activeSelf == true)
+                //if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown("joystick button 2"))  // B
                 {
                     Time.timeScale = 1f;
                     GameManager.instance.StateChange();
                     SceneController.instance.sceneSwitching("MainGame");
                 }
                 else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
-                    Numenume();
+                    MenuOut();
     }
 }
