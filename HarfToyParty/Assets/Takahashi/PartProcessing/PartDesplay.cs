@@ -10,23 +10,20 @@ public class PartDesplay : MonoBehaviour
     //プレイヤーの変更する画像を選択
     [SerializeField]
     SpriteRenderer[] character_changePart;
-    //投げるパーツ
-    [SerializeField]
-    Image CenterPart;
-    //移動するパーツの速さ調整用
-    [SerializeField]
-    int x, y;
-    [SerializeField]
-    float gravity;
+       
     [SerializeField]
     GameObject effect;
 
     [SerializeField]
-    Rigidbody2D rb2;
-    Vector2 pos;
-    //パーツを徐々に透明にするためのもの
-    float colorDown = 6;
-    bool colorflag = false;
+    Image throwPart;
+
+    //中央のパーツの初期位置を保存
+    Vector2 centerPartVector;
+
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
@@ -39,24 +36,10 @@ public class PartDesplay : MonoBehaviour
         //    }            
         //}
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            partThrow();
-        }
-
-        //透明度を下げる
-        if (colorflag)
-        {
-            colorDown -= Time.deltaTime;
-            CenterPart.color = new Color(255, 255, 255, colorDown);
-        }
-        //下がりきったらおしまい
-        else if (colorDown < 0)
-        {
-            colorflag = !colorflag;
-            colorDown = 1;
-            PartGet();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    partThrow();
+        //}       
     }
 
     /// <summary>
@@ -73,35 +56,42 @@ public class PartDesplay : MonoBehaviour
     /// </summary>
     private void centerPartDisplay(string part)
     {
-        CenterPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/gimmick_body1_B");
+        //CenterPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/"+part);
     }
 
     /// <summary>
     /// パーツを取得したときに呼び出される
     /// </summary>
-    private void PartGet()
+    public void PartGet(string part)
     {
+        getPart = part;
         switch (getPart) {
             case "R_Face":
+                PartSearch();
                 character_changePart[0].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightFace");
                 //part.Split = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //choicePart[0] = Resources.Load<Sprite>("Sprite/Part/R_Leg");
                 //PartSearch(0);
                 break;
             case "R_Hand":
+                PartSearch();
                 character_changePart[1].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightArm");
                 break;
             case "R_Leg":
+                PartSearch();
                 character_changePart[2].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightLeg");
                 break;
             case "B_Face":
+                PartSearch();
                 character_changePart[3].sprite = Resources.Load<Sprite>("Sprites/ChangePart/LeftFace");
                 break;
             case "B_Hand":
+                PartSearch();
                 character_changePart[4].sprite = Resources.Load<Sprite>("Sprites/ChangePart/LeftArm");
                 break;
             case "B_Leg":
-                character_changePart[5].sprite = Resources.Load<Sprite>("Sprites/Part/LeftLeg");
+                PartSearch();
+                character_changePart[5].sprite = Resources.Load<Sprite>("Sprites/ChangePart/LeftLeg");
                 break;
             default:
                 Debug.LogError(getPart);
@@ -109,31 +99,17 @@ public class PartDesplay : MonoBehaviour
         }
     }
 
-    private void PartSearch(int arrayNumber)
+    private void PartSearch()
     {
-        character_changePart[arrayNumber].sprite = Resources.Load<Sprite>("Sprite/Part" + getPart);
-    }
-     
-    /// <summary>
-    /// パーツを放物線を描いて飛ばす
-    /// </summary>
-    public void partThrow()
-    {
-        //パーツのカラーを徐々に薄くするトリガー
-        colorflag = !colorflag;
-        //放物線上を求める
-        pos = new Vector2(x * 10 + 2 / (9.8f * 10 * 10), y * 10 + 2 / (9.8f * 10 * 10));
-        //一度だけ力を加える
-        rb2.AddForce(pos, ForceMode2D.Impulse);
-
-        StartCoroutine(switching(1.5f));
-
-        rb2.gravityScale = gravity;
-    }
+        Debug.Log("中央に表示");
+        throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + getPart);
+        throwPart.gameObject.SetActive(true);
+        effect.SetActive(true);
+    }       
 
     //力を加えたオブジェクトに重力をかける
-    IEnumerator switching(float stopTime)
+    IEnumerator switching()
     {
-        yield return new WaitForSeconds(stopTime);        
+        yield return new WaitForSeconds(1);        
     }
 }

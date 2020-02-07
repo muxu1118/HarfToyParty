@@ -25,6 +25,7 @@ public class WinLoss : MonoBehaviour
 
     GameObject crown;
     GameObject tear;
+    GameObject draw;
 
     //王冠の角度
     float crownAngle = 0.2f;
@@ -36,8 +37,11 @@ public class WinLoss : MonoBehaviour
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
 
+    Vector2 result_UI;
     int i = 1;
     bool b = true;
+
+    bool stage = false;
 
     void Start()
     {
@@ -55,24 +59,34 @@ public class WinLoss : MonoBehaviour
     }
     
     private void Update()
-    {        
+    {
+        //ステージの切り替え
+        if (stage)
+        {
+            if(Input.GetKeyDown("joystick 1 button 4"))
+            {
+                Stage.instance.StageSelect(1);
+                stage = false;
+            }
+        }
+
         //位置確認用
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Quaternion rote = new Quaternion(0.0f, 0.0f, 0.2f, 1.0f);
-
+            
             //GameObject crown = Instantiate(crownPrefab, new Vector3(x, y, 0.0f), rote);
             //crown.transform.parent = panel.transform;
             //crown.transform.SetParent(panel.transform, false);
             //Debug.Log("wwww");
-            if (!b)
-            {
-                Destroy(crown);
-                Destroy(tear);
-                panel.SetActive(false);
-                b = !b;
-            }
-            else
+            //if (!b)
+            //{
+            //    Destroy(crown);
+            //    Destroy(tear);
+            //    panel.SetActive(false);
+            //    b = !b;
+            //}
+            //else
             {
                 if(i == 1)
                 {
@@ -91,6 +105,18 @@ public class WinLoss : MonoBehaviour
         }
         titleSceneLoad();
     }    
+
+    /// <summary>
+    /// 引き分けを表示
+    /// </summary>
+    private void resultGenerate()
+    {        
+        draw = Instantiate(red.gameObject, new Vector3(86, 99, 0.0f), Quaternion.identity);
+        draw.transform.localScale = new Vector2(1.5f, 1.5f);
+        draw.transform.SetParent(panel.transform, false);
+        red.gameObject.SetActive(false);
+        blue.gameObject.SetActive(false);
+    }
 
     /// <summary>
     /// 王冠を生成する
@@ -159,7 +185,11 @@ public class WinLoss : MonoBehaviour
 
                 //GameManager.instance.StateChange();
                 break;
-        } 
+            case 3:
+                resultGenerate();
+                break;
+        }
+        stage = true;
     }
 
     private void titleSceneLoad()

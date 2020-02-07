@@ -36,6 +36,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int savePartB = 0;
     public int savePartR = 0;
 
+    bool isDraw = false;
+
     private void Start()
     {
         //GameState = State.Main;
@@ -86,6 +88,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             Debug.Log("BlueWin");
             //GameState = State.Title;
             winLoss.WinOrLoss(2);
+        }
+        // 引き分け
+        if (isDraw && GameState == State.Main)
+        {
+            //引き分けの処理
+            //winLoss.WinOrLoss(3);
+            //isdraw = false;
         }
     }
 
@@ -143,5 +152,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 Stage.instance.StageSelect(StageCount);
                 break;            
         }    
+    }
+    /// <summary>
+    /// Timerから呼び出されるよう
+    /// </summary>
+    public void DrawGame()
+    {
+       isDraw = true;
     }
 }
