@@ -72,7 +72,6 @@ public class TitleMock : MonoBehaviour
         {     
             GameManager.instance.StateChange();
             FadeManager.FadeOut(1);
-            Debug.Log("ChoiceSceneを呼んでるよ");
         }
     }
 }

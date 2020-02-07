@@ -17,20 +17,21 @@ public class Option : MonoBehaviour
     [SerializeField] GameObject Choice2;
 
     private bool activeFlag = true;
+    private bool test;
 
     private void Start()
     {
         FadeManager.FadeIn();
-        if (SceneManager.GetActiveScene().name == "TalkScene")
-        {
-            option.SetActive(false);
-            optionShadow.SetActive(false);
-            Frame1.SetActive(false);
-            Frame2.SetActive(false);
-            Choice1.SetActive(false);
-            Choice2.SetActive(false);
-            Skip.SetActive(true);
-        }
+
+        test = true;
+
+        option.SetActive(false);
+        optionShadow.SetActive(false);
+        Frame1.SetActive(false);
+        Frame2.SetActive(false);
+        Choice1.SetActive(false);
+        Choice2.SetActive(false);
+        Skip.SetActive(true);
     }
 
     public void Update()
@@ -124,8 +125,13 @@ public class Option : MonoBehaviour
             {
                 if (Input.GetKeyDown("joystick button 2"))  // B
                 {
-                    FadeManager.FadeOut(0);
-                    GameManager.instance.StateChange();
+                    MenuOut();
+                    Time.timeScale = 1f;
+                    if (test)
+                    {
+                        FadeManager.FadeOut(0);
+                        test = false;
+                    }
                 }
             }
             else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
@@ -149,9 +155,14 @@ public class Option : MonoBehaviour
             {
                 if (Input.GetKeyDown("joystick button 2"))  // B
                 {
+                    MenuOut();
                     Time.timeScale = 1f;
-                    FadeManager.FadeOut(2);
                     GameManager.instance.StateChange();
+                    if (test)
+                    {
+                        FadeManager.FadeOut(2);
+                        test = false;
+                    }
                 }
             }
             else if (Frame2.activeSelf == true)
