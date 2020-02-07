@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // MainGame 用の Script
@@ -14,9 +15,10 @@ public class MainGameOption : MonoBehaviour
     [SerializeField] GameObject Choose02;
 
     private bool flagActive = true;
- 
+
     void Start()
     {
+        FadeManager.FadeIn();
         Optionmenu.SetActive(false);
         Shadow.SetActive(false);
         Choose01.SetActive(false);
@@ -25,16 +27,10 @@ public class MainGameOption : MonoBehaviour
 
     void Update()
     {
-        MenuCall();
-        MenuDelet();
         Select();
         Finish();
         MoveGame();
-    }
-    // RB で flagActive の切り替え   
-    public void Flag()
-    {
-        // RB でオプションを呼び出す
+
         if (Input.GetKeyDown("joystick button 5"))    // RB
         {
             if (flagActive)
@@ -44,7 +40,19 @@ public class MainGameOption : MonoBehaviour
             // Active / 非Active の入れ替え
             flagActive = !flagActive;
         }
+        else if (Input.GetKeyDown("joystick button 1"))
+            MenuDelet();
+
     }
+
+    void MoveGame()
+    {
+        if (Optionmenu.activeSelf == true)
+            Time.timeScale = 0f;
+        else if (Optionmenu.activeSelf == false)
+            Time.timeScale = 1f;
+    }
+
     // オプション呼び出しのためのクラス
     public void MenuCall()
     {
@@ -54,7 +62,6 @@ public class MainGameOption : MonoBehaviour
 
         if (Choose02.activeSelf == true)
             Choose01.SetActive(false);
-        Time.timeScale = 0f;
     }
     // オプションを 非Active 状態にするためのクラス
     public void MenuDelet()
@@ -63,7 +70,6 @@ public class MainGameOption : MonoBehaviour
         Shadow.SetActive(false);
         Choose01.SetActive(false);
         Choose02.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     public void SelectChice()
@@ -103,21 +109,12 @@ public class MainGameOption : MonoBehaviour
 
     public void Finish()
     {
-        if (SceneManager.GetActiveScene().name == "MainGame")
-            if (Input.GetKeyDown("joystick button 2"))    // B
-                if (Optionmenu.activeSelf == true && Shadow.activeSelf == true)
-                {
-                    Time.timeScale = 1f;
-                    GameManager.instance.StateChange();
-                    SceneController.instance.sceneSwitching("Title");
-                }
-    }
-
-    void MoveGame()
-    {
-        if (Optionmenu.activeSelf == true)
-            Time.timeScale = 0f;
-        else if (Optionmenu.activeSelf == false)
-            Time.timeScale = 1f;
+        if (Input.GetKeyDown("joystick button 2"))    // B
+            if (Optionmenu.activeSelf == true && Shadow.activeSelf == true)
+            {
+                Time.timeScale = 1f;
+                GameManager.instance.StateChange();
+                SceneController.instance.sceneSwitching("Title");
+            }
     }
 }
