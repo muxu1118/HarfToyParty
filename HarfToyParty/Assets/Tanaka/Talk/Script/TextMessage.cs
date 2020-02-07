@@ -65,10 +65,7 @@ public class TextMessage : MonoBehaviour
             StartCoroutine(Novel());
 
         else if (novelListIndex == 7)
-        {
             Check.SetActive(true);
-        }
-        //SceneManager.LoadScene("Choice");
     }
 
     public void Scene()

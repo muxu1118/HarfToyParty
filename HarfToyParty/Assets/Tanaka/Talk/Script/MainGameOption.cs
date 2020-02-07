@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 // MainGame 用の Script
 public class MainGameOption : MonoBehaviour
 {
+    // SerializeField -------------------------
     [SerializeField] GameObject Optionmenu;
     [SerializeField] GameObject Shadow;
     [SerializeField] GameObject Menuop;
@@ -14,7 +15,6 @@ public class MainGameOption : MonoBehaviour
 
     private bool flagActive = true;
  
-    // Start is called before the first frame update
     void Start()
     {
         Optionmenu.SetActive(false);
@@ -23,28 +23,29 @@ public class MainGameOption : MonoBehaviour
         Choose02.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         MenuCall();
         MenuDelet();
         Select();
         Finish();
+        MoveGame();
     }
-    
+    // RB で flagActive の切り替え   
     public void Flag()
     {
+        // RB でオプションを呼び出す
         if (Input.GetKeyDown("joystick button 5"))    // RB
         {
             if (flagActive)
                 MenuCall();
             else
                 MenuDelet();
-
+            // Active / 非Active の入れ替え
             flagActive = !flagActive;
         }
     }
-
+    // オプション呼び出しのためのクラス
     public void MenuCall()
     {
         Optionmenu.SetActive(true);
@@ -55,7 +56,7 @@ public class MainGameOption : MonoBehaviour
             Choose01.SetActive(false);
         Time.timeScale = 0f;
     }
-
+    // オプションを 非Active 状態にするためのクラス
     public void MenuDelet()
     {
         Optionmenu.SetActive(false);
@@ -112,7 +113,7 @@ public class MainGameOption : MonoBehaviour
                 }
     }
 
-    void MoveScene()
+    void MoveGame()
     {
         if (Optionmenu.activeSelf == true)
             Time.timeScale = 0f;

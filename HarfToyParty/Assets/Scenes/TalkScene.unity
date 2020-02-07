@@ -586,8 +586,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 964089260}
-  - component: {fileID: 964089262}
   - component: {fileID: 964089261}
+  - component: {fileID: 964089262}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -2048,6 +2048,11 @@ PrefabInstance:
       value: newMenuPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 3688476467924651440, guid: ffa3fe32e9ecca0458a17562428d3b0f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965808843179572532, guid: ffa3fe32e9ecca0458a17562428d3b0f,
         type: 3}
       propertyPath: m_IsActive
       value: 1
