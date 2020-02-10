@@ -13,9 +13,9 @@ public class WinLoss : MonoBehaviour
     GameObject background;
     //Win,Loseを表示させるための場所に配置したオブジェクト
     [SerializeField]
-    Image red,blue;
+    Image red,blue,drow;
     //Win,Loseのスプライト画像を取得するためのもの
-    Sprite Win,Lose; 
+    Sprite Win,Lose,Drow; 
 
     //[SerializeField]
     //float b,x,y;    
@@ -42,6 +42,7 @@ public class WinLoss : MonoBehaviour
     bool b = true;
 
     bool stage = false;
+    int stageCount = 1;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class WinLoss : MonoBehaviour
         Win = Resources.Load<Sprite>("Sprites/WinLose/w");
         //2P勝利の画像を取得
         Lose = Resources.Load<Sprite>("Sprites/WinLose/l");
+        Drow = Resources.Load<Sprite>("Sprites/WinLose/d");
         //王冠のプレハブを取得
         crownPrefab = (GameObject)Resources.Load("Prefabs/ResultUI/Crown");
         //涙のプレハブを取得
@@ -65,55 +67,59 @@ public class WinLoss : MonoBehaviour
         {
             if(Input.GetKeyDown("joystick 1 button 4"))
             {
-                Stage.instance.StageSelect(1);
+                Stage.instance.StageSelect(stageCount);
+                stageCount++;
                 stage = false;
             }
         }
 
         //位置確認用
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Quaternion rote = new Quaternion(0.0f, 0.0f, 0.2f, 1.0f);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    //Quaternion rote = new Quaternion(0.0f, 0.0f, 0.2f, 1.0f);
             
-            //GameObject crown = Instantiate(crownPrefab, new Vector3(x, y, 0.0f), rote);
-            //crown.transform.parent = panel.transform;
-            //crown.transform.SetParent(panel.transform, false);
-            //Debug.Log("wwww");
-            //if (!b)
-            //{
-            //    Destroy(crown);
-            //    Destroy(tear);
-            //    panel.SetActive(false);
-            //    b = !b;
-            //}
-            //else
-            {
-                if(i == 1)
-                {
-                    WinOrLoss(1);
+        //    //GameObject crown = Instantiate(crownPrefab, new Vector3(x, y, 0.0f), rote);
+        //    //crown.transform.parent = panel.transform;
+        //    //crown.transform.SetParent(panel.transform, false);
+        //    //Debug.Log("wwww");
+        //    //if (!b)
+        //    //{
+        //    //    Destroy(crown);
+        //    //    Destroy(tear);
+        //    //    panel.SetActive(false);
+        //    //    b = !b;
+        //    //}
+        //    //else
+        //    {
+        //        if(i == 1)
+        //        {
+        //            WinOrLoss(1);
                     
-                    i = 2;
-                }
-                else if(i == 2)
-                {
-                    WinOrLoss(2);
+        //            i = 2;
+        //        }
+        //        else if(i == 2)
+        //        {
+        //            WinOrLoss(2);
                    
-                    i = 1;
-                }
-                b = !b;
-            }
-        }
-        titleSceneLoad();
+        //            i = 1;
+        //        }
+        //        b = !b;
+        //    }
+        //}
+        //titleSceneLoad();
     }    
 
     /// <summary>
     /// 引き分けを表示
     /// </summary>
     private void resultGenerate()
-    {        
-        draw = Instantiate(red.gameObject, new Vector3(86, 99, 0.0f), Quaternion.identity);
-        draw.transform.localScale = new Vector2(1.5f, 1.5f);
-        draw.transform.SetParent(panel.transform, false);
+    {
+
+        //draw = Instantiate(red.gameObject, new Vector3(86, 99, 0.0f), Quaternion.identity);
+        //draw.transform.localScale = new Vector2(1.5f, 1.5f);
+        //draw.transform.SetParent(panel.transform, false);
+        drow.gameObject.SetActive(true);
+        drow.sprite = Drow;
         red.gameObject.SetActive(false);
         blue.gameObject.SetActive(false);
     }
@@ -189,6 +195,7 @@ public class WinLoss : MonoBehaviour
                 resultGenerate();
                 break;
         }
+        //
         stage = true;
     }
 
@@ -199,5 +206,12 @@ public class WinLoss : MonoBehaviour
             GameManager.instance.StateChange();
             SceneController.instance.sceneSwitching("Title");
         }
+    }
+
+    //ステージが切り替わるタイミングで呼ばれる
+    public void DestroyUI()
+    {
+        drow.gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 }

@@ -7,15 +7,15 @@ public class PartThrow : MonoBehaviour
 {
     [SerializeField]
     GameObject throwingObj, targetObj;
-    [SerializeField]
-    int x, y;
+    
+    public int x, y,g;
 
-    [SerializeField]
+    //[SerializeField]
     Rigidbody2D rb2;
     Vector2 pos;
 
     float Middle_x, Middle_y;
-    float colorDown = 6;
+    float colorDown = 1.5f;
 
     bool colorflag = false;
     float Scale_x, Scale_y;
@@ -39,9 +39,8 @@ public class PartThrow : MonoBehaviour
         {            
             partThrow();
         }
-        //StartCoroutine("switching");
-        //partThrow();
-
+        //StartCoroutine("stop");
+        
         //透明度を下げる
         if (colorflag)
         {
@@ -56,6 +55,7 @@ public class PartThrow : MonoBehaviour
         //下がりきったらおしまい
         if (colorDown < 0)
         {
+            x = 11;
             colorflag = !colorflag;
             throwingObj.GetComponent<Image>().color = new Color(255, 255, 255, 255); //色を初期化
             gameObject.transform.position = initial;                                 //位置を初期化
@@ -74,23 +74,31 @@ public class PartThrow : MonoBehaviour
     /// </summary>
     public void partThrow()
     {
+        rb2 = throwingObj.GetComponent<Rigidbody2D>();
         rb2.constraints = RigidbodyConstraints2D.None;
-        rb2.gravityScale = -1;
+        rb2.gravityScale = -2;
         //パーツのカラーを徐々に薄くするトリガー
         colorflag = !colorflag;
         //放物線上を求める
-        pos = new Vector2(x * 10 + 2 / (9.8f * 10 * 10), x * 10 + 2 / (9.8f * 10 * 10));
+        pos = new Vector2(x * 10 + 2 / (9.8f * 10 * 10), y * 10 + 2 / (9.8f * 10 * 10));
         //一度だけ力を加える
         rb2.AddForce(pos, ForceMode2D.Impulse);
         StartCoroutine("switching");
         
     }
 
+    IEnumerator stop()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        partThrow();
+    }
+
     //力を加えたオブジェクトに重力をかける
     IEnumerator switching()
     {        
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
-        rb2.gravityScale = 9;
+        rb2.gravityScale = g;
     }    
 }

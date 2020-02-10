@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PartDesplay : MonoBehaviour
-{    
-    string getPart;
-
+{            
     //プレイヤーの変更する画像を選択
     [SerializeField]
     SpriteRenderer[] character_changePart;
@@ -20,80 +18,57 @@ public class PartDesplay : MonoBehaviour
     //中央のパーツの初期位置を保存
     Vector2 centerPartVector;
 
+    int winnerNum;
+    PartThrow _partThrow;
+    string getPart;
+    string DesplayPart;
+    string Desplay = "Desplay";
+    int partNum;
+
     private void Start()
     {
-        
+        _partThrow = GameObject.Find("throwobj").GetComponent<PartThrow>();
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    if(i == 1)
-        //    {
-        //        PartGet("R_Hand");
-        //        i++;
-        //    }            
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    partThrow();
-        //}       
-    }
-
-    /// <summary>
-    /// プレイヤーが取得したパーツの名前を取得
-    /// </summary>
-    /// <param name="partName"></param>
-    public void partNameGet(string partName)
-    {
-        getPart = partName;
-    }
-
-    /// <summary>
-    /// 中央にパーツを表示
-    /// </summary>
-    private void centerPartDisplay(string part)
-    {
-        //CenterPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/"+part);
-    }
+        
+    }        
 
     /// <summary>
     /// パーツを取得したときに呼び出される
     /// </summary>
-    public void PartGet(string part)
+    public void PartGet(string part, int winner)
     {
         getPart = part;
+        winnerNum = winner;
         switch (getPart) {
             case "R_Face":
-                PartSearch();
-                character_changePart[0].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightFace");
-                //part.Split = Resources.Load<Sprite>("Sprite/Part/R_Leg");
-                //choicePart[0] = Resources.Load<Sprite>("Sprite/Part/R_Leg");
-                //PartSearch(0);
+                partNum = 0;
+                StartCoroutine("switching");
                 break;
             case "R_Hand":
-                PartSearch();
-                character_changePart[1].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightArm");
+                partNum = 1;
+                StartCoroutine("switching");
                 break;
             case "R_Leg":
-                PartSearch();
-                character_changePart[2].sprite = Resources.Load<Sprite>("Sprites/ChangePart/RightLeg");
+                partNum = 2;
+                StartCoroutine("switching");
                 break;
             case "B_Face":
-                PartSearch();
-                character_changePart[3].sprite = Resources.Load<Sprite>("Sprites/ChangePart/LeftFace");
+                partNum = 3;
+                StartCoroutine("switching");
                 break;
             case "B_Hand":
-                PartSearch();
-                character_changePart[4].sprite = Resources.Load<Sprite>("Sprites/ChangePart/LeftArm");
+                partNum = 4;
+                StartCoroutine("switching");
                 break;
             case "B_Leg":
-                PartSearch();
-                character_changePart[5].sprite = Resources.Load<Sprite>("Sprites/ChangePart/LeftLeg");
+                partNum = 5;
+                StartCoroutine("switching");
                 break;
             default:
+                //既定のパーツが取得されなかった場合
                 Debug.LogError(getPart);
                 break;
         }
@@ -101,15 +76,26 @@ public class PartDesplay : MonoBehaviour
 
     private void PartSearch()
     {
+        if (winnerNum == 1)
+        {
+            _partThrow.x *= -1;
+        }
         Debug.Log("中央に表示");
         throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + getPart);
         throwPart.gameObject.SetActive(true);
         effect.SetActive(true);
+        _partThrow.partThrow();
     }       
 
-    //力を加えたオブジェクトに重力をかける
+    //
     IEnumerator switching()
     {
-        yield return new WaitForSeconds(1);        
+        PartSearch();
+        
+        yield return new WaitForSeconds(3f);  
+
+        Debug.Log("表示");
+        DesplayPart = "Sprites/ChangePart/" + Desplay + getPart;
+        character_changePart[partNum].sprite = Resources.Load<Sprite>(DesplayPart);
     }
 }

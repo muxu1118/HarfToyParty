@@ -78,7 +78,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
-            //GameState = State.Title;
+            GameState = State.Title;
             winLoss.WinOrLoss(1);
         }
         // 青が勝ったら
@@ -86,15 +86,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("BlueWin");
-            //GameState = State.Title;
+            GameState = State.Title;
             winLoss.WinOrLoss(2);
         }
         // 引き分け
         if (isDraw && GameState == State.Main)
         {
             //引き分けの処理
-            //winLoss.WinOrLoss(3);
-            //isdraw = false;
+            winLoss.WinOrLoss(3);
+            isDraw = false;
         }
     }
 
@@ -137,22 +137,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         gameRule = game;        
     }     
     
-    private void stageChange()
-    {
-        switch (StageCount)
-        {
-            //case 0:
-            //    Stage.instance.StageSelect(StageCount);
-            //    Debug.Log("ステージ変更");
-            //    break;
-            case 1:
-                Stage.instance.StageSelect(StageCount);
-                break;
-            case 2:
-                Stage.instance.StageSelect(StageCount);
-                break;            
-        }    
-    }
+
+
     /// <summary>
     /// Timerから呼び出されるよう
     /// </summary>
