@@ -79,7 +79,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
             GameState = State.Title;
-            winLoss.WinOrLoss(1);
+            winLoss.GameEnd(1);
         }
         // 青が勝ったら
         if (BluePartGet == gameRule.PartGet && GameState == State.Main)
@@ -87,13 +87,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("BlueWin");
             GameState = State.Title;
-            winLoss.WinOrLoss(2);
+            winLoss.GameEnd(2);
         }
         // 引き分け
         if (isDraw && GameState == State.Main)
         {
             //引き分けの処理
-            winLoss.WinOrLoss(3);
+            winLoss.WinOrLose(3);
             isDraw = false;
         }
     }
@@ -130,7 +130,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         GameState = State.Title;
         GameRule game;
-        game.PartGet = 1;
+        game.PartGet = 2;
         game.Stage = 0;
         game.Time = 300;
         game.GameCount = 0;

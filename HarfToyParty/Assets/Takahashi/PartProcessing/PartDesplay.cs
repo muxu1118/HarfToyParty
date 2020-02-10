@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PartDesplay : MonoBehaviour
-{            
+{
+    PartThrow _partThrow;
+    WinLoss _winLoss;
+
     //プレイヤーの変更する画像を選択
     [SerializeField]
     SpriteRenderer[] character_changePart;
@@ -19,7 +22,7 @@ public class PartDesplay : MonoBehaviour
     Vector2 centerPartVector;
 
     int winnerNum;
-    PartThrow _partThrow;
+
     string getPart;
     string DesplayPart;
     string Desplay = "Desplay";
@@ -27,14 +30,10 @@ public class PartDesplay : MonoBehaviour
 
     private void Start()
     {
-        _partThrow = GameObject.Find("throwobj").GetComponent<PartThrow>();
+        _partThrow = GameObject.Find("throwObject").GetComponent<PartThrow>();
+        _winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
     }
-
-    private void Update()
-    {
-        
-    }        
-
+   
     /// <summary>
     /// パーツを取得したときに呼び出される
     /// </summary>
@@ -42,7 +41,8 @@ public class PartDesplay : MonoBehaviour
     {
         getPart = part;
         winnerNum = winner;
-        switch (getPart) {
+        switch (getPart)
+        {
             case "R_Face":
                 partNum = 0;
                 StartCoroutine("switching");
@@ -81,8 +81,7 @@ public class PartDesplay : MonoBehaviour
             _partThrow.x *= -1;
         }
         Debug.Log("中央に表示");
-        throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + getPart);
-        throwPart.gameObject.SetActive(true);
+        
         effect.SetActive(true);
         _partThrow.partThrow();
     }       
@@ -90,12 +89,28 @@ public class PartDesplay : MonoBehaviour
     //
     IEnumerator switching()
     {
-        PartSearch();
-        
-        yield return new WaitForSeconds(3f);  
+        throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + getPart);
+        throwPart.gameObject.SetActive(true);
 
-        Debug.Log("表示");
+        yield return new WaitForSeconds(1f);
+
+        PartSearch();
+        effect.SetActive(false);
+
+        yield return new WaitForSeconds(2f);  
+
         DesplayPart = "Sprites/ChangePart/" + Desplay + getPart;
         character_changePart[partNum].sprite = Resources.Load<Sprite>(DesplayPart);
+        
+        yield return new WaitForSeconds(2f);
+
+        if(partNum <= 2)
+        {
+            _winLoss.WinOrLose(1);
+        }
+        else if(partNum >= 3)
+        {
+            _winLoss.WinOrLose(2);
+        }        
     }
 }

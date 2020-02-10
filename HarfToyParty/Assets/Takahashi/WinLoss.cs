@@ -30,14 +30,16 @@ public class WinLoss : MonoBehaviour
     //王冠の角度
     float crownAngle = 0.2f;
     //王冠の位置
+    [SerializeField]
     float crown_x = -242, crown_y = 166;
     //涙の位置
+    [SerializeField]
     float tear_x = -218, tear_y = 124;
 
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
 
-    Vector2 result_UI;
+    //Vector2 result_UI;
     int i = 1;
     bool b = true;
 
@@ -65,23 +67,20 @@ public class WinLoss : MonoBehaviour
         //ステージの切り替え
         if (stage)
         {
-            if(Input.GetKeyDown("joystick 1 button 4"))
+            if(Input.GetKeyDown("joystick button 5"))
             {
                 Stage.instance.StageSelect(stageCount);
+                Stage.instance.StageReset();
+                panel.SetActive(false);
                 stageCount++;
-                stage = false;
+                stage = false;                
             }
         }
 
         //位置確認用
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    //Quaternion rote = new Quaternion(0.0f, 0.0f, 0.2f, 1.0f);
-            
-        //    //GameObject crown = Instantiate(crownPrefab, new Vector3(x, y, 0.0f), rote);
-        //    //crown.transform.parent = panel.transform;
-        //    //crown.transform.SetParent(panel.transform, false);
-        //    //Debug.Log("wwww");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+        //    
         //    //if (!b)
         //    //{
         //    //    Destroy(crown);
@@ -105,8 +104,7 @@ public class WinLoss : MonoBehaviour
         //        }
         //        b = !b;
         //    }
-        //}
-        //titleSceneLoad();
+        }
     }    
 
     /// <summary>
@@ -161,7 +159,7 @@ public class WinLoss : MonoBehaviour
     /// 試合が終了したときにどちらが勝ったかを表示させる
     /// </summary>
     /// <param name="winner">勝ったプレイヤー</param>
-    public void WinOrLoss(int winner)
+    public void GameEnd(int winner)
     {
         //リザルトUIを表示
         panel.SetActive(true);
@@ -190,28 +188,60 @@ public class WinLoss : MonoBehaviour
                 tearGenerate();
 
                 //GameManager.instance.StateChange();
+                break;            
+        }        
+    }
+
+    /// <summary>
+    /// どちらかがパーツを取得した際に呼ばれる
+    /// </summary>
+    /// <param name="winner"></param>
+    public void WinOrLose(int winner)
+    {
+        panel.SetActive(true);
+
+        //ステージを切り替えるためのスイッチ
+        stage = true;
+        Debug.LogWarning(stage);
+
+        int winnerDesplay = winner;
+        switch (winnerDesplay)
+        {
+            case 1:
+                //赤が勝利の場合
+                red.sprite = Win;
+                blue.sprite = Lose;                             
+
+                break;
+            case 2:
+                //青の勝利  
+                red.sprite = Lose;
+                blue.sprite = Win;
+
                 break;
             case 3:
                 resultGenerate();
                 break;
         }
-        //
-        stage = true;
+        
     }
 
     private void titleSceneLoad()
     {
-        if (Input.GetKeyDown("joystick 1 button 4"))
+        if (Input.GetKeyDown("joystick button 5"))
         {
-            GameManager.instance.StateChange();
+            DestroyUI();
             SceneController.instance.sceneSwitching("Title");
         }
     }
 
-    //ステージが切り替わるタイミングで呼ばれる
-    public void DestroyUI()
+    /// <summary>
+    /// ゲームが終わるときに呼ばれる
+    /// </summary>
+    private void DestroyUI()
     {
-        drow.gameObject.SetActive(false);
-        panel.SetActive(false);
+        stageCount = 1;
+        Destroy(tear);
+        Destroy(crown);
     }
 }
