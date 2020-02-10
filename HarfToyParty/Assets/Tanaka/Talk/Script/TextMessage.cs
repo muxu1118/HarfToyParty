@@ -18,11 +18,10 @@ public class TextMessage : MonoBehaviour
     public static string[] sentence = new string[7];
     public static int sentenceNum = 0;
 
-    //private bool Scene = false;
-
     // Start is called before the first frame update
     void Start()
     {
+        FadeManager.FadeIn();
         Check.SetActive(false);
         Sentence();
         for (int i = 0; i < sentence.Length; i++)
@@ -36,10 +35,8 @@ public class TextMessage : MonoBehaviour
         Scene();
     }
 
-    void sssss()
+    void ColorChange()
     {
-        //if (novelListIndex == 4 || novelListIndex == 2)
-        //    sentenceNum = 3;
         // キャラの不透明度とカラー替え
         if (novelListIndex == 6)
             sentenceNum = 3;
@@ -51,7 +48,7 @@ public class TextMessage : MonoBehaviour
 
     private IEnumerator Novel()
     {
-        sssss();
+        ColorChange();
         int messageCount = 0;
         text.text = "";
 
@@ -69,10 +66,7 @@ public class TextMessage : MonoBehaviour
             StartCoroutine(Novel());
 
         else if (novelListIndex == 7)
-        {
             Check.SetActive(true);
-        }
-        //SceneManager.LoadScene("Choice");
     }
 
     public void Scene()
@@ -82,7 +76,7 @@ public class TextMessage : MonoBehaviour
             if (Input.GetKeyDown("joystick button 2"))
             {
                 GameManager.instance.StateChange();
-                SceneController.instance.sceneSwitching("MainGame");
+                FadeManager.FadeOut(2);
             }
         }
     }

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 38a794f5c01fd7d4389db921d2cdb5e9
   - enabled: 1
-    path: Assets/Tanaka/Talk/TalkScene.unity
+    path: Assets/Scenes/TalkScene.unity
     guid: 780c9ccf4ab831b4995fafc0a4198c2a
   - enabled: 1
     path: Assets/Scenes/MainGame.unity
