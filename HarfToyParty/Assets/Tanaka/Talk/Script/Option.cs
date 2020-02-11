@@ -17,13 +17,10 @@ public class Option : MonoBehaviour
     [SerializeField] GameObject Choice2;
 
     private bool activeFlag = true;
-    private bool test;
 
     private void Start()
     {
         FadeManager.FadeIn();
-
-        test = true;
 
         option.SetActive(false);
         optionShadow.SetActive(false);
@@ -36,7 +33,7 @@ public class Option : MonoBehaviour
 
     public void Update()
     {
-        Move();
+        GameMove();
         FramemMove();
         SelectFrame();     
 
@@ -57,7 +54,7 @@ public class Option : MonoBehaviour
         }
     }
 
-    void Move()
+    void GameMove()
     {
         if (option.activeSelf == true)
             Time.timeScale = 0f;
@@ -127,11 +124,7 @@ public class Option : MonoBehaviour
                 {
                     MenuOut();
                     Time.timeScale = 1f;
-                    if (test)
-                    {
-                        FadeManager.FadeOut(0);
-                        test = false;
-                    }
+                    FadeManager.FadeOut(0);
                 }
             }
             else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
@@ -158,11 +151,7 @@ public class Option : MonoBehaviour
                     MenuOut();
                     Time.timeScale = 1f;
                     GameManager.instance.StateChange();
-                    if (test)
-                    {
-                        FadeManager.FadeOut(2);
-                        test = false;
-                    }
+                    FadeManager.FadeOut(2);
                 }
             }
             else if (Frame2.activeSelf == true)
