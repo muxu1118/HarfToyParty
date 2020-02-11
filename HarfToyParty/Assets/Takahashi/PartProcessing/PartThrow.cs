@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class PartThrow : MonoBehaviour
 {
     [SerializeField]
-    GameObject throwingObj, targetObj;
+    GameObject throwingObj; //targetObj;
     
-    public int x, y,g;
+    public int x, y,g; //加える力と重力
 
-    //[SerializeField]
+    [SerializeField]
     Rigidbody2D rb2;
     Vector2 pos;
 
@@ -27,9 +27,9 @@ public class PartThrow : MonoBehaviour
     {
         //Middle_x = (throwingObj.transform.position.x + targetObj.transform.position.x) / 2;
         //Debug.Log(Middle_x);  
-        obj = gameObject.transform.localScale;
-        initial = gameObject.transform.position;
-        initial_scale = gameObject.transform.localScale;
+        obj = throwingObj.transform.localScale;
+        initial = throwingObj.transform.position;
+        initial_scale = throwingObj.transform.localScale;
         //initial = gameObject.transform.localScale;
     }    
 
@@ -41,30 +41,30 @@ public class PartThrow : MonoBehaviour
         }
         //StartCoroutine("stop");
         
-        //透明度を下げる
+        //透明度と大きさを下げる
         if (colorflag)
         {
             colorDown -= Time.deltaTime;
             throwingObj.GetComponent<Image>().color = new Color(255, 255, 255, colorDown);
 
-            obj.x -= 0.001f;
-            obj.y -= 0.001f;
-            
-            gameObject.transform.localScale = obj;
+            obj.x -= 0.002f;
+            obj.y -= 0.002f;
+
+            throwingObj.transform.localScale = obj;
         }
         //下がりきったらおしまい
         if (colorDown < 0)
         {
-            x = 11;
-            colorflag = !colorflag;
-            throwingObj.GetComponent<Image>().color = new Color(255, 255, 255, 255); //色を初期化
-            gameObject.transform.position = initial;                                 //位置を初期化
-            gameObject.transform.localScale = initial_scale;                         //大きさを初期化
-            obj = initial_scale;                                                     //大きさを変更していた値を初期化
-            rb2.gravityScale = 0;                                                    //重力を初期化
-            rb2.constraints = RigidbodyConstraints2D.FreezeAll;                      //移動しないようにする
-            colorDown = 6;
-            gameObject.SetActive(false);
+            x = 50;                                                                   //力の方向を初期化
+            colorflag = !colorflag;                                                   //カラーを変更しないようにする
+            throwingObj.GetComponent<Image>().color = new Color(255, 255, 255, 1.5f); //色を初期化
+            throwingObj.transform.position = initial;                                 //位置を初期化
+            throwingObj.transform.localScale = initial_scale;                         //大きさを初期化
+            obj = initial_scale;                                                      //大きさを変更していた値を初期化
+            rb2.gravityScale = -2;                                                    //重力を初期化
+            rb2.constraints = RigidbodyConstraints2D.FreezeAll;                       //移動しないようにする
+            colorDown = 1.5f;                                                         
+            throwingObj.SetActive(false);                                             //飛ばすパーツを非表示
             Debug.Log("戻ったよ");
         }        
     }
@@ -74,7 +74,7 @@ public class PartThrow : MonoBehaviour
     /// </summary>
     public void partThrow()
     {
-        rb2 = throwingObj.GetComponent<Rigidbody2D>();
+        //rb2 = throwingObj.GetComponent<Rigidbody2D>();
         rb2.constraints = RigidbodyConstraints2D.None;
         rb2.gravityScale = -2;
         //パーツのカラーを徐々に薄くするトリガー
@@ -83,21 +83,20 @@ public class PartThrow : MonoBehaviour
         pos = new Vector2(x * 10 + 2 / (9.8f * 10 * 10), y * 10 + 2 / (9.8f * 10 * 10));
         //一度だけ力を加える
         rb2.AddForce(pos, ForceMode2D.Impulse);
-        StartCoroutine("switching");
-        
+        StartCoroutine("switching");        
     }
 
-    IEnumerator stop()
-    {
-        yield return new WaitForSeconds(1.5f);
+    //IEnumerator stop()
+    //{
+    //    yield return new WaitForSeconds(1.5f);
 
-        partThrow();
-    }
+    //    partThrow();
+    //}
 
     //力を加えたオブジェクトに重力をかける
     IEnumerator switching()
     {        
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.45f);
 
         rb2.gravityScale = g;
     }    
