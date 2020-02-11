@@ -34,7 +34,7 @@ public class WinLoss : MonoBehaviour
     float crown_x = -242, crown_y = 166;
     //涙の位置
     [SerializeField]
-    float tear_x = -218, tear_y = 142;
+    float tear_x = -218, tear_y = 146;
 
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
@@ -65,7 +65,7 @@ public class WinLoss : MonoBehaviour
         background.transform.position = new Vector3(970, 520, 0);
         //GameManager.instance.winLoseLood();
 
-        Stage.instance.StageSelect(0);
+        Stage.instance.StageSelect(1);
     }
     
     private void Update()
@@ -158,7 +158,7 @@ public class WinLoss : MonoBehaviour
         if (slore)
         {
             //赤が勝利した場合場所を反転
-            tear_x = 373;
+            tear_x = 380;
         }
         tear = Instantiate(tearPrefab, new Vector3(tear_x, tear_y, 0.0f), Quaternion.identity);        
         tear.transform.SetParent(panel.transform, false);
