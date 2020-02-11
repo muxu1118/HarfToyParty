@@ -5808,6 +5808,11 @@ PrefabInstance:
       propertyPath: SpawnXY.Array.data[1]
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1573203148835907627, guid: 6571f3e2320f2b348a3edb04e2ea34f1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8319426604763690797, guid: 6571f3e2320f2b348a3edb04e2ea34f1,
         type: 3}
       propertyPath: m_LocalPlayerAuthority
@@ -5817,11 +5822,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573203148835907627, guid: 6571f3e2320f2b348a3edb04e2ea34f1,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 79533873896835470, guid: 6571f3e2320f2b348a3edb04e2ea34f1, type: 3}
@@ -6006,16 +6006,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -6.85
       objectReference: {fileID: 0}
-    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
-        type: 3}
-      propertyPath: SpawnXY.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
-        type: 3}
-      propertyPath: SpawnXY.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6158801893378652993, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
         type: 3}
       propertyPath: m_Sprite
@@ -6042,6 +6032,34 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: SpawnXY.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: SpawnXY.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: PlayerSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5439d3c2fe32f5643a997fe385ad0958,
+        type: 3}
+    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: PlayerSprite.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: e30748b0d49508d49a09f276baa094c4,
+        type: 3}
+    - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
+        type: 3}
+      propertyPath: PlayerSprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 09334fa892002ae4c8e1ea0a68c533d8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2bd3e25d099794f9e3df05e954f4ee, type: 3}
 --- !u!4 &1053885870453292483 stripped

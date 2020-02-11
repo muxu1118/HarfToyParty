@@ -20,13 +20,16 @@ public class Player : MonoBehaviour
         }
     }
     System.Action _callback = null;
-    
+    [SerializeField]
+    Sprite[] PlayerSprite = new Sprite[3]; //プレイヤーの画像
+    SpriteRenderer spRen;
     public int[] SpawnXY = new int[2];
 
     private void Start()
     {
         myNumber = (gameObject.name == "Player1") ? (int)MapKind.Player1: (int)MapKind.Player2;
         PlayerMapWrite();
+        spRen = GetComponent<SpriteRenderer>();
     }
     IEnumerator SetMoveButton()
     {
@@ -45,16 +48,18 @@ public class Player : MonoBehaviour
         switch (rot)
         {
             case 0:// 上
-                transform.eulerAngles = new Vector3(0, 0, 90);
+                spRen.sprite = PlayerSprite[1];
                 break;
             case 1:// 下
-                transform.eulerAngles = new Vector3(0, 0, 270);
+                spRen.sprite = PlayerSprite[2];
                 break;
             case 2:// 右
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                spRen.sprite = PlayerSprite[0];
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 break;
             case 3:// 左
-                transform.eulerAngles = new Vector3(0, 180, 0);
+                spRen.sprite = PlayerSprite[0];
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
         }
     }
