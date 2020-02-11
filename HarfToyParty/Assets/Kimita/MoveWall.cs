@@ -33,7 +33,7 @@ public class MoveWall :MonoBehaviour
     [SerializeField]
     GameObject SPRObject;
     bool isMove;
-    public int grab;
+    public bool grab;
 
     private void Start()
     {
@@ -71,7 +71,7 @@ public class MoveWall :MonoBehaviour
         isMove = false;
         HWarpCheck();
         WarpCheck();
-        grab = 0;
+        grab = false;
     }
 
     private void FixedUpdate()
@@ -478,6 +478,7 @@ public class MoveWall :MonoBehaviour
         Debug.Log(isMove);
         int[,] map = Map.instance.mapInt;
         if (isMove) return false;
+        if (grab) return false;
         int x = 0,y = 0;
         switch ((int)myForm)
         {

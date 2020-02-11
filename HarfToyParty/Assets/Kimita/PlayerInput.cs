@@ -344,6 +344,7 @@ public class PlayerInput : MonoBehaviour
         }
         if(Input.GetKeyUp("joystick " + num.ToString() + " button 3"))
         {
+            Map.instance.MoveWalls[pullWallN - (int)MapKind.Movewall0].GetComponent<MoveWall>().grab = false;
             ispulling = false;
         }
 
