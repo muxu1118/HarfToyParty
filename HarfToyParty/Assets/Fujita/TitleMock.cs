@@ -11,6 +11,7 @@ public class TitleMock : MonoBehaviour
     private GameObject Panel;
     void Start()
     {
+        FadeManager.FadeIn();
         time = Time.time;
         GameManager.instance.startScene();
     }
@@ -67,17 +68,10 @@ public class TitleMock : MonoBehaviour
     #endregion
     private void SceneLoad()
     {
-        if (Input.GetKeyDown("joystick 1 button 2"))
+        if (Input.GetKeyDown("joystick button 2"))
         {     
             GameManager.instance.StateChange();
-            SceneController.instance.sceneSwitching("TalkScene");
-            Debug.Log("ChoiceSceneを呼んでるよ");
-        }
-        else if (Input.GetKeyDown("joystick 2 button 2"))
-        {
-            GameManager.instance.StateChange();
-            SceneController.instance.sceneSwitching("TalkScene");
-            Debug.Log("ChoiceSceneを呼んでるよ");
+            FadeManager.FadeOut(1);
         }
     }
 }

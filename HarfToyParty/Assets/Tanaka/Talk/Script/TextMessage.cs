@@ -21,6 +21,7 @@ public class TextMessage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FadeManager.FadeIn();
         Check.SetActive(false);
         Sentence();
         for (int i = 0; i < sentence.Length; i++)
@@ -65,10 +66,7 @@ public class TextMessage : MonoBehaviour
             StartCoroutine(Novel());
 
         else if (novelListIndex == 7)
-        {
             Check.SetActive(true);
-        }
-        //SceneManager.LoadScene("Choice");
     }
 
     public void Scene()
@@ -78,7 +76,7 @@ public class TextMessage : MonoBehaviour
             if (Input.GetKeyDown("joystick button 2"))
             {
                 GameManager.instance.StateChange();
-                SceneController.instance.sceneSwitching("MainGame");
+                FadeManager.FadeOut(2);
             }
         }
     }

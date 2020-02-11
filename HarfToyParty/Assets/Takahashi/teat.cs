@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class teat : MonoBehaviour
 {
     [SerializeField]
-    //Image[] image;
+    Image image;
     //Sprite[] image;
     SpriteRenderer[] spriteRenderers;
     int i = 0;
@@ -17,21 +17,24 @@ public class teat : MonoBehaviour
 
     //[SerializeField]
     float x, y;
-
+    string part;
     [SerializeField]
     SpriteRenderer spriteRenderer;
 
     private void Start()
     {
+        part = "gimmick_body1_B";
         //background.transform.position = new Vector3(970, 520, 0);
         //x = 255/2;
-        spriteRenderer.color = new Color(x,x,x, 255);
+        //spriteRenderer.color = new Color(x,x,x, 255);
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            image.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + part);
             //PartGet();
             //background.transform.position = new Vector3(x, y, 0);
         }

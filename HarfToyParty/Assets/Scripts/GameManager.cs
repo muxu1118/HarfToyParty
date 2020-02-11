@@ -36,6 +36,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int savePartB = 0;
     public int savePartR = 0;
 
+    bool isDraw = false;
+
     private void Start()
     {
         //GameState = State.Main;
@@ -76,16 +78,23 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
-            //GameState = State.Title;
-            winLoss.WinOrLoss(1);
+            GameState = State.Title;
+            winLoss.GameEnd(1);
         }
         // 青が勝ったら
         if (BluePartGet == gameRule.PartGet && GameState == State.Main)
         {
             winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("BlueWin");
-            //GameState = State.Title;
-            winLoss.WinOrLoss(2);
+            GameState = State.Title;
+            winLoss.GameEnd(2);
+        }
+        // 引き分け
+        if (isDraw && GameState == State.Main)
+        {
+            //引き分けの処理
+            winLoss.WinOrLose(3);
+            isDraw = false;
         }
     }
 
@@ -121,27 +130,20 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         GameState = State.Title;
         GameRule game;
-        game.PartGet = 1;
+        game.PartGet = 2;
         game.Stage = 0;
         game.Time = 300;
         game.GameCount = 0;
         gameRule = game;        
     }     
     
-    private void stageChange()
+
+
+    /// <summary>
+    /// Timerから呼び出されるよう
+    /// </summary>
+    public void DrawGame()
     {
-        switch (StageCount)
-        {
-            //case 0:
-            //    Stage.instance.StageSelect(StageCount);
-            //    Debug.Log("ステージ変更");
-            //    break;
-            case 1:
-                Stage.instance.StageSelect(StageCount);
-                break;
-            case 2:
-                Stage.instance.StageSelect(StageCount);
-                break;            
-        }    
+       isDraw = true;
     }
 }
