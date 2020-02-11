@@ -135,27 +135,28 @@ public class Option : MonoBehaviour
     public void FramemMove()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 0"))
-            {
-                if (activeFlag)
-                    Frame01();
-                else
-                    Frame02();
-
-                activeFlag = !activeFlag;
-            }
-            else if (Frame1.activeSelf == true)
-            {
-                if (Input.GetKeyDown("joystick button 2"))  // B
+            if (Choice1.activeSelf == true || Choice2.activeSelf == true)
+                if (Input.GetKeyDown("joystick button 0"))
                 {
-                    MenuOut();
-                    Time.timeScale = 1f;
-                    GameManager.instance.StateChange();
-                    FadeManager.FadeOut(2);
+                    if (activeFlag)
+                        Frame01();
+                    else
+                        Frame02();
+
+                    activeFlag = !activeFlag;
                 }
-            }
-            else if (Frame2.activeSelf == true)
-                if (Input.GetKeyDown("joystick button 2"))
-                    MenuOut();
+                else if (Frame1.activeSelf == true)
+                {
+                    if (Input.GetKeyDown("joystick button 2"))  // B
+                    {
+                        MenuOut();
+                        Time.timeScale = 1f;
+                        GameManager.instance.StateChange();
+                        FadeManager.FadeOut(2);
+                    }
+                }
+                else if (Frame2.activeSelf == true)
+                    if (Input.GetKeyDown("joystick button 2"))
+                        MenuOut();
     }
 }
