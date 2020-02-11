@@ -12,9 +12,10 @@ public class teat : MonoBehaviour
     SpriteRenderer[] spriteRenderers;
     int i = 0;
 
-    //[SerializeField]
-    //GameObject background;
-
+    [SerializeField]
+    GameObject background;
+    [SerializeField]
+    GameObject ko;
     //[SerializeField]
     float x, y;
     string part;
@@ -23,6 +24,7 @@ public class teat : MonoBehaviour
 
     private void Start()
     {
+
         part = "gimmick_body1_B";
         //background.transform.position = new Vector3(970, 520, 0);
         //x = 255/2;
@@ -32,12 +34,19 @@ public class teat : MonoBehaviour
 
     void Update()
     {
+        CharacterRotation();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             image.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + part);
             //PartGet();
             //background.transform.position = new Vector3(x, y, 0);
         }
+    }
+
+    private void CharacterRotation()
+    {
+        //x += Time.deltaTime;
+        transform.Rotate(new Vector2(0, 0.5f));
     }
 
     public void PartGet()

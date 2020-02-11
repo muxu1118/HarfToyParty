@@ -10,7 +10,7 @@ public class Stage : SingletonMonoBehaviour<Stage>
 
     private void Start()
     {
-        StageSelect(2);
+        //StageSelect(0);
     }
     /// <summary>
     /// ステージを選択する
@@ -18,18 +18,7 @@ public class Stage : SingletonMonoBehaviour<Stage>
     /// <param name="num"></param>
     public void StageSelect(int num)
     {
-        switch (num)
-        {
-            case 0:
-                Instantiate(Map[num]);
-                break;
-            case 1:
-                Instantiate(Map[num]);
-                break;
-            case 2:
-                Instantiate(Map[num]);
-                break;
-        }
+        StartCoroutine(MapDelayCreate(num));
     }
 
     public void StageReset()
@@ -39,6 +28,23 @@ public class Stage : SingletonMonoBehaviour<Stage>
         Destroy(GameObject.Find("Map2"));
     }
 
+    IEnumerator MapDelayCreate(int num)
+    {
+        yield return new WaitForSeconds(0.1f);
+        switch (num)
+        {
+            case 0:
+                Instantiate(Map[num]).name = "Tutorial";
+                break;
+            case 1:
+                Instantiate(Map[num]).name = "Map1";
+                break;
+            case 2:
+                Instantiate(Map[num]).name = "Map2";
+                break;
+        }
+
+    }
 
 
 }

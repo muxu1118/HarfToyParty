@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 1827222156217541576}
   - component: {fileID: 1827222156217541579}
   m_Layer: 0
-  m_Name: R_Leg
+  m_Name: R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3595,7 +3595,7 @@ GameObject:
   - component: {fileID: 1827222156651051954}
   - component: {fileID: 1827222156651051955}
   m_Layer: 0
-  m_Name: Map
+  m_Name: MapBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4928,7 +4928,7 @@ GameObject:
   - component: {fileID: 1827222157191961896}
   - component: {fileID: 1827222157191961899}
   m_Layer: 0
-  m_Name: B_Leg
+  m_Name: B_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
