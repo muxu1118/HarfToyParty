@@ -24,24 +24,24 @@ public class Chara : MonoBehaviour
             case 1:
                 redBrother.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
                 blueBrother.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
-                redBrother.transform.position = new Vector3(3.5f, -2.5f, 0);
-                blueBrother.transform.position = new Vector3(-4.5f, -2.5f, 0);
+                redBrother.transform.position = new Vector3(-3.5f, -2.5f, 0);
+                blueBrother.transform.position = new Vector3(4.5f, -2.5f, 0);
                 redBrother.color = new Color(1, 1, 1, 1);
                 blueBrother.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
                 break;
             case 2:
                 redBrother.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
                 blueBrother.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
-                redBrother.transform.position = new Vector3(4.5f, -2.5f, 0);
-                blueBrother.transform.position = new Vector3(-3.5f, -2.5f, 0);
+                redBrother.transform.position = new Vector3(-4.5f, -2.5f, 0);
+                blueBrother.transform.position = new Vector3(3.5f, -2.5f, 0);
                 redBrother.color = new Color(0.5f, 0.5f, 0.5f, 0.6f);
                 blueBrother.color = new Color(1, 1, 1, 1);
                 break;
             case 3:
                 redBrother.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
                 blueBrother.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
-                redBrother.transform.position = new Vector3(3.5f, -2.5f, 0);
-                blueBrother.transform.position = new Vector3(-3.5f, -2.5f, 0);
+                redBrother.transform.position = new Vector3(-3.5f, -2.5f, 0);
+                blueBrother.transform.position = new Vector3(3.5f, -2.5f, 0);
                 redBrother.color = new Color(1, 1, 1, 1);
                 blueBrother.color = new Color(1, 1, 1, 1);
                 break;

@@ -17,13 +17,10 @@ public class Option : MonoBehaviour
     [SerializeField] GameObject Choice2;
 
     private bool activeFlag = true;
-    private bool test;
 
     private void Start()
     {
         FadeManager.FadeIn();
-
-        test = true;
 
         option.SetActive(false);
         optionShadow.SetActive(false);
@@ -36,7 +33,7 @@ public class Option : MonoBehaviour
 
     public void Update()
     {
-        Move();
+        GameMove();
         FramemMove();
         SelectFrame();     
 
@@ -57,7 +54,7 @@ public class Option : MonoBehaviour
         }
     }
 
-    void Move()
+    void GameMove()
     {
         if (option.activeSelf == true)
             Time.timeScale = 0f;
@@ -112,14 +109,25 @@ public class Option : MonoBehaviour
     public void SelectFrame()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 3"))  // Y
+            if (Input.GetAxisRaw("Joysticks 1 Vertical") > 0.1 && activeFlag)    // 上
             {
-                if (activeFlag)
-                    Choice02();
-                else
-                    Choice01();
-
-                activeFlag = !activeFlag;
+                Choice02();
+                activeFlag = false;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Vertical") > 0.1 && activeFlag)    // 上
+            {
+                Choice02(); 
+                activeFlag = false;
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Vertical") < -0.1 && !activeFlag)    // 下
+            {
+                Choice01();
+                activeFlag = true;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Vertical") < -0.1 && !activeFlag)    // 下
+            {
+                Choice01();
+                activeFlag = true;
             }
             else if (Frame1.activeSelf == true && Choice1.activeSelf == true)
             {
@@ -127,11 +135,7 @@ public class Option : MonoBehaviour
                 {
                     MenuOut();
                     Time.timeScale = 1f;
-                    if (test)
-                    {
-                        FadeManager.FadeOut(0);
-                        test = false;
-                    }
+                    FadeManager.FadeOut(0);
                 }
             }
             else if (Frame2.activeSelf == true && Choice1.activeSelf == true)
@@ -142,31 +146,39 @@ public class Option : MonoBehaviour
     public void FramemMove()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 0"))
-            {
-                if (activeFlag)
-                    Frame01();
-                else
-                    Frame02();
-
-                activeFlag = !activeFlag;
-            }
-            else if (Frame1.activeSelf == true)
-            {
-                if (Input.GetKeyDown("joystick button 2"))  // B
+            if (Choice1.activeSelf == true || Choice2.activeSelf == true)
+                if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f && activeFlag)  // 右
                 {
-                    MenuOut();
-                    Time.timeScale = 1f;
-                    GameManager.instance.StateChange();
-                    if (test)
+                    Frame02();
+                    activeFlag = false;
+                }
+                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1 && activeFlag)    // 右
+                {
+                    Frame02();
+                    activeFlag = false;
+                }
+                else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1 && !activeFlag)    // 左
+                {
+                    Frame01();
+                    activeFlag = true;
+                }
+                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1 && !activeFlag)    // 左
+                {
+                    Frame01();
+                    activeFlag = true;
+                }
+                else if (Frame1.activeSelf == true && Choice2.activeSelf == true)
+                {
+                    if (Input.GetKeyDown("joystick button 2"))  // B
                     {
+                        MenuOut();
+                        Time.timeScale = 1f;
+                        GameManager.instance.StateChange();
                         FadeManager.FadeOut(2);
-                        test = false;
                     }
                 }
-            }
-            else if (Frame2.activeSelf == true)
-                if (Input.GetKeyDown("joystick button 2"))
-                    MenuOut();
+                else if (Frame2.activeSelf == true)
+                    if (Input.GetKeyDown("joystick button 2"))
+                        MenuOut();
     }
 }
