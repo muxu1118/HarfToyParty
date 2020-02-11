@@ -12,9 +12,10 @@ public class teat : MonoBehaviour
     SpriteRenderer[] spriteRenderers;
     int i = 0;
 
-    //[SerializeField]
-    //GameObject background;
-
+    [SerializeField]
+    GameObject background;
+    [SerializeField]
+    GameObject ko;
     //[SerializeField]
     float x, y;
     string part;
@@ -23,6 +24,7 @@ public class teat : MonoBehaviour
 
     private void Start()
     {
+
         part = "gimmick_body1_B";
         //background.transform.position = new Vector3(970, 520, 0);
         //x = 255/2;

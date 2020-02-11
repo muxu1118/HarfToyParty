@@ -15,7 +15,8 @@ public class Part : MonoBehaviour
         B_Face,
         B_Hand,
     }
-    
+
+    PartDesplay partDesplay;
 
     public PartKind kind;
     private int MyPartNum;
@@ -27,6 +28,7 @@ public class Part : MonoBehaviour
 
     private void Start()
     {
+        partDesplay = GameObject.Find("character").GetComponent<PartDesplay>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         //player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; 
         switch (kind)
@@ -64,7 +66,7 @@ public class Part : MonoBehaviour
     private void Update()
     {
         GetPart();
-        
+
     }
 
     public void GetPart()
@@ -77,16 +79,17 @@ public class Part : MonoBehaviour
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
                 GameManager.instance.RedPartGet++;
-                GameManager.instance.StageCount++;
-                
+                //ameManager.instance.StageCount++;
+                partDesplay.PartGet(gameObject.name, 1);
             }
-            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/) 
+            else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/)
             {
                 Debug.Log("koko2");
                 //player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
                 GameManager.instance.BluePartGet++;
-                GameManager.instance.StageCount++;
+                //GameManager.instance.StageCount++;
+                partDesplay.PartGet(gameObject.name, 2);
             }
 
 

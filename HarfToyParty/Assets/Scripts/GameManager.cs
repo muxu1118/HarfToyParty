@@ -130,7 +130,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         GameState = State.Title;
         GameRule game;
-        game.PartGet = 2;
+        game.PartGet = 1;
         game.Stage = 0;
         game.Time = 300;
         game.GameCount = 0;
