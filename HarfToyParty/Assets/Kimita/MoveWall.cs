@@ -33,6 +33,7 @@ public class MoveWall :MonoBehaviour
     [SerializeField]
     GameObject SPRObject;
     bool isMove;
+    public int grab;
 
     private void Start()
     {
@@ -70,6 +71,7 @@ public class MoveWall :MonoBehaviour
         isMove = false;
         HWarpCheck();
         WarpCheck();
+        grab = 0;
     }
 
     private void FixedUpdate()

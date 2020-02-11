@@ -15,13 +15,12 @@ public class Grab : MonoBehaviour
     public bool PullWall (ref int num)
     {
         if (!GrabWallCheck(ref num)) return false;
-        Debug.Log("壁があります");
+
         return true;
     }
 
     private bool GrabWallCheck(ref int num)
     {
-        Debug.Log(player.rot);
         int x=0, y=0;
         
         for (int i = 0; i <= 6; i++)

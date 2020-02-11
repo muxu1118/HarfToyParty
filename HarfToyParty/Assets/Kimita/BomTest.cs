@@ -47,25 +47,30 @@ public class BomTest : MonoBehaviour
     private void Explosion()
     {
         int x = (int)MyPosi.x, y = (int)MyPosi.y;
-        Debug.Log("Bomの位置X:" + MyPosi.x + "Y:" + MyPosi.y);
+        // 自分周辺の探索
         for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
             {
+                // マップ外だったらもう一回
                 if (y - j > 6 || y - j < 0 || x + i > 6 || x + i < 0) 
                 {
                     continue;
                 }
+                // 探索した範囲にプレイヤーがいたら
                 if (Map.instance.mapInt[y - j, x + i] == (int)MapKind.Player1 || Map.instance.mapInt[y - j, x + i] == (int)MapKind.Player2) 
                 {
                     // プレイヤーにダメージを与えたい
                     Map.instance.PlayerBomDown((MapKind)Map.instance.mapInt[y - j, x + i]);
                 }
+                // 探索した範囲に壊れる壁があったら
                 if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.BreakWall1 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.BreakWall6)
                 {
+                    // GameObjectから壊れる壁を取得
                     BreakWall[] breakObjects = FindObjectsOfType<BreakWall>();
                     foreach (BreakWall BW in breakObjects)
                     {
+                        // 探索した壁と同じ壁を破壊
                         if((int)BW.MyWallP == Map.instance.mapInt[y - j, x + i])
                         {
                             Destroy(BW.transform.gameObject);
