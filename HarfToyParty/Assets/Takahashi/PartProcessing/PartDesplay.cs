@@ -15,9 +15,13 @@ public class PartDesplay : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] henkougo;
 
+    [SerializeField]
+    GameObject[] character;
 
     [SerializeField]
     GameObject effect;
+    [SerializeField]
+    GameObject Blackout;
 
     [SerializeField]
     Image throwPart;
@@ -32,6 +36,7 @@ public class PartDesplay : MonoBehaviour
     string Desplay = "Desplay";
     int partNum;
 
+    float rotaTime = 0;
     private void Start()
     {
         //character_changePart[0].sprite = henkougo[0].sprite;
@@ -91,7 +96,8 @@ public class PartDesplay : MonoBehaviour
             _partThrow.x *= -1;
         }
         Debug.Log("中央に表示");
-        
+
+        Blackout.SetActive(true);
         //エフェクトを再生
         effect.SetActive(true);
         //パーツをキャラクターの方に飛ばす
@@ -109,17 +115,20 @@ public class PartDesplay : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         PartSearch();
-        //エフェクトを止める
-        effect.SetActive(false);
 
-        yield return new WaitForSeconds(2f);  
+        yield return new WaitForSeconds(1.5f);
+
+        //エフェクトを止める        
+        effect.SetActive(false);
+        Blackout.SetActive(false);
 
         //DesplayPart = "Sprites/ChangePart/" + Desplay + getPart;
         //character_changePart[partNum].sprite = Resources.Load<Sprite>(DesplayPart);
+
         //キャラクターのパーツを変更
         character_changePart[partNum].sprite = henkougo[partNum].sprite;
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         //勝者が兄なら
         if(partNum <= 2)
@@ -131,6 +140,12 @@ public class PartDesplay : MonoBehaviour
         {
             _winLoss.WinOrLose(2);
         }        
+    }
+
+    private void CharacterRotation()
+    {        
+        rotaTime += Time.deltaTime;
+        character[0].transform.rotation = new Quaternion(rotaTime, rotaTime, 0,0);
     }
 
     /// <summary>

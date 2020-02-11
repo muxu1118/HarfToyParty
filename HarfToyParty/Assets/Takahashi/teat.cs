@@ -34,12 +34,19 @@ public class teat : MonoBehaviour
 
     void Update()
     {
+        CharacterRotation();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             image.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + part);
             //PartGet();
             //background.transform.position = new Vector3(x, y, 0);
         }
+    }
+
+    private void CharacterRotation()
+    {
+        //x += Time.deltaTime;
+        transform.Rotate(new Vector2(0, 0.5f));
     }
 
     public void PartGet()

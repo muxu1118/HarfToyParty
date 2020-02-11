@@ -63,7 +63,7 @@ public class PartThrow : MonoBehaviour
             obj = initial_scale;                                                      //大きさを変更していた値を初期化
             rb2.gravityScale = -2;                                                    //重力を初期化
             rb2.constraints = RigidbodyConstraints2D.FreezeAll;                       //移動しないようにする
-            //colorDown = 1.5f;                                                         
+            colorDown = 1.5f;                                                         
             throwingObj.SetActive(false);                                             //飛ばすパーツを非表示
             Debug.Log("戻ったよ");
         }        

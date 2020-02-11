@@ -65,7 +65,7 @@ public class WinLoss : MonoBehaviour
         background.transform.position = new Vector3(970, 520, 0);
         //GameManager.instance.winLoseLood();
 
-        Stage.instance.StageSelect(1);
+        Stage.instance.StageSelect(0);
     }
     
     private void Update()
