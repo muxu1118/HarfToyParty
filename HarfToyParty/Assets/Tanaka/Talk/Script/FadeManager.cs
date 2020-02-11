@@ -77,7 +77,7 @@ public class FadeManager : MonoBehaviour
             }
 
             // フェード用 Image の色、透明度設定
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            fadeImage.color = new Color(1.0f, 1.0f, 1.0f, alpha);
         }
         else if (isFadeOut)
         {
@@ -95,7 +95,7 @@ public class FadeManager : MonoBehaviour
             }
 
             // フェード用の Image の色、透明度設定
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            fadeImage.color = new Color(1.0f, 1.0f, 1.0f, alpha);
         }
     }
 }

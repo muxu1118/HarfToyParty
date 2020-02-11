@@ -109,14 +109,25 @@ public class Option : MonoBehaviour
     public void SelectFrame()
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 3"))  // Y
+            if (Input.GetAxisRaw("Joysticks 1 Vertical") > 0.1 && activeFlag)    // 上
             {
-                if (activeFlag)
-                    Choice02();
-                else
-                    Choice01();
-
-                activeFlag = !activeFlag;
+                Choice02();
+                activeFlag = false;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Vertical") > 0.1 && activeFlag)    // 上
+            {
+                Choice02(); 
+                activeFlag = false;
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Vertical") < -0.1 && !activeFlag)    // 下
+            {
+                Choice01();
+                activeFlag = true;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Vertical") < -0.1 && !activeFlag)    // 下
+            {
+                Choice01();
+                activeFlag = true;
             }
             else if (Frame1.activeSelf == true && Choice1.activeSelf == true)
             {
@@ -136,16 +147,27 @@ public class Option : MonoBehaviour
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
             if (Choice1.activeSelf == true || Choice2.activeSelf == true)
-                if (Input.GetKeyDown("joystick button 0"))
+                if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f && activeFlag)  // 右
                 {
-                    if (activeFlag)
-                        Frame01();
-                    else
-                        Frame02();
-
-                    activeFlag = !activeFlag;
+                    Frame02();
+                    activeFlag = false;
                 }
-                else if (Frame1.activeSelf == true)
+                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1 && activeFlag)    // 右
+                {
+                    Frame02();
+                    activeFlag = false;
+                }
+                else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1 && !activeFlag)    // 左
+                {
+                    Frame01();
+                    activeFlag = true;
+                }
+                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1 && !activeFlag)    // 左
+                {
+                    Frame01();
+                    activeFlag = true;
+                }
+                else if (Frame1.activeSelf == true && Choice2.activeSelf == true)
                 {
                     if (Input.GetKeyDown("joystick button 2"))  // B
                     {

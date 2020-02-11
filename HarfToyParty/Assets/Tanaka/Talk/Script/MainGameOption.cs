@@ -70,7 +70,7 @@ public class MainGameOption : MonoBehaviour
         Choose02.SetActive(false);
     }
 
-    public void SelectChice()
+    public void SelectChoice()
     {
         Choose01.SetActive(true);
         Choose02.SetActive(false);
@@ -85,14 +85,25 @@ public class MainGameOption : MonoBehaviour
     public void Select()
     {
         if (Optionmenu.activeSelf == true && Shadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 0"))
+            if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f && !flagActive)  // 右
             {
-                if (flagActive)
-                    SelectChice();
-                else
-                    ChoiceSelect();
-
-                flagActive = !flagActive;
+                ChoiceSelect();
+                flagActive = true;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1 && !flagActive)    // 右
+            {
+                ChoiceSelect();
+                flagActive = true;
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1 && flagActive)    // 下
+            {
+                SelectChoice();
+                flagActive = false;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1 && flagActive)    // 下
+            {
+                SelectChoice();
+                flagActive = false;
             }
             else if (Input.GetKeyDown("joystick button 2"))  // B
                 if (Choose01.activeSelf == true)
