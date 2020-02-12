@@ -11,7 +11,9 @@ public class TitleMock : MonoBehaviour
     private GameObject Panel;
     void Start()
     {
+        FadeManager.FadeIn();
         time = Time.time;
+        GameManager.instance.startScene();
     }
 
     // Update is called once per frame
@@ -66,10 +68,10 @@ public class TitleMock : MonoBehaviour
     #endregion
     private void SceneLoad()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("Choice");
-            Debug.Log("ChoiceSceneを呼んでるよ");
+        if (Input.GetKeyDown("joystick button 2"))
+        {     
+            GameManager.instance.StateChange();
+            FadeManager.FadeOut(1);
         }
     }
 }

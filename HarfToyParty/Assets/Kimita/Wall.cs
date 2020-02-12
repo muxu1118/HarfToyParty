@@ -10,7 +10,6 @@ public class Wall : MonoBehaviour
         square = 0,
         Rectangle,
         cross,
-
     }
 
     [SerializeField]
@@ -30,7 +29,7 @@ public class Wall : MonoBehaviour
                 break;
             case 1:
                 Map.instance.mapInt[y, x] = (int)MapKind.Wall;
-                Map.instance.mapInt[y, x+1] = (int)MapKind.Wall;
+                Map.instance.mapInt[y, x + 1] = (int)MapKind.Wall;
                 break;
             case 2:
                 Map.instance.mapInt[y, x] = (int)MapKind.Wall;
@@ -38,11 +37,6 @@ public class Wall : MonoBehaviour
                 Map.instance.mapInt[y - 1, x] = (int)MapKind.Wall;
                 Map.instance.mapInt[y, x + 1] = (int)MapKind.Wall;
                 Map.instance.mapInt[y, x - 1] = (int)MapKind.Wall;
-
-                //Debug.Log(Map.instance.mapInt[y + 1, x]);
-                //Debug.Log(Map.instance.mapInt[y - 1, x]);
-                //Debug.Log(Map.instance.mapInt[y, x + 1]);
-                //Debug.Log(Map.instance.mapInt[y, x - 1]);
                 break;
                 
         }

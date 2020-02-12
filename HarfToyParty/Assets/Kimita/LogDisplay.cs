@@ -18,10 +18,11 @@ public class LogDisplay : MonoBehaviour
 
     private void HandleLog(string logText, string stackTrace, LogType type)
     {
-        //log.text = logText;
+        log.text = logText;
     }
     public void PushButton()
     {
+        if (!Input.GetKeyDown(KeyCode.A)) return;
         string str = "";
         for (int i = 0; i <= 6; i++)
         {
@@ -33,5 +34,9 @@ public class LogDisplay : MonoBehaviour
         }
         
         Debug.Log(str);
+    }
+    private void Update()
+    {
+        PushButton();
     }
 }

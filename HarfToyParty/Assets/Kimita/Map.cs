@@ -16,6 +16,7 @@ public enum MapKind
     BreakWall3,
     BreakWall4,
     BreakWall5,
+    BreakWall6,
     PartRHand,
     PartRLeg,
     PartRFace,
@@ -117,6 +118,16 @@ public class Map : MonoBehaviour
         warpPos[1, 1] = new Vector3(19.53f, 0, 0);
         warpPos[3, 0] = new Vector3(0, 8.39f, 0);
     }
+
+    private void Start()
+    {
+
+    }
+    private void Update()
+    {
+
+    }
+
     IEnumerator moveWallAdd()
     {
         yield return new WaitForSeconds(0.5f);
@@ -125,31 +136,6 @@ public class Map : MonoBehaviour
             MoveWalls.Add(movewall.gameObject);
         }
     }
-    private void Start()
-    {
-
-
-
-    }
-    private void Update()
-    {
-        // Debug
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            string str = " ";
-            for (int i = 0; i <= 6; i++)
-            {
-                for (int j = 0; j <= 6; j++)
-                {
-                    if (mapInt[i, j] < 10) { str += " "; }
-                    str += mapInt[i, j].ToString();
-                }
-                str += "\n ";
-            }
-            Debug.Log(str);
-        }
-    }
-
     private void CheckMap()
     {
         for (int i = 0; i <= 6; i++)
@@ -167,44 +153,6 @@ public class Map : MonoBehaviour
             }
         }
     }
-
-
-    //public void Move(MapKind map, Vector2 vec2)
-    //{
-    //    if (isMove) return;
-    //    int max = 6, min = 0;
-    //    for (int i = 0; i <= 6; i++)
-    //    {
-    //        for (int j = 0; j <= 6; j++)
-    //        {
-    //            if (mapInt[j, i] == (int)map)
-    //            {
-    //                // Debug
-    //                Debug.Log("X" + i + "Y" + j + "移動X" + vec2.x + "移動Y" + vec2.y);
-
-    //                if (!((i + (int)vec2.x <= max && i + (int)vec2.x >= min) && (j - (int)vec2.y <= max && j - (int)vec2.y >= min)))
-    //                {
-    //                    Debug.Log("位置が悪いよ");
-    //                    // WarpWallで移動
-    //                    return;
-    //                }
-    //                if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall)
-    //                {
-    //                    Debug.Log("壁があるよ");
-    //                    return;
-    //                }
-    //                if (mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Movewall)
-    //                {
-    //                    // 壁を押す
-    //                    if (!MapObject[(int)MapKind.Movewall].GetComponent<MoveWall>().MoveCheck(vec2,spritePos)) return;
-
-    //                }
-    //            }
-    //        }
-    //    }
-    //    isMove = true;
-    //    StartCoroutine(MoveAnim(1, map, vec2));
-    //}
 
     /// <summary>
     /// ボム範囲を設定
@@ -230,54 +178,6 @@ public class Map : MonoBehaviour
         obj.GetComponent<BomTest>().MyPosi = BombPos1;
 
     }
-    //IEnumerator MoveAnim(float wait,MapKind map,Vector2 vec2)
-    //{
-    //    float time = wait / Time.deltaTime;
-    //    int x=-1, y=-1;
-    //    for (int i = 0; i <= 6; i++)
-    //    {
-    //        for (int j = 0; j <= 6; j++)
-    //        {
-    //            if (mapInt[j, i] == (int)map)
-    //            {
-    //                x = i;
-    //                y = j;
-    //            }
-    //        }
-    //    }
-    //    while (wait >= 0)
-    //    {
-    //        wait -= Time.deltaTime;
-    //        MapObject[(int)map].transform.position += new Vector3((spritePos[y - (int)vec2.y][x + (int)vec2.x].x - spritePos[y][x].x) / time, (spritePos[y - (int)vec2.y][x + (int)vec2.x].y-spritePos[y][x].y) / time);
-    //        //MapObject[(int)map].transform.position += new Vector3((MapObject[(int)map].transform.position.x-spritePos[y - (int)vec2.y][x + (int)vec2.x].x) / time , (spritePos[y - (int)vec2.y][x + (int)vec2.x].y - MapObject[(int)map].transform.position.y  ) / time);
-    //        yield return new WaitForSeconds(Time.deltaTime);
-    //    }
-    //    MapObject[(int)map].transform.position = new Vector3(spritePos[y - (int)vec2.y][x + (int)vec2.x].x, spritePos[y - (int)vec2.y][x + (int)vec2.x].y);
-    //    mapInt[y, x] = 0;
-    //    mapInt[y - (int)vec2.y,x + (int)vec2.x] = (int)map;
-    //    isMove = false;
-    //}
-
-    //public bool GetPartCheck(MapKind player,Vector2 xy)
-    //{
-    //    for (int i = 0; i <= 6; i++)
-    //    {
-    //        for (int j = 0; j <= 6; j++)
-    //        {
-    //            if (mapInt[j, i] == (int)MapKind.RedPart&&player == MapKind.Player1)
-    //            {
-
-    //                return true;
-    //            }
-    //            if (mapInt[j, i] == (int)MapKind.BluePart && player == MapKind.Player2)
-    //            {
-    //                return true;
-    //            }
-    //        }
-    //    }
-    //    return false;
-    //}
-
     public void AriaSet(MapKind player,MapKind Aria)
     {
         StartCoroutine(MapObject[(int)Aria].GetComponent<Bomb>().AriaSet(player,Aria,BombPos1));
@@ -287,6 +187,9 @@ public class Map : MonoBehaviour
         Debug.Log("押す壁"+((int)kind - (int)MapKind.Movewall0));
         if (!MoveWalls[(int)kind-(int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, spritePos)) return;
         return;
-
+    }
+    public void PlayerBomDown(MapKind map)
+    {
+        MapObject[(int)map].GetComponent<PlayerInput>().BombCrash();
     }
 }
