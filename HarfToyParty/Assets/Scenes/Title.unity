@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7b05c9c3e35fb41b0022352b301a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0
+  interval: 1
 --- !u!4 &687091607
 Transform:
   m_ObjectHideFlags: 0
@@ -680,7 +680,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 04f37be7ef18430458abf549a84aeeca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -892,7 +892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1298816778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -925,7 +925,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 04f37be7ef18430458abf549a84aeeca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -951,7 +951,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bb8d915c595bd394f95d0f0ca83c86c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8299e0a67d6805b4a9d352d73dc2a6b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
