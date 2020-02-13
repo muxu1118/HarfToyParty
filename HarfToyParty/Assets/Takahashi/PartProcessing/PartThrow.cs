@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class PartThrow : MonoBehaviour
 {
     [SerializeField]
-    GameObject throwingObj; //targetObj;
+    GameObject throwingObj,drow_throwObj;
     
     public int x, y,g; //加える力と重力
 
     [SerializeField]
-    Rigidbody2D rb2;
+    Rigidbody2D rb2_main, rd2_drow;
     Vector2 pos;
 
     float Middle_x, Middle_y;
@@ -19,9 +19,9 @@ public class PartThrow : MonoBehaviour
 
     bool colorflag = false;
     float Scale_x, Scale_y;
-    Vector2 obj;
-    Vector2 initial;
-    Vector2 initial_scale;
+    Vector2 obj; //初期の大きさを記録
+    Vector2 initial; //初期地点を記録
+    Vector2 initial_scale; //大きさの変更値
 
     void Start()
     {
@@ -61,8 +61,8 @@ public class PartThrow : MonoBehaviour
             throwingObj.transform.position = initial;                                 //位置を初期化
             throwingObj.transform.localScale = initial_scale;                         //大きさを初期化
             obj = initial_scale;                                                      //大きさを変更していた値を初期化
-            rb2.gravityScale = -2;                                                    //重力を初期化
-            rb2.constraints = RigidbodyConstraints2D.FreezeAll;                       //移動しないようにする
+            rb2_main.gravityScale = -2;                                                    //重力を初期化
+            rb2_main.constraints = RigidbodyConstraints2D.FreezeAll;                       //移動しないようにする
             colorDown = 1.5f;                                                         
             throwingObj.SetActive(false);                                             //飛ばすパーツを非表示
             Debug.Log("戻ったよ");
@@ -75,14 +75,14 @@ public class PartThrow : MonoBehaviour
     public void partThrow()
     {
         //rb2 = throwingObj.GetComponent<Rigidbody2D>();
-        rb2.constraints = RigidbodyConstraints2D.None;
-        rb2.gravityScale = -2;
+        rb2_main.constraints = RigidbodyConstraints2D.None;
+        rb2_main.gravityScale = -2;
         //パーツのカラーを徐々に薄くするトリガー
         colorflag = !colorflag;
         //放物線上を求める
         pos = new Vector2(x * 10 + 2 / (9.8f * 10 * 10), y * 10 + 2 / (9.8f * 10 * 10));
         //一度だけ力を加える
-        rb2.AddForce(pos, ForceMode2D.Impulse);
+        rb2_main.AddForce(pos, ForceMode2D.Impulse);
         StartCoroutine("switching");        
     }
 
@@ -98,6 +98,6 @@ public class PartThrow : MonoBehaviour
     {        
         yield return new WaitForSeconds(0.45f);
 
-        rb2.gravityScale = g;
+        rb2_main.gravityScale = g;
     }    
 }

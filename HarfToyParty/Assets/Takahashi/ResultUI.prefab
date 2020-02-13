@@ -139,7 +139,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3fcef91ed94670f4ea3a2611c2652f65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72f4a00e732ce294f8b9eabbb8f65db4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -254,7 +254,7 @@ Transform:
   - {fileID: 2239114675026183703}
   - {fileID: 2239114677009117235}
   - {fileID: 2239114675129220685}
-  m_Father: {fileID: 516429109193333161}
+  m_Father: {fileID: 6117910378508463977}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2239114675866629270
@@ -340,8 +340,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 516429109193333161}
+  - component: {fileID: 6117910378508463977}
   - component: {fileID: 2239114676406875547}
+  - component: {fileID: 671557747595313199}
   m_Layer: 0
   m_Name: ResultUI
   m_TagString: Untagged
@@ -349,21 +350,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &516429109193333161
-Transform:
+--- !u!224 &6117910378508463977
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2239114676406875546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -86.3642, y: -99.40802, z: 24.386316}
+  m_LocalPosition: {x: 0, y: 0, z: 24.386316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2239114675471206412}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -86.3642, y: -99.40802}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2239114676406875547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +386,33 @@ MonoBehaviour:
   background: {fileID: 2239114675436256169}
   red: {fileID: 2239114675026183697}
   blue: {fileID: 2239114677009117261}
+  drow: {fileID: 0}
+  crown_x: -242
+  crown_y: 166
+  tear_x: -218
+  tear_y: 148
+  characterPrehub: {fileID: 0}
+--- !u!223 &671557747595313199
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2239114676406875546}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &2239114676628358248
 GameObject:
   m_ObjectHideFlags: 0

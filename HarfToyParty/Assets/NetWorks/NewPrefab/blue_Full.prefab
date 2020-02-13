@@ -1113,8 +1113,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7094459024454538095}
   m_Bounds:
-    m_Center: {x: 1.5094703, y: 0.0041269064, z: 0}
-    m_Extent: {x: 2.0147693, y: 2.0069406, z: 0}
+    m_Center: {x: 1.5094707, y: 0.004127145, z: 0}
+    m_Extent: {x: 2.01477, y: 2.0069406, z: 0}
 --- !u!1 &7094459024454373135
 GameObject:
   m_ObjectHideFlags: 0

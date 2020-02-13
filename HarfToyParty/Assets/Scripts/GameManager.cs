@@ -95,6 +95,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             //引き分けの処理
             winLoss.WinOrLose(3);
             isDraw = false;
+            GameRule game;
+            game.PartGet = 3;
         }
     }
 

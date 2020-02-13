@@ -97,6 +97,7 @@ public class PartDesplay : MonoBehaviour
         }
         Debug.Log("中央に表示");
 
+        //透明な背景を入れる
         Blackout.SetActive(true);
         //エフェクトを再生
         effect.SetActive(true);
