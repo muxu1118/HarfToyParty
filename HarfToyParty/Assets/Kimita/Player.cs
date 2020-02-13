@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
                         StartCoroutine(MoveAnim(speed, player, vec2));
                         return;
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall || (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.BreakWall1 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.BreakWall6))
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall || (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.BreakWall1 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.BreakWall10))
                     {
                         // 移動できない壁
                         isMove = false;

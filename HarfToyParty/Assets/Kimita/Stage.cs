@@ -10,7 +10,7 @@ public class Stage : SingletonMonoBehaviour<Stage>
 
     private void Start()
     {
-        //StageSelect(0);
+        //StageSelect(2);
     }
     /// <summary>
     /// ステージを選択する
@@ -26,6 +26,9 @@ public class Stage : SingletonMonoBehaviour<Stage>
         Destroy(GameObject.Find("Tutorial"));
         Destroy(GameObject.Find("Map1"));
         Destroy(GameObject.Find("Map2"));
+        Destroy(GameObject.Find("Map3"));
+        Destroy(GameObject.Find("Map4"));
+        Destroy(GameObject.Find("Map5"));
     }
 
     IEnumerator MapDelayCreate(int num)
