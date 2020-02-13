@@ -63,14 +63,16 @@ public class Bomb : MonoBehaviour
                             if ((i + x > 6&&j == Map.instance.HWarpPoint[0].y )&& Map.instance.mapInt[(int)Map.instance.HWarpPoint[0].y, (int)Map.instance.HWarpPoint[0].x] == (int)MapKind.YUKA) {
                                 x = (int)Map.instance.HWarpPoint[0].x;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[j][x].x, Map.instance.SpritePos[j][x].y, 1);
-                                Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[0].x, (int)Map.instance.HWarpPoint[0].y);
+                                if(player == MapKind.Player1) { Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[0].x, (int)Map.instance.HWarpPoint[0].y); }
+                                else { Map.instance.BombPos2 = new Vector2((int)Map.instance.HWarpPoint[0].x, (int)Map.instance.HWarpPoint[0].y); }
                                 BomPos = new Vector2((int)Map.instance.HWarpPoint[0].x, (int)Map.instance.HWarpPoint[0].y);
                                 continue;
                             }
                             else if ((i + x < 0 && j == Map.instance.HWarpPoint[1].y) && Map.instance.mapInt[(int)Map.instance.HWarpPoint[1].y, (int)Map.instance.HWarpPoint[1].x] == (int)MapKind.YUKA) {
                                 x = (int)Map.instance.HWarpPoint[1].x;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[j][x].x, Map.instance.SpritePos[j][x].y, 1);
-                                Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[1].x, (int)Map.instance.HWarpPoint[1].y);
+                                if (player == MapKind.Player1) { Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[1].x, (int)Map.instance.HWarpPoint[1].y); }
+                                else { Map.instance.BombPos1 = new Vector2((int)Map.instance.HWarpPoint[1].x, (int)Map.instance.HWarpPoint[1].y); }
                                 BomPos = new Vector2((int)Map.instance.HWarpPoint[1].x, (int)Map.instance.HWarpPoint[1].y);
                                 continue;
                             }
@@ -81,7 +83,8 @@ public class Bomb : MonoBehaviour
                             {
                                 y = (int)Map.instance.WarpPoint[0].y;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[y][i].x, Map.instance.SpritePos[y][i].y, 1);
-                                Map.instance.BombPos1 = new Vector2((int)Map.instance.WarpPoint[0].x, (int)Map.instance.WarpPoint[0].y);
+                                if (player == MapKind.Player1) { Map.instance.BombPos1 = new Vector2((int)Map.instance.WarpPoint[0].x, (int)Map.instance.WarpPoint[0].y); }
+                                else { Map.instance.BombPos2 = new Vector2((int)Map.instance.WarpPoint[0].x, (int)Map.instance.WarpPoint[0].y); }
                                 continue;
                             }
                             else if ((j + y < 0 && i == Map.instance.WarpPoint[1].x) && Map.instance.mapInt[(int)Map.instance.WarpPoint[1].y, (int)Map.instance.WarpPoint[1].x] == (int)MapKind.YUKA)
@@ -89,14 +92,17 @@ public class Bomb : MonoBehaviour
 
                                 y = (int)Map.instance.WarpPoint[1].y;
                                 gameObject.transform.position = new Vector3(Map.instance.SpritePos[y][i].x, Map.instance.SpritePos[y][i].y, 1);
-                                Map.instance.BombPos1 = new Vector2((int)Map.instance.WarpPoint[1].x, (int)Map.instance.WarpPoint[1].y);
+                                if (player == MapKind.Player1) { Map.instance.BombPos1 = new Vector2((int)Map.instance.WarpPoint[1].x, (int)Map.instance.WarpPoint[1].y); }
+                                else { Map.instance.BombPos2 = new Vector2((int)Map.instance.WarpPoint[1].x, (int)Map.instance.WarpPoint[1].y); }
                                 continue;
                             }
                             else { y = 0; }
 
                         }
                         gameObject.transform.position = new Vector3(Map.instance.SpritePos[j + y][i + x].x, Map.instance.SpritePos[j + y][i + x].y, 1);
-                        Map.instance.BombPos1 = new Vector2(i + x, j + y);
+                        if (player == MapKind.Player1) { Map.instance.BombPos1 = new Vector2(i + x, j + y); }
+                        else { Map.instance.BombPos2 = new Vector2(i + x, j + y); }
+                        
                     }
                         
                 }

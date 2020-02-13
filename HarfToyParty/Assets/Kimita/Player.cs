@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
     public void PullMove(MapKind player, Vector2 vec2,int wall)
     {
         int max = 6, min = 0;
-        float speed = 0.5f;
+        float speed = 0.45f;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
@@ -146,15 +146,17 @@ public class Player : MonoBehaviour
                         PlayerDoNotMove();
                         return;
                     }
-                    if ((wall != map.mapInt[j - (int)vec2.y, i + (int)vec2.x]) &&map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.Movewall9)
+                    if ((wall != map.mapInt[j - (int)vec2.y, i + (int)vec2.x]) &&map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.Movewall10)
                     {
+                        isMove = false;
+                        return;
                         // 移動壁を押す
                         if (!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
                         {
                             isMove = false;
                             return;
                         }
-                        speed = 1f;
+                        speed = 0.8f;
                         isMove = true;
                         StartCoroutine(MoveAnim(speed, player, vec2));
                         return;
@@ -177,7 +179,7 @@ public class Player : MonoBehaviour
                     {
                         // 引き動作
                         isMove = true;
-                        speed = 1f;
+                        speed = 0.8f;
                         StartCoroutine(MoveAnim(speed, player, vec2));
                         map.MoveWalls[wall - (int)MapKind.Movewall0].GetComponent<MoveWall>().PullWall(vec2);
                         return;
@@ -198,7 +200,7 @@ public class Player : MonoBehaviour
     public void Move(MapKind player, Vector2 vec2)
     {
         int max = 6, min = 0;
-        float speed = 0.5f; ;
+        float speed = 0.45f; ;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
@@ -213,7 +215,7 @@ public class Player : MonoBehaviour
                         PlayerDoNotMove();
                         return;
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.Movewall9)
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.Movewall0 && map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.Movewall10)
                     {
                         // 壁を押す
                         if (!map.MoveWalls[map.mapInt[j - (int)vec2.y, i + (int)vec2.x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().MoveCheck(vec2, map.SpritePos))
@@ -221,10 +223,10 @@ public class Player : MonoBehaviour
                             isMove = false;
                             return;
                         }
-                        speed = 1f;
+                        speed = 0.8f;
 
                     }
-                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall||(map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.BreakWall1&& map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.BreakWall6))
+                    if (map.mapInt[j - (int)vec2.y, i + (int)vec2.x] == (int)MapKind.Wall||(map.mapInt[j - (int)vec2.y, i + (int)vec2.x] >= (int)MapKind.BreakWall1&& map.mapInt[j - (int)vec2.y, i + (int)vec2.x] <= (int)MapKind.BreakWall10))
                     {
                         //動けない壁がある
                         isMove = false;
@@ -257,11 +259,11 @@ public class Player : MonoBehaviour
                 {
                     x = i;
                     y = j;
+                    map.mapInt[y, x] = 0;
+                    map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
                 }
             }
         }
-        map.mapInt[y, x] = 0;
-        map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         while (wait >= time)
         {
             time += Time.deltaTime;

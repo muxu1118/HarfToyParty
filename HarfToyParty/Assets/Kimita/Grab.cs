@@ -45,14 +45,14 @@ public class Grab : MonoBehaviour
                 num = Map.instance.mapInt[y - 1, x];
                 break;
             case 1:// 下
-                if (y + 1 >= 6) return false;
+                if (y + 1 > 6) return false;
                 if (!(Map.instance.mapInt[y + 1, x] >= (int)MapKind.Movewall0 && Map.instance.mapInt[y + 1, x] <= (int)MapKind.Movewall10)) return false;
                 if (Map.instance.MoveWalls[Map.instance.mapInt[y + 1, x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().grab) return false;
                 Map.instance.MoveWalls[Map.instance.mapInt[y + 1, x] - (int)MapKind.Movewall0].GetComponent<MoveWall>().grab = true;
                 num = Map.instance.mapInt[y + 1, x];
                 break;
             case 2:// 右
-                if (x + 1 >= 6) return false;
+                if (x + 1 > 6) return false;
                 if (!(Map.instance.mapInt[y, x+1] >= (int)MapKind.Movewall0 && Map.instance.mapInt[y, x + 1] <= (int)MapKind.Movewall10)) return false;
                 if (Map.instance.MoveWalls[Map.instance.mapInt[y, x + 1] - (int)MapKind.Movewall0].GetComponent<MoveWall>().grab) return false;
                 Map.instance.MoveWalls[Map.instance.mapInt[y, x + 1] - (int)MapKind.Movewall0].GetComponent<MoveWall>().grab = true;

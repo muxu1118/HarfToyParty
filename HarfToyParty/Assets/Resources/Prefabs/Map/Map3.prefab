@@ -5748,7 +5748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyPlayer: {fileID: 3136552238068742785}
   Recastlimit: 7
-  psp: {fileID: 21300000, guid: e012c1a6e910baa4590698c333f98bb5, type: 3}
+  psp: {fileID: 21300000, guid: 5439d3c2fe32f5643a997fe385ad0958, type: 3}
 --- !u!1 &4371158752462547703
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,7 +5901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyPlayer: {fileID: 5651788557719230032}
   Recastlimit: 7
-  psp: {fileID: 21300000, guid: 61f36e0a86a42784081cbd897dc5c318, type: 3}
+  psp: {fileID: 21300000, guid: 790060621af31244491780d18b126a9a, type: 3}
 --- !u!1 &5338326415736178398
 GameObject:
   m_ObjectHideFlags: 0
