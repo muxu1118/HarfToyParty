@@ -10,6 +10,7 @@ public class Wall : MonoBehaviour
         square = 0,
         Rectangle,
         cross,
+        VRectangle,
     }
 
     [SerializeField]
@@ -38,7 +39,11 @@ public class Wall : MonoBehaviour
                 Map.instance.mapInt[y, x + 1] = (int)MapKind.Wall;
                 Map.instance.mapInt[y, x - 1] = (int)MapKind.Wall;
                 break;
-                
+            case 3:
+                Map.instance.mapInt[y, x] = (int)MapKind.Wall;
+                Map.instance.mapInt[y + 1, x] = (int)MapKind.Wall;
+                break;
+
         }
     }
 
