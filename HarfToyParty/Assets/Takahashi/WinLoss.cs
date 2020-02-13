@@ -34,7 +34,7 @@ public class WinLoss : MonoBehaviour
     float crown_x = -242, crown_y = 166;
     //涙の位置
     [SerializeField]
-    float tear_x = -218, tear_y = 146;
+    float tear_x = -218, tear_y = 148;
 
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
@@ -242,11 +242,7 @@ public class WinLoss : MonoBehaviour
     /// </summary>
     private void resultGenerate()
     {
-        //draw = Instantiate(red.gameObject, new Vector3(86, 99, 0.0f), Quaternion.identity);
-        //draw.transform.localScale = new Vector2(1.5f, 1.5f);
-        //draw.transform.SetParent(panel.transform, false);
         drow.gameObject.SetActive(true);
-        //drow.sprite = Drow;
         red.gameObject.SetActive(false);
         blue.gameObject.SetActive(false);
     }

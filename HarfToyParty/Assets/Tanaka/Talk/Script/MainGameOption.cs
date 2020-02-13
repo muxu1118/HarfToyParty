@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 // MainGame 用の Script
 public class MainGameOption : MonoBehaviour
 {
-    // SerializeField -------------------------
     [SerializeField] GameObject Optionmenu;
     [SerializeField] GameObject Shadow;
     [SerializeField] GameObject Menuop;
@@ -19,6 +18,7 @@ public class MainGameOption : MonoBehaviour
     void Start()
     {
         FadeManager.FadeIn();
+
         Optionmenu.SetActive(false);
         Shadow.SetActive(false);
         Choose01.SetActive(false);
@@ -30,21 +30,20 @@ public class MainGameOption : MonoBehaviour
         Select();
         Finish();
         MoveGame();
-
+        // RBでオプション操作
         if (Input.GetKeyDown("joystick button 5"))    // RB
         {
             if (flagActive)
                 MenuCall();
             else
                 MenuDelet();
-            // Active / 非Active の入れ替え
+            
             flagActive = !flagActive;
         }
         else if (Input.GetKeyDown("joystick button 1"))
             MenuDelet();
-
     }
-
+    // オプションパネルが出た時背景が止まる、消えた時動き出す
     void MoveGame()
     {
         if (Optionmenu.activeSelf == true)
@@ -52,8 +51,7 @@ public class MainGameOption : MonoBehaviour
         else if (Optionmenu.activeSelf == false)
             Time.timeScale = 1f;
     }
-
-    // オプション呼び出しのためのクラス
+    // オプションパネルを呼び出す
     public void MenuCall()
     {
         Optionmenu.SetActive(true);
@@ -63,7 +61,7 @@ public class MainGameOption : MonoBehaviour
         if (Choose02.activeSelf == true)
             Choose01.SetActive(false);
     }
-    // オプションを 非Active 状態にするためのクラス
+
     public void MenuDelet()
     {
         Optionmenu.SetActive(false);
@@ -72,7 +70,7 @@ public class MainGameOption : MonoBehaviour
         Choose02.SetActive(false);
     }
 
-    public void SelectChice()
+    public void SelectChoice()
     {
         Choose01.SetActive(true);
         Choose02.SetActive(false);
@@ -87,21 +85,33 @@ public class MainGameOption : MonoBehaviour
     public void Select()
     {
         if (Optionmenu.activeSelf == true && Shadow.activeSelf == true)
-            if (Input.GetKeyDown("joystick button 0"))
+            if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f && !flagActive)  // 右
             {
-                if (flagActive)
-                    SelectChice();
-                else
-                    ChoiceSelect();
-
-                flagActive = !flagActive;
+                ChoiceSelect();
+                flagActive = true;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1 && !flagActive)    // 右
+            {
+                ChoiceSelect();
+                flagActive = true;
+            }
+            else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1 && flagActive)    // 下
+            {
+                SelectChoice();
+                flagActive = false;
+            }
+            else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1 && flagActive)    // 下
+            {
+                SelectChoice();
+                flagActive = false;
             }
             else if (Input.GetKeyDown("joystick button 2"))  // B
                 if (Choose01.activeSelf == true)
                 {
+                    MenuDelet();
                     Time.timeScale = 1f;
                     GameManager.instance.StateChange();
-                    SceneController.instance.sceneSwitching("Title");
+                    FadeManager.FadeOut(0);
                 }
                 else if (Choose02.activeSelf == true)
                     MenuDelet();
@@ -112,9 +122,10 @@ public class MainGameOption : MonoBehaviour
         if (Input.GetKeyDown("joystick button 2"))    // B
             if (Optionmenu.activeSelf == true && Shadow.activeSelf == true)
             {
+                MenuDelet();
                 Time.timeScale = 1f;
                 GameManager.instance.StateChange();
-                SceneController.instance.sceneSwitching("Title");
+                FadeManager.FadeOut(0);
             }
     }
 }
