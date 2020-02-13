@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: e012c1a6e910baa4590698c333f98bb5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5439d3c2fe32f5643a997fe385ad0958, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,6 +94,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rot: 2
   _isMove: 0
+  PlayerSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   SpawnXY: 0000000000000000
 --- !u!1 &6137019741446565374
 GameObject:

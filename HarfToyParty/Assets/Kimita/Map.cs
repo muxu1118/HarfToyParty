@@ -74,9 +74,11 @@ public class Map : MonoBehaviour
     private GameObject[] MapObject = new GameObject[System.Enum.GetNames(typeof(MapKind)).Length];
     bool isMove;
     private Vector2 BombPos = new Vector2();
+    private Vector2 BombPos0 = new Vector2();
 
     public List<List<Vector3>> SpritePos { get => spritePos; set => spritePos = value; }
     public Vector2 BombPos1 { get => BombPos; set => BombPos = value; }
+    public Vector2 BombPos2 { get => BombPos0; set => BombPos0 = value; }
     public List<GameObject> MoveWalls { get; set; } = new List<GameObject>();
     public bool updateMap=false;
 
@@ -179,7 +181,7 @@ public class Map : MonoBehaviour
         }
         MapKind booAria = (player == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
         GameObject obj = Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)booAria].transform.position, Quaternion.identity);
-        obj.GetComponent<BomTest>().MyPosi = BombPos1;
+        obj.GetComponent<BomTest>().MyPosi = (player == MapKind.Player1) ? BombPos1:BombPos2;
 
     }
     public void AriaSet(MapKind player,MapKind Aria)

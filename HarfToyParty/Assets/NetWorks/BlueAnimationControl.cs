@@ -21,9 +21,11 @@ public class BlueAnimationControl : MonoBehaviour
     {
         if (Win && !Lose) {
             _animator.SetBool("WinTriggle", true);
+            Debug.Log(Win);
         }
         else if (!Win && Lose) {
             _animator.SetBool("LoseTriggle", true);
+            Debug.Log(Lose);
         }
         else 
         {

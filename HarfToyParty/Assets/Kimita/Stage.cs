@@ -37,13 +37,19 @@ public class Stage : SingletonMonoBehaviour<Stage>
         switch (num)
         {
             case 0:
-                Instantiate(Map[num]).name = "Tutorial";
-                break;
-            case 1:
                 Instantiate(Map[num]).name = "Map1";
                 break;
-            case 2:
+            case 1:
                 Instantiate(Map[num]).name = "Map2";
+                break;
+            case 2:
+                Instantiate(Map[num]).name = "Map3";
+                break;
+            case 3:
+                Instantiate(Map[num]).name = "Map4";
+                break;
+            case 4:
+                Instantiate(Map[num]).name = "Map5";
                 break;
         }
 
