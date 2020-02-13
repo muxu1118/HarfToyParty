@@ -212,8 +212,11 @@ public class WinLoss : MonoBehaviour
     /// <param name="winner">勝ったプレイヤー</param>
     public void GameEnd(int winner)
     {
+        
         //リザルトUIを表示
-        panel.SetActive(true);
+        //panel.SetActive(true);
+        gameEndTrrger = true;
+        Debug.LogWarning("ゲームが終了したよ");
 
         int winnerDesplay = winner;
         switch (winnerDesplay)
@@ -224,12 +227,13 @@ public class WinLoss : MonoBehaviour
                 //blue.sprite = Lose;
                 //red.sprite = Win;
 
+                //赤のキャラをすべて色付きにして勝ちアニメーションを再生
                 characterPrehub.GetComponent<characterPrehub>().RedWinChange();
 
+                //王冠を作成
                 crownGenerate();
-                tearGenerate();
-
-                //GameManager.instance.StateChange();                
+                //涙を作成
+                tearGenerate();                 
                 break;
             case 2:
                 //青の勝利  
@@ -237,14 +241,15 @@ public class WinLoss : MonoBehaviour
                 //red.sprite = Lose;
                 //blue.sprite = Win;
 
+                //赤のキャラをすべて色付きにして勝ちアニメーションを再生
                 characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
 
+                //王冠を作成
                 crownGenerate();
+                //涙を作成
                 tearGenerate();
-
-                //GameManager.instance.StateChange();
                 break;
-        }
+        }        
     }
 
     /// <summary>

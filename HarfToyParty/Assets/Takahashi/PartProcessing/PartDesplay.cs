@@ -11,7 +11,9 @@ public class PartDesplay : MonoBehaviour
     //プレイヤーの変更する画像を選択
     [SerializeField]
     SpriteRenderer[] character_changePart;
+
     SpriteRenderer[] StoragePart;
+
     [SerializeField]
     SpriteRenderer[] henkougo;
 
@@ -24,7 +26,7 @@ public class PartDesplay : MonoBehaviour
     GameObject Blackout;
 
     [SerializeField]
-    Image throwPart;
+    Image throwPart, drow_throwPart;
 
     //中央のパーツの初期位置を保存
     Vector2 centerPartVector;
@@ -35,9 +37,11 @@ public class PartDesplay : MonoBehaviour
     string DesplayPart;
     string Desplay = "Desplay";
     int partNum;
+    int redPartCount = 0;
+    int bluePartCount = 0;
 
     float rotaTime = 0;
-    private void Start()
+    void Start()
     {
         //character_changePart[0].sprite = henkougo[0].sprite;
         _partThrow = GameObject.Find("throwObject").GetComponent<PartThrow>();
@@ -83,72 +87,88 @@ public class PartDesplay : MonoBehaviour
                 Debug.LogError(getPart);
                 break;
         }
-    }
+    }    
 
-    /// <summary>
-    /// エフェクトを再生しパーツをキャラクターの方に飛ばす
-    /// </summary>
-    private void PartSearch()
-    {
-        //キャラクターが兄だった場合
-        if (winnerNum == 1)
-        {
-            _partThrow.x *= -1;
-        }
-        Debug.Log("中央に表示");
-
-        //透明な背景を入れる
-        //Blackout.SetActive(true);
-        //エフェクトを再生
-        effect.SetActive(true);
-        //パーツをキャラクターの方に飛ばす
-        _partThrow.partThrow();
-    }       
-
-    //
+    //パーツ取得後の動き
     IEnumerator switching()
     {
         //中央に取ったパーツのデータを出力
         throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/" + getPart);
         //パーツを表示
         throwPart.gameObject.SetActive(true);
+        //透明な背景を入れる
+        Blackout.SetActive(true);
+        //エフェクトを再生
+        effect.SetActive(true);
+        Debug.Log("中央に表示");
+
+        if (_winLoss.drowtTrigger == true)
+        {
+            drow_throwPart.gameObject.SetActive(true);
+        }
 
         yield return new WaitForSeconds(1f);
         
         PartSearch();
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         //エフェクトを止める        
-        effect.SetActive(false);
-        //Blackout.SetActive(false);
-
-        //DesplayPart = "Sprites/ChangePart/" + Desplay + getPart;
-        //character_changePart[partNum].sprite = Resources.Load<Sprite>(DesplayPart);
-
+        effect.SetActive(false);                
+       
         //キャラクターのパーツを変更
         character_changePart[partNum].sprite = henkougo[partNum].sprite;
         
         yield return new WaitForSeconds(1.5f);
 
+        //透明の背景を消す
+        Blackout.SetActive(false);
+
         //勝者が兄なら
-        if(partNum <= 2)
+        if (partNum <= 2)
         {
-            _winLoss.WinOrLose(1);
+            Debug.Log(partNum + "で兄の勝利");
+            redPartCount++;
+            _winLoss.WinOrLose(1);            
         }
         //勝者が弟なら
         else if(partNum >= 3)
         {
+            Debug.Log(partNum + "で弟の勝利");
+            bluePartCount++;
             _winLoss.WinOrLose(2);
-        }        
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (redPartCount == 2)
+        {
+            _winLoss.GameEnd(1);
+        }
+        if(bluePartCount == 2)
+        {
+            _winLoss.GameEnd(2);
+        }
     }
 
-    private void CharacterRotation()
-    {        
-        rotaTime += Time.deltaTime;
-        character[0].transform.rotation = new Quaternion(rotaTime, rotaTime, 0,0);
+    /// <summary>
+    /// パーツをキャラクターの方に飛ばす
+    /// </summary>
+    private void PartSearch()
+    {
+        //パーツを取得したキャラクターが兄だった場合
+        if (winnerNum == 1)
+        {
+            _partThrow.x *= -1;            
+        }
+        //else if(winnerNum == 2)
+        //{
+        //    _partThrow.drow_x *= -1;
+        //}                
+        //パーツをキャラクターの方に飛ばす
+        _partThrow.partThrow();
     }
-
+   
     /// <summary>
     /// ゲーム終了後にパーツを返納
     /// </summary>
