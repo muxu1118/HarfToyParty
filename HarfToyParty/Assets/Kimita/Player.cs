@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
     public void PullMove(MapKind player, Vector2 vec2,int wall)
     {
         int max = 6, min = 0;
-        float speed = 0.45f;
+        float speed = 0.5f;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
     public void Move(MapKind player, Vector2 vec2)
     {
         int max = 6, min = 0;
-        float speed = 0.45f; ;
+        float speed = 0.5f; ;
         for (int i = 0; i <= 6; i++)
         {
             for (int j = 0; j <= 6; j++)
@@ -259,11 +259,11 @@ public class Player : MonoBehaviour
                 {
                     x = i;
                     y = j;
-                    map.mapInt[y, x] = 0;
-                    map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
                 }
             }
         }
+        map.mapInt[y, x] = 0;
+        map.mapInt[y - (int)vec2.y, x + (int)vec2.x] = (int)player;
         while (wait >= time)
         {
             time += Time.deltaTime;

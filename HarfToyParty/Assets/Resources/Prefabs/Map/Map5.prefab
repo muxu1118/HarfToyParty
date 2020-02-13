@@ -6583,12 +6583,12 @@ PrefabInstance:
     - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
         type: 3}
       propertyPath: SpawnXY.Array.data[0]
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
         type: 3}
       propertyPath: SpawnXY.Array.data[1]
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3665047716961640126, guid: 4f2bd3e25d099794f9e3df05e954f4ee,
         type: 3}
