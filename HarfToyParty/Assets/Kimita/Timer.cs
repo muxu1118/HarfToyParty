@@ -40,4 +40,8 @@ public class Timer : MonoBehaviour
             Debug.Log("TimeUp");
         }
     }
+    public void TimeReset()
+    {
+        count = 0;
+    }
 }
