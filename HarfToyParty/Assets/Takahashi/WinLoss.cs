@@ -31,10 +31,10 @@ public class WinLoss : MonoBehaviour
     float crownAngle = 0.2f;
     //王冠の位置
     [SerializeField]
-    float crown_x = -242, crown_y = 166;
+    float crown_x = -215, crown_y = 222;
     //涙の位置
     [SerializeField]
-    float tear_x = -218, tear_y = 148;
+    float tear_x = -208, tear_y = 148;
 
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
@@ -43,12 +43,15 @@ public class WinLoss : MonoBehaviour
     int i = 1;
     bool b = true;
 
-    bool stage = false;
-    int stageCount = 1;
+    bool stageTrigger = false;　//ステージを切り替えるトリガー
+    public bool drowtTrigger = false;   //引き分けかどうかを判断するトリガー
+    int stageCount = 1;         
 
     bool gameEndTrrger = false;
     [SerializeField]
     characterPrehub characterPrehub;
+    [SerializeField]
+    PartDesplay partDesplay;
 
     void Start()
     {
@@ -71,7 +74,7 @@ public class WinLoss : MonoBehaviour
     private void Update()
     {
         //ステージの切り替え
-        if (stage)
+        if (stageTrigger)
         {
             if(Input.GetKeyDown("joystick button 5"))
             {                
@@ -84,7 +87,7 @@ public class WinLoss : MonoBehaviour
                 //次のステージを選べるようにする
                 stageCount++;
                 //ボタンを押しても反応しないようにする
-                stage = false;
+                stageTrigger = false;
                 red.gameObject.SetActive(true);
                 blue.gameObject.SetActive(true);
 
@@ -92,6 +95,7 @@ public class WinLoss : MonoBehaviour
             }             
         }
 
+        //パーツを規定数取得し終わったらタイトルに戻るもの
         if (gameEndTrrger)
         {
             if (Input.GetKeyDown("joystick button 5"))
@@ -140,7 +144,7 @@ public class WinLoss : MonoBehaviour
         {
             //青が勝利した場合角度と場所を反転
             crownAngle *= -1f; 
-            crown_x = 370;
+            crown_x = 390;
         }
         //王冠の角度を設定
         Quaternion rote = new Quaternion(0.0f, 0.0f, crownAngle, 1.0f);
@@ -158,48 +162,11 @@ public class WinLoss : MonoBehaviour
         if (slore)
         {
             //赤が勝利した場合場所を反転
-            tear_x = 380;
+            tear_x = 377;
         }
         tear = Instantiate(tearPrefab, new Vector3(tear_x, tear_y, 0.0f), Quaternion.identity);        
         tear.transform.SetParent(panel.transform, false);
-    }
-
-    /// <summary>
-    /// 試合が終了したときにどちらが勝ったかを表示させる
-    /// </summary>
-    /// <param name="winner">勝ったプレイヤー</param>
-    public void GameEnd(int winner)
-    {
-        //リザルトUIを表示
-        panel.SetActive(true);
-        
-        int winnerDesplay = winner;
-        switch (winnerDesplay)
-        {
-            case 1:
-                slore = true;
-                //赤が勝利の場合
-                blue.sprite = Lose;
-                red.sprite = Win;
-
-                crownGenerate();
-                tearGenerate();
-
-                //GameManager.instance.StateChange();                
-                break;
-            case 2:
-                //青の勝利  
-                slore = false;
-                red.sprite = Lose;
-                blue.sprite = Win;
-
-                crownGenerate();
-                tearGenerate();
-
-                //GameManager.instance.StateChange();
-                break;            
-        }        
-    }
+    }    
 
     /// <summary>
     /// どちらかがパーツを取得した際に呼ばれる
@@ -210,31 +177,74 @@ public class WinLoss : MonoBehaviour
         panel.SetActive(true);
 
         //ステージを切り替えるためのスイッチ
-        stage = true;
-        Debug.LogWarning(stage);
+        stageTrigger = true;
+        //Debug.LogWarning(stageTrigger);
 
         int winnerDesplay = winner;
         switch (winnerDesplay)
         {
             case 1:
-                //赤が勝利の場合
+                //赤が勝利
                 drow.gameObject.SetActive(false);
                 red.sprite = Win;
                 blue.sprite = Lose;
-                characterPrehub.GetComponent<characterPrehub>().RedWinChange();
+                //characterPrehub.GetComponent<characterPrehub>().RedWinChange();
                 break;
             case 2:
                 //青の勝利  
                 drow.gameObject.SetActive(false);
                 red.sprite = Lose;
                 blue.sprite = Win;
-                characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
+                //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
                 break;
             case 3:
                 resultGenerate();
+                //partDesplay.GetComponent<PartDesplay>().PartGet()
+                drowtTrigger = true;
                 break;
         }
         
+    }
+
+    /// <summary>
+    /// 試合が終了したときにどちらが勝ったかを表示させる
+    /// </summary>
+    /// <param name="winner">勝ったプレイヤー</param>
+    public void GameEnd(int winner)
+    {
+        //リザルトUIを表示
+        panel.SetActive(true);
+
+        int winnerDesplay = winner;
+        switch (winnerDesplay)
+        {
+            case 1:
+                slore = true;
+                //赤が勝利の場合
+                //blue.sprite = Lose;
+                //red.sprite = Win;
+
+                characterPrehub.GetComponent<characterPrehub>().RedWinChange();
+
+                crownGenerate();
+                tearGenerate();
+
+                //GameManager.instance.StateChange();                
+                break;
+            case 2:
+                //青の勝利  
+                slore = false;
+                //red.sprite = Lose;
+                //blue.sprite = Win;
+
+                characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
+
+                crownGenerate();
+                tearGenerate();
+
+                //GameManager.instance.StateChange();
+                break;
+        }
     }
 
     /// <summary>
