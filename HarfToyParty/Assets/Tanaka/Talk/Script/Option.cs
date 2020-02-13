@@ -17,6 +17,7 @@ public class Option : MonoBehaviour
     [SerializeField] GameObject Choice2;
 
     private bool activeFlag = true;
+    private bool moveFlag = true;
 
     private void Start()
     {
@@ -147,25 +148,25 @@ public class Option : MonoBehaviour
     {
         if (option.activeSelf == true && optionShadow.activeSelf == true)
             if (Choice1.activeSelf == true || Choice2.activeSelf == true)
-                if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f && activeFlag)  // 右
+                if (Input.GetAxisRaw("Joysticks 1 Horizontal") > 0.1f && moveFlag)  // 右
                 {
                     Frame02();
-                    activeFlag = false;
+                    moveFlag = false;
                 }
-                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1 && activeFlag)    // 右
+                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") > 0.1 && moveFlag)    // 右
                 {
                     Frame02();
-                    activeFlag = false;
+                    moveFlag = false;
                 }
-                else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1 && !activeFlag)    // 左
+                else if (Input.GetAxisRaw("Joysticks 1 Horizontal") < -0.1 && !moveFlag)    // 左
                 {
                     Frame01();
-                    activeFlag = true;
+                    moveFlag = true;
                 }
-                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1 && !activeFlag)    // 左
+                else if (Input.GetAxisRaw("Joysticks 2 Horizontal") < -0.1 && !moveFlag)    // 左
                 {
                     Frame01();
-                    activeFlag = true;
+                    moveFlag = true;
                 }
                 else if (Frame1.activeSelf == true && Choice2.activeSelf == true)
                 {
