@@ -31,9 +31,9 @@ public class characterPrehub : MonoBehaviour
     /// </summary>
     public void RedWinChange()
     {
-        DestroyCaracter();
-        Instantiate(redColorCaracter, new Vector3(redCharacter_x, redCharacter_y, 0.0f), Quaternion.identity);
-        Instantiate(blueCaracter, new Vector3(blueCharacter_x, blueCharacter_y, 0.0f), Quaternion.identity);
+        //DestroyCaracter();
+        //Instantiate(redColorCaracter, new Vector3(redCharacter_x, redCharacter_y, 0.0f), Quaternion.identity);
+        //Instantiate(blueCaracter, new Vector3(blueCharacter_x, blueCharacter_y, 0.0f), Quaternion.identity);
         //tear.transform.SetParent(panel.transform, false);
     }
 

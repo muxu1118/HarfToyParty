@@ -98,7 +98,7 @@ public class PartDesplay : MonoBehaviour
         Debug.Log("中央に表示");
 
         //透明な背景を入れる
-        Blackout.SetActive(true);
+        //Blackout.SetActive(true);
         //エフェクトを再生
         effect.SetActive(true);
         //パーツをキャラクターの方に飛ばす
@@ -121,7 +121,7 @@ public class PartDesplay : MonoBehaviour
 
         //エフェクトを止める        
         effect.SetActive(false);
-        Blackout.SetActive(false);
+        //Blackout.SetActive(false);
 
         //DesplayPart = "Sprites/ChangePart/" + Desplay + getPart;
         //character_changePart[partNum].sprite = Resources.Load<Sprite>(DesplayPart);
