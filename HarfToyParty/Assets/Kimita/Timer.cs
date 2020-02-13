@@ -37,7 +37,8 @@ public class Timer : MonoBehaviour
         else
         {
             // 引き分け動作
-            Debug.Log("TimeUp");
+            //Debug.Log("TimeUp");
+            GameManager.instance.DrawGame();
         }
     }
     public void TimeReset()

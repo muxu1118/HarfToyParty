@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class WinLoss : MonoBehaviour
-{         
+{
+    Timer timer;
     //リザルトUI
     [SerializeField]
     GameObject panel;
     //リザルト画面の背景
-    [SerializeField]
-    GameObject background;
+    //[SerializeField]
+    //GameObject background;
     //Win,Loseを表示させるための場所に配置したオブジェクト
     [SerializeField]
     Image red,blue,drow;
@@ -50,8 +51,8 @@ public class WinLoss : MonoBehaviour
     bool gameEndTrrger = false;
     [SerializeField]
     characterPrehub characterPrehub;
-    [SerializeField]
-    PartDesplay partDesplay;
+    //[SerializeField]
+    //PartDesplay partDesplay;
 
     void Start()
     {
@@ -65,9 +66,10 @@ public class WinLoss : MonoBehaviour
         crownPrefab = (GameObject)Resources.Load("Prefabs/ResultUI/Crown");
         //涙のプレハブを取得
         tearPrefab = (GameObject)Resources.Load("Prefabs/ResultUI/Tear");
-        background.transform.position = new Vector3(970, 520, 0);
+        //background.transform.position = new Vector3(970, 520, 0);
         //GameManager.instance.winLoseLood();
 
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
         Stage.instance.StageSelect(0);
     }
     
@@ -78,6 +80,7 @@ public class WinLoss : MonoBehaviour
         {
             if(Input.GetKeyDown("joystick button 5"))
             {                
+                
                 //ステージを破棄
                 Stage.instance.StageReset();
                 //ステージを変更
@@ -90,6 +93,8 @@ public class WinLoss : MonoBehaviour
                 stageTrigger = false;
                 red.gameObject.SetActive(true);
                 blue.gameObject.SetActive(true);
+                //タイマーのカウントをリセット
+                timer.TimeReset();
 
                 Debug.Log("ステージが切り替わった");
             }             
@@ -185,16 +190,20 @@ public class WinLoss : MonoBehaviour
         {
             case 1:
                 //赤が勝利
-                drow.gameObject.SetActive(false);
+                
                 red.sprite = Win;
                 blue.sprite = Lose;
+                //drow.gameObject.SetActive(false);
+                Debug.Log("赤の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().RedWinChange();
                 break;
             case 2:
                 //青の勝利  
-                drow.gameObject.SetActive(false);
+                
                 red.sprite = Lose;
                 blue.sprite = Win;
+                //drow.gameObject.SetActive(false);
+                Debug.Log("青の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
                 break;
             case 3:
@@ -262,17 +271,17 @@ public class WinLoss : MonoBehaviour
         blue.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// タイトルに遷移
-    /// </summary>
-    private void titleSceneLoad()
-    {
-        if (Input.GetKeyDown("joystick button 5"))
-        {
-            DestroyUI();
-            SceneController.instance.sceneSwitching("Title");
-        }
-    }
+    ///// <summary>
+    ///// タイトルに遷移
+    ///// </summary>
+    //private void titleSceneLoad()
+    //{
+    //    if (Input.GetKeyDown("joystick button 5"))
+    //    {
+    //        DestroyUI();
+    //        SceneController.instance.sceneSwitching("Title");
+    //    }
+    //}
 
     /// <summary>
     /// ゲームが終わるときに呼ばれる

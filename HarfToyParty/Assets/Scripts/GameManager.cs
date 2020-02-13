@@ -76,7 +76,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // 赤が勝ったら
         if(RedPartGet == gameRule.PartGet && GameState == State.Main)
         {
-            winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
+            //winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("RedWin");
             GameState = State.Title;
             //winLoss.GameEnd(1);
@@ -84,7 +84,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // 青が勝ったら
         if (BluePartGet == gameRule.PartGet && GameState == State.Main)
         {
-            winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
+            //winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             Debug.Log("BlueWin");
             GameState = State.Title;
             //winLoss.GameEnd(2);

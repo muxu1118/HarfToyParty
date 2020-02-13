@@ -111,7 +111,7 @@ public class PartDesplay : MonoBehaviour
         
         PartSearch();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         //エフェクトを止める        
         effect.SetActive(false);                
@@ -141,6 +141,7 @@ public class PartDesplay : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        //ゲーム終了時に呼ばれる
         if (redPartCount == 2)
         {
             _winLoss.GameEnd(1);
