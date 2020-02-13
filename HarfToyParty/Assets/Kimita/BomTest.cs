@@ -64,7 +64,7 @@ public class BomTest : MonoBehaviour
                     Map.instance.PlayerBomDown((MapKind)Map.instance.mapInt[y - j, x + i]);
                 }
                 // 探索した範囲に壊れる壁があったら
-                if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.BreakWall1 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.BreakWall6)
+                if (Map.instance.mapInt[y - j, x + i] >= (int)MapKind.BreakWall1 && Map.instance.mapInt[y - j, x + i] <= (int)MapKind.BreakWall10)
                 {
                     // GameObjectから壊れる壁を取得
                     BreakWall[] breakObjects = FindObjectsOfType<BreakWall>();
