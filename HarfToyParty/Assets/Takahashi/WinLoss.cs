@@ -48,7 +48,8 @@ public class WinLoss : MonoBehaviour
     [HideInInspector]
     public bool drowtTrigger = false;   //引き分けかどうかを判断するトリガー
 
-    int stageCount = 0;         
+    int stageCount = 0;
+    int[] useStageCount = new int[3];
 
     bool gameEndTrrger = false;
     [SerializeField]
@@ -82,7 +83,8 @@ public class WinLoss : MonoBehaviour
 
         _partDesplay = GameObject.Find("character").GetComponent<PartDesplay>();
         timer = GameObject.Find("Timer").GetComponent<Timer>();
-        Stage.instance.StageSelect(stageCount);        
+        
+        Stage.instance.StageSelect(RandomStageCount(stageCount));        
     }
     
     private void Update()
@@ -90,13 +92,13 @@ public class WinLoss : MonoBehaviour
         //ステージの切り替え
         if (stageTrigger)
         {
-            if(Input.GetKeyDown("joystick button 4"))
+            if(Input.GetKeyDown("joystick button 2"))
             {
                 stageCount++;
                 //ステージを破棄
                 Stage.instance.StageReset();
                 //ステージを変更
-                Stage.instance.StageSelect(stageCount);
+                Stage.instance.StageSelect(RandomStageCount(stageCount));
                 //リザルトUIを隠す
                 panel.SetActive(false);
                 //次のステージを選べるようにする
@@ -120,7 +122,7 @@ public class WinLoss : MonoBehaviour
         //パーツを規定数取得し終わったらタイトルに戻るもの
         if (gameEndTrrger)
         {
-            if (Input.GetKeyDown("joystick button 4"))
+            if (Input.GetKeyDown("joystick button 2"))
             {
                 DestroyUI();
                 SceneController.instance.sceneSwitching("Title");
@@ -312,5 +314,33 @@ public class WinLoss : MonoBehaviour
         stageCount = 0;
         Destroy(tear);
         Destroy(crown);
+    }
+
+    /// <summary>
+    /// ステージのカウントをランダムで表示する
+    /// </summary>
+    private int RandomStageCount(int count)
+    {
+        // 送るステージ番号
+        int StageNum;
+        bool isLoop = false;
+        StageNum = Random.Range(0, 5);
+        while (!isLoop)
+        {
+            StageNum = Random.Range(0,5);
+            for(int i = 0;i <= count; i++)
+            {
+                if (useStageCount[i] == StageNum)
+                {
+                    break;
+                }
+                if(i == count)
+                {
+                    isLoop = true;
+                }
+            }
+        }
+        useStageCount[count] = StageNum;
+        return StageNum;
     }
 }
