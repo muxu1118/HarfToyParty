@@ -45,13 +45,16 @@ public class WinLoss : MonoBehaviour
     bool b = true;
 
     bool stageTrigger = false;　//ステージを切り替えるトリガー
+    [HideInInspector]
     public bool drowtTrigger = false;   //引き分けかどうかを判断するトリガー
+
     int stageCount = 0;         
 
     bool gameEndTrrger = false;
     [SerializeField]
     characterPrehub characterPrehub;
-    PartThrow _partThrow;
+
+    PartDesplay _partDesplay;
 
     Animator red_animator;
     Animator blue_animator;
@@ -77,15 +80,13 @@ public class WinLoss : MonoBehaviour
         //background.transform.position = new Vector3(970, 520, 0);
         //GameManager.instance.winLoseLood();
 
-        _partThrow = GameObject.Find("throwObject").GetComponent<PartThrow>();
+        _partDesplay = GameObject.Find("character").GetComponent<PartDesplay>();
         timer = GameObject.Find("Timer").GetComponent<Timer>();
-        Stage.instance.StageSelect(stageCount);
-        
+        Stage.instance.StageSelect(stageCount);        
     }
     
     private void Update()
-    {
-        
+    {        
         //ステージの切り替え
         if (stageTrigger)
         {
@@ -101,6 +102,7 @@ public class WinLoss : MonoBehaviour
                 //次のステージを選べるようにする
                 //ボタンを押しても反応しないようにする
                 stageTrigger = false;
+                drowtTrigger = false;
                 red.gameObject.SetActive(true);
                 blue.gameObject.SetActive(true);
                 drow.gameObject.SetActive(false);
@@ -227,13 +229,11 @@ public class WinLoss : MonoBehaviour
                 //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
                 break;
             case 3:
-                red_animator.SetBool("WinTriggle", true);
-                blue_animator.SetBool("WinTriggle", true);
+                
 
-                resultGenerate();
-
-                //partDesplay.GetComponent<PartDesplay>().PartGet()
-                //drowtTrigger = true;
+                //resultGenerate();
+                StartCoroutine("drowDesplay");
+                drowtTrigger = true;                               
                 break;
         }
         
@@ -295,11 +295,16 @@ public class WinLoss : MonoBehaviour
         blue.gameObject.SetActive(false);
     }
 
+    //引き分け処理
     IEnumerator drowDesplay()
     {
-        _partThrow.drowCall();
+        _partDesplay.drowdesplay();
+        Debug.Log("引き分けだよ");
         yield return new WaitForSeconds(1f);
         resultGenerate();
+        red_animator.SetBool("WinTriggle", true);
+        blue_animator.SetBool("WinTriggle", true);
+        Debug.Log("アニメーしょん動いた");
     }
 
     /// <summary>

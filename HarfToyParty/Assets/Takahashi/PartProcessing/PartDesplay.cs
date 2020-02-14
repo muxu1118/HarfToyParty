@@ -104,7 +104,7 @@ public class PartDesplay : MonoBehaviour
 
         if (_winLoss.drowtTrigger == true)
         {
-            //drow_throwPart.gameObject.SetActive(true);
+            drow_throwPart.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(1f);
@@ -170,6 +170,85 @@ public class PartDesplay : MonoBehaviour
         _partThrow.partThrow();
     }
    
+    /// <summary>
+    /// 引き分け時に呼び出される
+    /// </summary>
+    public void drowdesplay()
+    {
+        Debug.Log("パーツ呼ばれた");
+        StartCoroutine("drow_switching");
+    }
+
+    //パーツ未取得時の動き
+    IEnumerator drow_switching()
+    {
+        throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/R_Face");
+        drow_throwPart.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/B_Face");
+        
+        //パーツを表示
+        throwPart.gameObject.SetActive(true);
+        drow_throwPart.gameObject.SetActive(true);
+        //透明な背景を入れる
+        Blackout.SetActive(true);
+        //エフェクトを再生
+        effect.SetActive(true);
+        Debug.Log("中央に表示");
+
+        //if (_winLoss.drowtTrigger == true)
+        //{
+        //    drow_throwPart.gameObject.SetActive(true);
+        //}
+
+        yield return new WaitForSeconds(1f);
+        _partThrow.drowCall();
+        //PartSearch();
+
+        yield return new WaitForSeconds(1f);
+
+        //エフェクトを止める        
+        effect.SetActive(false);
+
+        //キャラクターのパーツを変更
+        character_changePart[0].sprite = henkougo[0].sprite;
+        character_changePart[3].sprite = henkougo[3].sprite;
+
+        yield return new WaitForSeconds(1.5f);
+
+        //透明の背景を消す
+        Blackout.SetActive(false);
+
+        //_winLoss.WinOrLose(3);
+        redPartCount++;
+        bluePartCount++;
+
+        //勝者が兄なら
+        //if (partNum <= 2)
+        //{
+        //    Debug.Log(partNum + "で兄の勝利");
+        //    redPartCount++;
+        //    _winLoss.WinOrLose(1);
+        //}
+        ////勝者が弟なら
+        //else if (partNum >= 3)
+        //{
+        //    Debug.Log(partNum + "で弟の勝利");
+        //    bluePartCount++;
+        //    _winLoss.WinOrLose(2);
+        //}
+
+        //yield return new WaitForSeconds(0.5f);
+
+        ////ゲーム終了時に呼ばれる
+        //if (redPartCount == 2)
+        //{
+        //    _winLoss.GameEnd(1);
+        //}
+        //if (bluePartCount == 2)
+        //{
+        //    _winLoss.GameEnd(2);
+        //}
+    }
+
     /// <summary>
     /// ゲーム終了後にパーツを返納
     /// </summary>

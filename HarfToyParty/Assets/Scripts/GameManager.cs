@@ -92,6 +92,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // 引き分け
         if (isDraw && GameState == State.Main)
         {
+            winLoss = GameObject.Find("ResultUI").GetComponent<WinLoss>();
             //引き分けの処理
             winLoss.WinOrLose(3);
             isDraw = false;            
@@ -135,9 +136,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         game.Time = 300;
         game.GameCount = 0;
         gameRule = game;        
-    }     
-    
-
+    }        
 
     /// <summary>
     /// Timerから呼び出されるよう
