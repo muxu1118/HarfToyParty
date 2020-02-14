@@ -32,7 +32,7 @@ public class WinLoss : MonoBehaviour
     float crownAngle = 0.2f;
     //王冠の位置
     [SerializeField]
-    float crown_x = -215, crown_y = 222;
+    float crown_x = -225, crown_y = 222;
     //涙の位置
     [SerializeField]
     float tear_x = -208, tear_y = 148;
@@ -209,6 +209,7 @@ public class WinLoss : MonoBehaviour
         {
             case 1:
                 //赤が勝利
+                drow.gameObject.SetActive(true);
 
                 red_animator.SetBool("WinTriggle", true);
                 blue_animator.SetBool("LoseTriggle", true);
@@ -218,9 +219,13 @@ public class WinLoss : MonoBehaviour
                 //drow.gameObject.SetActive(false);
                 Debug.Log("赤の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().RedWinChange();
+                
+                drow.gameObject.SetActive(false);
                 break;
             case 2:
                 //青の勝利  
+                drow.gameObject.SetActive(true);
+
                 blue_animator.SetBool("WinTriggle", true);
                 red_animator.SetBool("LoseTriggle", true);
 
@@ -229,6 +234,7 @@ public class WinLoss : MonoBehaviour
                 //drow.gameObject.SetActive(false);
                 Debug.Log("青の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
+                drow.gameObject.SetActive(false);
                 break;
             case 3:                
                 //resultGenerate();
