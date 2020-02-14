@@ -16,6 +16,16 @@ public class Bgm : MonoBehaviour
         SceneManager.sceneLoaded += SceneLoaded;
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        if(SceneManager.GetActiveScene().name == "MainGame"){
+            DontDestroyBgm = false;
+            Destroy(this.gameObject);
+        }
+    }
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)
     {
         if (nextScene.name == "TalkScene") return;

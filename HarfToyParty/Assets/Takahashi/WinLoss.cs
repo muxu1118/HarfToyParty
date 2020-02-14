@@ -88,13 +88,21 @@ public class WinLoss : MonoBehaviour
     }
     
     private void Update()
-    {        
+    {
+        //パーツを規定数取得し終わったらタイトルに戻るもの
+        if (gameEndTrrger)
+        {
+            if (Input.GetKeyDown("joystick button 2"))
+            {
+                DestroyUI();
+                SceneController.instance.sceneSwitching("Title");
+            }
+        }
         //ステージの切り替え
         if (stageTrigger)
         {
             if(Input.GetKeyDown("joystick button 2"))
             {
-                FadeManager.FadeIn();
                 stageCount++;
                 //ステージを破棄
                 Stage.instance.StageReset();
@@ -115,20 +123,11 @@ public class WinLoss : MonoBehaviour
                 red_animator.SetBool("LoseTriggle", false);
                 blue_animator.SetBool("LoseTriggle", false);                
                 blue_animator.SetBool("WinTriggle", false);
-                FadeManager.FadeOut(2);
                 Time.timeScale = 1f;
             }             
         }
 
-        //パーツを規定数取得し終わったらタイトルに戻るもの
-        if (gameEndTrrger)
-        {
-            if (Input.GetKeyDown("joystick button 2"))
-            {
-                DestroyUI();
-                SceneController.instance.sceneSwitching("Title");
-            }
-        }
+        
 
         //位置確認用
         if (Input.GetKeyDown(KeyCode.Space))

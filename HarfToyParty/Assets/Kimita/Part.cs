@@ -34,8 +34,7 @@ public class Part : MonoBehaviour
     
     private void Start()
     {
-        redSp = Resources.LoadAll<Sprite>("Sprites/NewGimmick/RedPart");
-        blueSp = Resources.LoadAll<Sprite>("Sprites/NewGimmick/BluePart");
+        
         winlos =  FindObjectOfType<WinLoss>();
         partDesplay = GameObject.Find("character").GetComponent<PartDesplay>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
@@ -45,15 +44,17 @@ public class Part : MonoBehaviour
             case 0:
                 kind = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? PartKind.R_Leg: PartKind.B_Leg;
                 gameObject.name = ("" + kind);
-                spriteR.sprite = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? redSp[(int)kind] : blueSp[(int)kind-(int)PartKind.B_Leg];
+                spriteR.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/"+gameObject.name);
                 break;
             case 1:
                 kind = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? PartKind.R_Face : PartKind.B_Face;
                 gameObject.name = ("" + kind);
+                spriteR.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/"+gameObject.name);
                 break;
             case 2:
                 kind = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? PartKind.R_Hand : PartKind.B_Hand;
                 gameObject.name = ("" + kind);
+                spriteR.sprite = Resources.Load<Sprite>("Sprites/NewGimmick/"+gameObject.name);
                 break;
 
         }
@@ -101,6 +102,7 @@ public class Part : MonoBehaviour
         {
             if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && (kind >= 0 && (int)kind <= 2)/*&& server*/)
             {
+                Time.timeScale = 0;
                 Debug.Log("koko");
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
@@ -111,6 +113,7 @@ public class Part : MonoBehaviour
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/)
             {
+                Time.timeScale = 0;
                 Debug.Log("koko2");
                 //player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
