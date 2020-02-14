@@ -207,6 +207,7 @@ public class WinLoss : MonoBehaviour
         {
             case 1:
                 //赤が勝利
+                drow.gameObject.SetActive(true);
 
                 red_animator.SetBool("WinTriggle", true);
                 blue_animator.SetBool("LoseTriggle", true);
@@ -216,9 +217,13 @@ public class WinLoss : MonoBehaviour
                 //drow.gameObject.SetActive(false);
                 Debug.Log("赤の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().RedWinChange();
+                
+                drow.gameObject.SetActive(false);
                 break;
             case 2:
                 //青の勝利  
+                drow.gameObject.SetActive(true);
+
                 blue_animator.SetBool("WinTriggle", true);
                 red_animator.SetBool("LoseTriggle", true);
 
@@ -227,6 +232,7 @@ public class WinLoss : MonoBehaviour
                 //drow.gameObject.SetActive(false);
                 Debug.Log("青の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
+                drow.gameObject.SetActive(false);
                 break;
             case 3:                
                 //resultGenerate();
