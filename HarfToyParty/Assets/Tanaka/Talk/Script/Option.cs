@@ -18,6 +18,7 @@ public class Option : MonoBehaviour
 
     private bool activeFlag = true;
     private bool moveFlag = true;
+    private bool test = true;
 
     private void Start()
     {
