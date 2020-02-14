@@ -139,7 +139,7 @@ public class PartDesplay : MonoBehaviour
             _winLoss.WinOrLose(2);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
         //ゲーム終了時に呼ばれる
         if (redPartCount == 2)

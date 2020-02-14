@@ -39,7 +39,7 @@ public class characterPrehub : MonoBehaviour
         //blueColorCaracter = (GameObject)Resources.Load("Prefabs/NewPrefab/blue_Full");
         //redCaracter.transform.localScale = scale;
 
-        Debug.Log(redCaracter);
+        //Debug.Log(redCaracter);
         //_animeotrBlue = bluePrehub.GetComponent<Animator>();
 
         _animeotrRed = redPrehub.GetComponent<Animator>();

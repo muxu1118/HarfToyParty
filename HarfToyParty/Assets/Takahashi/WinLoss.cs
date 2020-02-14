@@ -32,7 +32,7 @@ public class WinLoss : MonoBehaviour
     float crownAngle = 0.2f;
     //王冠の位置
     [SerializeField]
-    float crown_x = -215, crown_y = 222;
+    float crown_x = -225, crown_y = 222;
     //涙の位置
     [SerializeField]
     float tear_x = -208, tear_y = 148;
