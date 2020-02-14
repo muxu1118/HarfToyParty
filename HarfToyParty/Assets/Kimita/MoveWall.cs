@@ -336,19 +336,19 @@ public class MoveWall :MonoBehaviour
         switch (form)
         {
             case 0:
-                StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                StartCoroutine(WarpMoveAnim(0.8f, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                 return;
             case 1:
                 if (mov2.y != 0) return;
 
                 if (mov2.x > 0)
                 {
-                    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                    StartCoroutine(WarpMoveAnim(0.8f, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
                 else
                 {
-                    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                    StartCoroutine(WarpMoveAnim(0.8f, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
             case 2:
@@ -359,12 +359,12 @@ public class MoveWall :MonoBehaviour
 
                 if (mov2.y > 0)
                 {
-                    StartCoroutine(WarpMoveAnim(1,Map.instance.mapInt, mov2,Map.instance.SpritePos));
+                    StartCoroutine(WarpMoveAnim(0.8f, Map.instance.mapInt, mov2,Map.instance.SpritePos));
                     return;
                 }
                 else
                 {
-                    StartCoroutine(WarpMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+                    StartCoroutine(WarpMoveAnim(0.8f, Map.instance.mapInt, mov2, Map.instance.SpritePos));
                     return;
                 }
             default:
@@ -622,7 +622,7 @@ public class MoveWall :MonoBehaviour
                 break;
         }
         isMove = true;
-        StartCoroutine(WallMoveAnim(1, map, mov2, vec3));
+        StartCoroutine(WallMoveAnim(0.8f, map, mov2, vec3));
         return true;
     }
     IEnumerator WallMoveAnim(float wait, int[,] mapInt, Vector2 vec2, List<List<Vector3>> vec3)
@@ -724,6 +724,6 @@ public class MoveWall :MonoBehaviour
     public void PullWall(Vector2 mov2)
     {
         isMove = true;
-        StartCoroutine(WallMoveAnim(1, Map.instance.mapInt, mov2, Map.instance.SpritePos));
+        StartCoroutine(WallMoveAnim(0.8f, Map.instance.mapInt, mov2, Map.instance.SpritePos));
     }
 }
