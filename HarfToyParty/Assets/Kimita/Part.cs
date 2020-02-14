@@ -18,19 +18,45 @@ public class Part : MonoBehaviour
 
     PartDesplay partDesplay;
 
+    [SerializeField]
     public PartKind kind;
     private int MyPartNum;
     //private bool server;
     private GameObject player;
     [SerializeField]
     private Vector2 XY;
-    private SpriteRenderer spriteR = new SpriteRenderer();
 
+    Sprite[] redSp = new Sprite[3];
+    Sprite[] blueSp = new Sprite[3];
+    WinLoss winlos;
+
+    private SpriteRenderer spriteR = new SpriteRenderer();
+    
     private void Start()
     {
+        redSp = Resources.LoadAll<Sprite>("Sprites/NewGimmick/RedPart");
+        blueSp = Resources.LoadAll<Sprite>("Sprites/NewGimmick/BluePart");
+        winlos =  FindObjectOfType<WinLoss>();
         partDesplay = GameObject.Find("character").GetComponent<PartDesplay>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         //player= player = GameObject.FindObjectOfType<SyvnPos>().gameObject; 
+        switch (winlos.stageCount)
+        {
+            case 0:
+                kind = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? PartKind.R_Leg: PartKind.B_Leg;
+                gameObject.name = ("" + kind);
+                spriteR.sprite = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? redSp[(int)kind] : blueSp[(int)kind-(int)PartKind.B_Leg];
+                break;
+            case 1:
+                kind = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? PartKind.R_Face : PartKind.B_Face;
+                gameObject.name = ("" + kind);
+                break;
+            case 2:
+                kind = ((int)kind >= (int)PartKind.R_Leg && (int)kind <= (int)PartKind.R_Hand) ? PartKind.R_Hand : PartKind.B_Hand;
+                gameObject.name = ("" + kind);
+                break;
+
+        }
         switch (kind)
         {
             case PartKind.R_Leg:

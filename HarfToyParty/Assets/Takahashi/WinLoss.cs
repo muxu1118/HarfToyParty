@@ -48,7 +48,7 @@ public class WinLoss : MonoBehaviour
     [HideInInspector]
     public bool drowtTrigger = false;   //引き分けかどうかを判断するトリガー
 
-    int stageCount = 0;
+    public int stageCount = 0;
     int[] useStageCount = new int[3];
 
     bool gameEndTrrger = false;
