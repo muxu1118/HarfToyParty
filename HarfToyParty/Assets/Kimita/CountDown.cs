@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Paused : SingletonMonoBehaviour<Paused>
+public class CountDown : SingletonMonoBehaviour<CountDown>
 {
     FadeManager fade;
+
     // Start is called before the first frame update
     void Start()
     {

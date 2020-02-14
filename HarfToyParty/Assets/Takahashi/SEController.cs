@@ -10,7 +10,11 @@ public class SEController: SingletonMonoBehaviour<SEController>
     public enum SEType
     {
         none = -1,
+        Block,
         Bomb,
+        BombPut,
+        TitleButton,
+        Warp,
         cursor1,
         BGM基本ループ,
         MainGame,

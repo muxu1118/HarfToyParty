@@ -374,6 +374,7 @@ public class MoveWall :MonoBehaviour
     }
     IEnumerator WarpMoveAnim(float wait, int[,] mapInt, Vector2 vec2, List<List<Vector3>> vec3)
     {
+        SEController.instance.PlaySE(SEController.SEType.Warp, 0.8f, false);
         float time = wait/Time.deltaTime;
         int x = (int)XY.x, y = (int)XY.y;
         List<int> my = new List<int>();

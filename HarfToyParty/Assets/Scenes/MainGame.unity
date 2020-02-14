@@ -543,7 +543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &396585562
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1160,6 +1160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResultUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6117910378508463977, guid: e491c4af4c75e1e439fa00a391370bac,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 516429109193333161, guid: e491c4af4c75e1e439fa00a391370bac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1269,11 +1274,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6117910378508463977, guid: e491c4af4c75e1e439fa00a391370bac,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4692202765207869420, guid: e491c4af4c75e1e439fa00a391370bac,
         type: 3}
@@ -3790,7 +3790,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 77463ecfe590ad04692c67857eeb0646, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.795
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3887,7 +3887,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SEList:
-  - {fileID: 8300000, guid: 403dd9c82b8199d44b07d30911ce09f6, type: 3}
+  - {fileID: 8300000, guid: 09e7fc9724f808045ac66c87b4bc05bf, type: 3}
+  - {fileID: 8300000, guid: f782a43394411854e85c47ed27c9d563, type: 3}
+  - {fileID: 8300000, guid: 397e2ed438f10384fbc266b2c002d5f2, type: 3}
+  - {fileID: 8300000, guid: b1cd47cfd9d9c8e4b88c214e710b27ac, type: 3}
+  - {fileID: 8300000, guid: 29160810e86df8a4c9e133361c1e216e, type: 3}
 --- !u!4 &1624378508
 Transform:
   m_ObjectHideFlags: 0

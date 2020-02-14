@@ -294,6 +294,7 @@ public class PlayerInput : MonoBehaviour
             
             if (Isbomb)
             {
+                SEController.instance.PlaySE(SEController.SEType.BombPut, 1f, false);
                 Recast = 0;
                 isbomb = false;
                 // 爆弾を置く
@@ -314,6 +315,7 @@ public class PlayerInput : MonoBehaviour
 
             if (Isbomb)
             {
+                SEController.instance.PlaySE(SEController.SEType.BombPut, 1f, false);
                 Recast = 0;
                 isbomb = false;
                 // 爆弾を置く

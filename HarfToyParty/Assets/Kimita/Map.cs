@@ -181,6 +181,7 @@ public class Map : MonoBehaviour
         }
         MapKind booAria = (player == MapKind.Player1) ? MapKind.BombAria1 : MapKind.BombAria2;
         GameObject obj = Instantiate(MapObject[(int)MapKind.Bomb], MapObject[(int)booAria].transform.position, Quaternion.identity);
+        obj.transform.parent = gameObject.transform;
         obj.GetComponent<BomTest>().MyPosi = (player == MapKind.Player1) ? BombPos1:BombPos2;
 
     }

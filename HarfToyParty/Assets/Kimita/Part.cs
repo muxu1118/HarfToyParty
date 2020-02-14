@@ -81,6 +81,7 @@ public class Part : MonoBehaviour
                 GameManager.instance.RedPartGet++;
                 //ameManager.instance.StageCount++;
                 partDesplay.PartGet(gameObject.name, 1);
+                Time.timeScale = 0;
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/)
             {
@@ -90,6 +91,7 @@ public class Part : MonoBehaviour
                 GameManager.instance.BluePartGet++;
                 //GameManager.instance.StageCount++;
                 partDesplay.PartGet(gameObject.name, 2);
+                Time.timeScale = 0;
             }
 
 
