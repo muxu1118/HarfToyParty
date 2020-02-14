@@ -6820,7 +6820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myForm: 1
   MyWall: 33
-  XY: {x: 5, y: 1}
+  XY: {x: 2, y: 3}
   WarpObject: {fileID: 7832673316948320842}
   SPRObject: {fileID: 2568136968085073807}
   grab: 0
