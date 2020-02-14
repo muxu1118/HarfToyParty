@@ -15,7 +15,7 @@ public class TextMessage : MonoBehaviour
 
     int novelListIndex = 0;
 
-    public static string[] sentence = new string[7];
+    public static string[] sentence = new string[9];
     public static int sentenceNum = 0;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class TextMessage : MonoBehaviour
     void ColorChange()
     {
         // キャラの不透明度とカラー替え
-        if (novelListIndex == 6)
+        if (novelListIndex == 7 || novelListIndex == 8)
             sentenceNum = 3;
         else if (novelListIndex % 2 == 0)
             sentenceNum = 1;
@@ -65,7 +65,7 @@ public class TextMessage : MonoBehaviour
         if (novelListIndex < messageList.Count)
             StartCoroutine(Novel());
 
-        else if (novelListIndex == 7)
+        else if (novelListIndex == 9)
             Check.SetActive(true);
     }
 
@@ -84,12 +84,14 @@ public class TextMessage : MonoBehaviour
     // シナリオ変わる可能性有り
     public void Sentence()
     {
-        sentence[0] = "やっほー！\n今日は僕たちと遊んでくれる？";
-        sentence[1] = "くれるよね？";
-        sentence[2] = "僕と弟はこのトイパーティを\n開いてみたんだ";
-        sentence[3] = "僕とお兄ちゃんはそっくりでしょ？\n双子なんだ";
-        sentence[4] = "そんな僕たちの\n体を半分にしてみたから";
-        sentence[5] = "僕たちを操作して\n先に体のパーツをゲットしてね";
-        sentence[6] = "それじゃあ、レッツスタート！";
+        sentence[0] = "やっほ～？僕たちトイドールの双子、\n僕はお兄ちゃん";
+        sentence[1] = "僕は弟、名前はまだないよ？";
+        sentence[2] = "僕たちはおもちゃ箱で\nトイパーティーを開催したよ！";
+        sentence[3] = "おもちゃのブロックを引いたり、\n押したり";
+        sentence[4] = "おもちゃの爆弾を投げたり！";
+        sentence[5] = "相手の邪魔をしながら、\n僕たちを操作してお兄ちゃんより";
+        sentence[6] = "弟より先に！";
+        sentence[7] = "ゲットしてね！";
+        sentence[8] = "それじゃあ、レッツスタート！！";
     }
 }
