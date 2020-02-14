@@ -21,12 +21,20 @@ public class characterPrehub : MonoBehaviour
     Animator _animeotrRed;
     [SerializeField]
     Animator _animeotrBlue;
+    //[SerializeField]
+    //Animator _animeotrColorRed;
+    //[SerializeField]
+    //Animator _animeotrColorBlue;
+    [SerializeField]
+    GameObject[] player;
     bool win = false, lose = false;
 
     void Start()
     {
-        _animeotrRed = gameObject.GetComponent<Animator>();
-        _animeotrBlue = gameObject.GetComponent<Animator>();
+        //_animeotrRed = gameObject.GetComponent<Animator>();
+        //_animeotrBlue = gameObject.GetComponent<Animator>();
+        //_animeotrColorRed = gameObject.GetComponent<Animator>();
+        //_animeotrColorBlue = gameObject.GetComponent<Animator>();
         //scale.x = 0.75f;
         //scale.y = 0.75f;
         redCaracter = (GameObject)Resources.Load("Prefabs/NewPrefab/red_half");
@@ -36,21 +44,38 @@ public class characterPrehub : MonoBehaviour
         //redCaracter.transform.localScale = scale;
 
         Debug.Log(redCaracter);
+
+        
+        //_animeotrBlue = bluePrehub.GetComponent<Animator>();
+       
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("きた");
+            RedWinChange();
+        }
     }
 
     /// <summary>
-    /// 兄が勝った時に呼べれる
+    /// 兄が勝った時に呼ばれる
     /// </summary>
     public void RedWinChange()
     {
-        //DestroyCaracter();
-        //redPrehub = Instantiate(redColorCaracter, new Vector3(redCharacter_x, Character_y, 0.0f), Quaternion.identity);
-        //redPrehub.transform.SetParent(gameObject.transform, false);
-        //bluePrehub = Instantiate(blueCaracter, new Vector3(blueCharacter_x, Character_y, 0.0f), Quaternion.identity);
-        //bluePrehub.transform.SetParent(gameObject.transform, false);
-        //tear.transform.SetParent(panel.transform, false);
-        //_animeotrRed.SetBool("WinTriggle", true);
-        //_animeotrBlue.SetBool("LoseTriggle", true);
+        DestroyCaracter();
+
+        redPrehub = Instantiate(redColorCaracter, new Vector3(redCharacter_x, Character_y, 0.0f), Quaternion.identity);
+        redPrehub.transform.SetParent(gameObject.transform, false);
+        _animeotrRed = redPrehub.GetComponent<Animator>();
+
+        bluePrehub = Instantiate(blueCaracter, new Vector3(blueCharacter_x, Character_y, 0.0f), Quaternion.identity);
+        bluePrehub.transform.SetParent(gameObject.transform, false);
+        _animeotrBlue = bluePrehub.GetComponent<Animator>();
+
+        _animeotrRed.SetBool("WinTriggle", true);
+        _animeotrBlue.SetBool("LoseTriggle", true);
         Debug.Log("キャラクターを入れ替えあるはずだったよ");
     }
 
@@ -59,19 +84,26 @@ public class characterPrehub : MonoBehaviour
     /// </summary>
     public void BlueWinChange()
     {
-        //DestroyCaracter();
-        //redPrehub = Instantiate(redCaracter, new Vector3(redCharacter_x, Character_y, 0.0f), Quaternion.identity);
-        //redPrehub.transform.SetParent(gameObject.transform, false);
-        //bluePrehub = Instantiate(blueColorCaracter, new Vector3(blueCharacter_x, Character_y, 0.0f), Quaternion.identity);
-        //bluePrehub.transform.SetParent(gameObject.transform, false);
-        //_animeotrBlue.SetBool("WinTriggle", true);
-        //_animeotrRed.SetBool("LoseTriggle", true);
+        DestroyCaracter();
+
+        redPrehub = Instantiate(redCaracter, new Vector3(redCharacter_x, Character_y, 0.0f), Quaternion.identity);
+        redPrehub.transform.SetParent(gameObject.transform, false);
+        _animeotrRed = redPrehub.GetComponent<Animator>();
+
+        bluePrehub = Instantiate(blueColorCaracter, new Vector3(blueCharacter_x, Character_y, 0.0f), Quaternion.identity);
+        bluePrehub.transform.SetParent(gameObject.transform, false);
+        _animeotrBlue = bluePrehub.GetComponent<Animator>();
+
+        _animeotrBlue.SetBool("WinTriggle", true);
+        _animeotrRed.SetBool("LoseTriggle", true);
         Debug.Log("キャラクターを入れ替えあるはずだったよ");
     }
 
     private void DestroyCaracter()
     {
-        Destroy(GameObject.Find("red_half"));
-        Destroy(GameObject.Find("blue_half"));
+        //Destroy(GameObject.Find("red_half"));
+        //Destroy(GameObject.Find("blue_half"));
+        player[0].SetActive(false);
+        player[1].SetActive(false);
     }
 }

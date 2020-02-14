@@ -46,16 +46,24 @@ public class WinLoss : MonoBehaviour
 
     bool stageTrigger = false;　//ステージを切り替えるトリガー
     public bool drowtTrigger = false;   //引き分けかどうかを判断するトリガー
-    int stageCount = 1;         
+    int stageCount = 0;         
 
     bool gameEndTrrger = false;
     [SerializeField]
     characterPrehub characterPrehub;
-    //[SerializeField]
-    //PartDesplay partDesplay;
+    PartThrow _partThrow;
+
+    Animator red_animator;
+    Animator blue_animator;
+
+    [SerializeField]
+    GameObject[] chara;
 
     void Start()
     {
+        red_animator = chara[0].GetComponent<Animator>();
+        blue_animator = chara[1].GetComponent<Animator>();
+
         //panel.SetActive(false);
         //1P勝利の画像を取得
         Win = Resources.Load<Sprite>("Sprites/WinLose/w");
@@ -69,18 +77,21 @@ public class WinLoss : MonoBehaviour
         //background.transform.position = new Vector3(970, 520, 0);
         //GameManager.instance.winLoseLood();
 
+        _partThrow = GameObject.Find("throwObject").GetComponent<PartThrow>();
         timer = GameObject.Find("Timer").GetComponent<Timer>();
-        Stage.instance.StageSelect(0);
+        Stage.instance.StageSelect(stageCount);
+        
     }
     
     private void Update()
     {
+        
         //ステージの切り替え
         if (stageTrigger)
         {
             if(Input.GetKeyDown("joystick button 5"))
-            {                
-                
+            {
+                stageCount++;
                 //ステージを破棄
                 Stage.instance.StageReset();
                 //ステージを変更
@@ -88,13 +99,17 @@ public class WinLoss : MonoBehaviour
                 //リザルトUIを隠す
                 panel.SetActive(false);
                 //次のステージを選べるようにする
-                stageCount++;
                 //ボタンを押しても反応しないようにする
                 stageTrigger = false;
                 red.gameObject.SetActive(true);
                 blue.gameObject.SetActive(true);
+                drow.gameObject.SetActive(false);
                 //タイマーのカウントをリセット
                 timer.TimeReset();
+                red_animator.SetBool("WinTriggle", false);
+                red_animator.SetBool("LoseTriggle", false);
+                blue_animator.SetBool("LoseTriggle", false);                
+                blue_animator.SetBool("WinTriggle", false);
 
                 Debug.Log("ステージが切り替わった");
             }             
@@ -190,7 +205,10 @@ public class WinLoss : MonoBehaviour
         {
             case 1:
                 //赤が勝利
-                
+
+                red_animator.SetBool("WinTriggle", true);
+                blue_animator.SetBool("LoseTriggle", true);
+
                 red.sprite = Win;
                 blue.sprite = Lose;
                 //drow.gameObject.SetActive(false);
@@ -199,7 +217,9 @@ public class WinLoss : MonoBehaviour
                 break;
             case 2:
                 //青の勝利  
-                
+                blue_animator.SetBool("WinTriggle", true);
+                red_animator.SetBool("LoseTriggle", true);
+
                 red.sprite = Lose;
                 blue.sprite = Win;
                 //drow.gameObject.SetActive(false);
@@ -207,9 +227,13 @@ public class WinLoss : MonoBehaviour
                 //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
                 break;
             case 3:
+                red_animator.SetBool("WinTriggle", true);
+                blue_animator.SetBool("WinTriggle", true);
+
                 resultGenerate();
+
                 //partDesplay.GetComponent<PartDesplay>().PartGet()
-                drowtTrigger = true;
+                //drowtTrigger = true;
                 break;
         }
         
@@ -271,24 +295,19 @@ public class WinLoss : MonoBehaviour
         blue.gameObject.SetActive(false);
     }
 
-    ///// <summary>
-    ///// タイトルに遷移
-    ///// </summary>
-    //private void titleSceneLoad()
-    //{
-    //    if (Input.GetKeyDown("joystick button 5"))
-    //    {
-    //        DestroyUI();
-    //        SceneController.instance.sceneSwitching("Title");
-    //    }
-    //}
+    IEnumerator drowDesplay()
+    {
+        _partThrow.drowCall();
+        yield return new WaitForSeconds(1f);
+        resultGenerate();
+    }
 
     /// <summary>
     /// ゲームが終わるときに呼ばれる
     /// </summary>
     private void DestroyUI()
     {
-        stageCount = 1;
+        stageCount = 0;
         Destroy(tear);
         Destroy(crown);
     }

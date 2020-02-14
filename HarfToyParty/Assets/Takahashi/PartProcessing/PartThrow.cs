@@ -9,7 +9,7 @@ public class PartThrow : MonoBehaviour
     GameObject throwingObj,drow_throwObj;
     
     public int x, y,g; //加える力と重力
-    public int drow_x;
+    int drow_x = 50;
 
     [SerializeField]
     Rigidbody2D rb2_main, rb2_drow;
@@ -38,17 +38,11 @@ public class PartThrow : MonoBehaviour
         initial_scale = throwingObj.transform.localScale;
         obj_drow = drow_throwObj.transform.localScale;
         //initial = gameObject.transform.localScale;
-        drow_x = x;
+        //drow_x = x;
     }    
 
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {            
-            partThrow();
-        }
-        //StartCoroutine("stop");
-        
+    {                
         //透明度と大きさを下げる
         if (colorflag)
         {
@@ -81,6 +75,7 @@ public class PartThrow : MonoBehaviour
             colorDown = 1.5f;                                                         
             throwingObj.SetActive(false);                                             //飛ばすパーツを非表示
             Debug.Log("戻ったよ");
+            //
             if (drowFlag)
             {
                 drow_throwObj.GetComponent<Image>().color = new Color(255, 255, 255, 1.5f); //色を初期化
@@ -89,7 +84,8 @@ public class PartThrow : MonoBehaviour
                 obj = initial_scale;                                                        //大きさを変更していた値を初期化
                 rb2_drow.gravityScale = -2;                                                 //重力を初期化
                 rb2_drow.constraints = RigidbodyConstraints2D.FreezeAll;                    //移動しないようにする
-                drow_throwObj.SetActive(false);                                             //飛ばすパーツを非表示
+                drow_throwObj.SetActive(false);
+                drowFlag = false;//飛ばすパーツを非表示
             }
         }
     }
@@ -116,6 +112,7 @@ public class PartThrow : MonoBehaviour
     /// </summary>
     public void DorwpartThrow()
     {
+        drowFlag = true;
         rb2_drow.constraints = RigidbodyConstraints2D.None;
         rb2_drow.gravityScale = -2;
         //放物線上を求める
@@ -131,5 +128,16 @@ public class PartThrow : MonoBehaviour
         yield return new WaitForSeconds(0.45f);
 
         rb2_main.gravityScale = g;
-    }    
+        if (drowFlag)
+        {
+            rb2_drow.gravityScale = g;
+        }
+    } 
+    
+    public void drowCall()
+    {
+        x *= -1; 
+        partThrow();
+        DorwpartThrow();
+    }
 }

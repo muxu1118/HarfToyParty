@@ -104,7 +104,7 @@ public class PartDesplay : MonoBehaviour
 
         if (_winLoss.drowtTrigger == true)
         {
-            drow_throwPart.gameObject.SetActive(true);
+            //drow_throwPart.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(1f);
