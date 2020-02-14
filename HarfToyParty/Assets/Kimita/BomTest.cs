@@ -12,11 +12,13 @@ public class BomTest : MonoBehaviour
     [SerializeField]
     private float timeExplosion;//爆発までの時間
     private float timeEpTrigger = 0;
+    bool isSE;
 
     public Vector2 MyPosi { get; set; } = new Vector2();
     private void Start()
     {
         BombRange.SetActive(false);
+        isSE = false;
     }
     void Update()
     {
@@ -31,10 +33,14 @@ public class BomTest : MonoBehaviour
             timeExplosion -= Time.deltaTime;
            
         //BomText.text = "爆発まで" + timeExplosion.ToString("f0") + "秒";
-        }else
+        }else if (!isSE)
+        {
+            isSE = true;
+            SEController.instance.PlaySE(SEController.SEType.Bomb,0.2f, false);
+        }
+        else
         {
             //爆発したいよ
-            Explosion();
             transform.GetChild(0).gameObject.SetActive(false);
             BombRange.SetActive(true);
             StartCoroutine(DestroyObject());
@@ -84,8 +90,16 @@ public class BomTest : MonoBehaviour
 
     IEnumerator DestroyObject()
     {
-        float time = 0.5f;
+
+        float time = 0.4f;
         while(time > 0)
+        {
+            Explosion();
+            time -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        time = 0.1f;
+        while (time > 0)
         {
             time -= Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
