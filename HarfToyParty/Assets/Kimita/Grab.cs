@@ -69,6 +69,7 @@ public class Grab : MonoBehaviour
                 break;
 
         }
+        SEController.instance.PlaySE(SEController.SEType.Block,0.8f,false);
         return true;
     }
 

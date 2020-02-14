@@ -36,14 +36,14 @@ public class BomTest : MonoBehaviour
         }else if (!isSE)
         {
             isSE = true;
-            SEController.instance.PlaySE(SEController.SEType.Bomb,0.2f, false);
+            SEController.instance.PlaySE(SEController.SEType.Bomb,0.8f, false);
+            StartCoroutine(DestroyObject());
         }
         else
         {
             //爆発したいよ
             transform.GetChild(0).gameObject.SetActive(false);
             BombRange.SetActive(true);
-            StartCoroutine(DestroyObject());
         }
     }
 
@@ -91,14 +91,14 @@ public class BomTest : MonoBehaviour
     IEnumerator DestroyObject()
     {
 
-        float time = 0.4f;
+        float time = 0.2f;
         while(time > 0)
         {
             Explosion();
             time -= Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        time = 0.1f;
+        time = 0.3f;
         while (time > 0)
         {
             time -= Time.deltaTime;

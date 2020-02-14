@@ -94,6 +94,7 @@ public class WinLoss : MonoBehaviour
         {
             if(Input.GetKeyDown("joystick button 2"))
             {
+                FadeManager.FadeIn();
                 stageCount++;
                 //ステージを破棄
                 Stage.instance.StageReset();
@@ -114,8 +115,8 @@ public class WinLoss : MonoBehaviour
                 red_animator.SetBool("LoseTriggle", false);
                 blue_animator.SetBool("LoseTriggle", false);                
                 blue_animator.SetBool("WinTriggle", false);
-
-                Debug.Log("ステージが切り替わった");
+                FadeManager.FadeOut(2);
+                Time.timeScale = 1f;
             }             
         }
 

@@ -18,6 +18,7 @@ public class Bgm : MonoBehaviour
 
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)
     {
+        if (nextScene.name == "TalkScene") return;
         DontDestroyBgm = false;
         Destroy(this.gameObject);
     }

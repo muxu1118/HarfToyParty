@@ -70,7 +70,8 @@ public class TitleMock : MonoBehaviour
     private void SceneLoad()
     {
         if (Input.GetKeyDown("joystick button 2"))
-        {     
+        {
+            SEController.instance.PlaySE(SEController.SEType.TitleButton, 0.8f, false);
             GameManager.instance.StateChange();
             FadeManager.FadeOut(1);
         }
