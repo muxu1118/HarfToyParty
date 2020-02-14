@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SEScript : SingletonMonoBehaviour<SEScript>
+public class SEController: SingletonMonoBehaviour<SEController>
 {
     /// <summary>
     /// 使いたいSEを入力
@@ -10,6 +10,7 @@ public class SEScript : SingletonMonoBehaviour<SEScript>
     public enum SEType
     {
         none = -1,
+        Bomb,
         cursor1,
         BGM基本ループ,
         MainGame,
@@ -17,19 +18,19 @@ public class SEScript : SingletonMonoBehaviour<SEScript>
 
     public List<AudioClip> SEList;
 
-    public AudioSource PlaySE(SEType type, bool isLoop = false)
+    public AudioSource PlaySE(SEType type,float Volume, bool isLoop = false)
     {
         AudioSource se = new GameObject(type.ToString()).AddComponent<AudioSource>();
+        se.volume = Volume;
         se.clip = SEList[(int)type];
         se.gameObject.AddComponent<SEScript>();
         se.loop = isLoop;
         se.Play();
-
         return se;
     }
 }
 
-public class SEController : MonoBehaviour
+public class SEScript : MonoBehaviour
 {
     AudioSource audionSourse;
 
