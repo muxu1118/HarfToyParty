@@ -34,6 +34,20 @@ public class teat : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.anyKeyDown)
+        {
+            foreach (KeyCode code in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(code))
+                {
+                    //処理を書く
+                    Debug.Log(code);
+                    break;
+                }
+            }
+        }
+
         CharacterRotation();
         if (Input.GetKeyDown(KeyCode.Space))
         {

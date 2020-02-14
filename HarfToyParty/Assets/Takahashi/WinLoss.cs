@@ -90,7 +90,7 @@ public class WinLoss : MonoBehaviour
         //ステージの切り替え
         if (stageTrigger)
         {
-            if(Input.GetKeyDown("joystick button 5"))
+            if(Input.GetKeyDown("joystick button 4"))
             {
                 stageCount++;
                 //ステージを破棄
@@ -120,7 +120,7 @@ public class WinLoss : MonoBehaviour
         //パーツを規定数取得し終わったらタイトルに戻るもの
         if (gameEndTrrger)
         {
-            if (Input.GetKeyDown("joystick button 5"))
+            if (Input.GetKeyDown("joystick button 4"))
             {
                 DestroyUI();
                 SceneController.instance.sceneSwitching("Title");
@@ -228,9 +228,7 @@ public class WinLoss : MonoBehaviour
                 Debug.Log("青の勝利");
                 //characterPrehub.GetComponent<characterPrehub>().BlueWinChange();
                 break;
-            case 3:
-                
-
+            case 3:                
                 //resultGenerate();
                 StartCoroutine("drowDesplay");
                 drowtTrigger = true;                               
@@ -244,8 +242,7 @@ public class WinLoss : MonoBehaviour
     /// </summary>
     /// <param name="winner">勝ったプレイヤー</param>
     public void GameEnd(int winner)
-    {
-        
+    {        
         //リザルトUIを表示
         //panel.SetActive(true);
         gameEndTrrger = true;
