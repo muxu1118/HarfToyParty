@@ -9,10 +9,11 @@ public class TitleMock : MonoBehaviour
     [SerializeField]
     private float interval;
     private GameObject Panel;
+
     void Start()
     {
-        FadeManager.FadeIn();
         time = Time.time;
+        FadeManager.FadeIn();
         GameManager.instance.startScene();
     }
 
