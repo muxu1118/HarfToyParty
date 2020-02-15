@@ -32,10 +32,10 @@ public class WinLoss : MonoBehaviour
     float crownAngle = 0.2f;
     //王冠の位置
     [SerializeField]
-    float crown_x = -225, crown_y = 222;
+    float crown_x = -223, crown_y = 234;
     //涙の位置
     [SerializeField]
-    float tear_x = -208, tear_y = 148;
+    float tear_x = -215, tear_y = 162;
 
     //王冠と涙の位置を勝者に合わせるためのもの 
     bool slore = true;
@@ -62,6 +62,9 @@ public class WinLoss : MonoBehaviour
 
     [SerializeField]
     GameObject[] chara;
+
+    //////[SerializeField]
+    //////GameObject redCrown;
 
     void Start()
     {
@@ -103,6 +106,7 @@ public class WinLoss : MonoBehaviour
         {
             if(Input.GetKeyDown("joystick button 2"))
             {
+                FadeManager.FadeIn();
                 stageCount++;
                 //ステージを破棄
                 Stage.instance.StageReset();
@@ -123,6 +127,7 @@ public class WinLoss : MonoBehaviour
                 red_animator.SetBool("LoseTriggle", false);
                 blue_animator.SetBool("LoseTriggle", false);                
                 blue_animator.SetBool("WinTriggle", false);
+                FadeManager.FadeOut(2);
                 Time.timeScale = 1f;
             }             
         }
@@ -168,7 +173,7 @@ public class WinLoss : MonoBehaviour
         {
             //青が勝利した場合角度と場所を反転
             crownAngle *= -1f; 
-            crown_x = 390;
+            crown_x = 398;
         }
         //王冠の角度を設定
         Quaternion rote = new Quaternion(0.0f, 0.0f, crownAngle, 1.0f);
@@ -186,7 +191,7 @@ public class WinLoss : MonoBehaviour
         if (slore)
         {
             //赤が勝利した場合場所を反転
-            tear_x = 377;
+            tear_x = 388;
         }
         tear = Instantiate(tearPrefab, new Vector3(tear_x, tear_y, 0.0f), Quaternion.identity);        
         tear.transform.SetParent(panel.transform, false);

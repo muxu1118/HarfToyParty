@@ -202,10 +202,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.08, y: 10.24}
+  m_Size: {x: 4.59, y: 11.39}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1404367403643575268
@@ -2479,6 +2479,7 @@ MonoBehaviour:
   effect: {fileID: 1745940096358938244}
   Blackout: {fileID: 1745940096578541647}
   throwPart: {fileID: 0}
+  drow_throwPart: {fileID: 0}
 --- !u!1 &1745940096358938244
 GameObject:
   m_ObjectHideFlags: 0
