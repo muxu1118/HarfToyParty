@@ -145,12 +145,12 @@ public class PartDesplay : MonoBehaviour
         //yield return new WaitForSeconds(0.5f);
 
         //ゲーム終了時に呼ばれる
-        if (redPartCount == 1)
+        if (redPartCount == 2)
         {
             character_changePart[3].sprite = loseFace[1].sprite;
             _winLoss.GameEnd(1);
         }
-        if(bluePartCount == 1)
+        if(bluePartCount == 2)
         {
             character_changePart[0].sprite = loseFace[0].sprite;
             _winLoss.GameEnd(2);

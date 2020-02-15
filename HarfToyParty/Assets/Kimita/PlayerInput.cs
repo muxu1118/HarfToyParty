@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     Sprite psp;//PlayerのSprite
     bool ispulling = false;//壁を引いてるか
     int pullWallN = 0;//引いてる壁の値
+    bool nomove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,8 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale == 0) return;
+        //if (Time.timeScale == 0) return;
+        if (!nomove) return;
         InputMove();
         ActionInput();
         WallGrab();
@@ -358,4 +360,8 @@ public class PlayerInput : MonoBehaviour
         crash = 0;
     }
     
+    public void boolchange()
+    {
+        nomove = !nomove;
+    }
 }

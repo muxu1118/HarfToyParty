@@ -29,6 +29,8 @@ public class Part : MonoBehaviour
     Sprite[] redSp = new Sprite[3];
     Sprite[] blueSp = new Sprite[3];
     WinLoss winlos;
+    PlayerInput playerInput_1;
+    PlayerInput playerInput_2;
 
     private SpriteRenderer spriteR = new SpriteRenderer();
     
@@ -100,9 +102,16 @@ public class Part : MonoBehaviour
     {
         if (Map.instance.mapInt[(int)XY.y, (int)XY.x] != MyPartNum && (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 || Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2))
         {
+            playerInput_1 = GameObject.Find("Player1").GetComponent<PlayerInput>();
+            playerInput_1.boolchange();
+            playerInput_2 = GameObject.Find("Player2").GetComponent<PlayerInput>();
+            playerInput_2.boolchange();
             if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && (kind >= 0 && (int)kind <= 2)/*&& server*/)
             {
                 //Time.timeScale = 0;
+                //playerInput = GameObject.Find("Player1").GetComponent<PlayerInput>();
+                //playerInput = FindObjectOfType<PlayerInput>();
+                //playerInput.boolchange();
                 Debug.Log("koko");
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
@@ -113,6 +122,9 @@ public class Part : MonoBehaviour
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/)
             {
+                //playerInput = GameObject.Find("Player1").GetComponent<PlayerInput>();
+                //playerInput = FindObjectOfType<PlayerInput>();
+                //playerInput.boolchange();
                 //Time.timeScale = 0;
                 Debug.Log("koko2");
                 //player.GetComponent<SyvnPos>().CheckWinLose(2);

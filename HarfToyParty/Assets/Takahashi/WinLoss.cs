@@ -56,6 +56,7 @@ public class WinLoss : MonoBehaviour
     characterPrehub characterPrehub;
 
     PartDesplay _partDesplay;
+    PlayerInput _playerInput;
 
     Animator red_animator;
     Animator blue_animator;
@@ -130,6 +131,8 @@ public class WinLoss : MonoBehaviour
                 blue_animator.SetBool("WinTriggle", false);
                 //FadeManager.FadeOut(2);
                 //Time.timeScale = 1f;
+                _playerInput = GameObject.Find("Player1").GetComponent<PlayerInput>();
+                _playerInput.boolchange();
             }             
         }
 

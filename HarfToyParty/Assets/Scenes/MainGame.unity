@@ -2181,7 +2181,7 @@ PrefabInstance:
     - target: {fileID: 4692202764617307254, guid: e491c4af4c75e1e439fa00a391370bac,
         type: 3}
       propertyPath: m_Text
-      value: "S\u62BC\u3057\u3066\u6B21\u306E\u52DD\u8CA0\u3060"
+      value: "\u62BC\u3057\u3066\u6B21\u306E\u52DD\u8CA0\u3060"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e491c4af4c75e1e439fa00a391370bac, type: 3}
