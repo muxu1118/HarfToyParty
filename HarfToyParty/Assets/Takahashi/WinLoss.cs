@@ -34,7 +34,7 @@ public class WinLoss : MonoBehaviour
     [SerializeField]
     float crown_x = -223, crown_y = 234;
     //涙の位置
-    [SerializeField]
+    //[SerializeField]
     float tear_x = -215, tear_y = 162;
 
     //王冠と涙の位置を勝者に合わせるためのもの 
@@ -63,8 +63,8 @@ public class WinLoss : MonoBehaviour
     [SerializeField]
     GameObject[] chara;
 
-    //////[SerializeField]
-    //////GameObject redCrown;
+    [SerializeField]
+    Text text;
 
     void Start()
     {
@@ -97,6 +97,7 @@ public class WinLoss : MonoBehaviour
         {
             if (Input.GetKeyDown("joystick button 2"))
             {
+                FadeManager.FadeIn();
                 DestroyUI();
                 SceneController.instance.sceneSwitching("Title");
             }
@@ -127,8 +128,8 @@ public class WinLoss : MonoBehaviour
                 red_animator.SetBool("LoseTriggle", false);
                 blue_animator.SetBool("LoseTriggle", false);                
                 blue_animator.SetBool("WinTriggle", false);
-                FadeManager.FadeOut(2);
-                Time.timeScale = 1f;
+                //FadeManager.FadeOut(2);
+                //Time.timeScale = 1f;
             }             
         }
 
@@ -259,6 +260,7 @@ public class WinLoss : MonoBehaviour
         //リザルトUIを表示
         //panel.SetActive(true);
         gameEndTrrger = true;
+        text.text = "押すとタイトルに戻るよ";
         Debug.LogWarning("ゲームが終了したよ");
 
         int winnerDesplay = winner;

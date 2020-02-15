@@ -102,25 +102,25 @@ public class Part : MonoBehaviour
         {
             if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player1 && (kind >= 0 && (int)kind <= 2)/*&& server*/)
             {
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
                 Debug.Log("koko");
                 //player.GetComponent<SyvnPos>().CheckWinLose(1);
                 gameObject.SetActive(false);
                 GameManager.instance.RedPartGet++;
                 //ameManager.instance.StageCount++;
                 partDesplay.PartGet(gameObject.name, 1);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
             }
             else if (Map.instance.mapInt[(int)XY.y, (int)XY.x] == (int)MapKind.Player2 && (int)kind >= 3 && (int)kind <= 5/* && !server*/)
             {
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
                 Debug.Log("koko2");
                 //player.GetComponent<SyvnPos>().CheckWinLose(2);
                 gameObject.SetActive(false);
                 GameManager.instance.BluePartGet++;
                 //GameManager.instance.StageCount++;
                 partDesplay.PartGet(gameObject.name, 2);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
             }
 
 

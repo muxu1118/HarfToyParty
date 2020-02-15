@@ -2163,10 +2163,25 @@ PrefabInstance:
       propertyPath: redCrown
       value: 
       objectReference: {fileID: 2034783933}
+    - target: {fileID: 3932295373004108908, guid: e491c4af4c75e1e439fa00a391370bac,
+        type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1211878042}
     - target: {fileID: 2791083969274351034, guid: e491c4af4c75e1e439fa00a391370bac,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4692202763835673592, guid: e491c4af4c75e1e439fa00a391370bac,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4692202764617307254, guid: e491c4af4c75e1e439fa00a391370bac,
+        type: 3}
+      propertyPath: m_Text
+      value: "S\u62BC\u3057\u3066\u6B21\u306E\u52DD\u8CA0\u3060"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e491c4af4c75e1e439fa00a391370bac, type: 3}
@@ -3241,6 +3256,18 @@ Transform:
   m_Father: {fileID: 1693642403}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211878042 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4692202764617307254, guid: e491c4af4c75e1e439fa00a391370bac,
+    type: 3}
+  m_PrefabInstance: {fileID: 918002668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1248207551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,6 +4309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1745940094916633247, guid: 50a1aa828ddc1774ebb063a4e8e2e104,
         type: 3}
+      propertyPath: loseFace.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745940094916633247, guid: 50a1aa828ddc1774ebb063a4e8e2e104,
+        type: 3}
       propertyPath: throwPart
       value: 
       objectReference: {fileID: 106962962}
@@ -4325,6 +4357,24 @@ PrefabInstance:
       propertyPath: henkougo.Array.data[3]
       value: 
       objectReference: {fileID: 21200038, guid: 2682d3f10121b104597c1887fe0ac703,
+        type: 3}
+    - target: {fileID: 1745940094916633247, guid: 50a1aa828ddc1774ebb063a4e8e2e104,
+        type: 3}
+      propertyPath: henkougo.Array.data[0]
+      value: 
+      objectReference: {fileID: 21200036, guid: 2b47ad3bc11d18d4f98ee0667c6af4ce,
+        type: 3}
+    - target: {fileID: 1745940094916633247, guid: 50a1aa828ddc1774ebb063a4e8e2e104,
+        type: 3}
+      propertyPath: loseFace.Array.data[0]
+      value: 
+      objectReference: {fileID: 21200042, guid: d0a586f6d107d174ab961cac5924a134,
+        type: 3}
+    - target: {fileID: 1745940094916633247, guid: 50a1aa828ddc1774ebb063a4e8e2e104,
+        type: 3}
+      propertyPath: loseFace.Array.data[1]
+      value: 
+      objectReference: {fileID: 21200040, guid: 213ae3c6962a9aa49b19f3b44b5c537b,
         type: 3}
     - target: {fileID: 1404367403654868486, guid: 50a1aa828ddc1774ebb063a4e8e2e104,
         type: 3}
